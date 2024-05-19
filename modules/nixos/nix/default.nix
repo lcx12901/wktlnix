@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkDefault mkIf mkForce;
+  inherit (lib) mkIf;
 
   cfg = option.wktlNix.nix;
 in {
