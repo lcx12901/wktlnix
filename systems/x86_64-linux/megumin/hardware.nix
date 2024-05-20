@@ -22,4 +22,6 @@
     # Enable integration with Docker Desktop (needs to be installed)
     docker-desktop.enable = false;
   };
+
+  documentation.man.enable = true;
 }
