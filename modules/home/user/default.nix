@@ -1,5 +1,6 @@
 {config, lib, ...}: let
-  inherit (lib) types mkIf mkMerge;
+  inherit (lib) types mkIf mkMerge mkDefault getExe;
+  inherit (lib.internal) mkOpt;
 
   cfg = config.wktlNix.user;
 
