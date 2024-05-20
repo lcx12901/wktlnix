@@ -1,6 +1,4 @@
-{config, lib, ...}: let
-  inherit (lib) mkForce;
-in {
+{config, lib, ...}: {
   wktlNix = {
     user = {
       enable = true;
