@@ -4,7 +4,8 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf mkDefault;
+  inherit (lib) mkIf mkDefault filterAttrs mapAttrs mapAttrsToList pipe types;
+  inherit (lib.internal) mkBoolOpt mkOpt;
 
   cfg = config.wktlNix.nix;
 in {
