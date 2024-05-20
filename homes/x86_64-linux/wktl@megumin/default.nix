@@ -2,7 +2,7 @@
   inherit (lib) mkForce;
 in {
   wktlNix = {
-    user {
+    user = {
       enable = true;
       inherit (config.snowfallorg.user) name;
     }
