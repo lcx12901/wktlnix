@@ -10,4 +10,8 @@ rec {
   mkBoolOpt = mkOpt types.bool;
 
   mkBoolOpt' = mkOpt' types.bool;
+
+  enabled = {
+    enable = true;
+  };
 }
