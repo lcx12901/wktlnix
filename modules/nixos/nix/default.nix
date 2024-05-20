@@ -4,11 +4,23 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkDefault;
 
   cfg = option.wktlNix.nix;
 in {
+  options.khanelinix.nix = with types; {
+    enable = mkBoolOpt true "Whether or not to manage nix configuration.";
+    package = mkOpt package pkgs.nixVersions.latest "Which nix package to use.";
+  };
+
   config = mkIf cfg.enable {
+    # faster rebuilding
+    documentation = {
+      doc.enable = false;
+      info.enable = false;
+      man.enable = mkDefault true;
+    };
+
     environment = {
       etc = with inputs; {
         # set channels (backwards compatibility)
@@ -123,7 +135,6 @@ in {
         substituters = [
           "https://cache.ngi0.nixos.org" # content addressed nix cache (TODO)
           "https://cache.nixos.org" # funny binary cache
-          "https://cache.privatevoid.net" # for nix-super
           "https://nixpkgs-wayland.cachix.org" # automated builds of *some* wayland packages
           "https://nix-community.cachix.org" # nix-community cache
           "https://hyprland.cachix.org" # hyprland
@@ -137,7 +148,6 @@ in {
         trusted-public-keys = [
           "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
           "cache.ngi0.nixos.org-1:KqH5CBLNSyX184S9BKZJo1LxrxJ9ltnY2uAs5c/f1MA="
-          "cache.privatevoid.net:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg="
           "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
