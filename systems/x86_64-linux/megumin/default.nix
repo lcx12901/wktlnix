@@ -1,9 +1,11 @@
-{
+{lib, ...}: let 
+  inherit (lib.internal) enabled;
+in {
   imports = [./hardware.nix];
 
   wktlNix = {
     archetypes = {
-      wsl = true;
+      wsl = enabled;
     };
   };
 
