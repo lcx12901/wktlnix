@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkIf mkDefault;
 
-  cfg = option.wktlNix.nix;
+  cfg = config.wktlNix.nix;
 in {
-  options.khanelinix.nix = with types; {
+  options.wktlNix.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
     package = mkOpt package pkgs.nixVersions.latest "Which nix package to use.";
   };
