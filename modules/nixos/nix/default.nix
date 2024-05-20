@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf mkDefault isType filterAttrs mapAttrs mapAttrsToList pipe types;
+  inherit (lib) mkIf mkDefault mkForce isType filterAttrs mapAttrs mapAttrsToList pipe types;
   inherit (lib.internal) mkBoolOpt mkOpt;
 
   cfg = config.wktlNix.nix;
@@ -18,7 +18,7 @@ in {
   config = mkIf cfg.enable {
     # faster rebuilding
     documentation = {
-      doc.enable = false;
+      doc.enable = mkForce false;
       info.enable = false;
       man.enable = mkDefault true;
     };
