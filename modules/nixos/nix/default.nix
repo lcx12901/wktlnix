@@ -18,7 +18,7 @@ in {
   config = mkIf cfg.enable {
     # faster rebuilding
     documentation = {
-      doc.enable = mkForce false;
+      doc.enable = false;
       info.enable = false;
       man.enable = mkDefault true;
     };
