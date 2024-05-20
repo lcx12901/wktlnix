@@ -21,7 +21,6 @@
         nur.overlay
       ];
 
-      formatter = channels.nixpkgs.nixfmt-rfc-style;
     };
 
   inputs = {
