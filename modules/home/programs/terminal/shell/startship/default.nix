@@ -24,7 +24,7 @@ in {
         add_newline = false;
         line_break.disabled = false;
 
-        format = ''
+        format = """
           [](color_orange)\
           $os\
           $username\
@@ -50,7 +50,7 @@ in {
           $time\
           [ ](fg:color_bg1)\
           $line_break$character
-        '';
+          """;
 
         palette = "gruvbox_dark";
         
