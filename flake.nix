@@ -1,5 +1,6 @@
 {
   # example by https://github.com/khaneliman/khanelinix
+  # part disk example by https://github.com/Anomalocaridid/dotfiles
   description = "wktlNix";
 
   outputs = inputs: let
@@ -38,7 +39,6 @@
     # Home Manager (master)
     home-manager = {
       url = "github:nix-community/home-manager";
-      # url = "git+file:///home/khaneliman/Documents/github/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -57,6 +57,12 @@
     # Nix User Repository (master)
     nur = {
       url = "github:nix-community/NUR";
+    };
+
+    # Declarative disk partitioning
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
