@@ -1,5 +1,4 @@
 {config, lib, ...}: let
-  inherit (lib) mkForce;
   inherit (lib.internal) enabled;
 in {
   wktlNix = {
