@@ -1,10 +1,19 @@
 {config, lib, ...}: let
   inherit (lib) mkForce;
+  inherit (lib.internal) enabled;
 in {
   wktlNix = {
     user = {
       enable = true;
       inherit (config.snowfallorg.user) name;
+    };
+
+    programs = {
+      terminal = {
+        shell = {
+          zsh = enabled;
+        };
+      };
     };
   };
 
