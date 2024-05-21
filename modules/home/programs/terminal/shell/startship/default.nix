@@ -1,6 +1,7 @@
 {config, lib, ...}: let
   inherit (lib) mkIf;
   inherit (lib.internal) mkBoolOpt;
+  inherit (lib.strings) concatStrings;
 
   cfg = config.wktlNix.programs.terminal.shell.startship;
 in {
@@ -24,35 +25,27 @@ in {
         add_newline = false;
         line_break.disabled = false;
 
-        format = ''
-          """
-          [](color_orange)\
-          $os\
-          $username\
-          [](bg:color_yellow fg:color_orange)\
-          $directory\
-          [](fg:color_yellow bg:color_aqua)\
-          $git_branch\
-          $git_status\
-          [](fg:color_aqua bg:color_blue)\
-          $c\
-          $rust\
-          $golang\
-          $nodejs\
-          $php\
-          $java\
-          $kotlin\
-          $haskell\
-          $python\
-          [](fg:color_blue bg:color_bg3)\
-          $docker_context\
-          $conda\
-          [](fg:color_bg3 bg:color_bg1)\
-          $time\
-          [ ](fg:color_bg1)\
-          $line_break$character
-          """
-        '';
+        format = concatStrings [
+          "[](color_orange)"
+          "$os"
+          "$username"
+          "[](bg:color_yellow fg:color_orange)"
+          "$directory"
+          "[](fg:color_yellow bg:color_aqua)"
+          "$git_branch"
+          "$git_status"
+          "[](fg:color_aqua bg:color_blue)"
+          "$rust"
+          "$golang"
+          "$nodejs"
+          "$haskell"
+          "[](fg:color_blue bg:color_bg3)"
+          "$docker_context"
+          "[](fg:color_bg3 bg:color_bg1)"
+          "$time"
+          "[ ](fg:color_bg1)"
+          "$line_break$character"
+        ];
 
         palette = "gruvbox_dark";
         
