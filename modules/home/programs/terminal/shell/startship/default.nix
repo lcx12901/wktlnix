@@ -1,5 +1,6 @@
 {config, lib, ...}: let
-  inherit (lib.internal) mkIf mkBoolOpt;
+  inherit (lib) mkIf;
+  inherit (lib.internal) mkBoolOpt;
 
   cfg = config.wktlNix.programs.terminal.shell.startship;
 in {
