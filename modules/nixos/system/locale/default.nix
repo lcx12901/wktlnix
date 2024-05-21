@@ -1,5 +1,5 @@
 { config, lib, ... }: let
-  inherit (lib) mkIf types;
+  inherit (lib) mkIf mkDefault types;
   inherit (lib.internal) mkOpt mkBoolOpt;
 
   cfg = config.wktlNix.system.locale;
