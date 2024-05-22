@@ -14,6 +14,9 @@ in {
           startship = enabled;
           zsh = enabled;
         };
+        tools = {
+          fzf = enabled;
+        };
       };
     };
   };
