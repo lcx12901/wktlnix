@@ -6,7 +6,7 @@
   cfg = config.wktlNix.programs.terminal.shell.startship;
 in {
   options.wktlNix.programs.terminal.shell.startship = {
-    enable = mkBoolOpt true "The minimal, blazing-fast, and infinitely customizable prompt for any shell!";
+    enable = mkBoolOpt false "The minimal, blazing-fast, and infinitely customizable prompt for any shell!";
   };
 
   config = mkIf cfg.enable {
