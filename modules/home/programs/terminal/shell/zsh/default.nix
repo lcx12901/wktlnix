@@ -1,5 +1,6 @@
 {config, lib, pkgs, ...}: let
   inherit (lib) mkEnableOption mkIf;
+  inherit (lib.strings) fileContents;
 
   cfg = config.wktlNix.programs.terminal.shell.zsh;
 in {
@@ -55,6 +56,20 @@ in {
           enable = true;
           package = pkgs.zsh-syntax-highlighting;
         };
+
+        initExtra = ''
+          # NOTE: this slows down shell startup time considerably
+          ${fileContents ./rc/unset.zsh}
+          ${fileContents ./rc/set.zsh}
+
+          # binds, zsh modules and everything else
+          ${fileContents ./rc/fzf-tab.zsh}
+
+          # Set LS_COLORS by parsing dircolors output
+          LS_COLORS="$(${pkgs.coreutils}/bin/dircolors --sh)"
+          LS_COLORS="''${''${LS_COLORS#*\'}%\'*}"
+          export LS_COLORS
+        '';
 
         plugins = [
           {

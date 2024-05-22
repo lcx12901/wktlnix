@@ -13,6 +13,9 @@ in {
         shell = {
           zsh = enabled;
         };
+        tools = {
+          fzf = enabled;
+        };
       };
     };
   };
