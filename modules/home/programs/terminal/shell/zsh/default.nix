@@ -64,11 +64,6 @@ in {
 
           # binds, zsh modules and everything else
           ${fileContents ./rc/fzf-tab.zsh}
-
-          # Set LS_COLORS by parsing dircolors output
-          LS_COLORS="$(${pkgs.coreutils}/bin/dircolors --sh)"
-          LS_COLORS="''${''${LS_COLORS#*\'}%\'*}"
-          export LS_COLORS
         '';
 
         plugins = [
