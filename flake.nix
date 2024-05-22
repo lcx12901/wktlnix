@@ -1,6 +1,7 @@
 {
   # example by https://github.com/khaneliman/khanelinix
   # part disk example by https://github.com/Anomalocaridid/dotfiles
+  # may be should read guide from https://nix.dev/
   description = "wktlNix";
 
   outputs = inputs: let
