@@ -1,5 +1,5 @@
-{config, lib, ...}: let
-  inherit (lib) mkIf;
+{config, lib, pkgs, ...}: let
+  inherit (lib) mkIf getExe;
   inherit (lib.internal) mkBoolOpt;
   
   cfg = config.wktlNix.programs.terminal.tools.fzf;
@@ -12,7 +12,7 @@ in {
     programs.fzf = {
       enable = true;
 
-      defaultCommand = "${lib.getExe pkgs.fd} --type=f --hidden --exclude=.git";
+      defaultCommand = "${getExe pkgs.fd} --type=f --hidden --exclude=.git";
       defaultOptions = [
         "--layout=reverse" # Top-first.
         "--exact" # Substring matching by default, `'`-quote for subsequence matching.
