@@ -11,10 +11,8 @@ in {
     programs = {
       terminal = {
         shell = {
+          startship = enabled;
           zsh = enabled;
-        };
-        tools = {
-          fzf = enabled;
         };
       };
     };
