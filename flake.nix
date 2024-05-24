@@ -23,6 +23,11 @@
         nur.overlay
       ];
 
+      # Add modules to all NixOS systems.
+      systems.modules.nixos = with inputs; [
+        nixos-wsl.nixosModules.wsl
+        disko.nixosModules.disko
+      ];
     };
 
   inputs = {
