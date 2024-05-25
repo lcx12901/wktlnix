@@ -1,4 +1,4 @@
-{lib, namespace, ...}: {
+{ ...}: {
   wktlnix = {
     system = {
       disko = {
