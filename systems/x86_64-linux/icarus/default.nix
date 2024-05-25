@@ -5,12 +5,12 @@ in {
 
   wktlnix = {
     system = {
+      boot = enabled;
       disko = {
         enable = true;
         device = "/dev/sda";
       };
-
-      boot = enabled;
+      fonts = enabled;
     };
   };
 
