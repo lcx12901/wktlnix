@@ -8,7 +8,7 @@
     appindicator
     aylurs-widgets
     dash-to-dock
-    emoji-selector
+    # emoji-selector
     gsconnect
     gtile
     just-perfection
