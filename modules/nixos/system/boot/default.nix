@@ -50,6 +50,16 @@ in {
           editor = false;
         };
       };
+
+      supportedFilesystems = [
+        "ext4"
+        "btrfs"
+        "xfs"
+        "ntfs"
+        "fat"
+        "vfat"
+        "cifs" # mount windows share
+      ];
     };
 
     services.fwupd = {
