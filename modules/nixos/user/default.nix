@@ -18,14 +18,6 @@ in {
       lolcat
     ];
 
-    environment.pathsToLink = [ "/share/zsh" ];
-
-    programs.zsh = {
-      enable = true;
-      autosuggestions.enable = true;
-      histFile = "$XDG_CACHE_HOME/zsh.history";
-    };
-
     users.mutableUsers = false;
 
     users.users.${cfg.name} = {
@@ -48,7 +40,7 @@ in {
       group = "users";
       home = "/home/${cfg.name}";
       isNormalUser = true;
-      shell = pkgs.zsh;
+      shell = pkgs.fish;
       uid = 1000;
 
       hashedPassword = "$6$XXUp9uRF41kC5YHm$lsOLgDuECYb9CbDHBRpsPashoBzB794KoLWI2NCpOl5cB9puDosikhJwGXNxuLf/mW6nJ0SdYkasIAIHfd99/0";
