@@ -10,6 +10,68 @@ in {
   };
 
   config = mkIf cfg.enable {
-    disko.devices = {};
+    disko.devices = {
+      nodev."/" = {
+        fsType = "tmpfs";
+        mountOptions = [
+          "defaults"
+          "size=32G"
+          "mode=755"
+        ];
+      };
+      disk = {
+        main = {
+          type = "disk";
+          device = cfg.device;
+          content = {
+            type = "gpt";
+            partitions = {
+              ESP = {
+                priority = 1;
+                name = "ESP";
+                start = "1M";
+                end = "512M";
+                type = "EF00";
+                content = {
+                  type = "filesystem";
+                  format = "vfat";
+                  mountpoint = "/boot";
+                };
+              };
+              root = {
+                size = "100%";
+                content = {
+                  type = "btrfs";
+                  extraArgs = ["-f"];
+                  subvolumes = {
+                    nix = {
+                      mountpoint = "/nix";
+                      mountOptions = ["compress-force=zstd:1" "noatime"];
+                    };
+                    persist = {
+                      mountpoint = "/persist";
+                      mountOptions = ["compress-force=zstd:1" "noatime"];
+                    };
+                    tmp = {
+                      mountpoint = "/tmp";
+                      mountOptions = ["noatime"];
+                    };
+                    swap = {
+                      mountpoint = "/swap";
+                      mountOptions = ["noatime"];
+                      swap.swapfile.size = "64G";
+                    };
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+
+    filesystems."/persist" = {
+      neededForBoot = true;
+    };
   };
 }
