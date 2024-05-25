@@ -44,7 +44,12 @@ done </dev/tty # Necessary because otherwise script stdout will be fed back into
 
 # Partition disk with disko
 echo "Partitioning disk with disko"
+nix "${NIX_FLAGS[@]}" \
+	run github:nix-community/disko \
+	-- \
+	--flake "$FLAKE#$device" \
+	--mode zap_create_mount </dev/tty # Necessary because otherwise it can't set LUKS password interactively
 
-echo "Cloning config repo"
-
-git clone "https://github.com/$CONFIG_REPO.git" "$CONFIG_DIR"
+# Install NixOS
+echo "Installing NixOS and rebooting"
+nixos-install --flake "$FLAKE#$device" --no-root-passwd

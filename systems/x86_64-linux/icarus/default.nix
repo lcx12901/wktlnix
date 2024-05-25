@@ -7,7 +7,7 @@ in {
     system = {
       disko = {
         enable = true;
-        device = "/dev/vda";
+        device = "/dev/sda";
       };
     };
   };
