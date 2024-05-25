@@ -1,10 +1,14 @@
-{lib, namespace, ...}: {
+{lib, namespace, ...}: let 
+  inherit (lib.${namespace}) enabled;
+in {
   wktlnix = {
     system = {
       disko = {
         enable = true;
         device = "/dev/sda";
       };
+
+      boot = enabled;
     };
   };
 
