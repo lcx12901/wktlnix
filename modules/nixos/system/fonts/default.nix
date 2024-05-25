@@ -1,4 +1,4 @@
-{config, lib, namespace, ...}: let
+{config, lib, pkgs, namespace, ...}: let
   inherit (lib) types mkIf mapAttrs;
   inherit (lib.${namespace}) mkBoolOpt mkOpt enabled;
 
