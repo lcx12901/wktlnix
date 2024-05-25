@@ -12,6 +12,7 @@ in {
       };
       fonts = enabled;
     };
+    programs.graphical.desktop-environment.gnome = enabled;
   };
 
   # This value determines the NixOS release from which the default
