@@ -1,10 +1,10 @@
-{config, lib, pkgs, ...}: let
+{config, lib, pkgs, namespace, ...}: let
   inherit (lib) mkIf getExe;
-  inherit (lib.internal) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt;
   
-  cfg = config.wktlNix.programs.terminal.tools.fzf;
+  cfg = config.${namespace}.programs.terminal.tools.fzf;
 in {
-  options.wktlNix.programs.terminal.tools.fzf = {
+  options.${namespace}.programs.terminal.tools.fzf = {
     enable = mkBoolOpt false "Whether or not to enable fzf.";
   };
 

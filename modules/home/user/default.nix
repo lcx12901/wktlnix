@@ -1,8 +1,8 @@
-{config, lib, pkgs, ...}: let
+{config, lib, pkgs, namespace, ...}: let
   inherit (lib) types mkIf mkMerge mkDefault getExe;
-  inherit (lib.internal) mkOpt;
+  inherit (lib.${namespace}) mkOpt;
 
-  cfg = config.wktlNix.user;
+  cfg = config.${namespace}.user;
 
   home-directory =
     if cfg.name == null then
@@ -10,7 +10,7 @@
     else
       "/home/${cfg.name}";
 in {
-  options.wktlNix.user = with types; {
+  options.${namespace}.user = with types; {
     enable = mkOpt bool false "Whether to configure the user account.";
     email = mkOpt str "wktl1991504424@gmail.com" "The email of the user.";
     fullName = mkOpt types.str "Chengxu Lin" "The full name of the user.";
@@ -23,11 +23,11 @@ in {
       assertions = [
         {
           assertion = cfg.name != null;
-          message = "wktlNix.user.name must be set";
+          message = "wktlnix.user.name must be set";
         }
         {
           assertion = cfg.home != null;
-          message = "wktlNix.user.home must be set";
+          message = "wktlnix.user.home must be set";
         }
       ];
 

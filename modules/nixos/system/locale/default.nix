@@ -1,10 +1,10 @@
-{ config, lib, pkgs, ... }: let
+{ config, lib, pkgs, namespace, ... }: let
   inherit (lib) mkIf mkDefault types;
   inherit (lib.internal) mkOpt mkBoolOpt;
 
-  cfg = config.wktlNix.system.locale;
+  cfg = config.${namespace}.system.locale;
 in {
-  options.wktlNix.system.locale = {
+  options.${namespace}.system.locale = {
     enable = mkBoolOpt true "Whether or not to manage locale settings.";
     inputMethod = mkOpt (types.nullOr types.str) null "Select the enabled input method.";
   };

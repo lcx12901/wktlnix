@@ -1,10 +1,10 @@
-{config, lib, pkgs, ...}: let
+{config, lib, pkgs, namespace, ...}: let
   inherit (lib) types;
-  inherit (lib.internal) mkOpt;
+  inherit (lib.${namespace}) mkOpt;
 
-  cfg = config.wktlNix.user;
+  cfg = config.${namespace}.user;
 in {
-  options.wktlNix.user = with types; {
+  options.${namespace}.user = with types; {
     email = mkOpt str "wktl1991504424@gmail.com" "The email of the user.";
     extraGroups = mkOpt (listOf str) [ ] "Groups for the user to be assigned.";
     extraOptions = mkOpt attrs { } "Extra options passed to <option>users.users.<name></option>.";
