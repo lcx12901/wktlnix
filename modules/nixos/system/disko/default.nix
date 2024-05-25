@@ -70,7 +70,7 @@ in {
       };
     };
 
-    filesystems."/persist" = {
+    fileSystems."/persist" = {
       neededForBoot = true;
     };
   };
