@@ -15,7 +15,7 @@ in {
         fsType = "tmpfs";
         mountOptions = [
           "defaults"
-          "size=32G"
+          "size=4G"
           "mode=755"
         ];
       };
@@ -59,7 +59,7 @@ in {
                     swap = {
                       mountpoint = "/swap";
                       mountOptions = ["noatime"];
-                      swap.swapfile.size = "64G";
+                      swap.swapfile.size = "16G";
                     };
                   };
                 };
