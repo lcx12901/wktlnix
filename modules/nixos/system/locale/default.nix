@@ -1,6 +1,6 @@
 { config, lib, pkgs, namespace, ... }: let
   inherit (lib) mkIf mkDefault types;
-  inherit (lib.internal) mkOpt mkBoolOpt;
+  inherit (lib.${namespace}) mkOpt mkBoolOpt;
 
   cfg = config.${namespace}.system.locale;
 in {
