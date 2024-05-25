@@ -12,7 +12,8 @@ in {
     programs.fish = {
       enable = true;
 
-      promptInit = ''
+      interactiveShellInit = ''
+        set fish_greeting # Disable greeting
         ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       '';
 
