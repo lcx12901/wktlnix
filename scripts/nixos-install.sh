@@ -52,4 +52,4 @@ nix "${NIX_FLAGS[@]}" \
 
 # Install NixOS
 echo "Installing NixOS and rebooting"
-nixos-install --root /mnt --flake "$FLAKE#$device" --no-root-passwd
+nixos-install --root /mnt --flake "$FLAKE#$device" --no-root-password
