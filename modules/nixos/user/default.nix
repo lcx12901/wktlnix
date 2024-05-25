@@ -1,6 +1,6 @@
 {config, lib, pkgs, namespace, ...}: let
   inherit (lib) types;
-  inherit (lib.${namespace}) mkOpt;
+  inherit (lib.${namespace}) mkOpt enabled;
 
   cfg = config.${namespace}.user;
 in {
@@ -17,6 +17,8 @@ in {
       fortune
       lolcat
     ];
+
+    programs.fish = enabled;
 
     users.mutableUsers = false;
 
