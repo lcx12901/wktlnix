@@ -6,14 +6,6 @@ in {
       enable = true;
       inherit (config.snowfallorg.user) name;
     };
-
-    programs = {
-      terminal = {
-        tools = {
-          fzf = enabled;
-        };
-      };
-    };
   };
 
   home.stateVersion = "23.11";
