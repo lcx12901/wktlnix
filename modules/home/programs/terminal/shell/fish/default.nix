@@ -4,7 +4,7 @@
 
   cfg = config.${namespace}.programs.terminal.shell.fish;
 in {
-  options.${namespace}.programs.terminal.shell.startship = {
+  options.${namespace}.programs.terminal.shell.fish = {
     enable = mkBoolOpt true "Whether or not to enable fish shell.";
   };
 
