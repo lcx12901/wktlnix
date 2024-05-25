@@ -14,6 +14,4 @@ rec {
   enabled = {
     enable = true;
   };
-
-  repoPath = ../..;
 }

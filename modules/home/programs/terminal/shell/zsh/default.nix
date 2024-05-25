@@ -1,10 +1,10 @@
-{config, lib, pkgs, ...}: let
+{config, lib, pkgs, namespace, ...}: let
   inherit (lib) mkEnableOption mkIf;
   inherit (lib.strings) fileContents;
 
-  cfg = config.wktlNix.programs.terminal.shell.zsh;
+  cfg = config.${namespace}.programs.terminal.shell.zsh;
 in {
-  options.wktlNix.programs.terminal.shell.zsh = {
+  options.${namespace}.programs.terminal.shell.zsh = {
     enable = mkEnableOption "ZSH";
   };
 

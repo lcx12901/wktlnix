@@ -10,11 +10,18 @@
     lib = snowfall-lib.mkLib {
       inherit inputs;
       src = ./.;
+
+      snowfall = {
+        meta = {
+          name = "wktlnix";
+          title = "wktlNix";
+        };
+
+        namespace = "wktlnix";
+      };
     };
   in
     lib.mkFlake {
-      package-namespace = "wktlNix";
-
       channels-config = {
         allowUnfree = true;
       };
@@ -50,7 +57,7 @@
 
     # Snowfall Lib
     snowfall-lib = {
-      url = "github:snowfallorg/lib/dev";
+      url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

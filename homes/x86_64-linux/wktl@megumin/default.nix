@@ -1,7 +1,7 @@
-{config, lib, ...}: let
-  inherit (lib.internal) enabled;
+{config, lib, namespace, ...}: let
+  inherit (lib.${namespace}) enabled;
 in {
-  wktlNix = {
+  wktlnix = {
     user = {
       enable = true;
       inherit (config.snowfallorg.user) name;

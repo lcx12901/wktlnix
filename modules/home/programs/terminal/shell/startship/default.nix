@@ -1,11 +1,11 @@
-{config, lib, ...}: let
+{config, lib, namespace, ...}: let
   inherit (lib) mkIf;
-  inherit (lib.internal) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt;
   inherit (lib.strings) concatStrings;
 
-  cfg = config.wktlNix.programs.terminal.shell.startship;
+  cfg = config.${namespace}.programs.terminal.shell.startship;
 in {
-  options.wktlNix.programs.terminal.shell.startship = {
+  options.${namespace}.programs.terminal.shell.startship = {
     enable = mkBoolOpt false "The minimal, blazing-fast, and infinitely customizable prompt for any shell!";
   };
 

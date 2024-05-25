@@ -3,14 +3,15 @@
   inputs,
   lib,
   pkgs,
+  namespace,
   ...
 }: let
   inherit (lib) mkIf mkDefault isType filterAttrs mapAttrs mapAttrsToList pipe types;
-  inherit (lib.internal) mkBoolOpt mkOpt;
+  inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
-  cfg = config.wktlNix.nix;
+  cfg = config.${namespace}.nix;
 in {
-  options.wktlNix.nix = with types; {
+  options.${namespace}.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
     package = mkOpt package pkgs.nixVersions.latest "Which nix package to use.";
   };
@@ -47,7 +48,7 @@ in {
       users = [
         "root"
         "@wheel"
-        config.wktlNix.user.name
+        config.${namespace}.user.name
       ];
     in {
       inherit (cfg) package;
