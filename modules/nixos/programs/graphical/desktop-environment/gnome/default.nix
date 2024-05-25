@@ -1,5 +1,5 @@
 {config, lib, namespace, pkgs, ...}: let
-  inherit (lib) types mkIf listOf;
+  inherit (lib) types mkIf;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.programs.graphical.desktop-environment.gnome;
