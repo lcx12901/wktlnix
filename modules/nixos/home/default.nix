@@ -1,4 +1,4 @@
-{config, lib, pkgs, namespace, ...}: let
+{options, pkgs, namespace, ...}: let
   inherit (lib) types mkAliasDefinitions;
   inherit (lib.${namespace}) mkOpt;
 in {
