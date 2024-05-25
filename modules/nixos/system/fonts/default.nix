@@ -16,7 +16,10 @@ in {
     };
 
     fonts = {
-      fontDir = enabled;
+      fontDir = {
+        enable = true;
+        decompressFonts = true;
+      };
 
       packages = with pkgs; [
         # Desktop Fonts
@@ -72,10 +75,6 @@ in {
               "Source Han Mono"
             ];
           };
-      };
-
-      fontDir = {
-        decompressFonts = true;
       };
     };
   };
