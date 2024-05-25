@@ -1,8 +1,6 @@
 {lib, ...}: let 
   inherit (lib.internal) enabled;
 in {
-  imports = [./hardware.nix];
-
   wktlNix = {
     system = {
       disko = {

@@ -45,10 +45,10 @@ done </dev/tty # Necessary because otherwise script stdout will be fed back into
 # Partition disk with disko
 echo "Partitioning disk with disko"
 nix "${NIX_FLAGS[@]}" \
-	run github:nix-community/disko \
+	run github:nix-community/disko#disko-install \
 	-- \
 	--flake "$FLAKE#$device" \
-	--mode zap_create_mount </dev/tty # Necessary because otherwise it can't set LUKS password interactively
+	</dev/tty # Necessary because otherwise it can't set LUKS password interactively
 
 # Install NixOS
 echo "Installing NixOS and rebooting"
