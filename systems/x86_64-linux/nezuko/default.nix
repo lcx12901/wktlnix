@@ -15,7 +15,10 @@ in {
         device = "/dev/nvme0n1";
       };
       fonts = enabled;
-      locale = enabled;
+      locale = {
+        enable = true;
+        inputMethod = "fcitx5";
+      };
       time = enabled;
     };
 
