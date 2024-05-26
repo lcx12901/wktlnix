@@ -13,7 +13,9 @@ in {
     };
 
     programs = {
-      graphical.wms.hyprland = enabled;
+      graphical.wms.hyprland = {
+        enable = true;
+      };
       terminal.emulators.kitty = enabled;
     };
   };
