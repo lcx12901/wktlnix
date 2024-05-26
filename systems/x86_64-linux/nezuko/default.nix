@@ -20,8 +20,10 @@ in {
     };
 
     programs = {
-      wms = {
-        hyprland = enabled;
+      graphical = {
+        wms = {
+          hyprland = enabled;
+        };
       };
     };
   };
