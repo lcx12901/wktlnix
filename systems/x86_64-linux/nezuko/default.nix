@@ -8,14 +8,21 @@ in {
   imports = [./hardware.nix];
 
   wktlnix = {
-    archetypes = {
-      wsl = enabled;
-    };
-
     system = {
+      boot = enabled;
+      disko = {
+        enable = true;
+        device = "/dev/nvme0n1";
+      };
       fonts = enabled;
       locale = enabled;
       time = enabled;
+    };
+
+    programs = {
+      wms = {
+        hyprland = enabled;
+      };
     };
   };
 
