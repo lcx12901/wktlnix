@@ -58,12 +58,10 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
 
-      extraConfig = # bash
-        ''
-          monitor=,highrr,auto,1
-
-          env = HYPRLAND_TRACE,1
-        '';
+      extraConfig = ''
+        monitor=,highrr,auto,1
+        env = HYPRLAND_TRACE,1
+      '';
 
       package = hyprland.packages.${system}.hyprland;
 
