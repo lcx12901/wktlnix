@@ -47,7 +47,7 @@ in {
       '';
     };
 
-    wktlNix = {
+    wktlnix = {
       display-managers = {
         sddm = enabled;
       };
