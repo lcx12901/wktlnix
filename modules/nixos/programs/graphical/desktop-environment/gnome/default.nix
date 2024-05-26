@@ -1,4 +1,10 @@
-{config, lib, namespace, pkgs, ...}: let
+{
+  config,
+  lib,
+  namespace,
+  pkgs,
+  ...
+}: let
   inherit (lib) types mkIf;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
@@ -22,8 +28,8 @@
 in {
   options.${namespace}.programs.graphical.desktop-environment.gnome = with types; {
     enable = mkBoolOpt false "Whether or not to use Gnome as the desktop environment.";
-    color-scheme = mkOpt (enum [ "light" "dark" ]) "dark" "The color scheme to use.";
-    extensions = mkOpt (listOf package) [ ] "Extra Gnome extensions to install.";
+    color-scheme = mkOpt (enum ["light" "dark"]) "dark" "The color scheme to use.";
+    extensions = mkOpt (listOf package) [] "Extra Gnome extensions to install.";
     monitors = mkOpt (nullOr path) null "The monitors.xml file to create.";
     suspend = mkBoolOpt true "Whether or not to suspend the machine after inactivity.";
     wayland = mkBoolOpt true "Whether or not to use Wayland.";
@@ -31,11 +37,14 @@ in {
 
   config = mkIf cfg.enable {
     environment = {
-      systemPackages = with pkgs; [
-        gnome.gnome-tweaks
-        gnome.nautilus-python
-        wl-clipboard
-      ] ++ defaultExtensions ++ cfg.extensions;
+      systemPackages = with pkgs;
+        [
+          gnome.gnome-tweaks
+          gnome.nautilus-python
+          wl-clipboard
+        ]
+        ++ defaultExtensions
+        ++ cfg.extensions;
 
       gnome.excludePackages = with pkgs.gnome; [
         epiphany

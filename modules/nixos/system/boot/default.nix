@@ -1,4 +1,9 @@
-{config, lib, namespace, ...}: let 
+{
+  config,
+  lib,
+  namespace,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
@@ -12,8 +17,8 @@ in {
 
   config = mkIf cfg.enable {
     boot = {
-      kernelParams = 
-        lib.optionals cfg.plymouth [ "quiet" ]
+      kernelParams =
+        lib.optionals cfg.plymouth ["quiet"]
         ++ lib.optionals cfg.silentBoot [
           # tell the kernel to not be verbose
           "quiet"

@@ -1,17 +1,24 @@
-{config, lib, options, pkgs, namespace, ...}: let
+{
+  config,
+  lib,
+  options,
+  pkgs,
+  namespace,
+  ...
+}: let
   inherit (lib) types mkAliasDefinitions;
   inherit (lib.${namespace}) mkOpt;
 in {
   options.${namespace}.home = with types; {
     configFile =
-      mkOpt attrs { }
-        "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
-    extraOptions = mkOpt attrs { } "Options to pass directly to home-manager.";
-    file = mkOpt attrs { } "A set of files to be managed by home-manager's <option>home.file</option>.";
+      mkOpt attrs {}
+      "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
+    extraOptions = mkOpt attrs {} "Options to pass directly to home-manager.";
+    file = mkOpt attrs {} "A set of files to be managed by home-manager's <option>home.file</option>.";
   };
 
   config = {
-    environment.systemPackages = [ pkgs.home-manager ];
+    environment.systemPackages = [pkgs.home-manager];
 
     ${namespace}.home.extraOptions = {
       home.file = mkAliasDefinitions options.${namespace}.home.file;

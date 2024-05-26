@@ -1,4 +1,9 @@
-{config, lib, namespace, ...}: let
+{
+  config,
+  lib,
+  namespace,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
   inherit (lib.strings) concatStrings;
@@ -48,7 +53,7 @@ in {
         ];
 
         palette = "gruvbox_dark";
-        
+
         palettes = {
           gruvbox_dark = {
             color_fg0 = "#fbf1c7";

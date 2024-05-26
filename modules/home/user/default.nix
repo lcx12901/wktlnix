@@ -1,14 +1,19 @@
-{config, lib, pkgs, namespace, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}: let
   inherit (lib) types mkIf mkMerge mkDefault getExe;
   inherit (lib.${namespace}) mkOpt;
 
   cfg = config.${namespace}.user;
 
   home-directory =
-    if cfg.name == null then
-      null
-    else
-      "/home/${cfg.name}";
+    if cfg.name == null
+    then null
+    else "/home/${cfg.name}";
 in {
   options.${namespace}.user = with types; {
     enable = mkOpt bool false "Whether to configure the user account.";
