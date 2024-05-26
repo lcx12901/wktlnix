@@ -1,4 +1,8 @@
-{lib, namespace, ...}: let 
+{
+  lib,
+  namespace,
+  ...
+}: let
   inherit (lib.${namespace}) enabled;
 in {
   imports = [./hardware.nix];

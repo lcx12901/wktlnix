@@ -1,4 +1,10 @@
-{ config, lib, pkgs, namespace, ... }: let
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}: let
   inherit (lib) mkIf mkDefault types;
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
 

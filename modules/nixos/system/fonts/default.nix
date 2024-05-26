@@ -1,4 +1,10 @@
-{config, lib, pkgs, namespace, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}: let
   inherit (lib) types mkIf mapAttrs;
   inherit (lib.${namespace}) mkBoolOpt mkOpt enabled;
 
@@ -56,20 +62,19 @@ in {
         antialias = true;
         hinting.enable = true;
 
-        defaultFonts =
-          let
-            common = [
-              "MonaspiceNe Nerd Font"
-              "CaskaydiaCove Nerd Font Mono"
-              "Iosevka Nerd Font"
-              "Symbols Nerd Font"
-              "Noto Color Emoji"
-            ];
-          in
+        defaultFonts = let
+          common = [
+            "MonaspiceNe Nerd Font"
+            "CaskaydiaCove Nerd Font Mono"
+            "Iosevka Nerd Font"
+            "Symbols Nerd Font"
+            "Noto Color Emoji"
+          ];
+        in
           mapAttrs (_: fonts: fonts ++ common) {
-            serif = [ "Noto Serif" ];
-            sansSerif = [ "Lexend" ];
-            emoji = [ "Noto Color Emoji" ];
+            serif = ["Noto Serif"];
+            sansSerif = ["Lexend"];
+            emoji = ["Noto Color Emoji"];
             monospace = [
               "Source Code Pro Medium"
               "Source Han Mono"
