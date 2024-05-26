@@ -15,8 +15,15 @@ in {
         device = "/dev/sda";
       };
       fonts = enabled;
+      locale = enabled;
+      time = enabled;
     };
-    programs.graphical.desktop-environment.gnome = enabled;
+
+    programs = {
+      wms = {
+        hyprland = enabled;
+      };
+    };
   };
 
   # This value determines the NixOS release from which the default

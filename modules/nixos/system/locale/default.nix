@@ -11,7 +11,7 @@
   cfg = config.${namespace}.system.locale;
 in {
   options.${namespace}.system.locale = {
-    enable = mkBoolOpt true "Whether or not to manage locale settings.";
+    enable = mkBoolOpt false "Whether or not to manage locale settings.";
     inputMethod = mkOpt (types.nullOr types.str) null "Select the enabled input method.";
   };
 
