@@ -60,11 +60,9 @@ in {
 
       extraConfig = # bash
         ''
-          ${cfg.prependConfig}
+          monitor=,highrr,auto,1
 
           env = HYPRLAND_TRACE,1
-
-          ${cfg.appendConfig}
         '';
 
       package = hyprland.packages.${system}.hyprland;
