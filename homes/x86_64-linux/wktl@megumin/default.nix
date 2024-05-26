@@ -11,6 +11,10 @@ in {
       enable = true;
       inherit (config.snowfallorg.user) name;
     };
+
+    programs = {
+      terminal.emulators.kitty = enabled;
+    };
   };
 
   home.stateVersion = "23.11";
