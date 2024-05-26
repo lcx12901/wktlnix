@@ -32,7 +32,7 @@ in {
     };
   };
 
-  # imports = lib.snowfall.fs.get-non-default-nix-files ./.;
+  imports = lib.snowfall.fs.get-non-default-nix-files ./.;
 
   config = mkIf cfg.enable {
     home = {
