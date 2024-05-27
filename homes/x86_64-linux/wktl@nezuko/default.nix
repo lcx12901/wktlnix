@@ -13,10 +13,14 @@ in {
     };
 
     programs = {
-      graphical.wms.hyprland = {
-        enable = true;
+      graphical = {
+        wms.hyprland = enabled;
+        editors.vscode = enabled;
       };
-      terminal.emulators.kitty = enabled;
+      terminal = {
+        emulators.kitty = enabled;
+        tools.git = enabled;
+      };
     };
   };
 

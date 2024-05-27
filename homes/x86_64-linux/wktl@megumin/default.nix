@@ -13,7 +13,10 @@ in {
     };
 
     programs = {
-      terminal.emulators.kitty = enabled;
+      terminal = {
+        emulators.kitty = enabled;
+        tools.git = enabled;
+      };
     };
   };
 
