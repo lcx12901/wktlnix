@@ -27,6 +27,8 @@ in {
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       settings = {
+        monitor= ",highrr,auto,1";
+        env = "HYPRLAND_TRACE,1";
         animations = {
           enabled = "yes";
 
