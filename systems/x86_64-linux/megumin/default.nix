@@ -24,6 +24,7 @@ in {
           hyprland = enabled;
         };
       };
+      terminal.tools.nix-ld = enabled;
     };
   };
 
