@@ -27,6 +27,7 @@
       };
 
       overlays = with inputs; [
+        nix-ld-rs.overlays.default
         nur.overlay
       ];
 
@@ -75,6 +76,12 @@
     # Declarative disk partitioning
     disko = {
       url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Run unpatched dynamically compiled binaries
+    nix-ld-rs = {
+      url = "github:nix-community/nix-ld-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
