@@ -31,10 +31,16 @@
         nur.overlay
       ];
 
+      homes.modules = with inputs; [
+        sops-nix.homeManagerModules.sops
+        spicetify-nix.homeManagerModules.default
+      ];
+
       # Add modules to all NixOS systems.
       systems.modules.nixos = with inputs; [
         nixos-wsl.nixosModules.wsl
         disko.nixosModules.disko
+        sops-nix.nixosModules.sops
       ];
     };
 
@@ -121,6 +127,12 @@
     # Spicetify
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Sops (Secrets)
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
