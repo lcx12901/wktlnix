@@ -17,6 +17,14 @@ in {
       locale = enabled;
       time = enabled;
     };
+
+    programs = {
+      graphical = {
+        wms = {
+          hyprland = enabled;
+        };
+      };
+    };
   };
 
   # This value determines the NixOS release from which the default
