@@ -85,6 +85,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # many of the extensions in nixpkgs are significantly out-of-date
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
     # Hyprlock
     hyprlock = {
       url = "github:hyprwm/Hyprlock";
