@@ -26,6 +26,8 @@ in {
       };
       terminal.tools.nix-ld = enabled;
     };
+
+    suites.common = enabled;
   };
 
   # This value determines the NixOS release from which the default
