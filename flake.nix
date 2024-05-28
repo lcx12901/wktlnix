@@ -33,7 +33,6 @@
 
       homes.modules = with inputs; [
         sops-nix.homeManagerModules.sops
-        spicetify-nix.homeManagerModules.default
       ];
 
       # Add modules to all NixOS systems.
@@ -121,12 +120,6 @@
     # NixPkgs-Wayland
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Spicetify
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

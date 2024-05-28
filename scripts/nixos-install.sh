@@ -9,7 +9,7 @@ set -o errtrace \
 	-o pipefail
 
 # Config constants
-readonly CONFIG_REPO="lcx12901/wktlNix" # Dotfile config repo name
+readonly CONFIG_REPO="lcx12901/wktlnix" # Dotfile config repo name
 readonly FLAKE="github:$CONFIG_REPO"  # Flake URL
 readonly MOUNT_DIR="/mnt" # Where drive is mounted by disko (set by disko, not config)
 readonly PERSIST_DIR="/persist" # Persistent partition mount location
