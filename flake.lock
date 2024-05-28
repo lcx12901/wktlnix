@@ -320,11 +320,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1716736760,
-        "narHash": "sha256-h3RmnNknKYtVA+EvUSra6QAwfZjC2q1G8YA7W0gat8Y=",
+        "lastModified": 1716847642,
+        "narHash": "sha256-rjEswRV0o23eBBils8lJXyIGha+l/VjV73IPg+ztxgk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5d151429e1e79107acf6d06dcc5ace4e642ec239",
+        "rev": "10c7c219b7dae5795fb67f465a0d86cbe29f25fa",
         "type": "github"
       },
       "original": {
@@ -372,11 +372,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1716669967,
-        "narHash": "sha256-wq91XpwR0tv7e7KwSp0qzvu31EMssznl8DzbNy4M4Hk=",
+        "lastModified": 1716842732,
+        "narHash": "sha256-b80p4J7OSp9LslyJimj2a4wCCNLdjJL3bIgGt+f9Gz4=",
         "ref": "refs/heads/main",
-        "rev": "553232a3e4c112c8511309e6b685cb614895e714",
-        "revCount": 4743,
+        "rev": "722d537a91a9beacf9c12fc1317ff1fbe10ffac5",
+        "revCount": 4747,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -728,6 +728,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1716655032,
+        "narHash": "sha256-kQ25DAiCGigsNR/Quxm3v+JGXAEXZ8I7RAF4U94bGzE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "59a450646ec8ee0397f5fa54a08573e8240eb91f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-wayland": {
       "inputs": {
         "flake-compat": "flake-compat_4",
@@ -738,11 +754,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1716794284,
-        "narHash": "sha256-Z4wsAuTvG2Bep+67J/bwFWF9kg8IcHEmaoKbBtRSfLg=",
+        "lastModified": 1716851965,
+        "narHash": "sha256-mhKXiLG7Yasc/7UZ15jQmk2iqgbOOltMWCjODHGWnSY=",
         "owner": "nix-community",
         "repo": "nixpkgs-wayland",
-        "rev": "b105bbb6372829a02aba009484cb49beb540a5c2",
+        "rev": "a8bb38d1f751baa39e6089bce76d4679f087549c",
         "type": "github"
       },
       "original": {
@@ -817,11 +833,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1716794600,
-        "narHash": "sha256-0voWd00SKlhVdZWbP/IOFzR2ieMWXBAV1VRwN4oPnzM=",
+        "lastModified": 1716848883,
+        "narHash": "sha256-a97PqZzQtAE14kcMtZQI4i6ezlahrkAqYGvlInGO7FM=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "f1653caea760254dff6725e542e857584dafe7d3",
+        "rev": "e40c8835a273f4017d44a88666bdde79adf3fd14",
         "type": "github"
       },
       "original": {
@@ -847,6 +863,7 @@
         "nur": "nur",
         "snowfall-flake": "snowfall-flake",
         "snowfall-lib": "snowfall-lib_2",
+        "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix"
       }
     },
@@ -915,6 +932,27 @@
       "original": {
         "owner": "snowfallorg",
         "repo": "lib",
+        "type": "github"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": "nixpkgs-stable"
+      },
+      "locked": {
+        "lastModified": 1716692524,
+        "narHash": "sha256-sALodaA7Zkp/JD6ehgwc0UCBrSBfB4cX66uFGTsqeFU=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "962797a8d7f15ed7033031731d0bb77244839960",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
         "type": "github"
       }
     },
