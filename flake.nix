@@ -31,15 +31,11 @@
         nur.overlay
       ];
 
-      homes.modules = with inputs; [
-        sops-nix.homeManagerModules.sops
-      ];
-
       # Add modules to all NixOS systems.
       systems.modules.nixos = with inputs; [
         nixos-wsl.nixosModules.wsl
         disko.nixosModules.disko
-        sops-nix.nixosModules.sops
+        agenix.nixosModules.default
       ];
     };
 
@@ -123,9 +119,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Sops (Secrets)
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
+    # agenix (Secrets)
+    agenix = {
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

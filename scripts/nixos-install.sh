@@ -50,6 +50,10 @@ nix "${NIX_FLAGS[@]}" \
 	--flake "$FLAKE#$device" \
 	--mode zap_create_mount </dev/tty # Necessary because otherwise it can't set LUKS password interactively
 
+
+mkdir -p /mnt/persist/etc/ssh
+cp -r /etc/ssh/ssh_host_ed25519_key* /mnt/persist/etc/ssh
+
 # Install NixOS
 echo "Installing NixOS and rebooting"
 nixos-install --root /mnt --flake "$FLAKE#$device" --no-root-passwd
