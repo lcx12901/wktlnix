@@ -19,11 +19,6 @@ in {
     };
 
     programs = {
-      graphical = {
-        wms = {
-          hyprland = enabled;
-        };
-      };
       terminal.tools.nix-ld = enabled;
     };
 
