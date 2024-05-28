@@ -8,19 +8,7 @@
   ...
 }:
 let
-  inherit (inputs) nixpkgs-wayland hyprland-contrib;
-  inherit (lib) mkIf getExe getExe';
-
-  grimblast = getExe hyprland-contrib.packages.${system}.grimblast;
-  wl-copy = getExe' nixpkgs-wayland.packages.${system}.wl-clipboard "wl-copy";
-  wl-paste = getExe' nixpkgs-wayland.packages.${system}.wl-clipboard "wl-paste";
-
-  getDateTime = getExe (
-    pkgs.writeShellScriptBin "getDateTime" # bash
-      ''
-        echo $(date +'%Y%m%d_%H%M%S')
-      ''
-  );
+  inherit (lib) mkIf getExe;
 
   cfg = config.${namespace}.programs.graphical.wms.hyprland;
 in {
