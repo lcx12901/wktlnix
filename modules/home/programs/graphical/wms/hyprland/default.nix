@@ -8,8 +8,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption getExe;
-  inherit (lib.${namespace}) enabled;
+  inherit (lib) mkIf mkEnableOption;
   inherit (inputs) hyprland;
 
   cfg = config.${namespace}.programs.graphical.wms.hyprland;
