@@ -1,0 +1,160 @@
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
+let
+  inherit (lib)
+    types
+    mkIf
+    mkMerge
+    optionalAttrs
+    ;
+  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+
+  cfg = config.${namespace}.programs.graphical.browsers.firefox;
+
+  firefoxPath = ".mozilla/firefox/${config.${namespace}.user.name}";
+in {
+  options.${namespace}.programs.graphical.browsers.firefox = with types; {
+    enable = mkBoolOpt false "Whether or not to enable Firefox.";
+    hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
+    gpuAcceleration = mkBoolOpt false "Enable GPU acceleration.";
+    extraConfig = mkOpt str "" "Extra configuration for the user profile JS file.";
+    settings = mkOpt attrs { } "Settings to apply to the profile.";
+    userChrome = mkOpt str "" "Extra configuration for the user chrome CSS file.";
+  };
+
+  config = mkIf cfg.enable {
+    home = {
+      file = mkMerge [
+        {
+          "${firefoxPath}/native-messaging-hosts/com.dannyvankooten.browserpass.json".source = "${pkgs.browserpass}/lib/mozilla/native-messaging-hosts/com.dannyvankooten.browserpass.json";
+          "${firefoxPath}/chrome/img" = {
+            source = lib.cleanSourceWith { src = lib.cleanSource ./chrome/img/.; };
+
+            recursive = true;
+          };
+        }
+      ];
+    };
+
+    programs.firefox = {
+      enable = true;
+      package = pkgs.firefox-beta;
+
+      policies = {
+        CaptivePortal = false;
+        DisableFirefoxStudies = true;
+        DisableFormHistory = true;
+        DisablePocket = true;
+        DisableTelemetry = true;
+        DisplayBookmarksToolbar = true;
+        DontCheckDefaultBrowser = true;
+        FirefoxHome = {
+          Pocket = false;
+          Snippets = false;
+        };
+        PasswordManagerEnabled = false;
+        UserMessaging = {
+          ExtensionRecommendations = false;
+          SkipOnboarding = true;
+        };
+        ExtensionSettings = {
+          "ebay@search.mozilla.org".installation_mode = "blocked";
+          "amazondotcom@search.mozilla.org".installation_mode = "blocked";
+          "bing@search.mozilla.org".installation_mode = "blocked";
+          "ddg@search.mozilla.org".installation_mode = "blocked";
+          "wikipedia@search.mozilla.org".installation_mode = "blocked";
+        };
+        Preferences = { };
+      };
+
+      profiles.${config.${namespace}.user.name} = {
+        inherit (cfg) extraConfig;
+        inherit (config.${namespace}.user) name;
+
+        id = 0;
+
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          bitwarden
+          ublock-origin
+          auto-tab-discard
+          darkreader
+        ];
+
+        search = {
+          default = "Google";
+          privateDefault = "DuckDuckGo";
+          force = true;
+        };
+
+        settings = mkMerge [
+          cfg.settings
+          {
+            "accessibility.typeaheadfind.enablesound" = false;
+            "accessibility.typeaheadfind.flashBar" = 0;
+            "browser.aboutConfig.showWarning" = false;
+            "browser.aboutwelcome.enabled" = false;
+            "browser.bookmarks.autoExportHTML" = true;
+            "browser.bookmarks.showMobileBookmarks" = true;
+            "browser.meta_refresh_when_inactive.disabled" = true;
+            "browser.newtabpage.activity-stream.default.sites" = "";
+            "browser.newtabpage.activity-stream.showSponsored" = false;
+            "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+            "browser.search.hiddenOneOffs" = "Google,Amazon.com,Bing,DuckDuckGo,eBay,Wikipedia (en)";
+            "browser.search.suggest.enabled" = false;
+            "browser.sessionstore.warnOnQuit" = true;
+            "browser.shell.checkDefaultBrowser" = false;
+            "browser.ssb.enabled" = true;
+            "browser.startup.homepage.abouthome_cache.enabled" = true;
+            "browser.startup.page" = 3;
+            "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
+            "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+            "devtools.chrome.enabled" = true;
+            "devtools.debugger.remote-enabled" = true;
+            "dom.storage.next_gen" = true;
+            "dom.forms.autocomplete.formautofill" = true;
+            "extensions.htmlaboutaddons.recommendations.enabled" = false;
+            "extensions.formautofill.addresses.enabled" = false;
+            "extensions.formautofill.creditCards.enabled" = false;
+            "general.autoScroll" = false;
+            "general.smoothScroll.msdPhysics.enabled" = true;
+            "geo.enabled" = false;
+            "geo.provider.use_corelocation" = false;
+            "geo.provider.use_geoclue" = false;
+            "geo.provider.use_gpsd" = false;
+            "intl.accept_languages" = "en-US,en";
+            "media.eme.enabled" = true;
+            "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            "font.name.monospace.x-western" = "MonaspiceKr Nerd Font";
+            "font.name.sans-serif.x-western" = "MonaspiceNe Nerd Font";
+            "font.name.serif.x-western" = "MonaspiceNe Nerd Font";
+            "signon.autofillForms" = false;
+          }
+          # (optionalAttrs cfg.gpuAcceleration {
+          #   "dom.webgpu.enabled" = true;
+          #   "gfx.webrender.all" = true;
+          #   "layers.gpu-process.enabled" = true;
+          #   "layers.mlgpu.enabled" = true;
+          # })
+          # (optionalAttrs cfg.hardwareDecoding {
+          #   "media.ffmpeg.vaapi.enabled" = true;
+          #   "media.gpu-process-decoder" = true;
+          #   "media.hardware-video-decoding.enabled" = true;
+          # })
+        ];
+
+        # TODO: support alternative theme loading
+        userChrome =
+          builtins.readFile ./chrome/userChrome.css
+          + ''
+            ${cfg.userChrome}
+          '';
+      };
+    };
+  };
+}
