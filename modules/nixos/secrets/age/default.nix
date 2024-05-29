@@ -7,7 +7,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.secrets.age;
 in {
