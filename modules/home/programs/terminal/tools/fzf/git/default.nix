@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib) types mkEnableOption mkIf mkForce;
-  inherit (lib.${namespace}) mkOpt mkBoolOpt enabled;
+  inherit (lib.${namespace}) mkOpt enabled;
   inherit (config.${namespace}) user;
 
   cfg = config.${namespace}.programs.terminal.tools.git;

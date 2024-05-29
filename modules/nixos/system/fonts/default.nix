@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) types mkIf mapAttrs;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt enabled;
+  inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.system.fonts;
 in {
