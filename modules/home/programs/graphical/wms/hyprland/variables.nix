@@ -126,6 +126,7 @@ in {
 
         # default applications
         "$term" = "[float;tile] ${getExe pkgs.kitty}";
+        "$browser" = "${getExe pkgs.firefox-beta}";
       };
     };
   };

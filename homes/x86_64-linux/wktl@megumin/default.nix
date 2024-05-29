@@ -13,6 +13,7 @@ in {
     };
 
     programs = {
+      graphical.browsers.firefox = enabled;
       terminal = {
         emulators.kitty = enabled;
         tools.git = enabled;
