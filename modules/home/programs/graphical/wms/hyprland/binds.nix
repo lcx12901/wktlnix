@@ -23,6 +23,7 @@ in {
           # ░▀░▀░▀░░░▀░░░▀▀▀
           "$mainMod, RETURN, exec, $term"
           "$mainMod, B, exec, $browser"
+          "$mainMod, C, exec, code"
 
           # ░█░░░█▀█░█░█░█▀█░█░█░▀█▀
           # ░█░░░█▀█░░█░░█░█░█░█░░█░
