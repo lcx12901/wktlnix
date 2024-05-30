@@ -17,6 +17,7 @@ in {
         wms.hyprland = enabled;
         browsers.firefox = enabled;
         editors.vscode = enabled;
+        addons.electron-support = enabled;
       };
       terminal = {
         emulators.kitty = enabled;
