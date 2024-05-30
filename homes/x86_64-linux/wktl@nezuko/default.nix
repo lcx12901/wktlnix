@@ -15,6 +15,7 @@ in {
     programs = {
       graphical = {
         wms.hyprland = enabled;
+        browsers.firefox = enabled;
         editors.vscode = enabled;
       };
       terminal = {
