@@ -41,6 +41,8 @@ in {
       common = enabled;
       wlroots = enabled;
     };
+
+    services.mihomo = enabled;
   };
 
   # This value determines the NixOS release from which the default

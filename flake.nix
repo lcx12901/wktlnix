@@ -127,5 +127,10 @@
     };
 
     impermanence.url = "github:nix-community/impermanence";
+
+    metacubexd = {
+      url = "github:MetaCubeX/metacubexd/gh-pages";
+      flake = false;
+    };
   };
 }

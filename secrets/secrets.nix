@@ -5,4 +5,5 @@ let
   users = [wktl];
 in {
   "service/nextcloud.age".publicKeys = users;
+  "service/mihomo.age".publicKeys = users;
 }
