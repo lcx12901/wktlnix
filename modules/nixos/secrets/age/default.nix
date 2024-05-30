@@ -25,10 +25,10 @@ in {
     ];
 
     age.secrets = {
-      "nextcloud.pwd" = {
-        file = lib.snowfall.fs.get-file "secrets/service/nextcloud.age";
+      "mihomo.conf" = {
+        file = lib.snowfall.fs.get-file "secrets/service/mihomo.age";
         mode = "0440";
-        owner = config.${namespace}.user.name;
+        owner = "root";
       };
     };
   };

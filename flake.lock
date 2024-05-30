@@ -635,6 +635,23 @@
         "type": "github"
       }
     },
+    "metacubexd": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1713863399,
+        "narHash": "sha256-usuIGGLhp2m5Az1TYqJn+PZjP06h7gMSV6UbAKqnkuU=",
+        "owner": "MetaCubeX",
+        "repo": "metacubexd",
+        "rev": "39d3f16fc0f2050c640900538ff8897acd8424e9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MetaCubeX",
+        "ref": "gh-pages",
+        "repo": "metacubexd",
+        "type": "github"
+      }
+    },
     "nix-eval-jobs": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -905,6 +922,7 @@
         "hyprland-plugins": "hyprland-plugins",
         "hyprlock": "hyprlock",
         "impermanence": "impermanence",
+        "metacubexd": "metacubexd",
         "nix-index-database": "nix-index-database",
         "nix-ld-rs": "nix-ld-rs",
         "nix-vscode-extensions": "nix-vscode-extensions",
