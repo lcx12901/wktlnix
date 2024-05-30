@@ -4,6 +4,9 @@
   namespace,
   ...
 }: let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.system.persist;
 in {
   options.${namespace}.system.persist = {
