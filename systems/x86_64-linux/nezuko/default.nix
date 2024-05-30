@@ -32,7 +32,15 @@ in {
       terminal.tools.nix-ld = enabled;
     };
 
-    suites.common = enabled;
+    theme = {
+      gtk = enabled;
+      qt = enabled;
+    };
+
+    suites = {
+      common = enabled;
+      wlroots = enabled;
+    };
   };
 
   # This value determines the NixOS release from which the default
