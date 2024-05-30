@@ -15,8 +15,12 @@ in {
         device = "/dev/sda";
       };
       fonts = enabled;
-      locale = enabled;
+      locale = {
+        enable = true;
+        inputMethod = "fcitx5";
+      };
       time = enabled;
+      persist = enabled;
     };
 
     programs = {
@@ -25,7 +29,10 @@ in {
           hyprland = enabled;
         };
       };
+      terminal.tools.nix-ld = enabled;
     };
+
+    suites.common = enabled;
   };
 
   # This value determines the NixOS release from which the default

@@ -20,6 +20,7 @@ in {
         inputMethod = "fcitx5";
       };
       time = enabled;
+      persist = enabled;
     };
 
     programs = {
