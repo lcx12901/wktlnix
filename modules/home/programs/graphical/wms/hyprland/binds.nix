@@ -119,9 +119,9 @@ in {
                 builtins.toString (x + 1 - (c * 10));
             in
             [
-              "$CTRL_ALT, ${ws}, workspace, ${toString (x + 1)}"
-              "$CTRL_ALT_SUPER, ${ws}, movetoworkspace, ${toString (x + 1)}"
-              "$SUPER_SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
+              "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
+              "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+              # "$SUPER_SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
             ]
           ) 10
         ));

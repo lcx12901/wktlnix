@@ -36,6 +36,7 @@
         nixos-wsl.nixosModules.wsl
         disko.nixosModules.disko
         agenix.nixosModules.default
+        impermanence.nixosModules.impermanence
       ];
     };
 
@@ -124,5 +125,7 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    impermanence.url = "github:nix-community/impermanence";
   };
 }
