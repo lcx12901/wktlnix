@@ -10,7 +10,6 @@ let
     types
     mkIf
     mkMerge
-    optionalAttrs
     ;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
