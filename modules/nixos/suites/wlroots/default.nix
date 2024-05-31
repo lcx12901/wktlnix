@@ -21,11 +21,6 @@ in
   config = mkIf cfg.enable {
     programs = {
       xwayland.enable = true;
-
-      wshowkeys = {
-        enable = true;
-        package = nixpkgs-wayland.packages.${system}.wshowkeys;
-      };
     };
   };
 }

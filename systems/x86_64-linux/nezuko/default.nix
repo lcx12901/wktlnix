@@ -32,11 +32,6 @@ in {
       terminal.tools.nix-ld = enabled;
     };
 
-    theme = {
-      gtk = enabled;
-      qt = enabled;
-    };
-
     suites = {
       common = enabled;
       wlroots = enabled;
