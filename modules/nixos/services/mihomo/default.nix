@@ -16,6 +16,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs.${namespace}; [
+      country-mmdb
+    ];
+
     services.mihomo = {
       enable = true;
       tunMode = true;
