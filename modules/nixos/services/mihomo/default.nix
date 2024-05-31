@@ -16,10 +16,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs.${namespace}; [
-      country-mmdb
-    ];
-
     services.mihomo = {
       enable = true;
       tunMode = true;
@@ -28,5 +24,10 @@ in {
 
       configFile = config.age.secrets."mihomo.conf".path;
     };
+
+    systemd.services.mihomo.serviceConfig.ExecStartPre = [
+      "${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-geoip}/share/v2ray/geoip.dat /var/lib/private/mihomo/GeoIP.dat"
+      "${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-domain-list-community}/share/v2ray/geosite.dat /var/lib/private/mihomo/GeoSite.dat"
+    ];
   };
 }
