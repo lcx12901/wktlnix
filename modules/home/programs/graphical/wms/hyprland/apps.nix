@@ -1,12 +1,11 @@
 {
   config,
   lib,
-  pkgs,
   namespace,
   ...
 }:
 let
-  inherit (lib) mkIf getExe;
+  inherit (lib) mkIf;
 
   cfg = config.${namespace}.programs.graphical.wms.hyprland;
 in

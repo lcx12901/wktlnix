@@ -1,7 +1,6 @@
 {
   config,
   inputs,
-  system,
   lib,
   namespace,
   ...
@@ -9,7 +8,6 @@
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
-  inherit (inputs) nixpkgs-wayland;
 
   cfg = config.${namespace}.suites.wlroots;
 in
