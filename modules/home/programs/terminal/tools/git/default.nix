@@ -17,7 +17,7 @@ in {
   options.${namespace}.programs.terminal.tools.git = {
     enable = mkEnableOption "Git";
     includes = mkOpt (types.listOf types.attrs) [ ] "Git includeIf paths and conditions.";
-    userName = mkOpt types.str user.fullName "The name to configure git with.";
+    userName = mkOpt types.str "lcx12901" "The name to configure git with.";
     userEmail = mkOpt types.str user.email "The email to configure git with.";
   };
 

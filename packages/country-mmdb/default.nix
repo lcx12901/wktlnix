@@ -17,8 +17,7 @@ stdenvNoCC.mkDerivation rec {
 
   installPhase = ''
     runHook preInstall
-    mkdir -p $out/var/lib/private/mihomo
-    install -Dm 0644 $src -D $out/var/lib/private/mihomo/ASN.mmdb
+    install -Dm 0644 $src -D $out/Country-ASN.mmdb
     runHook postInstall
   '';
 
