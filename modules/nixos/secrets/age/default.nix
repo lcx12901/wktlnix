@@ -10,6 +10,7 @@
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.secrets.age;
+  hasOptinPersistence = config.${namespace}.system.persist.enable;
 in {
   options.${namespace}.secrets.age = {
     enable = mkBoolOpt true "Whether or not to enable agenix.";
@@ -21,7 +22,7 @@ in {
     ];
 
     age.identityPaths = [
-      "/etc/ssh/ssh_host_ed25519_key"
+      "${lib.optionalString hasOptinPersistence "/persist"}/etc/ssh/ssh_host_ed25519_key"
     ];
 
     age.secrets = {
