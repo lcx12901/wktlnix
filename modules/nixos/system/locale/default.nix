@@ -28,10 +28,10 @@ in {
       inherit defaultLocale;
 
       extraLocaleSettings = {
-        LANG = defaultLocale;
-        LC_COLLATE = defaultLocale;
-        LC_CTYPE = defaultLocale;
-        LC_MESSAGES = defaultLocale;
+        LANG = zh;
+        LC_COLLATE = zh;
+        LC_CTYPE = zh;
+        LC_MESSAGES = zh;
 
         LC_ADDRESS = zh;
         LC_IDENTIFICATION = zh;

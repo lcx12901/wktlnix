@@ -50,6 +50,14 @@ in {
       display-managers = {
         sddm = enabled;
       };
+
+      programs = {
+        graphical = {
+          addons = {
+            xdg-portal = enabled;
+          };
+        };
+      };
     };
 
     services.displayManager.sessionPackages = [ hyprland.packages.${system}.hyprland ];
