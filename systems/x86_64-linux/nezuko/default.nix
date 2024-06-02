@@ -37,10 +37,8 @@ in {
       wlroots = enabled;
     };
 
-    services.mihomo = enabled;
+    services.dae = enabled;
   };
-
-  networking.nameservers = ["1.1.1.1 8.8.8.8"];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

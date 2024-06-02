@@ -102,7 +102,9 @@ in
 
         # Terminal
         "terminal.integrated.automationShell.linux" = "nix-shell";
-        "terminal.integrated.cursorBlinking" = true;
+        "accessibility.signals.terminalBell" = {
+          "sound" = "off";
+        };
         "terminal.integrated.defaultProfile.linux" = "fish";
         "terminal.integrated.enableBell" = false;
         "terminal.integrated.gpuAcceleration" = "on";
