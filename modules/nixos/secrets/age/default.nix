@@ -26,11 +26,6 @@ in {
     ];
 
     age.secrets = {
-      "mihomo.conf" = {
-        file = lib.snowfall.fs.get-file "secrets/service/mihomo.age";
-        mode = "0440";
-        owner = "root";
-      };
       "config.dae" = {
         file = lib.snowfall.fs.get-file "secrets/service/dae.age";
         mode = "0440";

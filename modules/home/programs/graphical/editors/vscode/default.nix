@@ -55,8 +55,8 @@ in
 
       userSettings = {
         # Color theme
-        "workbench.colorTheme" = "Catppuccin Macchiato";
-        "catppuccin.accentColor" = "mauve";
+        "workbench.colorTheme" = "Catppuccin Mocha";
+        "catppuccin.accentColor" = "lavender";
         "workbench.iconTheme" = "vscode-icons";
 
         # Font family
