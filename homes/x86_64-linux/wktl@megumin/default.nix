@@ -19,6 +19,8 @@ in {
         tools.git = enabled;
       };
     };
+
+    # theme.gtk = enabled;
   };
 
   home.stateVersion = "23.11";

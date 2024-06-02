@@ -12,4 +12,8 @@ with lib; rec {
   enabled = {
     enable = true;
   };
+
+  default-attrs = mapAttrs (_key: mkDefault);
+
+  nested-default-attrs = mapAttrs (_key: default-attrs);
 }
