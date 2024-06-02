@@ -51,8 +51,8 @@ in {
       settings = nested-default-attrs {
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
-          cursor-size = cfg.cursor.size;
-          cursor-theme = cfg.cursor.name;
+          cursor-size = osTheme.cursor.size;
+          cursor-theme = osTheme.cursor.name;
           enable-hot-corners = false;
           font-name = osConfig.${namespace}.system.fonts.default;
           gtk-theme = osTheme.name;
