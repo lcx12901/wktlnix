@@ -55,8 +55,8 @@ in {
           cursor-theme = osTheme.cursor.name;
           enable-hot-corners = false;
           font-name = osConfig.${namespace}.system.fonts.default;
-          gtk-theme = osTheme.name;
-          icon-theme = osTheme.name;
+          gtk-theme = osTheme.gtk.theme.name;
+          icon-theme = osTheme.icon.name;
         };
       };
     };

@@ -20,7 +20,7 @@ in {
       };
     };
 
-    # theme.gtk = enabled;
+    theme.gtk = enabled;
   };
 
   home.stateVersion = "23.11";
