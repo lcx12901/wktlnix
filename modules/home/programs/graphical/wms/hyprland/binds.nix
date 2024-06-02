@@ -21,9 +21,10 @@ in {
           # ░█▀█░█▀█░█▀█░█▀▀
           # ░█▀█░█▀▀░█▀▀░▀▀█
           # ░▀░▀░▀░░░▀░░░▀▀▀
+          "$mainMod, C, killactive"
           "$mainMod, RETURN, exec, $term"
           "$mainMod, B, exec, $browser"
-          "$mainMod, C, exec, code"
+          "$mainMod, V, exec, code"
 
           # ░█░░░█▀█░█░█░█▀█░█░█░▀█▀
           # ░█░░░█▀█░░█░░█░█░█░█░░█░
@@ -130,12 +131,7 @@ in {
           # ░█▀▀░█░█░█▀▀░▀█▀░█▀▀░█▄█
           # ░▀▀█░░█░░▀▀█░░█░░█▀▀░█░█
           # ░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀
-          # Kill and restart crashed hyprlock
-          "$mainMod, BackSpace, exec, pkill -SIGUSR1 hyprlock || WAYLAND_DISPLAY=wayland-1 $screen-locker --immediate"
-          "$LHYPER, L, exec, systemctl --user exit"
-          "$LHYPER, L, exit,"
-          "$RHYPER, R, exec, reboot"
-          "$RHYPER, P, exec, shutdown"
+
 
           # ░█▄█░█▀▀░█▀▄░▀█▀░█▀█
           # ░█░█░█▀▀░█░█░░█░░█▀█

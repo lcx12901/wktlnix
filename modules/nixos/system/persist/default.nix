@@ -8,6 +8,8 @@
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.system.persist;
+
+  username = config.${namespace}.user.name;
 in {
   options.${namespace}.system.persist = {
     enable = mkBoolOpt false "Whether or not to enable impermanence.";
@@ -20,6 +22,12 @@ in {
       directories = [
         "/etc/ssh"
       ];
+
+      users."${username}" = {
+        directories = [
+          ".ssh"
+        ];
+      };
     };
   };
 }

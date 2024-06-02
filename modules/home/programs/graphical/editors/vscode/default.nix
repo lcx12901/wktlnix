@@ -106,11 +106,11 @@ in
           "sound" = "off";
         };
         "terminal.integrated.defaultProfile.linux" = "fish";
-        "terminal.integrated.enableBell" = false;
         "terminal.integrated.gpuAcceleration" = "on";
 
         # Workbench
         "workbench.editor.tabCloseButton" = "left";
+        "workbench.editor.tabActionLocation" = "left";
         "workbench.fontAliasing" = "antialiased";
         "workbench.list.smoothScrolling" = true;
         "workbench.panel.defaultLocation" = "right";

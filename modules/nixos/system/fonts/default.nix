@@ -76,6 +76,7 @@ in {
             "CaskaydiaCove Nerd Font Mono"
             "Iosevka Nerd Font"
             "Symbols Nerd Font"
+            "WenQuanYi Zen Hei Mono"
             "Noto Color Emoji"
           ];
         in
