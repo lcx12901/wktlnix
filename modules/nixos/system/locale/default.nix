@@ -22,7 +22,7 @@ in {
     };
 
     i18n = let
-      defaultLocale = "en_US.UTF-8";
+      defaultLocale = "zh_CN.UTF-8";
       zh = "zh_CN.UTF-8";
     in {
       inherit defaultLocale;
