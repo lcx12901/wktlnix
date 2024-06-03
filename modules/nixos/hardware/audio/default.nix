@@ -13,6 +13,10 @@ let
 in {
   options.${namespace}.hardware.audio = with types; {
     enable = mkBoolOpt false "Whether or not to enable audio support.";
+    extra-packages = mkOpt (listOf package) [
+      pkgs.qjackctl
+      pkgs.easyeffects
+    ] "Additional packages to install.";
   };
 
   config = mkIf cfg.enable {

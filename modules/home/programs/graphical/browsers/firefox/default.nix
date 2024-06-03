@@ -90,7 +90,7 @@ in {
         ];
 
         search = {
-          default = "DuckDuckGo";
+          default = "Google";
           privateDefault = "DuckDuckGo";
           force = true;
         };
@@ -133,7 +133,7 @@ in {
             "gfx.font_rendering.directwrite.bold_simulation" = 2;
             "gfx.font_rendering.cleartype_params.enhanced_contrast" = 25;
             "gfx.font_rendering.cleartype_params.force_gdi_classic_for_families" = "";
-            "intl.accept_languages" = "zh-CN,zh";
+            "intl.accept_languages" = "zh-CN,en-US";
             "media.eme.enabled" = true;
             "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -162,6 +162,11 @@ in {
             ${cfg.userChrome}
           '';
       };
+    };
+
+    home.persistence."/persist/home/${config.${namespace}.user.name}" = {
+      allowOther = true;
+      directories = [firefoxPath];
     };
   };
 }
