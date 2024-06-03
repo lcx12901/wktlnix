@@ -26,6 +26,8 @@ in {
     hardware = {
       audio = enabled;
       opengl = enabled;
+      cpu.amd = enabled;
+      gpu.amd = enabled;
     };
 
     programs = {
