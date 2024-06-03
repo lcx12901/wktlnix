@@ -147,17 +147,17 @@ in {
           disabled = false;
           time_format = "%R";
           style = "bg:color_bg1";
-          format = "[[  $time ](fg:color_fg0 bg:color_bg1)]($style)";
+          format = "[[   $time ](fg:color_fg0 bg:color_bg1)]($style)";
         };
 
         character = {
           disabled = false;
-          success_symbol = "[](bold fg:color_green)";
-          error_symbol = "[](bold fg:color_red)";
-          vimcmd_symbol = "[](bold fg:color_green)";
-          vimcmd_replace_one_symbol = "[](bold fg:color_purple)";
-          vimcmd_replace_symbol = "[](bold fg:color_purple)";
-          vimcmd_visual_symbol = "[](bold fg:color_yellow)";
+          success_symbol = "[ ](bold fg:color_green)";
+          error_symbol = "[ ](bold fg:color_red)";
+          vimcmd_symbol = "[ ](bold fg:color_green)";
+          vimcmd_replace_one_symbol = "[ ](bold fg:color_purple)";
+          vimcmd_replace_symbol = "[ ](bold fg:color_purple)";
+          vimcmd_visual_symbol = "[ ](bold fg:color_yellow)";
         };
       };
     };
