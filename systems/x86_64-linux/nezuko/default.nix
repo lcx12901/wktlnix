@@ -23,6 +23,11 @@ in {
       persist = enabled;
     };
 
+    hardware = {
+      audio = enabled;
+      opengl = enabled;
+    };
+
     programs = {
       graphical = {
         wms = {

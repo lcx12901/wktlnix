@@ -50,6 +50,7 @@ in {
 
         group = "users";
         home = "/home/${cfg.name}";
+        createHome = true;
         isNormalUser = true;
         shell = pkgs.fish;
         uid = 1000;
