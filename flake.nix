@@ -31,6 +31,10 @@
         nur.overlay
       ];
 
+      homes.modules = with inputs; [
+        impermanence.nixosModules.home-manager.impermanence
+      ];
+
       # Add modules to all NixOS systems.
       systems.modules.nixos = with inputs; [
         nixos-wsl.nixosModules.wsl
