@@ -20,6 +20,7 @@ in
       package = mkOpt package (pkgs.catppuccin-gtk.override {
         accents = [ "blue" ];
         size = "standard";
+        tweaks = [ "normal" ];
         variant = "macchiato";
       }) "The package to use for the theme.";
     };
