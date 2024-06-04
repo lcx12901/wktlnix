@@ -18,6 +18,7 @@ let
 
   firefoxPath = ".mozilla/firefox/${config.${namespace}.user.name}";
 in {
+  # https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
   options.${namespace}.programs.graphical.browsers.firefox = with types; {
     enable = mkBoolOpt false "Whether or not to enable Firefox.";
     hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
