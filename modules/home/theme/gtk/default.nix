@@ -63,6 +63,23 @@ in {
     gtk = {
       enable = true;
 
+      catppuccin = {
+        enable = true;
+
+        accent = "blue";
+        size = "standard";
+
+        cursor = {
+          enable = true;
+          accent = "blue";
+        };
+
+        icon = {
+          enable = true;
+          accent = "blue";
+        };
+      };
+
       font = {
         name = osConfig.${namespace}.system.fonts.default;
       };
