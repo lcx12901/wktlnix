@@ -23,6 +23,21 @@
         "type": "github"
       }
     },
+    "catppuccin": {
+      "locked": {
+        "lastModified": 1717070887,
+        "narHash": "sha256-ZTEMINFqQL+m55kmoDYIKf3i2NGitSkjBnnLu99ezh0=",
+        "owner": "catppuccin",
+        "repo": "nix",
+        "rev": "2c7661c9fa26a920b8088300ef87d14179c71a27",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -635,23 +650,6 @@
         "type": "github"
       }
     },
-    "metacubexd": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1717335112,
-        "narHash": "sha256-3OYVp7lYtcsr8r7YewTpRjbkgurorfEwa1XZ046LBaU=",
-        "owner": "MetaCubeX",
-        "repo": "metacubexd",
-        "rev": "0506890b0359854711de79480188b7e86f48da5e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MetaCubeX",
-        "ref": "gh-pages",
-        "repo": "metacubexd",
-        "type": "github"
-      }
-    },
     "nix-eval-jobs": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -915,6 +913,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "catppuccin": "catppuccin",
         "disko": "disko",
         "home-manager": "home-manager_2",
         "hyprland": "hyprland",
@@ -922,7 +921,6 @@
         "hyprland-plugins": "hyprland-plugins",
         "hyprlock": "hyprlock",
         "impermanence": "impermanence",
-        "metacubexd": "metacubexd",
         "nix-index-database": "nix-index-database",
         "nix-ld-rs": "nix-ld-rs",
         "nix-vscode-extensions": "nix-vscode-extensions",
