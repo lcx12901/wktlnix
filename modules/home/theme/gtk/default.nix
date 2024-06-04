@@ -7,12 +7,11 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkDefault types;
+  inherit (lib) mkIf mkDefault;
 
   inherit (lib.${namespace})
     boolToNum
     mkBoolOpt
-    mkOpt
     nested-default-attrs
     ;
 
