@@ -63,6 +63,7 @@ in {
           ExtensionRecommendations = false;
           SkipOnboarding = true;
         };
+        # https://mozilla.github.io/policy-templates/#3rdparty
         ExtensionSettings = {
           "ebay@search.mozilla.org".installation_mode = "blocked";
           "amazondotcom@search.mozilla.org".installation_mode = "blocked";
@@ -133,7 +134,7 @@ in {
             "gfx.font_rendering.directwrite.bold_simulation" = 2;
             "gfx.font_rendering.cleartype_params.enhanced_contrast" = 25;
             "gfx.font_rendering.cleartype_params.force_gdi_classic_for_families" = "";
-            "intl.accept_languages" = "zh-CN,en-US";
+            "intl.accept_languages" = "zh-CN,zh,zh-TW,zh-HK,en-US,en";
             "media.eme.enabled" = true;
             "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -164,9 +165,11 @@ in {
       };
     };
 
-    home.persistence."/persist/home/${config.${namespace}.user.name}" = {
-      allowOther = true;
-      directories = [firefoxPath];
+    home.persistence = mkIf osConfig.${namespace}.system.persist.enable {
+      "/persist/home/${config.${namespace}.user.name}" = {
+        allowOther = true;
+        directories = [firefoxPath];
+      };
     };
   };
 }

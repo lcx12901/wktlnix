@@ -32,6 +32,7 @@
       ];
 
       homes.modules = with inputs; [
+        catppuccin.homeManagerModules.catppuccin
         impermanence.nixosModules.home-manager.impermanence
       ];
 
@@ -132,9 +133,6 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
-    metacubexd = {
-      url = "github:MetaCubeX/metacubexd/gh-pages";
-      flake = false;
-    };
+    catppuccin.url = "github:catppuccin/nix";
   };
 }
