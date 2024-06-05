@@ -34,6 +34,7 @@
       homes.modules = with inputs; [
         catppuccin.homeManagerModules.catppuccin
         impermanence.nixosModules.home-manager.impermanence
+        spicetify-nix.homeManagerModules.default
       ];
 
       # Add modules to all NixOS systems.
@@ -134,5 +135,11 @@
     impermanence.url = "github:nix-community/impermanence";
 
     catppuccin.url = "github:catppuccin/nix";
+
+    # Spicetify
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

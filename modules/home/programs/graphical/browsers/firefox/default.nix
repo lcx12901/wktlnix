@@ -11,6 +11,7 @@ let
     types
     mkIf
     mkMerge
+    optionalAttrs
     ;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
@@ -20,7 +21,7 @@ let
 in {
   # https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
   options.${namespace}.programs.graphical.browsers.firefox = with types; {
-    enable = mkBoolOpt false "Whether or not to enable Firefox.";
+    enable = mkBoolOpt true "Whether or not to enable Firefox.";
     hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
     gpuAcceleration = mkBoolOpt false "Enable GPU acceleration.";
     extraConfig = mkOpt str "" "Extra configuration for the user profile JS file.";
@@ -89,6 +90,7 @@ in {
           ublock-origin
           auto-tab-discard
           darkreader
+          immersive-translate
         ];
 
         search = {
@@ -144,17 +146,17 @@ in {
             "font.name.serif.x-western" = "MonaspiceNe Nerd Font";
             "signon.autofillForms" = false;
           }
-          # (optionalAttrs cfg.gpuAcceleration {
-          #   "dom.webgpu.enabled" = true;
-          #   "gfx.webrender.all" = true;
-          #   "layers.gpu-process.enabled" = true;
-          #   "layers.mlgpu.enabled" = true;
-          # })
-          # (optionalAttrs cfg.hardwareDecoding {
-          #   "media.ffmpeg.vaapi.enabled" = true;
-          #   "media.gpu-process-decoder" = true;
-          #   "media.hardware-video-decoding.enabled" = true;
-          # })
+          (optionalAttrs cfg.gpuAcceleration {
+            "dom.webgpu.enabled" = true;
+            "gfx.webrender.all" = true;
+            "layers.gpu-process.enabled" = true;
+            "layers.mlgpu.enabled" = true;
+          })
+          (optionalAttrs cfg.hardwareDecoding {
+            "media.ffmpeg.vaapi.enabled" = true;
+            "media.gpu-process-decoder" = true;
+            "media.hardware-video-decoding.enabled" = true;
+          })
         ];
 
         # TODO: support alternative theme loading

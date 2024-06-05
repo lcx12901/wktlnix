@@ -17,6 +17,7 @@ in {
       terminal = {
         emulators.kitty = enabled;
         tools.git = enabled;
+        media.spicetify = enabled;
       };
     };
 

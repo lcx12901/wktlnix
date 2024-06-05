@@ -15,13 +15,17 @@ in {
     programs = {
       graphical = {
         wms.hyprland = enabled;
-        browsers.firefox = enabled;
+        browsers.firefox = {
+          gpuAcceleration = true;
+          hardwareDecoding = true;
+        };
         editors.vscode = enabled;
         addons.electron-support = enabled;
       };
       terminal = {
         emulators.kitty = enabled;
         tools.git = enabled;
+        media.spicetify = enabled;
       };
     };
 
