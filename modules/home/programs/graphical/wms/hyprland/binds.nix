@@ -17,6 +17,7 @@ in {
           # █░░░█▀█░█░█░█▀█░█▀▀░█░█░█▀▀░█▀▄░█▀▀
           # █░░░█▀█░█░█░█░█░█░░░█▀█░█▀▀░█▀▄░▀▀█
           # ▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀
+          ''$MODSHIFT,R,exec, killall anyrun || run-as-service $(anyrun)'' # alternative application launcher with more features
 
           # ░█▀█░█▀█░█▀█░█▀▀
           # ░█▀█░█▀▀░█▀▀░▀▀█
