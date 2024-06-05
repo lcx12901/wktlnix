@@ -17,6 +17,8 @@ let
 
   cfg = config.${namespace}.programs.graphical.browsers.firefox;
 
+  persist = osConfig.${namespace}.system.persist.enable;
+
   firefoxPath = ".mozilla/firefox/${config.${namespace}.user.name}";
 in {
   # https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
@@ -168,7 +170,7 @@ in {
       };
     };
 
-    home.persistence = mkIf osConfig.${namespace}.system.persist.enable {
+    home.persistence = mkIf persist {
       "/persist/home/${config.${namespace}.user.name}" = {
         allowOther = true;
         directories = [firefoxPath];

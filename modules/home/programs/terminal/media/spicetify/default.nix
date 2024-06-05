@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   lib,
   pkgs,
   inputs,
@@ -14,6 +15,8 @@ let
   cfg = config.${namespace}.programs.terminal.media.spicetify;
 
   spicePkgs = spicetify-nix.legacyPackages.${pkgs.system};
+
+  persist = osConfig.${namespace}.system.persist.enable;
 in
 {
   options.${namespace}.programs.terminal.media.spicetify = {
@@ -41,6 +44,13 @@ in
         shuffle # shuffle+ (special characters are sanitized out of ext names)
         volumePercentage
       ];
+    };
+
+    home.persistence = mkIf persist {
+      "/persist/home/${config.${namespace}.user.name}" = {
+        allowOther = true;
+        directories = ["./config/spotify"];
+      };
     };
   };
 }
