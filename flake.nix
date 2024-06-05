@@ -35,6 +35,7 @@
         catppuccin.homeManagerModules.catppuccin
         impermanence.nixosModules.home-manager.impermanence
         spicetify-nix.homeManagerModules.default
+        anyrun.homeManagerModules.default
       ];
 
       # Add modules to all NixOS systems.
@@ -141,5 +142,9 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # anyrun program launcher
+    anyrun.url = "github:anyrun-org/anyrun";
+    anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
   };
 }
