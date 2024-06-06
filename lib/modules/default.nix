@@ -20,4 +20,15 @@ with lib; rec {
   default-attrs = mapAttrs (_key: mkDefault);
 
   nested-default-attrs = mapAttrs (_key: default-attrs);
+
+  compileSCSS = pkgs: {
+    name,
+    source,
+    args ? "-t expanded",
+  }: "${
+    pkgs.runCommandLocal name {} ''
+      mkdir -p $out
+      ${lib.getExe pkgs.sassc} ${args} '${source}' > $out/${name}.css
+    ''
+  }/${name}.css";
 }
