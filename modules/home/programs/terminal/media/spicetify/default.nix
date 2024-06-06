@@ -45,12 +45,5 @@ in
         volumePercentage
       ];
     };
-
-    home.persistence = mkIf persist {
-      "/persist/home/${config.${namespace}.user.name}" = {
-        allowOther = true;
-        directories = ["./config/spotify"];
-      };
-    };
   };
 }
