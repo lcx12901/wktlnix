@@ -21,7 +21,7 @@ in {
         };
         editors.vscode = enabled;
         addons.electron-support = enabled;
-        launchers.anyrun = enabled;
+        launchers.rofi = enabled;
       };
       terminal = {
         emulators.kitty = enabled;

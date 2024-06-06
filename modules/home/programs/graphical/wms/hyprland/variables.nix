@@ -125,6 +125,10 @@ in {
         # default applications
         "$term" = "[float;tile] ${getExe pkgs.kitty}";
         "$browser" = "${getExe pkgs.firefox-beta}";
+        "$launcher" = "${getExe config.programs.rofi.package} -show drun -n";
+        "$launcher_alt" = "${getExe config.programs.rofi.package} -show calc";
+        "$launcher_shift" = "${getExe config.programs.rofi.package} -show run -n";
+        "$launchpad" = "${getExe config.programs.rofi.package} -show drun -config '~/.config/rofi/appmenu/rofi.rasi'";
       };
     };
   };
