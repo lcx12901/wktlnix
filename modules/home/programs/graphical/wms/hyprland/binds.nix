@@ -18,6 +18,8 @@ in {
           # █░░░█▀█░█░█░█░█░█░░░█▀█░█▀▀░█▀▄░▀▀█
           # ▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀
           "$mainMod, R, exec, $launcher"
+          "CTRL_SHIFT, SPACE, exec, $launcher_shift"
+          "$mainMod, A, exec, $launchpad"
 
           # ░█▀█░█▀█░█▀█░█▀▀
           # ░█▀█░█▀▀░█▀▀░▀▀█

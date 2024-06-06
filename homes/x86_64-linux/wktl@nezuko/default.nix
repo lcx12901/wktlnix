@@ -22,6 +22,7 @@ in {
         editors.vscode = enabled;
         addons.electron-support = enabled;
         launchers.rofi = enabled;
+        video = enabled;
       };
       terminal = {
         emulators.kitty = enabled;
