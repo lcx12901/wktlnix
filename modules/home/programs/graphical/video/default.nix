@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.video;
 in
