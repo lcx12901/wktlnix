@@ -15,8 +15,6 @@ let
   cfg = config.${namespace}.programs.terminal.media.spicetify;
 
   spicePkgs = spicetify-nix.legacyPackages.${pkgs.system};
-
-  persist = osConfig.${namespace}.system.persist.enable;
 in
 {
   options.${namespace}.programs.terminal.media.spicetify = {
