@@ -24,6 +24,9 @@
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
+
+        # TODO: wechat need, when can cleanup
+        permittedInsecurePackages = [ "openssl-1.1.1w" ];
       };
 
       overlays = with inputs; [

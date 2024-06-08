@@ -18,8 +18,6 @@ in {
           # █░░░█▀█░█░█░█░█░█░░░█▀█░█▀▀░█▀▄░▀▀█
           # ▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀
           "$mainMod, R, exec, $launcher"
-          "CTRL_SHIFT, SPACE, exec, $launcher_shift"
-          "$mainMod, A, exec, $launchpad"
 
           # ░█▀█░█▀█░█▀█░█▀▀
           # ░█▀█░█▀▀░█▀▀░▀▀█
@@ -41,15 +39,16 @@ in {
           # ░█▄█░░█░░█░█░█░█░█░█░█▄█
           # ░▀░▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀
           # WINDOWS FOCUS
-          "ALT,left,movefocus,l"
-          "ALT,right,movefocus,r"
-          "ALT,up,movefocus,u"
-          "ALT,down,movefocus,d"
+          "$mainMod,left,movefocus,l"
+          "$mainMod,right,movefocus,r"
+          "$mainMod,up,movefocus,u"
+          "$mainMod,down,movefocus,d"
+
           # Move window
-          "SUPER,left,movewindow,l"
-          "SUPER,right,movewindow,r"
-          "SUPER,up,movewindow,u"
-          "SUPER,down,movewindow,d"
+          "ALT,left,movewindow,l"
+          "ALT,right,movewindow,r"
+          "ALT,up,movewindow,u"
+          "ALT,down,movewindow,d"
 
           "CTRL_SHIFT,h,resizeactive,-10% 0"
           "CTRL_SHIFT,l,resizeactive,10% 0"
@@ -126,7 +125,6 @@ in {
             [
               "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
               "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-              # "$SUPER_SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
             ]
           ) 10
         ));
