@@ -5,11 +5,11 @@
   osConfig,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf mkDefault;
 
-  inherit (lib.${namespace})
+  inherit
+    (lib.${namespace})
     boolToNum
     mkBoolOpt
     nested-default-attrs
@@ -121,10 +121,8 @@ in {
       };
     };
 
-    xdg.systemDirs.data =
-      let
-        schema = pkgs.gsettings-desktop-schemas;
-      in
-      [ "${schema}/share/gsettings-schemas/${schema.name}" ];
+    xdg.systemDirs.data = let
+      schema = pkgs.gsettings-desktop-schemas;
+    in ["${schema}/share/gsettings-schemas/${schema.name}"];
   };
 }

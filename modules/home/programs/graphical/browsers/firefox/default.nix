@@ -5,9 +5,9 @@
   osConfig,
   namespace,
   ...
-}:
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     types
     mkIf
     mkMerge
@@ -27,7 +27,7 @@ in {
     hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
     gpuAcceleration = mkBoolOpt false "Enable GPU acceleration.";
     extraConfig = mkOpt str "" "Extra configuration for the user profile JS file.";
-    settings = mkOpt attrs { } "Settings to apply to the profile.";
+    settings = mkOpt attrs {} "Settings to apply to the profile.";
     userChrome = mkOpt str "" "Extra configuration for the user chrome CSS file.";
   };
 
@@ -37,7 +37,7 @@ in {
         {
           "${firefoxPath}/native-messaging-hosts/com.dannyvankooten.browserpass.json".source = "${pkgs.browserpass}/lib/mozilla/native-messaging-hosts/com.dannyvankooten.browserpass.json";
           "${firefoxPath}/chrome/img" = {
-            source = lib.cleanSourceWith { src = lib.cleanSource ./chrome/img/.; };
+            source = lib.cleanSourceWith {src = lib.cleanSource ./chrome/img/.;};
 
             recursive = true;
           };
@@ -75,7 +75,7 @@ in {
           "ddg@search.mozilla.org".installation_mode = "blocked";
           "wikipedia@search.mozilla.org".installation_mode = "blocked";
         };
-        Preferences = { };
+        Preferences = {};
       };
 
       profiles.${config.${namespace}.user.name} = {

@@ -6,8 +6,7 @@
   system,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf mkEnableOption;
   inherit (inputs) hyprland;
 
@@ -35,7 +34,7 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [ xwaylandvideobridge ];
+      packages = with pkgs; [xwaylandvideobridge];
 
       sessionVariables = {
         CLUTTER_BACKEND = "wayland";
@@ -61,7 +60,7 @@ in {
 
       systemd = {
         enable = true;
-        variables = [ "--all" ];
+        variables = ["--all"];
       };
 
       xwayland.enable = true;

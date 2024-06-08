@@ -3,14 +3,12 @@
   lib,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.suites.wlroots;
-in
-{
+in {
   options.${namespace}.suites.wlroots = {
     enable = mkBoolOpt false "Whether or not to enable common wlroots configuration.";
   };

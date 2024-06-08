@@ -5,16 +5,14 @@
   pkgs,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled;
 
   persist = osConfig.${namespace}.system.persist.enable;
 
   cfg = config.${namespace}.scenes.daily;
-in
-{
+in {
   options.${namespace}.scenes.daily = {
     enable = mkBoolOpt false "Whether or not to enable daily configuration.";
   };

@@ -4,9 +4,9 @@
   pkgs,
   namespace,
   ...
-}:
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkIf
     mkEnableOption
     mkOption
@@ -46,7 +46,9 @@ in {
     cursor = {
       name = mkOpt types.str "catppuccin-macchiato-blue-cursors" "The name of the cursor theme to apply.";
       package = mkOpt types.package (
-        if pkgs.stdenv.isLinux then pkgs.catppuccin-cursors.macchiatoBlue else pkgs.emptyDirectory
+        if pkgs.stdenv.isLinux
+        then pkgs.catppuccin-cursors.macchiatoBlue
+        else pkgs.emptyDirectory
       ) "The package to use for the cursor theme.";
       size = mkOpt types.int 32 "The size of the cursor.";
     };
@@ -89,7 +91,7 @@ in {
 
     package = mkOption {
       type = types.package;
-      default = pkgs.catppuccin.override { inherit (cfg.selectedTheme) accent variant; };
+      default = pkgs.catppuccin.override {inherit (cfg.selectedTheme) accent variant;};
       description = ''
         The `spotifyd` package to use.
         Can be used to specify extensions.
