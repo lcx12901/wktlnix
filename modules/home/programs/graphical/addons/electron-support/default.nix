@@ -15,9 +15,11 @@ in
     enable = mkBoolOpt false "Whether to enable wayland electron support in the desktop environment.";
   };
 
+  # TODO: electron unsupport `NIXOS_OZONE_WL = "1"`， and fcitx5 in electron
+
   config = mkIf cfg.enable {
     home.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
+      # NIXOS_OZONE_WL = "1";
     };
 
     xdg.configFile."electron-flags.conf".source = ./electron-flags.conf;
