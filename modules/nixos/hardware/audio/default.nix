@@ -4,8 +4,7 @@
   pkgs,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) types mkIf mkForce;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
@@ -20,8 +19,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages =
-      with pkgs;
+    environment.systemPackages = with pkgs;
       [
         pulsemixer
         pavucontrol
@@ -32,7 +30,7 @@ in {
     hardware.pulseaudio.enable = mkForce false;
 
     wktlnix = {
-      user.extraGroups = [ "audio" ];
+      user.extraGroups = ["audio"];
     };
 
     services.pipewire = {

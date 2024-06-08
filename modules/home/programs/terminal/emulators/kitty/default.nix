@@ -3,8 +3,7 @@
   lib,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) types mkIf;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 

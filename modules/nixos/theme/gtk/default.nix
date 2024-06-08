@@ -4,23 +4,21 @@
   pkgs,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) types mkIf;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.theme.gtk;
-in
-{
+in {
   options.${namespace}.theme.gtk = with types; {
     enable = mkBoolOpt false "Whether to customize GTK and apply themes.";
 
     theme = {
       name = mkOpt str "Catppuccin-Macchiato-Standard-Blue-Dark" "The name of the GTK theme to apply.";
       package = mkOpt package (pkgs.catppuccin-gtk.override {
-        accents = [ "blue" ];
+        accents = ["blue"];
         size = "standard";
-        tweaks = [ "normal" ];
+        tweaks = ["normal"];
         variant = "macchiato";
       }) "The package to use for the theme.";
     };
@@ -35,8 +33,8 @@ in
 
     services = {
       # needed for GNOME services outside of GNOME Desktop
-      dbus.packages = [ pkgs.gcr ];
-      udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+      dbus.packages = [pkgs.gcr];
+      udev.packages = with pkgs; [gnome.gnome-settings-daemon];
     };
   };
 }

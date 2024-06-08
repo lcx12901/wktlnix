@@ -6,9 +6,9 @@
   system,
   namespace,
   ...
-}:
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     makeBinPath
     mkIf
     types
@@ -19,8 +19,7 @@ let
   cfg = config.${namespace}.programs.graphical.wms.hyprland;
 
   programs = makeBinPath (
-    with pkgs;
-    [
+    with pkgs; [
       hyprland.packages.${system}.hyprland
       coreutils
       systemd
@@ -31,12 +30,12 @@ in {
   options.${namespace}.programs.graphical.wms.hyprland = with types; {
     enable = mkBoolOpt false "Whether or not to enable Hyprland.";
     customConfigFiles =
-      mkOpt attrs { }
-        "Custom configuration files that can be used to override the default files.";
-    customFiles = mkOpt attrs { } "Custom files that can be used to override the default files.";
+      mkOpt attrs {}
+      "Custom configuration files that can be used to override the default files.";
+    customFiles = mkOpt attrs {} "Custom files that can be used to override the default files.";
   };
 
-  disabledModules = [ "programs/hyprland.nix" ];
+  disabledModules = ["programs/hyprland.nix"];
 
   config = mkIf cfg.enable {
     environment = {
@@ -60,6 +59,6 @@ in {
       };
     };
 
-    services.displayManager.sessionPackages = [ hyprland.packages.${system}.hyprland ];
+    services.displayManager.sessionPackages = [hyprland.packages.${system}.hyprland];
   };
 }

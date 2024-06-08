@@ -4,14 +4,12 @@
   pkgs,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.hardware.gpu.amd;
-in
-{
+in {
   options.${namespace}.hardware.gpu.amd = {
     enable = mkBoolOpt false "Whether or not to enable support for amdgpu.";
   };
@@ -19,8 +17,8 @@ in
   config = mkIf cfg.enable {
     # enable amdgpu kernel module
     boot = {
-      initrd.kernelModules = [ "amdgpu" ]; # load amdgpu kernel module as early as initrd
-      kernelModules = [ "amdgpu" ]; # if loading somehow fails during initrd but the boot continues, try again later
+      initrd.kernelModules = ["amdgpu"]; # load amdgpu kernel module as early as initrd
+      kernelModules = ["amdgpu"]; # if loading somehow fails during initrd but the boot continues, try again later
     };
 
     environment.systemPackages = with pkgs; [
@@ -37,8 +35,7 @@ in
 
     # enables AMDVLK & OpenCL support
     hardware.opengl = {
-      extraPackages =
-        with pkgs;
+      extraPackages = with pkgs;
         [
           amdvlk
 
@@ -52,21 +49,18 @@ in
           vulkan-extension-layer
         ]
         ++ (
-          if pkgs ? rocmPackages.clr then
-            with pkgs.rocmPackages;
-            [
-              clr
-              clr.icd
-            ]
-          else
-            with pkgs;
-            [
-              rocm-opencl-icd
-              rocm-opencl-runtime
-            ]
+          if pkgs ? rocmPackages.clr
+          then with pkgs.rocmPackages; [
+            clr
+            clr.icd
+          ]
+          else with pkgs; [
+            rocm-opencl-icd
+            rocm-opencl-runtime
+          ]
         );
 
-      extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
+      extraPackages32 = [pkgs.driversi686Linux.amdvlk];
     };
 
     services.xserver.videoDrivers = lib.mkDefault [

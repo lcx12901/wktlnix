@@ -4,8 +4,7 @@
   pkgs,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf getExe;
 
   cfg = config.${namespace}.programs.graphical.wms.hyprland;
@@ -13,7 +12,7 @@ in {
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       settings = {
-        monitor= ",highrr,auto,1";
+        monitor = ",highrr,auto,1";
         env = "HYPRLAND_TRACE,1";
         animations = {
           enabled = "yes";

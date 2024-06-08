@@ -5,16 +5,14 @@
   pkgs,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.editors.vscode;
 
   extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
-in
-{
+in {
   options.${namespace}.programs.graphical.editors.vscode = {
     enable = mkBoolOpt false "Whether or not to enable vscode.";
   };

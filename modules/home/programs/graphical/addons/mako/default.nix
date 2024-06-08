@@ -4,14 +4,12 @@
   pkgs,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf getExe getExe';
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.addons.mako;
-in
-{
+in {
   options.${namespace}.programs.graphical.addons.mako = {
     enable = mkBoolOpt false "Whether to enable Mako in Sway.";
   };
@@ -33,24 +31,27 @@ in
       };
 
       Install = {
-        WantedBy = [ "graphical-session.target" ];
+        WantedBy = ["graphical-session.target"];
       };
 
       Service = {
         Type = "dbus";
         BusName = "org.freedesktop.Notifications";
 
-        ExecCondition = # bash
+        ExecCondition =
+          # bash
           ''
             ${getExe pkgs.bash} -c '[ -n "$WAYLAND_DISPLAY" ]'
           '';
 
-        ExecStart = # bash
+        ExecStart =
+          # bash
           ''
             ${getExe pkgs.mako}
           '';
 
-        ExecReload = # bash
+        ExecReload =
+          # bash
           ''
             ${getExe' pkgs.mako "makoctl"} reload
           '';

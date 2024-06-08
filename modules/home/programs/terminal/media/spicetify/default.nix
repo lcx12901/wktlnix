@@ -6,8 +6,7 @@
   inputs,
   namespace,
   ...
-}:
-let
+}: let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
   inherit (inputs) spicetify-nix;
@@ -15,8 +14,7 @@ let
   cfg = config.${namespace}.programs.terminal.media.spicetify;
 
   spicePkgs = spicetify-nix.legacyPackages.${pkgs.system};
-in
-{
+in {
   options.${namespace}.programs.terminal.media.spicetify = {
     enable = mkBoolOpt false "Whether or not to enable support for spicetify.";
   };
