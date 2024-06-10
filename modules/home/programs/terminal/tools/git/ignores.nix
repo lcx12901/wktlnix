@@ -17,20 +17,6 @@
     ".idea/"
     ".~lock*"
 
-    # C
-    ".tags"
-    "tags"
-    "*~"
-    "*.o"
-    "*.so"
-    "*.cmake"
-    "CMakeCache.txt"
-    "CMakeFiles/"
-    "cmake-build-debug/"
-    "compile_commands.json"
-    ".ccls*"
-    "*.out"
-
     # Nix
     "result"
     "result-*"

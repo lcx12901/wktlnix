@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   lib,
   inputs,
   pkgs,
@@ -10,6 +11,8 @@
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.editors.vscode;
+
+  persist = osConfig.${namespace}.system.persist.enable;
 
   extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
 in {
@@ -43,7 +46,8 @@ in {
         editorconfig.editorconfig
         dbaeumer.vscode-eslint
         kamikillerto.vscode-colorize
-        bbenoist.nix
+        kamadorueda.alejandra
+        jnoortheen.nix-ide
         eamodio.gitlens
         philsinatra.nested-comments
         mhutchie.git-graph
@@ -131,6 +135,16 @@ in {
         # update
         "update.mode" = "none";
         "extensions.autoUpdate" = false;
+
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nixd";
+      };
+    };
+
+    home.persistence = mkIf persist {
+      "/persist/home/${config.${namespace}.user.name}" = {
+        allowOther = true;
+        directories = [".config/Code"];
       };
     };
   };
