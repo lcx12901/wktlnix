@@ -11,9 +11,9 @@
 
   cfg = config.${namespace}.nix;
 in {
-  options.${namespace}.nix = with types; {
+  options.${namespace}.nix = {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
-    package = mkOpt package pkgs.nixVersions.latest "Which nix package to use.";
+    package = mkOpt types.package pkgs.nixVersions.latest "Which nix package to use.";
   };
 
   config = mkIf cfg.enable {
