@@ -114,10 +114,10 @@ in {
           "recursive-nix" # let nix invoke itself
           "ca-derivations" # content addressed nix
           "auto-allocate-uids" # allow nix to automatically pick UIDs, rather than creating nixbld* user accounts
-          "configurable-impure-env" # allow impure environments
+          # "configurable-impure-env" # allow impure environments
           "cgroups" # allow nix to execute builds inside cgroups
-          "git-hashing" # allow store objects which are hashed via Git's hashing algorithm
-          "verified-fetches" # enable verification of git commit signatures for fetchGit
+          # "git-hashing" # allow store objects which are hashed via Git's hashing algorithm
+          # "verified-fetches" # enable verification of git commit signatures for fetchGit
         ];
 
         # don't warn me that my git tree is dirty, I know
@@ -146,7 +146,6 @@ in {
           "https://hyprland.cachix.org" # hyprland
           "https://nixpkgs-unfree.cachix.org" # unfree-package cache
           "https://numtide.cachix.org" # another unfree package cache
-          "https://anyrun.cachix.org" # anyrun program launcher
           "https://cache.garnix.io" # garnix binary cache, hosts prismlauncher
           "https://ags.cachix.org" # ags
         ];
@@ -159,8 +158,6 @@ in {
           "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
           "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
           "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
-          "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
-          "notashelf.cachix.org-1:VTTBFNQWbfyLuRzgm2I7AWSDJdqAa11ytLXHBhrprZk="
           "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
           "ags.cachix.org-1:naAvMrz0CuYqeyGNyLgE010iUiuf/qx6kYrUv3NwAJ8="
         ];

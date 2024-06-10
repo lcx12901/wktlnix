@@ -25,9 +25,6 @@ in {
 
       shellAliases = {
         du = "${pkgs.ncdu}/bin/ncdu --color dark -rr -x";
-        ls = "${pkgs.eza}/bin/eza";
-        ll = "ls -a";
-        tree = "${pkgs.eza}/bin/eza -T";
       };
     };
   };

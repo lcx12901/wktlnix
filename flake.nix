@@ -38,7 +38,7 @@
         catppuccin.homeManagerModules.catppuccin
         impermanence.nixosModules.home-manager.impermanence
         spicetify-nix.homeManagerModules.default
-        anyrun.homeManagerModules.default
+        ags.homeManagerModules.default
       ];
 
       # Add modules to all NixOS systems.
@@ -146,8 +146,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # anyrun program launcher
-    anyrun.url = "github:anyrun-org/anyrun";
-    anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
+    # Aylur's gtk shell (ags)
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

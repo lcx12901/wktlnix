@@ -9,16 +9,17 @@
   inherit (inputs) snowfall-flake;
 in
   mkShell {
-    packages = with pkgs; [
-      deadnix
-      alejandra
-      nix-tree
-      snowfall-flake.packages.${system}.flake
-    ];
+    packages =
+      (with pkgs; [
+        deadnix
+        alejandra
+        nix-tree
+        nixd
+        bun
+      ])
+      ++ [snowfall-flake.packages.${system}.flake];
 
     shellHook = ''
       echo 🔨 Welcome to ${namespace}
-
-
     '';
   }
