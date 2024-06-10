@@ -15,12 +15,12 @@
     then null
     else "/home/${cfg.name}";
 in {
-  options.${namespace}.user = with types; {
-    enable = mkOpt bool false "Whether to configure the user account.";
-    email = mkOpt str "wktl1991504424@gmail.com" "The email of the user.";
+  options.${namespace}.user = {
+    enable = mkOpt types.bool false "Whether to configure the user account.";
+    email = mkOpt types.str "wktl1991504424@gmail.com" "The email of the user.";
     fullName = mkOpt types.str "Chengxu Lin" "The full name of the user.";
-    home = mkOpt (nullOr str) home-directory "The user's home directory.";
-    name = mkOpt (nullOr str) config.snowfallorg.user.name "The user account.";
+    home = mkOpt (types.nullOr types.str) home-directory "The user's home directory.";
+    name = mkOpt (types.nullOr types.str) config.snowfallorg.user.name "The user account.";
   };
 
   config = mkIf cfg.enable (mkMerge [

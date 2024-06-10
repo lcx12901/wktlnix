@@ -12,6 +12,8 @@ in {
       inherit (config.snowfallorg.user) name;
     };
 
+    system.xdg = enabled;
+
     programs = {
       graphical = {
         wms.hyprland = enabled;
