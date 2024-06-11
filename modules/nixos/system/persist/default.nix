@@ -26,6 +26,9 @@ in {
       users."${username}" = {
         directories = [
           ".ssh"
+          "Coding"
+          "Downloads"
+          "Documents"
         ];
       };
     };

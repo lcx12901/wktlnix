@@ -24,7 +24,7 @@ in {
         config = {
           common = let
             portal =
-              if config.${namespace}.programs.graphical.wms.hyprland.enable == "Hyprland"
+              if config.${namespace}.programs.graphical.wms.hyprland.enable
               then "hyprland"
               # else if config.${namespace}.programs.graphical.wms.sway.enable == "sway" then
               #   "wlr"
@@ -41,8 +41,8 @@ in {
             "org.freedesktop.impl.portal.Screenshot" = "${portal}";
           };
         };
-        extraPortals = with pkgs;
-          [xdg-desktop-portal-gtk]
+        extraPortals =
+          [pkgs.xdg-desktop-portal-gtk]
           # ++ (lib.optional config.${namespace}.programs.graphical.wms.sway.enable xdg-desktop-portal-wlr)
           ++ (
             lib.optional config.${namespace}.programs.graphical.wms.hyprland.enable
