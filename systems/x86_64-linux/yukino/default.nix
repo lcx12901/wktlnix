@@ -12,7 +12,7 @@ in {
       boot = enabled;
       disko = {
         enable = true;
-        device = "/dev/sda";
+        device = "/dev/nvme0n1";
       };
       fonts = enabled;
       locale = {
@@ -23,16 +23,28 @@ in {
       persist = enabled;
     };
 
+    hardware = {
+      audio = enabled;
+      opengl = enabled;
+    };
+
     programs = {
       graphical = {
         wms = {
           hyprland = enabled;
         };
+        addons.xdg-portal = enabled;
+        file-managers.nautilus = enabled;
       };
       terminal.tools.nix-ld = enabled;
     };
 
-    suites.common = enabled;
+    suites = {
+      common = enabled;
+      wlroots = enabled;
+    };
+
+    services.dae = enabled;
   };
 
   # This value determines the NixOS release from which the default
@@ -41,5 +53,5 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 }

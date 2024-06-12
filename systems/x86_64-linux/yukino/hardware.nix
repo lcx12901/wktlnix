@@ -20,7 +20,6 @@
         "sd_mod"
         "sr_mod"
       ];
-      # verbose = false;
     };
   };
 
