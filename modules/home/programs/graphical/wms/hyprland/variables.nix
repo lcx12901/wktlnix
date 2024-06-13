@@ -115,12 +115,6 @@ in {
           force_zero_scaling = true;
         };
 
-        "$mainMod" = "SUPER";
-        "$HYPER" = "SUPER_SHIFT_CTRL";
-        "$ALT-HYPER" = "SHIFT_ALT_CTRL";
-        "$RHYPER" = "SUPER_ALT_R_CTRL_R";
-        "$LHYPER" = "SUPER_ALT_L_CTRL_L";
-
         # default applications
         "$term" = "${getExe pkgs.kitty}";
         "$browser" = "${getExe pkgs.firefox-beta}";
