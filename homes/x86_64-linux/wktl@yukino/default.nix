@@ -33,7 +33,11 @@ in {
         emulators.kitty = enabled;
         media.spicetify = enabled;
         tools = {
-          git = enabled;
+          git = {
+            enable = true;
+            userName = "linchengxu";
+            userEmail = "linchengxu@z9yun.com";
+          };
           direnv = enabled;
         };
       };
