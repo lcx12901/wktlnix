@@ -27,6 +27,7 @@ in {
           hash = "sha256-U3YAecGltY8vo9Xv/h7TUjlZCyiIQdgSIp705VstvWk=";
         };
       })
+      remmina
     ];
 
     home.persistence = mkIf persist {
