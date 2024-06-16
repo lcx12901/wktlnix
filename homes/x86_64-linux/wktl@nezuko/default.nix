@@ -17,13 +17,13 @@ in {
     programs = {
       graphical = {
         wms.hyprland = enabled;
+        screenlockers.hyprlock = enabled;
         browsers.firefox = {
           gpuAcceleration = true;
           hardwareDecoding = true;
         };
         editors.vscode = enabled;
         addons = {
-          electron-support = enabled;
           mako = enabled;
         };
         launchers.rofi = enabled;

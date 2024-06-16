@@ -32,6 +32,7 @@
       overlays = with inputs; [
         nix-ld-rs.overlays.default
         nur.overlay
+        catppuccin-vsc.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -151,5 +152,13 @@
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # my wallpapers
+    wallpapers = {
+      url = "github:lcx12901/wallpapers";
+      flake = false;
+    };
+
+    catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
   };
 }

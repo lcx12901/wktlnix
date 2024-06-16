@@ -24,7 +24,10 @@ in {
             # ---------------
             "SUPER, RETURN, exec, $term"
             "SUPER, B, exec, $browser"
-            "SUPER, V, exec, code"
+            "SUPER, V, exec, NIXOS_OZONE_WL='' code"
+            "SUPER, R, exec, NIXOS_OZONE_WL='' bytedance-feishu"
+            "SUPER, P, exec, NIXOS_OZONE_WL='' spotify"
+            "ALT, E, exec, pkill fcitx5 -9;sleep 1;fcitx5 -d --replace; sleep 1;fcitx5-remote -r"
 
             # --------------
             # Hyprland
@@ -34,6 +37,7 @@ in {
             "SUPER, Space, togglefloating"
             "SUPER, S, pseudo"
             "CTRLALT, Delete, exit"
+            "SUPER, L, exec, hyprlock"
 
             # --------------
             # Focus

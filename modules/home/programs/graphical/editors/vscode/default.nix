@@ -27,38 +27,58 @@ in {
           "enable-crash-reporter" = true;
           "crash-reporter-id" = "e3a135d0-fdb1-4b4d-8a97-ee4dbd34a645";
           "locale" = "zh-cn";
+          "password-store" = "basic";
         };
       };
     };
 
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode;
+      package = pkgs.vscode.override {
+        commandLineArgs = [
+          "--ozone-platform-hint=auto"
+          "--ozone-platform=wayland"
+          "--gtk-version=4"
+          "--enable-wayland-ime"
+        ];
+      };
 
-      extensions = with extensions.vscode-marketplace; [
-        ms-ceintl.vscode-language-pack-zh-hans
-        catppuccin.catppuccin-vsc
-        vscode-icons-team.vscode-icons
-        oderwat.indent-rainbow
-        wix.vscode-import-cost
-        streetsidesoftware.code-spell-checker
-        usernamehw.errorlens
-        editorconfig.editorconfig
-        dbaeumer.vscode-eslint
-        kamikillerto.vscode-colorize
-        kamadorueda.alejandra
-        jnoortheen.nix-ide
-        eamodio.gitlens
-        philsinatra.nested-comments
-        mhutchie.git-graph
-        mkhl.direnv
-        vue.volar
-      ];
+      extensions =
+        (with extensions.vscode-marketplace; [
+          ms-ceintl.vscode-language-pack-zh-hans
+          vscode-icons-team.vscode-icons
+          oderwat.indent-rainbow
+          wix.vscode-import-cost
+          streetsidesoftware.code-spell-checker
+          usernamehw.errorlens
+          editorconfig.editorconfig
+          dbaeumer.vscode-eslint
+          kamikillerto.vscode-colorize
+          kamadorueda.alejandra
+          jnoortheen.nix-ide
+          eamodio.gitlens
+          philsinatra.nested-comments
+          mhutchie.git-graph
+          mkhl.direnv
+          vue.volar
+        ])
+        ++ [
+          (pkgs.catppuccin-vsc.override {
+            accent = "lavender";
+            boldKeywords = true;
+            italicComments = true;
+            italicKeywords = true;
+            extraBordersEnabled = false;
+            workbenchMode = "default";
+            bracketMode = "rainbow";
+            colorOverrides = {};
+            customUIColors = {};
+          })
+        ];
 
       userSettings = {
         # Color theme
         "workbench.colorTheme" = "Catppuccin Mocha";
-        "catppuccin.accentColor" = "lavender";
         "workbench.iconTheme" = "vscode-icons";
 
         # Font family

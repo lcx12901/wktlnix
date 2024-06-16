@@ -1,116 +1,166 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
+  system,
   namespace,
   ...
 }: let
-  inherit (lib) mkIf getExe;
+  inherit (lib) mkIf getExe getExe';
+  inherit (inputs) nixpkgs-wayland;
+
+  wl-copy = getExe' nixpkgs-wayland.packages.${system}.wl-clipboard "wl-copy";
 
   cfg = config.${namespace}.programs.graphical.wms.hyprland;
 in {
+  # follow this dotfiles: https://github.com/end-4/dots-hyprland
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       settings = {
         monitor = ",highrr,auto,1";
         env = "HYPRLAND_TRACE,1";
-        animations = {
-          enabled = "yes";
 
-          # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-          bezier = [
-            "easein, 0.47, 0, 0.745, 0.715"
-            "myBezier, 0.05, 0.9, 0.1, 1.05"
-            "overshot, 0.13, 0.99, 0.29, 1.1"
-            "scurve, 0.98, 0.01, 0.02, 0.98"
-          ];
+        input = {
+          numlock_by_default = true;
+          follow_mouse = 1;
+          kb_layout = "us";
+          repeat_delay = 250;
+          repeat_rate = 35;
 
-          animation = [
-            "border, 1, 10, default"
-            "fade, 1, 10, default"
-            "windows, 1, 5, overshot, popin 10%"
-            "windowsOut, 1, 7, default, popin 10%"
-            "workspaces, 1, 6, overshot, slide"
-          ];
-        };
-
-        debug = {
-          disable_logs = false;
-        };
-
-        decoration = {
-          active_opacity = 0.95;
-          fullscreen_opacity = 1.0;
-          inactive_opacity = 0.9;
-          rounding = 10;
-
-          blur = {
-            enabled = "yes";
-            passes = 4;
-            size = 5;
+          touchpad = {
+            natural_scroll = "yes";
+            disable_while_typing = true;
+            clickfinger_behavior = true;
+            scroll_factor = 0.5;
           };
 
-          drop_shadow = true;
-          shadow_ignore_window = true;
-          shadow_range = 20;
-          shadow_render_power = 3;
-          "col.shadow" = "0x55161925";
-          "col.shadow_inactive" = "0x22161925";
-        };
-
-        dwindle = {
-          # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-          force_split = 0;
-          preserve_split = true; # you probably want this
-          pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-        };
-
-        general = {
-          allow_tearing = true;
-          border_size = 2;
-          "col.active_border" = "rgba(7793D1FF)";
-          "col.inactive_border" = "rgb(5e6798)";
-          gaps_in = 5;
-          gaps_out = 20;
-          layout = "dwindle";
+          special_fallthrough = true;
         };
 
         gestures = {
           workspace_swipe = true;
-          workspace_swipe_fingers = 3;
-          workspace_swipe_invert = false;
+          workspace_swipe_distance = 700;
+          workspace_swipe_fingers = 4;
+          workspace_swipe_cancel_ratio = 0.2;
+          workspace_swipe_min_speed_to_force = 5;
+          workspace_swipe_direction_lock = true;
+          workspace_swipe_direction_lock_threshold = 10;
+          workspace_swipe_create_new = true;
         };
 
-        input = {
-          follow_mouse = 1;
-          kb_layout = "us";
-          numlock_by_default = true;
+        general = {
+          gaps_in = 4;
+          gaps_out = 6;
+          gaps_workspaces = 50;
+          border_size = 2;
 
-          touchpad = {
-            disable_while_typing = true;
-            natural_scroll = "no";
-            tap-to-click = true;
+          "col.active_border" = "rgba(F7DCDE39)";
+          "col.inactive_border" = "rgba(A58A8D30)";
+
+          resize_on_border = true;
+          no_focus_fallback = true;
+          layout = "dwindle";
+
+          allow_tearing = true; # This just allows the `immediate` window rule to work
+        };
+
+        dwindle = {
+          preserve_split = true;
+          smart_split = false;
+          smart_resizing = false;
+        };
+
+        decoration = {
+          rounding = 20;
+
+          blur = {
+            enabled = true;
+            xray = true;
+            special = false;
+            new_optimizations = true;
+            size = 14;
+            passes = 4;
+            brightness = 1;
+            noise = 0.01;
+            contrast = 1;
+            popups = true;
+            popups_ignorealpha = 0.6;
           };
 
-          sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
-          # repeat_delay = 500; # Mimic the responsiveness of mac setup
-          # repeat_rate = 50; # Mimic the responsiveness of mac setup
+          # Shadow
+          drop_shadow = true;
+          shadow_ignore_window = true;
+          shadow_range = 20;
+          shadow_offset = "0 2";
+          shadow_render_power = 4;
+          "col.shadow" = "rgba(0000002A)";
+
+          # Dim
+          dim_inactive = false;
+          dim_strength = 0.1;
+          dim_special = 0;
+        };
+
+        animations = {
+          enabled = true;
+
+          bezier = [
+            "linear, 0, 0, 1, 1"
+            "md3_standard, 0.2, 0, 0, 1"
+            "md3_decel, 0.05, 0.7, 0.1, 1"
+            "md3_accel, 0.3, 0, 0.8, 0.15"
+            "overshot, 0.05, 0.9, 0.1, 1.1"
+            "crazyshot, 0.1, 1.5, 0.76, 0.92"
+            "hyprnostretch, 0.05, 0.9, 0.1, 1.0"
+            "menu_decel, 0.1, 1, 0, 1"
+            "menu_accel, 0.38, 0.04, 1, 0.07"
+            "easeInOutCirc, 0.85, 0, 0.15, 1"
+            "easeOutCirc, 0, 0.55, 0.45, 1"
+            "easeOutExpo, 0.16, 1, 0.3, 1"
+            "softAcDecel, 0.26, 0.26, 0.15, 1"
+            "md2, 0.4, 0, 0.2, 1" # use with .2s duration
+          ];
+
+          animation = [
+            "windows, 1, 3, md3_decel, popin 60%"
+            "windowsIn, 1, 3, md3_decel, popin 60%"
+            "windowsOut, 1, 3, md3_accel, popin 60%"
+            "border, 1, 10, default"
+            "fade, 1, 3, md3_decel"
+            "layersIn, 1, 3, menu_decel, slide"
+            "layersOut, 1, 1.6, menu_accel"
+            "fadeLayersIn, 1, 2, menu_decel"
+            "fadeLayersOut, 1, 4.5, menu_accel"
+            "workspaces, 1, 7, menu_decel, slide"
+            "specialWorkspace, 1, 3, md3_decel, slidevert"
+          ];
+        };
+
+        misc = {
+          vfr = 1;
+          vrr = 1;
+          focus_on_activate = true;
+          animate_manual_resizes = false;
+          animate_mouse_windowdragging = false;
+          enable_swallow = false;
+          swallow_regex = "(foot|kitty|allacritty|Alacritty)";
+
+          disable_hyprland_logo = true;
+          force_default_wallpaper = 0;
+          new_window_takes_over_fullscreen = 2;
+          allow_session_lock_restore = true;
+          initial_workspace_tracking = false;
+
+          background_color = "rgba(1D1011FF)";
         };
 
         master = {
           # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-          new_is_master = true;
+          new_status = "master";
         };
 
-        misc = {
-          allow_session_lock_restore = true;
-          disable_hyprland_logo = true;
-          key_press_enables_dpms = true;
-          mouse_move_enables_dpms = true;
-          vrr = 2;
-        };
-
-        # unscale XWayland
+        # # unscale XWayland
         xwayland = {
           force_zero_scaling = true;
         };
@@ -121,6 +171,7 @@ in {
         "$launcher" = "${getExe config.programs.rofi.package} -show drun -n";
         "$launcher_alt" = "${getExe config.programs.rofi.package} -show calc";
         "$launchpad" = "${getExe config.programs.rofi.package} -show drun -config '~/.config/rofi/appmenu/rofi.rasi'";
+        "$cliphist" = "${getExe pkgs.cliphist} list | ${getExe config.programs.rofi.package} -dmenu | ${getExe pkgs.cliphist} decode | ${wl-copy}";
       };
     };
   };

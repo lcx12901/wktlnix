@@ -16,10 +16,6 @@ in {
   # TODO: electron unsupport `NIXOS_OZONE_WL = "1"`， and fcitx5 in electron
 
   config = mkIf cfg.enable {
-    home.sessionVariables = {
-      # NIXOS_OZONE_WL = "1";
-    };
-
     xdg.configFile."electron-flags.conf".source = ./electron-flags.conf;
   };
 }

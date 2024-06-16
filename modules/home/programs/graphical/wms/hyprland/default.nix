@@ -34,7 +34,7 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [xwaylandvideobridge];
+      packages = with pkgs; [swww];
 
       sessionVariables = {
         CLUTTER_BACKEND = "wayland";
@@ -50,6 +50,7 @@ in {
         _JAVA_AWT_WM_NONREPARENTING = "1";
         __GL_GSYNC_ALLOWED = "0";
         __GL_VRR_ALLOWED = "0";
+        NIXOS_OZONE_WL = "1";
       };
     };
 
