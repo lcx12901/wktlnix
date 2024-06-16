@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   namespace,
   ...
 }: let
@@ -16,6 +17,8 @@ in {
           # ░█▀█░█▀▀░█▀▀░░░▀▀█░░█░░█▀█░█▀▄░░█░░█░█░█▀▀
           # ░▀░▀░▀░░░▀░░░░░▀▀▀░░▀░░▀░▀░▀░▀░░▀░░▀▀▀░▀░░
           "fcitx5 -d --replace"
+          ""
+          "swww init && swww img ${inputs.wallpapers}/katana.png"
         ];
       };
     };
