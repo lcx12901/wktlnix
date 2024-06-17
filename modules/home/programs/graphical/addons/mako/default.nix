@@ -11,7 +11,7 @@
   cfg = config.${namespace}.programs.graphical.addons.mako;
 in {
   options.${namespace}.programs.graphical.addons.mako = {
-    enable = mkBoolOpt false "Whether to enable Mako in Sway.";
+    enable = mkBoolOpt false "Whether to enable Mako in Hyprland.";
   };
 
   config = mkIf cfg.enable {

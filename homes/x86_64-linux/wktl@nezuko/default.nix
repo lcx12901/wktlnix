@@ -17,15 +17,11 @@ in {
     programs = {
       graphical = {
         wms.hyprland = enabled;
-        screenlockers.hyprlock = enabled;
         browsers.firefox = {
           gpuAcceleration = true;
           hardwareDecoding = true;
         };
         editors.vscode = enabled;
-        addons = {
-          mako = enabled;
-        };
         launchers.rofi = enabled;
         video = enabled;
       };
