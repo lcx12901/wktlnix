@@ -8,6 +8,7 @@
   ...
 }: let
   inherit (lib) mkIf mkEnableOption;
+  inherit (lib.${namespace}) enabled;
   inherit (inputs) hyprland;
 
   cfg = config.${namespace}.programs.graphical.wms.hyprland;
@@ -65,6 +66,18 @@ in {
       };
 
       xwayland.enable = true;
+    };
+
+    wktlnix = {
+      programs = {
+        graphical = {
+          screenlockers.hyprlock = enabled;
+          addons = {
+            mako = enabled;
+            clipboard = enabled;
+          };
+        };
+      };
     };
   };
 }
