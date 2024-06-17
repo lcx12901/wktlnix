@@ -158,6 +158,13 @@ in {
 
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
+
+        "cSpell.words" = [
+          "demi"
+          "pinia"
+          "vueuse"
+          "tiptap"
+        ];
       };
     };
 

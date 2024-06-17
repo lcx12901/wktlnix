@@ -72,7 +72,7 @@ in {
         };
 
         decoration = {
-          rounding = 20;
+          rounding = 10;
 
           blur = {
             enabled = true;
