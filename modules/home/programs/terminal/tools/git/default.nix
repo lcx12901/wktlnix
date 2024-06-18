@@ -76,9 +76,11 @@ in {
 
           safe = {
             directory = [
-              "~/${namespace}/"
+              "~/$Coding/"
             ];
           };
+
+          http.postBuffer = 157286400;
         };
       };
     };

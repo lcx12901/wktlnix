@@ -47,6 +47,8 @@ in {
     };
 
     services.dae = enabled;
+
+    virtualisation.kvm = enabled;
   };
 
   # This value determines the NixOS release from which the default

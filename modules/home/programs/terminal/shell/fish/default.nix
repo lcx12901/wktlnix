@@ -3,9 +3,10 @@
   lib,
   pkgs,
   namespace,
+  osConfig,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf getExe;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.shell.fish;
@@ -25,6 +26,9 @@ in {
 
       shellAliases = {
         du = "${pkgs.ncdu}/bin/ncdu --color dark -rr -x";
+        btop = "${getExe pkgs.btop}";
+        nsn = "nix shell nixpkgs#";
+        nsw = "sudo nixos-rebuild switch --flake .#${osConfig.networking.hostName}";
       };
     };
   };
