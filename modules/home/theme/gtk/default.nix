@@ -57,6 +57,12 @@ in {
           gtk-theme = osTheme.gtk.theme.name;
           icon-theme = osTheme.icon.name;
         };
+
+        # tell virt-manager to use the system connection
+        "org/virt-manager/virt-manager/connections" = {
+          autoconnect = ["qemu:///system"];
+          uris = ["qemu:///system"];
+        };
       };
     };
 

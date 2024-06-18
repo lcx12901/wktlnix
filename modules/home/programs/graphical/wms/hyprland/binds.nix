@@ -63,6 +63,12 @@ in {
             "SUPERCTRL, right, resizeactive, 20 0"
             "SUPERCTRL, up, resizeactive, 0 -20"
             "SUPERCTRL, down, resizeactive, 0 20"
+
+            # -------------
+            # special workspace
+            # -------------
+            "SUPER, A, togglespecialworkspace, magic"
+            "CTRLSHIFT, S, movetoworkspace, special:magic"
           ]
           # ----------------
           # workspace

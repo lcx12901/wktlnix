@@ -46,6 +46,11 @@ in {
     };
 
     services.dae = enabled;
+
+    virtualisation.kvm = {
+      enable = true;
+      platform = "intel";
+    };
   };
 
   networking.firewall.allowedTCPPortRanges = [
