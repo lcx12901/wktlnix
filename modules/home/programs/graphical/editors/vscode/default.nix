@@ -61,6 +61,7 @@ in {
           mhutchie.git-graph
           mkhl.direnv
           vue.volar
+          nrwl.angular-console
         ])
         ++ [
           (pkgs.catppuccin-vsc.override {
