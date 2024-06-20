@@ -28,8 +28,14 @@ in {
             "SUPER, R, exec, NIXOS_OZONE_WL='' bytedance-feishu"
             "SUPER, P, exec, NIXOS_OZONE_WL='' spotify"
             "ALT, E, exec, pkill fcitx5 -9;sleep 1;fcitx5 -d --replace; sleep 1;fcitx5-remote -r"
-            "SUPER, X, exec, $cliphist"
 
+            # --------------
+            # Clipboard
+            # --------------
+            "SUPER, X, exec, $cliphist"
+            "SUPER, bracketleft, exec, $grimblast_active_clipboard"
+            "SUPER, bracketright, exec, $grimblast_area_clipboard"
+            "SUPER, Print, exec, $grimblast_screen_clipboard"
             # --------------
             # Hyprland
             # --------------

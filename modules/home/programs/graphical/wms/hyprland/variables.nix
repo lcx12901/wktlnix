@@ -8,9 +8,10 @@
   ...
 }: let
   inherit (lib) mkIf getExe getExe';
-  inherit (inputs) nixpkgs-wayland;
+  inherit (inputs) nixpkgs-wayland hyprland-contrib;
 
   wl-copy = getExe' nixpkgs-wayland.packages.${system}.wl-clipboard "wl-copy";
+  grimblast = getExe hyprland-contrib.packages.${system}.grimblast;
 
   cfg = config.${namespace}.programs.graphical.wms.hyprland;
 in {
@@ -172,6 +173,9 @@ in {
         "$launcher_alt" = "${getExe config.programs.rofi.package} -show calc";
         "$launchpad" = "${getExe config.programs.rofi.package} -show drun -config '~/.config/rofi/appmenu/rofi.rasi'";
         "$cliphist" = "${getExe pkgs.cliphist} list | ${getExe config.programs.rofi.package} -dmenu | ${getExe pkgs.cliphist} decode | ${wl-copy}";
+        "$grimblast_area_clipboard" = "${grimblast} --freeze --notify copy area";
+        "$grimblast_active_clipboard" = "${grimblast} --notify copy active";
+        "$grimblast_screen_clipboard" = "${grimblast} --notify copy screen";
       };
     };
   };

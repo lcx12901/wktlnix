@@ -62,6 +62,7 @@ in {
           mkhl.direnv
           vue.volar
           nrwl.angular-console
+          codium.codium
         ])
         ++ [
           (pkgs.catppuccin-vsc.override {
