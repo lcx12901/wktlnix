@@ -25,7 +25,7 @@ in {
 
     hardware = {
       audio = enabled;
-      opengl = enabled;
+      graphics = enabled;
       cpu.intel = enabled;
     };
 

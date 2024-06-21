@@ -34,9 +34,9 @@ in {
     };
 
     # enables AMDVLK & OpenCL support
-    hardware.opengl = {
-      extraPackages = with pkgs;
-        [
+    hardware.graphics = {
+      extraPackages =
+        (with pkgs; [
           amdvlk
 
           # mesa
@@ -47,17 +47,19 @@ in {
           vulkan-loader
           vulkan-validation-layers
           vulkan-extension-layer
-        ]
+        ])
         ++ (
           if pkgs ? rocmPackages.clr
-          then with pkgs.rocmPackages; [
-            clr
-            clr.icd
-          ]
-          else with pkgs; [
-            rocm-opencl-icd
-            rocm-opencl-runtime
-          ]
+          then
+            with pkgs.rocmPackages; [
+              clr
+              clr.icd
+            ]
+          else
+            with pkgs; [
+              rocm-opencl-icd
+              rocm-opencl-runtime
+            ]
         );
 
       extraPackages32 = [pkgs.driversi686Linux.amdvlk];
