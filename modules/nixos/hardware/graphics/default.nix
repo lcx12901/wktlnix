@@ -8,10 +8,10 @@
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.${namespace}.hardware.opengl;
+  cfg = config.${namespace}.hardware.graphics;
 in {
-  options.${namespace}.hardware.opengl = {
-    enable = mkBoolOpt false "Whether or not to enable support for opengl.";
+  options.${namespace}.hardware.graphics = {
+    enable = mkBoolOpt false "Whether or not to enable support for graphics.";
   };
 
   config = mkIf cfg.enable {
@@ -20,10 +20,9 @@ in {
       vdpauinfo
     ];
 
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
       extraPackages = with pkgs; [
         vaapiVdpau
         libvdpau-va-gl
