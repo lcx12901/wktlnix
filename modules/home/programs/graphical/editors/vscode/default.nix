@@ -160,6 +160,7 @@ in {
 
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
+        "vue.server.hybridMode" = false;
 
         "cSpell.words" = [
           "demi"
