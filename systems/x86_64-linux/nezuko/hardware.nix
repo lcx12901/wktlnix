@@ -6,7 +6,7 @@
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernel.sysctl."kernel.sysrq" = 1;
 
     initrd = {
