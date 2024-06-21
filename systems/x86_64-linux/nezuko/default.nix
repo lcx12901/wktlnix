@@ -28,6 +28,7 @@ in {
       graphics = enabled;
       cpu.amd = enabled;
       gpu.amd = enabled;
+      btrfs = enabled;
     };
 
     programs = {

@@ -27,6 +27,7 @@ in {
       audio = enabled;
       graphics = enabled;
       cpu.intel = enabled;
+      btrfs = enabled;
     };
 
     programs = {
