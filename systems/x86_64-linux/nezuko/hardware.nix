@@ -7,7 +7,6 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
-    kernel.sysctl."kernel.sysrq" = 1;
 
     initrd = {
       availableKernelModules = [
