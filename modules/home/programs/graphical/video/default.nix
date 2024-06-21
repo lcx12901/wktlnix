@@ -18,7 +18,6 @@ in {
     home.packages = with pkgs; [
       ffmpeg-full
       vlc
-      jellyfin-media-player
     ];
   };
 }
