@@ -1,6 +1,8 @@
 {
   config,
+  inputs,
   lib,
+  pkgs,
   namespace,
   ...
 }: let
@@ -18,7 +20,18 @@ in {
   config = mkIf cfg.enable {
     services.dae = {
       enable = true;
+      package = inputs.daeuniverse.packages.${pkgs.system}.dae;
       configFile = config.age.secrets."config.dae".path;
+      assets = with pkgs; [v2ray-geoip v2ray-domain-list-community];
+      openFirewall = {
+        enable = true;
+        port = 12345;
+      };
+    };
+
+    systemd.services.dae.serviceConfig = {
+      Restart = "on-failure";
+      RestartSec = 10;
     };
   };
 }
