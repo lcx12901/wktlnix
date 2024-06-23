@@ -20,6 +20,7 @@ in {
       fd
       unzip
       wget
+      less
     ];
   };
 }

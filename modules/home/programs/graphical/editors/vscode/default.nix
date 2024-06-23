@@ -8,7 +8,8 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib.types) number;
+  inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.programs.graphical.editors.vscode;
 
@@ -18,6 +19,7 @@
 in {
   options.${namespace}.programs.graphical.editors.vscode = {
     enable = mkBoolOpt false "Whether or not to enable vscode.";
+    zoomLevel = mkOpt number 0 "set vscode window zoom level.";
   };
 
   config = mkIf cfg.enable {
@@ -153,6 +155,7 @@ in {
         "window.nativeTabs" = true;
         "window.restoreWindows" = "all";
         "window.titleBarStyle" = "custom";
+        "window.zoomLevel" = cfg.zoomLevel;
 
         # update
         "update.mode" = "none";

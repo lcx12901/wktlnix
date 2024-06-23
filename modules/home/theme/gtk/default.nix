@@ -7,40 +7,52 @@
   ...
 }: let
   inherit (lib) mkIf mkDefault;
-
-  inherit
-    (lib.${namespace})
-    boolToNum
-    mkBoolOpt
-    nested-default-attrs
-    ;
+  inherit (lib.types) str package int;
+  inherit (lib.${namespace}) boolToNum mkBoolOpt nested-default-attrs mkOpt;
 
   cfg = config.${namespace}.theme.gtk;
-
-  osTheme = osConfig.${namespace}.theme;
 in {
   options.${namespace}.theme.gtk = {
     enable = mkBoolOpt false "Whether to customize GTK and apply themes.";
-    usePortal = mkBoolOpt false "Whether to use the GTK Portal.";
+    usePortal = mkBoolOpt true "Whether to use the GTK Portal.";
+
+    cursor = {
+      name = mkOpt str "catppuccin-macchiato-lavender-cursors" "The name of the cursor theme to apply.";
+      package = mkOpt package pkgs.catppuccin-cursors.macchiatoLavender "The package to use for the cursor theme.";
+      size = mkOpt int 22 "The size of the cursor.";
+    };
+
+    icon = {
+      name = mkOpt str "Papirus-Dark" "The name of the icon theme to apply.";
+      package = mkOpt package (pkgs.catppuccin-papirus-folders.override {
+        accent = "lavender";
+        flavor = "macchiato";
+      }) "The package to use for the icon theme.";
+    };
   };
 
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [
-        dconf # required explicitly with noXlibs and home-manager
-        glib # gsettings
-        gtk3.out # for gtk-launch
-        libappindicator-gtk3
-      ];
+      packages =
+        (with pkgs; [
+          dconf # required explicitly with noXlibs and home-manager
+          glib # gsettings
+          gtk3.out # for gtk-launch
+          libappindicator-gtk3
+        ])
+        ++ [
+          cfg.icon.package
+        ];
 
       pointerCursor = mkDefault {
-        inherit (osTheme.cursor) name package size;
+        inherit (cfg.cursor) name package size;
+        gtk.enable = true;
         x11.enable = true;
       };
 
       sessionVariables = {
         GTK_USE_PORTAL = "${toString (boolToNum cfg.usePortal)}";
-        CURSOR_THEME = mkDefault osTheme.cursor.name;
+        CURSOR_THEME = "${cfg.cursor.name}";
       };
     };
 
@@ -50,12 +62,11 @@ in {
       settings = nested-default-attrs {
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
-          cursor-size = osTheme.cursor.size;
-          cursor-theme = osTheme.cursor.name;
+          cursor-size = cfg.cursor.size;
+          cursor-theme = cfg.cursor.name;
           enable-hot-corners = false;
           font-name = osConfig.${namespace}.system.fonts.default;
-          gtk-theme = osTheme.gtk.theme.name;
-          icon-theme = osTheme.icon.name;
+          icon-theme = cfg.icon.name;
         };
 
         # tell virt-manager to use the system connection
@@ -69,25 +80,12 @@ in {
     gtk = {
       enable = true;
 
-      catppuccin = {
-        enable = true;
-
-        accent = "blue";
-        size = "standard";
-
-        cursor = {
-          enable = true;
-          accent = "blue";
-        };
-
-        icon = {
-          enable = true;
-          accent = "blue";
-        };
-      };
-
       font = {
         name = osConfig.${namespace}.system.fonts.default;
+      };
+
+      iconTheme = {
+        inherit (cfg.icon) name package;
       };
 
       gtk2 = {

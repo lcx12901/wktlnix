@@ -3,6 +3,7 @@
   inputs,
   lib,
   system,
+  pkgs,
   namespace,
   ...
 }: let
@@ -48,6 +49,12 @@ in {
       };
     };
 
-    services.displayManager.sessionPackages = [hyprland.packages.${system}.hyprland];
+    services = {
+      displayManager.sessionPackages = [hyprland.packages.${system}.hyprland];
+
+      # needed for GNOME services outside of GNOME Desktop
+      dbus.packages = [pkgs.gcr];
+      udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+    };
   };
 }
