@@ -4,7 +4,8 @@
   namespace,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.system.xdg;
 
@@ -43,7 +44,7 @@
   };
 in {
   options.${namespace}.system.xdg = {
-    enable = mkEnableOption "xdg";
+    enable = mkBoolOpt false "xdg";
   };
 
   config = mkIf cfg.enable {
