@@ -73,6 +73,7 @@ in {
         graphical = {
           screenlockers.hyprlock = enabled;
           addons = {
+            fcitx5 = enabled;
             mako = enabled;
             clipboard = enabled;
           };

@@ -1,18 +1,16 @@
 {
   config,
   lib,
-  pkgs,
   namespace,
   ...
 }: let
-  inherit (lib) mkIf mkDefault types;
-  inherit (lib.${namespace}) mkOpt mkBoolOpt;
+  inherit (lib) mkIf mkDefault;
+  inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.system.locale;
 in {
   options.${namespace}.system.locale = {
     enable = mkBoolOpt false "Whether or not to manage locale settings.";
-    inputMethod = mkOpt (types.nullOr types.str) null "Select the enabled input method.";
   };
 
   config = mkIf cfg.enable {
@@ -48,20 +46,6 @@ in {
         "en_US.UTF-8/UTF-8"
         "zh_CN.UTF-8/UTF-8"
       ];
-
-      # ime configuration
-      inputMethod = {
-        enabled = cfg.inputMethod; # Needed for fcitx5 to work in qt6
-        fcitx5.addons = with pkgs; [
-          fcitx5-chinese-addons
-          fcitx5-gtk
-          fcitx5-lua
-          libsForQt5.fcitx5-qt
-
-          # themes
-          fcitx5-material-color
-        ];
-      };
     };
   };
 }

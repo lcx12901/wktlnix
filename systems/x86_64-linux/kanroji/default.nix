@@ -17,7 +17,6 @@ in {
       fonts = enabled;
       locale = {
         enable = true;
-        inputMethod = "fcitx5";
       };
       time = enabled;
       persist = enabled;
