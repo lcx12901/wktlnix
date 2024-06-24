@@ -61,24 +61,24 @@ in {
 
           lfs = enabled;
 
-          pull = {
-            rebase = true;
-          };
+          # pull = {
+          #   rebase = true;
+          # };
 
-          push = {
-            autoSetupRemote = true;
-            default = "current";
-          };
+          # push = {
+          #   autoSetupRemote = true;
+          #   default = "current";
+          # };
 
-          rebase = {
-            autoStash = true;
-          };
+          # rebase = {
+          #   autoStash = true;
+          # };
 
-          safe = {
-            directory = [
-              "~/$Coding/"
-            ];
-          };
+          # safe = {
+          #   directory = [
+          #     "~/$Coding/"
+          #   ];
+          # };
 
           http.postBuffer = 157286400;
         };
