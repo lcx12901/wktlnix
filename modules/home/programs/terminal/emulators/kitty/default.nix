@@ -102,5 +102,11 @@ in {
 
       inherit (cfg) theme;
     };
+
+    home = {
+      shellAliases = {
+        ssh = "kitty +kitten ssh";
+      };
+    };
   };
 }

@@ -18,6 +18,7 @@ in {
       graphical = {
         wms.hyprland = enabled;
         browsers.firefox = {
+          enable = true;
           gpuAcceleration = true;
           hardwareDecoding = true;
         };
