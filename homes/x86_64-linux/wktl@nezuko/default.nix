@@ -14,16 +14,11 @@ in {
 
     programs = {
       terminal = {
-        emulators.kitty = enabled;
         tools = {
           git = enabled;
           direnv = enabled;
         };
       };
-    };
-
-    scenes = {
-      development = enabled;
     };
   };
 
