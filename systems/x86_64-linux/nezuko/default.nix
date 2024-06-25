@@ -37,8 +37,9 @@ in {
     };
 
     services = {
-      dae = enabled;
       openssh = enabled;
+      dae = enabled;
+      cfdyndns = enabled;
     };
   };
 
