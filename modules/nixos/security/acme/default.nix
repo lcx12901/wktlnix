@@ -4,7 +4,9 @@
   namespace,
   ...
 }: let
-  inherit (lib) mkIf mkBoolOpt;
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.security.acme;
 in {
   options.${namespace}.security.acme = {
