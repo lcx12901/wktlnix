@@ -21,7 +21,7 @@ in {
 
       directories = [
         "/etc/ssh"
-        "var/lib"
+        "/var/lib"
         "/var/log"
       ];
 
