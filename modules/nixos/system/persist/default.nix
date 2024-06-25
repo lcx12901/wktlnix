@@ -21,6 +21,8 @@ in {
 
       directories = [
         "/etc/ssh"
+        "var/lib"
+        "/var/log"
       ];
 
       users."${username}" = {

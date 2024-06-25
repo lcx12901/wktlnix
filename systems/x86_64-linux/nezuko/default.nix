@@ -39,8 +39,9 @@ in {
     services = {
       openssh = enabled;
       dae = enabled;
-      cfdyndns = enabled;
     };
+
+    virtualisation.podman = enabled;
   };
 
   # This value determines the NixOS release from which the default
