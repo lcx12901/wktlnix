@@ -19,7 +19,7 @@ in {
     services.cfdyndns = {
       inherit (cfg) enable email;
 
-      apikeyFile = config.age.secrets."cfAPI.conf".path;
+      apiTokenFile = config.age.secrets."cfAPI.conf".path;
 
       records = ["${config.networking.hostName}.lincx.top"];
     };
