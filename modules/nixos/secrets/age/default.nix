@@ -31,12 +31,6 @@ in {
         mode = "0440";
         owner = "root";
       };
-
-      "cfAPI.conf" = mkIf config.${namespace}.services.cfdyndns.enable {
-        file = lib.snowfall.fs.get-file "secrets/keys/cloudflare.age";
-        mode = "0440";
-        owner = "root";
-      };
     };
   };
 }
