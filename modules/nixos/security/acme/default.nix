@@ -9,7 +9,7 @@
 
   cfg = config.${namespace}.security.acme;
 
-  domain = "${config.networking.hostname}.lincx.top";
+  domain = "${config.networking.hostName}.lincx.top";
 in {
   options.${namespace}.security.acme = {
     enable = mkBoolOpt false "default ACME configuration";
