@@ -20,6 +20,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # Before creating a container, you need to have a mounting directory
     environment = {
       persistence."/persist" = mkIf hasOptinPersistence {
         users."${username}" = {

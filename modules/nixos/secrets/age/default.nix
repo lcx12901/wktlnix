@@ -28,8 +28,9 @@ in {
     age.secrets = {
       "config.dae" = {
         file = lib.snowfall.fs.get-file "secrets/service/dae.age";
-        mode = "0440";
-        owner = "root";
+      };
+      "cloudflare.key" = mkIf config.${namespace}.security.acme.enable {
+        file = lib.snowfall.fs.get-file "secrets/keys/cloudflare.age";
       };
     };
   };
