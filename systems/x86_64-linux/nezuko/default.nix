@@ -41,7 +41,10 @@ in {
       dae = enabled;
     };
 
-    virtualisation.podman = enabled;
+    virtualisation = {
+      podman = enabled;
+      containers = enabled;
+    };
   };
 
   # This value determines the NixOS release from which the default
