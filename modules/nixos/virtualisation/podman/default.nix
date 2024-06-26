@@ -48,10 +48,10 @@ in {
         dockerCompat = true;
         dockerSocket.enable = true;
       };
-    };
 
-    oci-containers = {
-      backend = "podman";
+      oci-containers = {
+        backend = "podman";
+      };
     };
   };
 }
