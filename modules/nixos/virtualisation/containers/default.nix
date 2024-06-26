@@ -9,7 +9,9 @@
 
   hasOptinPersistence = config.${namespace}.system.persist.enable;
 
-  volumesRoot = "${optionalString hasOptinPersistence "/persist"}/var/lib/containers/persist_data";
+  username = config.${namespace}.user.name;
+
+  volumesRoot = "${optionalString hasOptinPersistence "/persist"}/home/${username}/.containers";
 
   cfg = config.${namespace}.virtualisation.containers;
 in {
@@ -18,6 +20,16 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment = {
+      persistence."/persist" = mkIf hasOptinPersistence {
+        users."${username}" = {
+          directories = [
+            ".containers"
+          ];
+        };
+      };
+    };
+
     virtualisation.oci-containers.containers = {
       ddns-go = {
         image = "jeessy/ddns-go:latest";
