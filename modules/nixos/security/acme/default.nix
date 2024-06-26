@@ -8,6 +8,8 @@
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.security.acme;
+
+  domain = "${config.networking.hostname}.lincx.top";
 in {
   options.${namespace}.security.acme = {
     enable = mkBoolOpt false "default ACME configuration";
@@ -17,6 +19,13 @@ in {
     security.acme = {
       acceptTerms = true;
       defaults.email = "wktl1991504424@gmail.com";
+      certs.${domain} = {
+        domain = "*.${domain}";
+        group = "nginx";
+        dnsProvider = "cloudflare";
+        dnsResolver = "1.1.1.1:53";
+        credentialsFile = config.age.secrets."cloudflare.key".path;
+      };
     };
   };
 }
