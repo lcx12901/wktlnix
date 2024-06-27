@@ -65,6 +65,7 @@ in {
           vue.volar
           nrwl.angular-console
           codium.codium
+          gruntfuggly.todo-tree
         ])
         ++ [
           (pkgs.catppuccin-vsc.override {
@@ -123,6 +124,11 @@ in {
         "editor.minimap.renderCharacters" = false;
         "editor.overviewRulerBorder" = false;
         "editor.renderLineHighlight" = "all";
+        "editor.cursorBlinking" = "smooth";
+        "editor.cursorSmoothCaretAnimation" = "on";
+        "editor.cursorSurroundingLinesStyle" = "all";
+        "editor.tabSize" = 2;
+        "editor.lineNumbers" = "relative";
         "editor.smoothScrolling" = true;
         "editor.suggestSelection" = "first";
 
@@ -133,6 +139,7 @@ in {
         };
         "terminal.integrated.defaultProfile.linux" = "fish";
         "terminal.integrated.gpuAcceleration" = "on";
+        "terminal.integrated.smoothScrolling" = true;
 
         # Workbench
         "workbench.editor.tabCloseButton" = "left";
@@ -164,6 +171,11 @@ in {
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
         "vue.server.hybridMode" = "auto";
+
+        "npm.exclude" = [
+          "**/.direnv/**"
+          "**/.nx/**"
+        ];
 
         "cSpell.words" = [
           "demi"
