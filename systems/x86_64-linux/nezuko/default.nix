@@ -46,7 +46,7 @@ in {
       containers = enabled;
     };
 
-    security.acme = enabled;
+    # security.acme = enabled;
   };
 
   # This value determines the NixOS release from which the default
