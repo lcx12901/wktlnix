@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt enabled;
 
   cfg = config.${namespace}.virtualisation.podman;
 in {
@@ -48,6 +48,8 @@ in {
         dockerCompat = true;
         dockerSocket.enable = true;
       };
+
+      containers = enabled;
 
       oci-containers = {
         backend = "podman";
