@@ -20,6 +20,7 @@ in {
       };
       time = enabled;
       persist = enabled;
+      networking = enabled;
     };
 
     hardware = {
