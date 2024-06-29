@@ -29,7 +29,7 @@ in {
       "config.dae" = {
         file = lib.snowfall.fs.get-file "secrets/service/dae.age";
       };
-      "cloudflare.key" = {
+      "cloudflare.key" = mkIf config.${namespace}.security.acme.enable {
         file = lib.snowfall.fs.get-file "secrets/keys/cloudflare.age";
       };
     };

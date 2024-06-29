@@ -24,7 +24,6 @@ in {
         dnsProvider = "cloudflare";
         dnsResolver = "1.1.1.1:53";
         credentialsFile = config.age.secrets."cloudflare.key".path;
-        # server = "https://acme.freessl.cn/v2/DV90/directory/pvi8adig0qmq4wanabef";
       };
     };
   };
