@@ -62,10 +62,19 @@ in {
           philsinatra.nested-comments
           mhutchie.git-graph
           mkhl.direnv
-          vue.volar
           nrwl.angular-console
           codium.codium
           gruntfuggly.todo-tree
+
+          vue.volar
+          antfu.unocss
+
+          evils.uniapp-vscode
+          uni-helper.uni-helper-vscode
+          uni-helper.uni-app-schemas-vscode
+          uni-helper.uni-highlight-vscode
+          uni-helper.uni-ui-snippets-vscode
+          uni-helper.uni-app-snippets-vscode
         ])
         ++ [
           (pkgs.catppuccin-vsc.override {
