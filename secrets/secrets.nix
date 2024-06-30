@@ -8,4 +8,6 @@ in {
   "service/dae.age".publicKeys = users;
   "service/mihomo.age".publicKeys = users;
   "keys/cloudflare.age".publicKeys = users;
+  "ssl/nezuko.pem.age".publicKeys = users;
+  "ssl/nezuko.key.age".publicKeys = users;
 }
