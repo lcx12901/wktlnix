@@ -6,5 +6,6 @@ let
 in {
   "service/nextcloud.age".publicKeys = users;
   "service/dae.age".publicKeys = users;
+  "service/mihomo.age".publicKeys = users;
   "keys/cloudflare.age".publicKeys = users;
 }

@@ -38,8 +38,8 @@ in {
     };
 
     services = {
+      mihomo = enabled;
       openssh = enabled;
-      dae = enabled;
     };
 
     virtualisation = {

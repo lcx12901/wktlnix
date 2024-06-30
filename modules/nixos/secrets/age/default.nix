@@ -26,11 +26,14 @@ in {
     ];
 
     age.secrets = {
-      "config.dae" = {
+      "config.dae" = mkIf config.services.dae.enable {
         file = lib.snowfall.fs.get-file "secrets/service/dae.age";
       };
       "cloudflare.key" = mkIf config.${namespace}.security.acme.enable {
         file = lib.snowfall.fs.get-file "secrets/keys/cloudflare.age";
+      };
+      "mihomo.yaml" = mkIf config.${namespace}.services.mihomo.enable {
+        file = lib.snowfall.fs.get-file "secrets/service/mihomo.age";
       };
     };
   };
