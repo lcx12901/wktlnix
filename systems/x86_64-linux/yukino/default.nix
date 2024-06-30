@@ -49,10 +49,7 @@ in {
     services.dae = enabled;
 
     virtualisation = {
-      kvm = {
-        enable = true;
-        platform = "intel";
-      };
+      kvm = enabled;
       podman = enabled;
     };
   };

@@ -5,12 +5,13 @@
   namespace,
   ...
 }: let
-  inherit (lib) types mkIf mkForce;
+  inherit (lib) mkIf mkForce;
+  inherit (lib.types) listOf package;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.hardware.audio;
 in {
-  options.${namespace}.hardware.audio = with types; {
+  options.${namespace}.hardware.audio = {
     enable = mkBoolOpt false "Whether or not to enable audio support.";
     extra-packages = mkOpt (listOf package) [
       pkgs.qjackctl
@@ -19,12 +20,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs;
-      [
+    environment.systemPackages =
+      (with pkgs; [
         pulsemixer
         pavucontrol
         helvum
-      ]
+      ])
       ++ cfg.extra-packages;
 
     hardware.pulseaudio.enable = mkForce false;
