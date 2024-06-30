@@ -18,7 +18,7 @@ in {
     platform = mkOpt (enum [
       "amd"
       "intel"
-    ]) "amd" "Which CPU platform the machine is using.";
+    ]) "intel" "Which CPU platform the machine is using.";
   };
 
   config = mkIf cfg.enable {
