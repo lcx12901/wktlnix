@@ -53,7 +53,7 @@ in {
     };
 
     services = {
-      dae = enabled;
+      mihomo = enabled;
       openssh = enabled;
     };
 

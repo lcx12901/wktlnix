@@ -83,42 +83,39 @@ in {
       user = {
         extraGroups = [
           "network"
-          "networkmanager"
-          "wireshark"
+          # "networkmanager"
+          # "wireshark"
         ];
       };
     };
 
     networking = {
-      hosts =
-        {
-          "127.0.0.1" = cfg.hosts."127.0.0.1" or [];
-        }
-        // cfg.hosts;
+      # hosts =
+      #   {
+      #     "127.0.0.1" = cfg.hosts."127.0.0.1" or [];
+      #   }
+      #   // cfg.hosts;
 
-      nameservers = [
-        "1.1.1.1"
-        "1.0.0.1"
-        "2606:4700:4700::1111"
-        "2606:4700:4700::1001"
-      ];
+      nameservers = ["1.1.1.1" "8.8.8.8" "8.8.4.4"];
     };
 
     services = {
       dnsmasq = {
         enable = true;
 
-        resolveLocalQueries = false;
+        # resolveLocalQueries = true;
 
         settings = {
-          server = [
-            "1.1.1.1"
-            "1.0.0.1"
-            "2606:4700:4700::1111"
-            "2606:4700:4700::1001"
-          ];
+          server = ["1.1.1.1" "8.8.8.8" "8.8.4.4"];
         };
       };
+
+      # resolved = {
+      #   enable = true;
+      #   domains = ["~."];
+      #   dnsovertls = "true";
+      #   fallbackDns = ["114.114.114.114"];
+      # };
     };
   };
 }
