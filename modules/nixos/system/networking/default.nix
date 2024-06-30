@@ -103,19 +103,10 @@ in {
       dnsmasq = {
         enable = true;
 
-        # resolveLocalQueries = true;
-
         settings = {
           server = ["1.1.1.1" "8.8.8.8" "8.8.4.4"];
         };
       };
-
-      # resolved = {
-      #   enable = true;
-      #   domains = ["~."];
-      #   dnsovertls = "true";
-      #   fallbackDns = ["114.114.114.114"];
-      # };
     };
   };
 }

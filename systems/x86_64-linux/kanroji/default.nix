@@ -29,6 +29,7 @@ in {
       cpu.intel = enabled;
       gpu.amd = enabled;
       btrfs = enabled;
+      bluetooth = enabled;
     };
 
     programs = {
@@ -53,7 +54,7 @@ in {
     };
 
     services = {
-      mihomo = enabled;
+      dae = enabled;
       openssh = enabled;
     };
 
