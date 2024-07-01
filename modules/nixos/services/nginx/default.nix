@@ -57,16 +57,12 @@ in {
           sslCertificate = config.age.secrets."certs/nezuko.pem".path;
           sslCertificateKey = config.age.secrets."certs/nezuko.key".path;
 
-          locations."/ddns" = mkIf (hasMyContainer "ddns") {
+          locations."/ddns" = mkIf (hasMyContainer "ddns-go") {
             proxyPass = "http://127.0.0.1:9876/";
           };
         };
       };
     };
-
-    systemd.tmpfiles.rules = [
-      "d /run/agenix/certs 0755 nginx nginx - -"
-    ];
 
     networking.firewall.allowedTCPPorts = [302];
   };
