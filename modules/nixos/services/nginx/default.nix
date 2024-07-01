@@ -54,8 +54,8 @@ in {
       virtualHosts = {
         "${hostName}" = {
           forceSSL = true;
-          sslCertificate = config.age.secrets."nezuko.pem".path;
-          sslCertificateKey = config.age.secrets."nezuko.key".path;
+          sslCertificate = config.age.secrets."certs/nezuko.pem".path;
+          sslCertificateKey = config.age.secrets."certs/nezuko.key".path;
 
           locations."/ddns" = mkIf (hasMyContainer "ddns") {
             proxyPass = "http://127.0.0.1:9876/";
