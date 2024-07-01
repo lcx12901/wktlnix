@@ -66,7 +66,7 @@ in {
 
     systemd.services.nginx.serviceConfig.ExecStartPre = ''
       cp ${config.age.secrets."certs/nezuko.pem".path} /etc/lincx.top/nezuko.pem
-      cp ${config.age.secrets."certs/nezuko.key".path}
+      cp ${config.age.secrets."certs/nezuko.key".path} /etc/lincx.top/nezuko.key
     '';
 
     networking.firewall.allowedTCPPorts = [302];
