@@ -6,7 +6,7 @@
   namespace,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkMerge;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.secrets.age;
@@ -25,16 +25,32 @@ in {
       "${lib.optionalString hasOptinPersistence "/persist"}/etc/ssh/ssh_host_ed25519_key"
     ];
 
-    age.secrets = {
-      "config.dae" = mkIf config.services.dae.enable {
-        file = lib.snowfall.fs.get-file "secrets/service/dae.age";
-      };
-      "cloudflare.key" = mkIf config.${namespace}.security.acme.enable {
-        file = lib.snowfall.fs.get-file "secrets/keys/cloudflare.age";
-      };
-      "mihomo.yaml" = mkIf config.${namespace}.services.mihomo.enable {
-        file = lib.snowfall.fs.get-file "secrets/service/mihomo.age";
-      };
-    };
+    age.secrets = mkMerge [
+      (mkIf config.services.dae.enable {
+        "config.dae" = {
+          file = lib.snowfall.fs.get-file "secrets/service/dae.age";
+        };
+      })
+      (mkIf config.${namespace}.security.acme.enable {
+        "cloudflare.key" = {
+          file = lib.snowfall.fs.get-file "secrets/keys/cloudflare.age";
+        };
+      })
+      (mkIf config.${namespace}.services.mihomo.enable {
+        "mihomo.yaml" = {
+          file = lib.snowfall.fs.get-file "secrets/service/mihomo.age";
+        };
+      })
+      (mkIf config.services.nginx.enable {
+        "nezuko.pem" = {
+          file = lib.snowfall.fs.get-file "secrets/ssl/nezuko.pem.age";
+          owner = "nginx";
+        };
+        "nezuko.key" = {
+          file = lib.snowfall.fs.get-file "secrets/ssl/nezuko.key.age";
+          owner = "nginx";
+        };
+      })
+    ];
   };
 }

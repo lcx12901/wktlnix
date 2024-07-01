@@ -40,6 +40,7 @@ in {
     services = {
       mihomo = enabled;
       openssh = enabled;
+      nginx = enabled;
     };
 
     virtualisation = {
