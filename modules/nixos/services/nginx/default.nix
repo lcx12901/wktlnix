@@ -64,6 +64,10 @@ in {
       };
     };
 
+    systemd.tmpfiles.rules = [
+      "d /run/agenix/certs 0755 nginx nginx - -"
+    ];
+
     networking.firewall.allowedTCPPorts = [302];
   };
 }
