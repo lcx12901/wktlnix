@@ -19,6 +19,21 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.etc = {
+      "lincx.top/nezuko.pem" = {
+        source = config.age.secrets."nezuko.pem".path;
+        mode = "0640";
+        user = "nginx";
+        group = "nginx";
+      };
+      "lincx.top/nezuko.key" = {
+        source = config.age.secrets."nezuko.key".path;
+        mode = "0640";
+        user = "nginx";
+        group = "nginx";
+      };
+    };
+
     services.nginx = {
       enable = true;
       package = pkgs.nginxQuic.override {withKTLS = true;};
@@ -63,13 +78,6 @@ in {
         };
       };
     };
-
-    systemd.services.nginx.serviceConfig.ExecStartPre = ''
-      cp ${config.age.secrets."nezuko.pem".path} /etc/lincx.top/nezuko.pem
-      cp ${config.age.secrets."nezuko.key".path} /etc/lincx.top/nezuko.key
-      chown nginx:nginx /etc/lincx.top/nezuko.key /etc/lincx.top/nezuko.key
-      chmod 640 /etc/lincx.top/nezuko.pem /etc/lincx.top/nezuko.key
-    '';
 
     networking.firewall.allowedTCPPorts = [302];
   };
