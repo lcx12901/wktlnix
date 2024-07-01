@@ -54,15 +54,20 @@ in {
       virtualHosts = {
         "${hostName}" = {
           forceSSL = true;
-          sslCertificate = config.age.secrets."certs/nezuko.pem".path;
-          sslCertificateKey = config.age.secrets."certs/nezuko.key".path;
+          sslCertificate = "/etc/lincx.top/nezuko.pem";
+          sslCertificateKey = "/etc/lincx.top/nezuko.key";
 
           locations."/ddns" = mkIf (hasMyContainer "ddns-go") {
-            proxyPass = "http://127.0.0.1:9876/";
+            proxyPass = "http://127.0.0.1:9876";
           };
         };
       };
     };
+
+    systemd.services.nginx.serviceConfig.ExecStartPre = ''
+      cp ${config.age.secrets."certs/nezuko.pem".path} /etc/lincx.top/nezuko.pem
+      cp ${config.age.secrets."certs/nezuko.key".path}
+    '';
 
     networking.firewall.allowedTCPPorts = [302];
   };

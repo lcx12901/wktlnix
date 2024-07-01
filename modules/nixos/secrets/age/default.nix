@@ -42,17 +42,11 @@ in {
         };
       })
       (mkIf config.services.nginx.enable {
-        "certs/nezuko.pem" = {
+        "nezuko.pem" = {
           file = lib.snowfall.fs.get-file "secrets/ssl/nezuko.pem.age";
-          owner = "nginx";
-          group = "nginx";
-          mode = "0640";
         };
-        "certs/nezuko.key" = {
+        "nezuko.key" = {
           file = lib.snowfall.fs.get-file "secrets/ssl/nezuko.key.age";
-          owner = "nginx";
-          group = "nginx";
-          mode = "0640";
         };
       })
     ];
