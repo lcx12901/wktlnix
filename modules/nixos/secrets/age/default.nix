@@ -45,10 +45,14 @@ in {
         "nezuko.pem" = {
           file = lib.snowfall.fs.get-file "secrets/ssl/nezuko.pem.age";
           owner = "nginx";
+          group = "nginx";
+          mode = "0640";
         };
         "nezuko.key" = {
           file = lib.snowfall.fs.get-file "secrets/ssl/nezuko.key.age";
           owner = "nginx";
+          group = "nginx";
+          mode = "0640";
         };
       })
     ];
