@@ -19,6 +19,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    users.users.nginx.extraGroups = ["acme"];
+
     services.nginx = {
       enable = true;
       package = pkgs.nginxQuic.override {withKTLS = true;};
@@ -52,7 +54,7 @@ in {
       sslProtocols = "TLSv1.3 TLSv1.2";
 
       virtualHosts = {
-        "${hostName}" = {
+        "${hostName}.lincx.top" = {
           forceSSL = true;
           sslCertificate = "/var/lib/acme/nezuko.lincx.top/cert.pem";
           sslCertificateKey = "/var/lib/acme/nezuko.lincx.top/key.pem";

@@ -20,7 +20,7 @@ in {
       acceptTerms = true;
       defaults.email = "wktl1991504424@gmail.com";
       certs.${domain} = {
-        domain = "*.nezuko.lincx.top";
+        domain = "*.${domain}";
         group = mkIf config.services.nginx.enable "nginx";
         dnsProvider = "cloudflare";
         dnsResolver = "1.1.1.1:53";
