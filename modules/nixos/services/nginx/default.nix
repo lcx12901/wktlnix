@@ -19,21 +19,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.etc = {
-      "lincx.top/nezuko.pem" = {
-        source = config.age.secrets."nezuko.pem".path;
-        mode = "0640";
-        user = "nginx";
-        group = "nginx";
-      };
-      "lincx.top/nezuko.key" = {
-        source = config.age.secrets."nezuko.key".path;
-        mode = "0640";
-        user = "nginx";
-        group = "nginx";
-      };
-    };
-
     services.nginx = {
       enable = true;
       package = pkgs.nginxQuic.override {withKTLS = true;};
@@ -69,8 +54,8 @@ in {
       virtualHosts = {
         "${hostName}" = {
           forceSSL = true;
-          sslCertificate = "/etc/lincx.top/nezuko.pem";
-          sslCertificateKey = "/etc/lincx.top/nezuko.key";
+          sslCertificate = "/var/lib/acme/nezuko.lincx.top/cert.pem";
+          sslCertificateKey = "/var/lib/acme/nezuko.lincx.top/key.pem";
 
           locations."/ddns" = mkIf (hasMyContainer "ddns-go") {
             proxyPass = "http://127.0.0.1:9876";
