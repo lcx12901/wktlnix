@@ -59,8 +59,8 @@ in {
           sslCertificate = "/var/lib/acme/${hostName}.lincx.top/cert.pem";
           sslCertificateKey = "/var/lib/acme/${hostName}.lincx.top/key.pem";
 
-          locations."/ddns" = mkIf (hasMyContainer "ddns-go") {
-            proxyPass = "http://127.0.0.1:9876";
+          locations."/ddns/" = mkIf (hasMyContainer "ddns-go") {
+            proxyPass = "http://127.0.0.1:9876/";
           };
         };
       };
