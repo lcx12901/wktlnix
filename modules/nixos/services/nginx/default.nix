@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf mkDefault;
-  inherit (lib.${namespace}) mkBoolOpt hasContainer;
+  inherit (lib.${namespace}) mkBoolOpt;
 
   inherit (config.networking) hostName;
 
