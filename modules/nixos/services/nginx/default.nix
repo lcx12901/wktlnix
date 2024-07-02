@@ -56,8 +56,8 @@ in {
       virtualHosts = {
         "${hostName}.lincx.top" = {
           forceSSL = true;
-          sslCertificate = "/var/lib/acme/nezuko.lincx.top/cert.pem";
-          sslCertificateKey = "/var/lib/acme/nezuko.lincx.top/key.pem";
+          sslCertificate = "/var/lib/acme/${hostName}.lincx.top/cert.pem";
+          sslCertificateKey = "/var/lib/acme/${hostName}.lincx.top/key.pem";
 
           locations."/ddns" = mkIf (hasMyContainer "ddns-go") {
             proxyPass = "http://127.0.0.1:9876";

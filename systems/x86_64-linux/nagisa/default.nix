@@ -47,6 +47,8 @@ in {
       podman = enabled;
       containers = enabled;
     };
+
+    security.aacme = enabled;
   };
 
   # This value determines the NixOS release from which the default
