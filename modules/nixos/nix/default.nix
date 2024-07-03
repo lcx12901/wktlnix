@@ -148,6 +148,7 @@ in {
           "https://numtide.cachix.org" # another unfree package cache
           "https://cache.garnix.io" # garnix binary cache, hosts prismlauncher
           "https://ags.cachix.org" # ags
+          "https://daeuniverse.cachix.org"
         ];
 
         trusted-public-keys = [
@@ -160,6 +161,7 @@ in {
           "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
           "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
           "ags.cachix.org-1:naAvMrz0CuYqeyGNyLgE010iUiuf/qx6kYrUv3NwAJ8="
+          "daeuniverse.cachix.org-1:8hRIzkQmAKxeuYY3c/W1I7QbZimYphiPX/E7epYNTeM="
         ];
       };
     };
