@@ -20,7 +20,6 @@ in {
   config = mkIf cfg.enable {
     services.dae = {
       enable = true;
-      # package = inputs.daeuniverse.packages.${pkgs.system}.dae;
       configFile = config.age.secrets."config.dae".path;
       assets = with pkgs; [v2ray-geoip v2ray-domain-list-community];
       openFirewall = {

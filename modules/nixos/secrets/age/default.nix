@@ -9,8 +9,10 @@
   inherit (lib) mkIf mkMerge;
   inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.${namespace}.secrets.age;
   hasOptinPersistence = config.${namespace}.system.persist.enable;
+  hasMyContainer = containerName: lib.hasAttr containerName config.virtualisation.oci-containers.containers;
+
+  cfg = config.${namespace}.secrets.age;
 in {
   options.${namespace}.secrets.age = {
     enable = mkBoolOpt true "Whether or not to enable agenix.";
@@ -41,12 +43,9 @@ in {
           file = lib.snowfall.fs.get-file "secrets/service/mihomo.age";
         };
       })
-      (mkIf config.services.nginx.enable {
-        "nezuko.pem" = {
-          file = lib.snowfall.fs.get-file "secrets/ssl/nezuko.pem.age";
-        };
-        "nezuko.key" = {
-          file = lib.snowfall.fs.get-file "secrets/ssl/nezuko.key.age";
+      (mkIf (hasMyContainer "aria2-pro") {
+        "aria2.env" = {
+          file = lib.snowfall.fs.get-file "secrets/service/aria2Pro.age";
         };
       })
     ];

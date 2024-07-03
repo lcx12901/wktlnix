@@ -7,7 +7,6 @@ in {
   "service/nextcloud.age".publicKeys = users;
   "service/dae.age".publicKeys = users;
   "service/mihomo.age".publicKeys = users;
+  "service/aria2Pro.age".publicKeys = users;
   "keys/cloudflare.age".publicKeys = users;
-  "ssl/nezuko.pem.age".publicKeys = users;
-  "ssl/nezuko.key.age".publicKeys = users;
 }

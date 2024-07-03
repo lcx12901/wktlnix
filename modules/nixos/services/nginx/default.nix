@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf mkDefault;
-  inherit (lib.${namespace}) mkBoolOpt hasContainer;
+  inherit (lib.${namespace}) mkBoolOpt;
 
   inherit (config.networking) hostName;
 
@@ -61,6 +61,12 @@ in {
 
           locations."/ddns/" = mkIf (hasMyContainer "ddns-go") {
             proxyPass = "http://127.0.0.1:9876/";
+          };
+          locations."/aria2/" = mkIf (hasMyContainer "aria2-pro") {
+            proxyPass = "http://127.0.0.1:6800/";
+          };
+          locations."/ariang/" = mkIf (hasMyContainer "ariang") {
+            proxyPass = "http://127.0.0.1:6880/";
           };
         };
       };
