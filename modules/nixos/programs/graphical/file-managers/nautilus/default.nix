@@ -15,7 +15,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [gnome.nautilus];
+    environment.systemPackages = with pkgs; [nautilus];
 
     # Enable support for browsing samba shares.
     services.gvfs.enable = true;

@@ -5,10 +5,10 @@
   namespace,
   ...
 }: let
-  inherit (lib.${namespace}) mkIf;
+  inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.${namespace}.services.nextcloud.enable;
+  cfg = config.${namespace}.services.nextcloud;
 in {
   options.${namespace}.services.nextcloud = {
     enable = mkBoolOpt false "Whether or not to open nextcloud.";
@@ -29,8 +29,21 @@ in {
       };
 
       config = {
+        dbtype = "pgsql";
         adminuser = "wktl";
-        adminpassFile = config.age.secrets.nextcloud-secret.path;
+        adminpassFile = config.age.secrets."nextcloud.pass".path;
+      };
+
+      settings = let
+        prot = "https";
+        host = "${config.networking.hostName}.lincx.top";
+        dir = "/nextcloud";
+      in {
+        overwriteprotocol = prot;
+        overwritehost = host;
+        overwritewebroot = dir;
+        overwrite.cli.url = "${prot}://${host}:302${dir}/";
+        htaccess.RewriteBase = dir;
       };
     };
   };

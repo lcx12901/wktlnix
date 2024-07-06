@@ -43,6 +43,11 @@ in {
           file = lib.snowfall.fs.get-file "secrets/service/mihomo.age";
         };
       })
+      (mkIf config.services.nextcloud.enable {
+        "nextcloud.pass" = {
+          file = lib.snowfall.fs.get-file "secrets/service/nextcloud.age";
+        };
+      })
       (mkIf (hasMyContainer "aria2-pro") {
         "aria2.env" = {
           file = lib.snowfall.fs.get-file "secrets/service/aria2Pro.age";
