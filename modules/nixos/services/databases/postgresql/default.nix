@@ -8,7 +8,7 @@
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.${namespace}.services.databases.postgresql.enable;
+  cfg = config.${namespace}.services.databases.postgresql;
 in {
   options.${namespace}.services.databases.postgresql = {
     enable = mkBoolOpt false "Whether or not to open the postgresql database.";
