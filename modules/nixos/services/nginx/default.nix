@@ -76,28 +76,6 @@ in {
             (mkIf (hasMyContainer "ariang") {
               "/ariang/".proxyPass = "http://127.0.0.1:6880/";
             })
-            (mkIf config.services.nextcloud {
-              "/nextcloud/" = {
-                priority = 9999;
-                proxyPass = "http://127.0.0.1:8080/";
-              };
-              "^~ /.well-known" = {
-                priority = 9000;
-                extraConfig = ''
-                  absolute_redirect off;
-                  location ~ ^/\\.well-known/(?:carddav|caldav)$ {
-                    return 301 /nextcloud/remote.php/dav;
-                  }
-                  location ~ ^/\\.well-known/host-meta(?:\\.json)?$ {
-                    return 301 /nextcloud/public.php?service=host-meta-json;
-                  }
-                  location ~ ^/\\.well-known/(?!acme-challenge|pki-validation) {
-                    return 301 /nextcloud/index.php$request_uri;
-                  }
-                  try_files $uri $uri/ =404;
-                '';
-              };
-            })
           ];
         };
       };
