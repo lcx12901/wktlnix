@@ -15,9 +15,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.shellAliases = {
-      cava = "TERM=st-256color cava";
-    };
+    # home.shellAliases = {
+    #   cava = "TERM=st-256color cava";
+    # };
 
     programs.cava = {
       enable = true;

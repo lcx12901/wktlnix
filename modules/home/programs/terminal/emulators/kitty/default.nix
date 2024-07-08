@@ -12,7 +12,6 @@ in {
   options.${namespace}.programs.terminal.emulators.kitty = {
     enable = mkBoolOpt false "Whether to enable kitty.";
     font = mkOpt types.str "MonaspiceKr Nerd Font" "Font to use for kitty.";
-    theme = mkOpt types.str "Catppuccin-Macchiato" "Theme to use for kitty.";
   };
 
   config = mkIf cfg.enable {
@@ -100,7 +99,11 @@ in {
         term = "xterm-kitty";
       };
 
-      inherit (cfg) theme;
+      shellIntegration = {
+        enableBashIntegration = true;
+        enableFishIntegration = true;
+        enableZshIntegration = true;
+      };
     };
 
     home = {

@@ -6,6 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf mkEnableOption mkOption types;
+  inherit (lib.${namespace}) enabled;
 
   catppuccinAccents = [
     "rosewater"
@@ -67,6 +68,15 @@ in {
       enable = false;
 
       inherit (cfg) accent flavor;
+    };
+
+    programs = {
+      cava = {
+        catppuccin = enabled;
+      };
+      kitty = {
+        catppuccin = enabled;
+      };
     };
   };
 }
