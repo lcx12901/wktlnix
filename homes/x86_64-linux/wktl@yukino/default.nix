@@ -32,6 +32,7 @@ in {
             userEmail = "linchengxu@z9yun.com";
           };
           direnv = enabled;
+          cava = enabled;
         };
       };
     };

@@ -35,6 +35,7 @@ in {
         tools = {
           git = enabled;
           direnv = enabled;
+          cava = enabled;
         };
       };
     };
