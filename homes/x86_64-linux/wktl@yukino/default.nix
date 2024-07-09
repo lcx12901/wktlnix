@@ -37,7 +37,10 @@ in {
       };
     };
 
-    theme.gtk = enabled;
+    theme = {
+      gtk = enabled;
+      catppuccin = enabled;
+    };
 
     scenes = {
       daily = enabled;

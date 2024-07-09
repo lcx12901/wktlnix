@@ -173,6 +173,8 @@ in {
         "window.titleBarStyle" = "custom";
         "window.zoomLevel" = cfg.zoomLevel;
 
+        "scm.experimental.showHistoryGraph" = true;
+
         # update
         "update.mode" = "none";
         "extensions.autoUpdate" = false;
@@ -180,6 +182,7 @@ in {
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
         "vue.server.hybridMode" = "auto";
+        "eslint.useFlatConfig" = true;
 
         "npm.exclude" = [
           "**/.direnv/**"
