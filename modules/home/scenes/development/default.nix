@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt enabled;
 
   homeDirectory = config.${namespace}.user.home;
 
@@ -35,5 +35,9 @@ in {
       state-dir=${homeDirectory}/Coding/.pnpm-store/state
       global-dir=${homeDirectory}/Coding/.pnpm-store/global
     '';
+
+    wktlnix = {
+      programs.terminal.tools.lazygit = enabled;
+    };
   };
 }
