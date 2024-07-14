@@ -13,15 +13,20 @@ in {
     };
 
     programs = {
-      graphical.browsers.firefox = enabled;
+      graphical = {
+        browsers.firefox = enabled;
+        editors.vscode = enabled;
+      };
       terminal = {
         emulators.kitty = enabled;
         tools.git = enabled;
-        media.spicetify = enabled;
       };
     };
 
-    theme.gtk = enabled;
+    theme = {
+      gtk = enabled;
+      catppuccin = enabled;
+    };
   };
 
   home.stateVersion = "24.05";
