@@ -18,8 +18,10 @@ in {
         editors.vscode = enabled;
       };
       terminal = {
-        emulators.kitty = enabled;
-        tools.git = enabled;
+        tools = {
+          git = enabled;
+          direnv = enabled;
+        };
       };
     };
 

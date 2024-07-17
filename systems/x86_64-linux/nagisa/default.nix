@@ -40,15 +40,12 @@ in {
     services = {
       dae = enabled;
       openssh = enabled;
-      nginx = enabled;
     };
 
     virtualisation = {
       podman = enabled;
       containers = enabled;
     };
-
-    security.acme = enabled;
   };
 
   # This value determines the NixOS release from which the default
