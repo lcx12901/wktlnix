@@ -30,11 +30,19 @@ in {
     };
 
     programs = {
+      graphical = {
+        wms = {
+          hyprland = enabled;
+        };
+        addons.xdg-portal = enabled;
+        file-managers.nautilus = enabled;
+      };
       terminal.tools.nix-ld = enabled;
     };
 
     suites = {
       common = enabled;
+      wlroots = enabled;
     };
 
     services = {
