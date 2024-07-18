@@ -32,16 +32,16 @@ in {
           direnv = enabled;
         };
       };
+    };
 
-      theme = {
-        gtk = enabled;
-        catppuccin = enabled;
-      };
+    theme = {
+      gtk = enabled;
+      catppuccin = enabled;
+    };
 
-      scenes = {
-        daily = enabled;
-        development = enabled;
-      };
+    scenes = {
+      daily = enabled;
+      development = enabled;
     };
   };
 
