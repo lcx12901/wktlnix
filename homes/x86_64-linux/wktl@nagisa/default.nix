@@ -20,7 +20,11 @@ in {
           gpuAcceleration = true;
           hardwareDecoding = true;
         };
-        # editors.vscode = enabled;
+        editors.vscode = {
+          enable = true;
+          zoomLevel = 0.5;
+        };
+        apps.discord = enabled;
         launchers.rofi = enabled;
         video = enabled;
       };
@@ -30,6 +34,7 @@ in {
         tools = {
           git = enabled;
           direnv = enabled;
+          cava = enabled;
         };
       };
     };

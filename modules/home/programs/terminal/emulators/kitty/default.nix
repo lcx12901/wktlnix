@@ -73,7 +73,7 @@ in {
         window_margin_width = 12;
         window_padding_width = 10;
         inactive_text_alpha = "1.0";
-        background_opacity = "0.90";
+        background_opacity = "1.0";
         placement_strategy = "center";
         hide_window_decorations = "yes";
         confirm_os_window_close = -1;

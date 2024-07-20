@@ -27,6 +27,7 @@ in {
 
         windowrulev2 = [
           "opacity 0.9, title:Visual Studio Code"
+          "opacity 0.9, class:kitty"
 
           # make Firefox PiP window floating and sticky
           "float,title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"

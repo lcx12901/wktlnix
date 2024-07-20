@@ -1,4 +1,5 @@
 {
+  osConfig,
   config,
   lib,
   namespace,
@@ -8,6 +9,8 @@
   inherit (lib.${namespace}) mkBoolOpt enabled;
 
   cfg = config.${namespace}.programs.terminal.tools.direnv;
+
+  persist = osConfig.${namespace}.system.persist.enable;
 in {
   options.${namespace}.programs.terminal.tools.direnv = {
     enable = mkBoolOpt false "Whether or not to enable direnv.";
@@ -21,6 +24,12 @@ in {
     programs.direnv = {
       enable = true;
       nix-direnv = enabled;
+    };
+
+    home.persistence = mkIf persist {
+      "/persist/home/${config.${namespace}.user.name}" = {
+        directories = [".local/share/direnv"];
+      };
     };
   };
 }
