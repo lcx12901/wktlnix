@@ -4,14 +4,8 @@
   namespace,
   ...
 }: let
-  inherit (lib) mkIf optionalString;
+  inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
-
-  hasOptinPersistence = config.${namespace}.system.persist.enable;
-
-  username = config.${namespace}.user.name;
-
-  volumesRoot = "${optionalString hasOptinPersistence "/persist"}/home/${username}/.containers";
 
   cfg = config.${namespace}.virtualisation.containers;
 in {
