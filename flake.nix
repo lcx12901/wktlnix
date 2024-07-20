@@ -38,6 +38,7 @@
       homes.modules = with inputs; [
         catppuccin.homeManagerModules.catppuccin
         impermanence.nixosModules.home-manager.impermanence
+        nixvim.homeManagerModules.nixvim
         spicetify-nix.homeManagerModules.default
         ags.homeManagerModules.default
       ];
@@ -151,6 +152,11 @@
     # Aylur's gtk shell (ags)
     ags = {
       url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

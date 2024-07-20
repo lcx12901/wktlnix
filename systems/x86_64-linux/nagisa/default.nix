@@ -24,6 +24,8 @@ in {
     };
 
     hardware = {
+      audio = enabled;
+      graphics = enabled;
       cpu.amd = enabled;
       gpu.amd = enabled;
       btrfs = enabled;
@@ -52,7 +54,7 @@ in {
 
     virtualisation = {
       podman = enabled;
-      containers = enabled;
+      # containers = enabled;
     };
   };
 

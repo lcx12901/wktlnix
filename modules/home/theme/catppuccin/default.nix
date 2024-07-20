@@ -72,7 +72,10 @@ in {
 
     programs = {
       cava = {
-        catppuccin = enabled;
+        catppuccin = {
+          enable = true;
+          transparent = true;
+        };
       };
       kitty = {
         catppuccin = enabled;
