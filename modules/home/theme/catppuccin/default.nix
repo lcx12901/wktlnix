@@ -70,6 +70,13 @@ in {
       inherit (cfg) accent flavor;
     };
 
+    gtk.catppuccin = {
+      enable = true;
+
+      inherit (cfg) accent;
+      size = "standard";
+    };
+
     programs = {
       cava = {
         catppuccin = {
