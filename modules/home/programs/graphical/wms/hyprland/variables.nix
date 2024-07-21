@@ -54,7 +54,7 @@ in {
           gaps_in = 4;
           gaps_out = 6;
           gaps_workspaces = 50;
-          border_size = 2;
+          border_size = 3;
 
           "col.active_border" = "rgba(F7DCDE39)";
           "col.inactive_border" = "rgba(A58A8D30)";
@@ -74,6 +74,8 @@ in {
 
         decoration = {
           rounding = 10;
+          active_opacity = 0.9;
+          inactive_opacity = 0.8;
 
           blur = {
             enabled = true;
