@@ -36,6 +36,11 @@ in {
         wms = {
           hyprland = enabled;
         };
+        games = {
+          steam = enabled;
+          gamemode = enabled;
+          gamescope = enabled;
+        };
         addons.xdg-portal = enabled;
         file-managers.nautilus = enabled;
       };
