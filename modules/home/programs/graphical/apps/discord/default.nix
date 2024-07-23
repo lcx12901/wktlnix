@@ -7,9 +7,8 @@
   namespace,
   ...
 }: let
-  inherit (lib) mkIf getExe;
+  inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
-  inherit (inputs) home-manager;
 
   cfg = config.${namespace}.programs.graphical.apps.discord;
 
