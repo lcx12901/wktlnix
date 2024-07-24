@@ -46,7 +46,7 @@ in {
       wlroots = enabled;
     };
 
-    services.dae = enabled;
+    services.mihomo = enabled;
 
     virtualisation = {
       kvm = enabled;
