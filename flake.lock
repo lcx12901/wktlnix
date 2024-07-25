@@ -1907,11 +1907,11 @@
     "wallpapers": {
       "flake": false,
       "locked": {
-        "lastModified": 1718517126,
-        "narHash": "sha256-OLkmPodfK9ktsKFfs28O5yOWESrtxMCT7ws8sN9COjg=",
+        "lastModified": 1721895264,
+        "narHash": "sha256-sPapEuVEf8QlG1NNCZ4/76uijXTqdnmbHdvfeGpMSp0=",
         "owner": "lcx12901",
         "repo": "wallpapers",
-        "rev": "2b8ba3c936dad79f388d3ab662dad240369c6b7a",
+        "rev": "77d1f6015f39224d32d4e10606a88a1a9586c950",
         "type": "github"
       },
       "original": {
