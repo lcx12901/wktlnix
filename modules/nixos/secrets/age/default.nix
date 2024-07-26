@@ -10,7 +10,7 @@
   inherit (lib.${namespace}) mkBoolOpt;
 
   hasOptinPersistence = config.${namespace}.system.persist.enable;
-  hasMyContainer = containerName: lib.hasAttr containerName config.virtualisation.oci-containers.containers;
+  # hasMyContainer = containerName: lib.hasAttr containerName config.virtualisation.oci-containers.containers;
 
   cfg = config.${namespace}.secrets.age;
 in {
@@ -43,16 +43,15 @@ in {
           file = lib.snowfall.fs.get-file "secrets/service/mihomo.age";
         };
       })
-      (mkIf config.services.nextcloud.enable {
-        "nextcloud.pass" = {
-          file = lib.snowfall.fs.get-file "secrets/service/nextcloud.age";
+
+      {
+        "akari_rsa" = {
+          file = lib.snowfall.fs.get-file "secrets/ssh/akari_rsa.age";
+          owner = config.${namespace}.user.name;
+          group = "users";
+          mode = "0600";
         };
-      })
-      (mkIf (hasMyContainer "aria2-pro") {
-        "aria2.env" = {
-          file = lib.snowfall.fs.get-file "secrets/service/aria2Pro.age";
-        };
-      })
+      }
     ];
   };
 }
