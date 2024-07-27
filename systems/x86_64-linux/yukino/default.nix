@@ -46,7 +46,10 @@ in {
       wlroots = enabled;
     };
 
-    services.mihomo = enabled;
+    services = {
+      mihomo = enabled;
+      openssh = enabled;
+    };
 
     virtualisation = {
       kvm = enabled;
