@@ -89,6 +89,7 @@ in {
           darkreader
           immersive-translate
           vue-js-devtools
+          tampermonkey
         ];
 
         search = {
