@@ -54,11 +54,10 @@ in {
           name = "diff";
           extraConfig = {
             symbols = {
-              added = " ";
-              modified = " ";
-              removed = " ";
+              added = "  ";
+              modified = "  ";
+              removed = "  ";
             };
-            separator = " ";
           };
         }
       ];
@@ -121,12 +120,7 @@ in {
         }
         "encoding"
         "fileformat"
-        {
-          name = "filetype";
-          extraConfig = {
-            separator = " ";
-          };
-        }
+        "filetype"
       ];
 
       lualine_y = [
