@@ -2,9 +2,7 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit (lib) mkDefault;
-in {
+}: {
   clipboard = {
     # Use system clipboard
     register = "unnamedplus";
