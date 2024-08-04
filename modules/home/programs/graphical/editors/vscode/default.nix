@@ -195,6 +195,9 @@ in {
           "vueuse"
           "tiptap"
         ];
+        "cSpell.enabledFileTypes" = {
+          "nix" = false;
+        };
       };
     };
 

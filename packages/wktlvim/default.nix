@@ -3,12 +3,17 @@
   inputs,
   system,
   pkgs,
+  namespace,
   ...
 }: let
   inherit (inputs) nixvim;
 in
   nixvim.legacyPackages.${system}.makeNixvimWithModule {
     inherit pkgs;
+
+    extraSpecialArgs = {
+      inherit lib namespace;
+    };
 
     module = {
       imports = lib.snowfall.fs.get-non-default-nix-files-recursive ./.;
@@ -17,10 +22,6 @@ in
       vimAlias = true;
 
       luaLoader.enable = true;
-
-      # Highlight and remove extra white spaces
-      highlight.ExtraWhitespace.bg = "red";
-      match.ExtraWhitespace = "\\s\\+$";
 
       colorschemes.catppuccin.enable = true;
     };
