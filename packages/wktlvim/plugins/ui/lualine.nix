@@ -1,16 +1,5 @@
-_: let
-  cond.__raw =
-    # Lua
-    ''
-      function()
-        local buf_size_limit = 1024 * 1024 -- 1MB size limit
-        if vim.api.nvim_buf_get_offset(0, vim.api.nvim_buf_line_count(0)) > buf_size_limit then
-          return false
-        end
-
-        return true
-      end
-    '';
+{config, ...}: let
+  inherit (config) icons;
 in {
   plugins.lualine = {
     enable = true;
@@ -33,8 +22,8 @@ in {
     };
 
     sectionSeparators = {
-      left = ""; # or █
-      right = ""; # or █
+      left = "█"; # or 
+      right = "█"; # or 
     };
 
     sections = {
@@ -48,15 +37,15 @@ in {
       lualine_b = [
         {
           name = "branch";
-          icon = "";
+          icon = icons.GitBranch;
         }
         {
           name = "diff";
           extraConfig = {
             symbols = {
-              added = "  ";
-              modified = "  ";
-              removed = "  ";
+              added = icons.GitAdd;
+              modified = icons.GitChange;
+              removed = icons.GitDelete;
             };
           };
         }
@@ -88,10 +77,10 @@ in {
           extraConfig = {
             sources = ["nvim_lsp"];
             symbols = {
-              error = " ";
-              warn = " ";
-              info = "󰋼 ";
-              hint = "󰌵 ";
+              error = icons.DiagnosticError;
+              warn = icons.DiagnosticWarn;
+              info = icons.DiagnosticInfo;
+              hint = icons.DiagnosticHint;
             };
           };
         }
