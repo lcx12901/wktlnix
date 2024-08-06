@@ -31,7 +31,7 @@ in {
       terminal = {
         emulators.kitty = enabled;
         media.spicetify = enabled;
-        editors.neovim = enabled;
+        # editors.neovim = enabled;
         tools = {
           git = enabled;
           direnv = enabled;
