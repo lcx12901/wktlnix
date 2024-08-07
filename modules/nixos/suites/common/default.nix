@@ -21,6 +21,7 @@ in {
       unzip
       wget
       less
+      nixd
     ];
   };
 }

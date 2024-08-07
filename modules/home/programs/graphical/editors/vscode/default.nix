@@ -181,8 +181,24 @@ in {
 
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
+
+        "[nix]" = {
+          "editor.defaultFormatter" = "kamadorueda.alejandra";
+          "editor.formatOnPaste" = true;
+          "editor.formatOnSave" = true;
+          "editor.formatOnType" = false;
+        };
+        "alejandra.program" = "alejandra";
+
         "vue.server.hybridMode" = "auto";
+        "eslint.format.enable" = true;
         "eslint.useFlatConfig" = true;
+        "[vue]" = {
+          "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
+        };
+        "[typescript]" = {
+          "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
+        };
 
         "npm.exclude" = [
           "**/.direnv/**"

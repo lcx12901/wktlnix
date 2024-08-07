@@ -14,7 +14,6 @@ in
         deadnix
         alejandra
         nix-tree
-        nixd
         bun
       ])
       ++ [snowfall-flake.packages.${system}.flake];
