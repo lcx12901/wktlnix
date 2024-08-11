@@ -1,0 +1,30 @@
+#workspaces {
+  border-radius: 1rem;
+  margin: 10px 10px 0 10px;
+  background-color: @surface0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+#workspaces button {
+  color: @lavender;
+  border-radius: 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.3rem;
+}
+
+#workspaces button.active {
+  color: @sky;
+  border-radius: 1rem;
+}
+
+#workspaces button:hover {
+  color: @sapphire;
+  border-radius: 1rem;
+}
+
+#cava.left,
+#cava.right {
+  background-color: @surface0;
+  margin-top: 10px;
+  padding: 0 1rem;
+}

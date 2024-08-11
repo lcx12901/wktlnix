@@ -84,9 +84,8 @@ in {
           transparent = true;
         };
       };
-      kitty = {
-        catppuccin = enabled;
-      };
+      kitty.catppuccin = enabled;
+      waybar.catppuccin = enabled;
     };
   };
 }

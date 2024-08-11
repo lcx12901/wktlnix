@@ -76,7 +76,9 @@ in {
             fcitx5 = enabled;
             mako = enabled;
             clipboard = enabled;
+            waybar = enabled;
           };
+          launchers.rofi = enabled;
         };
       };
     };

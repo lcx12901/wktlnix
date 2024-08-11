@@ -20,13 +20,14 @@ in {
         browsers.firefox = enabled;
         editors.vscode = enabled;
         apps.discord = enabled;
-        launchers.rofi = enabled;
         video = enabled;
+        addons = {
+          waybar.basicFontSize = "13";
+        };
       };
       terminal = {
         emulators.kitty = enabled;
         media.spicetify = enabled;
-        # editors.neovim = enabled;
         tools = {
           git = {
             enable = true;

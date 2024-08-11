@@ -11,10 +11,7 @@ in
   mkShell {
     packages =
       (with pkgs; [
-        deadnix
         alejandra
-        nix-tree
-        bun
       ])
       ++ [snowfall-flake.packages.${system}.flake];
 
