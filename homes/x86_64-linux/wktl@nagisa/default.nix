@@ -25,13 +25,11 @@ in {
           zoomLevel = 0.5;
         };
         apps.discord = enabled;
-        launchers.rofi = enabled;
         video = enabled;
       };
       terminal = {
         emulators.kitty = enabled;
         media.spicetify = enabled;
-        # editors.neovim = enabled;
         tools = {
           git = enabled;
           direnv = enabled;

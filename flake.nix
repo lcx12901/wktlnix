@@ -149,6 +149,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    waybar = {
+      url = "github:Alexays/Waybar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Aylur's gtk shell (ags)
     ags = {
       url = "github:Aylur/ags";
