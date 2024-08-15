@@ -22,7 +22,7 @@ in {
         apps.discord = enabled;
         video = enabled;
         addons = {
-          waybar.basicFontSize = "13";
+          waybar.basicFontSize = "12";
         };
       };
       terminal = {

@@ -68,6 +68,7 @@ in {
 
           vue.volar
           antfu.unocss
+          simonhe.common-intellisense
 
           evils.uniapp-vscode
           uni-helper.uni-helper-vscode
@@ -194,6 +195,9 @@ in {
         "eslint.format.enable" = true;
         "eslint.useFlatConfig" = true;
         "[vue]" = {
+          "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
+        };
+        "[javascript]" = {
           "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
         };
         "[typescript]" = {
