@@ -12,7 +12,7 @@ in {
   "cava#left" = {
     framerate = 120;
     autosens = 1;
-    bars = 16;
+    bars = 20;
     method = "pipewire";
     source = "auto";
     bar_delimiter = 0;
@@ -34,7 +34,7 @@ in {
   "cava#right" = {
     framerate = 120;
     autosens = 1;
-    bars = 16;
+    bars = 20;
     method = "pipewire";
     source = "auto";
     bar_delimiter = 0;

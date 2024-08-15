@@ -46,6 +46,6 @@ box {
 #clock {
   background-color: @surface0;
   color: @lavender;
-  margin: 10px 10px 0 10px;
+  margin: 10px 10px 0 5px;
   padding: 0 15px;
 }
