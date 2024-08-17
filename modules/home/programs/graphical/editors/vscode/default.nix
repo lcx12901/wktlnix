@@ -63,7 +63,7 @@ in {
           mhutchie.git-graph
           mkhl.direnv
           nrwl.angular-console
-          codium.codium
+          fittentech.fitten-code
           gruntfuggly.todo-tree
 
           vue.volar
@@ -218,6 +218,9 @@ in {
         "cSpell.enabledFileTypes" = {
           "nix" = false;
         };
+
+        "fittencode.languagePreference.displayPreference" = "zh-cn";
+        "fittencode.languagePreference.language" = "zh-cn";
       };
     };
 
