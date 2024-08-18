@@ -49,7 +49,6 @@
         disko.nixosModules.disko
         agenix.nixosModules.default
         impermanence.nixosModules.impermanence
-        daeuniverse.nixosModules.dae
       ];
     };
 
@@ -172,7 +171,5 @@
     };
 
     catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
-
-    daeuniverse.url = "github:daeuniverse/flake.nix";
   };
 }

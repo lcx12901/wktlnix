@@ -27,7 +27,10 @@ in {
       };
       terminal = {
         emulators.kitty = enabled;
-        media.spicetify = enabled;
+        media = {
+          spicetify = enabled;
+          go-musicfox = enabled;
+        };
         tools = {
           git = {
             enable = true;

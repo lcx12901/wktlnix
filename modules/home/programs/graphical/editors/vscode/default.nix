@@ -220,7 +220,7 @@ in {
         };
 
         "fittencode.languagePreference.displayPreference" = "zh-cn";
-        "fittencode.languagePreference.language" = "zh-cn";
+        "fittencode.languagePreference.commentPreference" = "zh-cn";
       };
     };
 

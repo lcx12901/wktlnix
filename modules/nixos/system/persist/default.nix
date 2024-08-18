@@ -31,6 +31,8 @@ in {
           "Coding"
           "Downloads"
           "Documents"
+          "Music"
+          "Pictures"
         ];
       };
     };
