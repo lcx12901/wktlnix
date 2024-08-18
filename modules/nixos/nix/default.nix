@@ -139,7 +139,6 @@ in {
 
         # substituters to use
         substituters = [
-          "https://cache.ngi0.nixos.org" # content addressed nix cache (TODO)
           "https://cache.nixos.org" # funny binary cache
           "https://nixpkgs-wayland.cachix.org" # automated builds of *some* wayland packages
           "https://nix-community.cachix.org" # nix-community cache
@@ -147,12 +146,9 @@ in {
           "https://nixpkgs-unfree.cachix.org" # unfree-package cache
           "https://numtide.cachix.org" # another unfree package cache
           "https://cache.garnix.io" # garnix binary cache, hosts prismlauncher
-          "https://ags.cachix.org" # ags
-          "https://daeuniverse.cachix.org"
         ];
 
         trusted-public-keys = [
-          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
           "cache.ngi0.nixos.org-1:KqH5CBLNSyX184S9BKZJo1LxrxJ9ltnY2uAs5c/f1MA="
           "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -160,8 +156,6 @@ in {
           "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
           "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
           "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-          "ags.cachix.org-1:naAvMrz0CuYqeyGNyLgE010iUiuf/qx6kYrUv3NwAJ8="
-          "daeuniverse.cachix.org-1:8hRIzkQmAKxeuYY3c/W1I7QbZimYphiPX/E7epYNTeM="
         ];
       };
     };

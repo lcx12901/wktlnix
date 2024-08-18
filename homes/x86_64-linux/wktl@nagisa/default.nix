@@ -29,7 +29,11 @@ in {
       };
       terminal = {
         emulators.kitty = enabled;
-        media.spicetify = enabled;
+        media = {
+          spicetify = enabled;
+          go-musicfox = enabled;
+        };
+        editors.neovim = enabled;
         tools = {
           git = enabled;
           direnv = enabled;

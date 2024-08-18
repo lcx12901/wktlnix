@@ -17,7 +17,7 @@ in {
           # ░█▀█░█▀▀░█▀▀░░░▀▀█░░█░░█▀█░█▀▄░░█░░█░█░█▀▀
           # ░▀░▀░▀░░░▀░░░░░▀▀▀░░▀░░▀░▀░▀░▀░░▀░░▀▀▀░▀░░
           "fcitx5 -d --replace"
-          "swww init && swww img ${inputs.wallpapers}/nixos-girl.png"
+          "swww init && swww img ${inputs.wallpapers}/dark-skull.png"
         ];
       };
     };
