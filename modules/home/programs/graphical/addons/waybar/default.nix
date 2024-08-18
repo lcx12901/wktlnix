@@ -31,6 +31,8 @@
 
     modules-left = [
       "custom/launcher"
+      "pulseaudio"
+      "mpd"
     ];
 
     modules-center = [
