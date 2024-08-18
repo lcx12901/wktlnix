@@ -12,7 +12,7 @@ in {
   "cava#left" = {
     framerate = 120;
     autosens = 1;
-    bars = 20;
+    bars = 14;
     method = "pipewire";
     source = "auto";
     bar_delimiter = 0;
@@ -34,7 +34,7 @@ in {
   "cava#right" = {
     framerate = 120;
     autosens = 1;
-    bars = 20;
+    bars = 14;
     method = "pipewire";
     source = "auto";
     bar_delimiter = 0;
@@ -73,50 +73,35 @@ in {
     format = "󰋊 {percentage_used}%";
   };
 
-  mpris = {
-    format = "{player_icon} {status_icon} {dynamic}";
-    format-paused = "{player_icon} {status_icon} <i>{dynamic}</i>";
-    max-length = 45;
-    player-icons = {
-      chromium = "";
-      default = "";
-      firefox = "";
-      mopidy = "";
-      mpv = "";
-      spotify = "";
+  pulseaudio = {
+    format = "{icon} {volume}%";
+    format-bluetooth = "{volume}% {icon}";
+    format-muted = "󰝟";
+    format-icons = {
+      headphone = "";
+      default = ["" "" ""];
     };
-    status-icons = {
-      paused = "";
-      playing = "";
-      stopped = "";
-    };
+    scroll-step = 2;
+    on-click = "${pkgs.killall}/bin/killall pavucontrol || ${pkgs.pavucontrol}/bin/pavucontrol";
   };
 
   mpd = {
-    format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ";
-    format-disconnected = "Disconnected ";
-    format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ";
+    interval = 1;
+    format = "{stateIcon} {artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ";
+    format-stopped = "Stopped ";
+    format-disconnected = " Disconnected";
     unknown-tag = "N/A";
-    interval = 2;
-    consume-icons = {
-      on = " ";
-    };
-    random-icons = {
-      off = "<span color=\"#f53c3c\"></span> ";
-      on = " ";
-    };
-    repeat-icons = {
-      on = " ";
-    };
-    single-icons = {
-      on = "1 ";
-    };
     state-icons = {
-      paused = "";
-      playing = "";
+      paused = "";
+      playing = "";
     };
-    tooltip-format = "MPD (connected)";
-    tooltip-format-disconnected = "MPD (disconnected)";
+    on-click = "mpc toggle";
+    on-click-middle = "mpc prev";
+    on-click-right = "mpc next";
+    on-update = "";
+    on-scroll-up = "mpc seek +00:00:01";
+    on-scroll-down = "mpc seek -00:00:01";
+    smooth-scrolling-threshold = 1;
   };
 
   network = let

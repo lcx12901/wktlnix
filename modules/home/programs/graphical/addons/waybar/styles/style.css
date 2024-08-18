@@ -28,6 +28,20 @@ box {
   border: none;
 }
 
+#pulseaudio {
+  background-color: @surface0;
+  color: @sky;
+  margin: 10px 10px 0 5px;
+  padding: 0 10px;
+}
+
+#mpd {
+  background-color: @surface0;
+  color: @pink;
+  margin: 10px 0 0 0;
+  padding: 0 15px;
+}
+
 #custom-launcher {
   background-color: @surface0;
   color: @lavender;
