@@ -17,12 +17,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home = {
-      sessionVariables = {
-        EDITOR = mkIf cfg.default "nvim";
-      };
+    # home = {
+    #   sessionVariables = {
+    #     EDITOR = mkIf cfg.default "nvim";
+    #   };
 
-      packages = [pkgs.${namespace}.wktlvim];
-    };
+    #   packages = [pkgs.${namespace}.wktlvim];
+    # };
   };
 }
