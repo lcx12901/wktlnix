@@ -29,20 +29,25 @@ in {
         flavor = "macchiato";
       }) "The package to use for the icon theme.";
     };
+
+    theme = {
+      name = mkOpt str "catppuccin-macchiato-lavender-standard" "The name of the theme to apply";
+      package = mkOpt package (pkgs.catppuccin-gtk.override {
+        accents = ["lavender"];
+        size = "standard";
+        variant = "macchiato";
+      }) "The package to use for the theme";
+    };
   };
 
   config = mkIf cfg.enable {
     home = {
-      packages =
-        (with pkgs; [
-          dconf # required explicitly with noXlibs and home-manager
-          glib # gsettings
-          gtk3.out # for gtk-launch
-          libappindicator-gtk3
-        ])
-        ++ [
-          cfg.icon.package
-        ];
+      packages = with pkgs; [
+        dconf # required explicitly with noXlibs and home-manager
+        glib # gsettings
+        gtk3.out # for gtk-launch
+        libappindicator-gtk3
+      ];
 
       pointerCursor = mkDefault {
         inherit (cfg.cursor) name package size;
@@ -66,7 +71,12 @@ in {
           cursor-theme = cfg.cursor.name;
           enable-hot-corners = false;
           font-name = osConfig.${namespace}.system.fonts.default;
+          gtk-theme = cfg.theme.name;
           icon-theme = cfg.icon.name;
+        };
+
+        "org/gnome/shell/extensions/user-theme" = {
+          inherit (cfg.theme) name;
         };
 
         # tell virt-manager to use the system connection
@@ -86,6 +96,10 @@ in {
 
       iconTheme = {
         inherit (cfg.icon) name package;
+      };
+
+      theme = {
+        inherit (cfg.theme) name package;
       };
 
       gtk2 = {
@@ -125,8 +139,18 @@ in {
       };
     };
 
-    xdg.systemDirs.data = let
-      schema = pkgs.gsettings-desktop-schemas;
-    in ["${schema}/share/gsettings-schemas/${schema.name}"];
+    xdg = {
+      configFile = let
+        gtk4Dir = "${cfg.theme.package}/share/themes/${cfg.theme.name}/gtk-4.0";
+      in {
+        "gtk-4.0/assets".source = "${gtk4Dir}/assets";
+        "gtk-4.0/gtk.css".source = "${gtk4Dir}/gtk.css";
+        "gtk-4.0/gtk-dark.css".source = "${gtk4Dir}/gtk-dark.css";
+      };
+
+      systemDirs.data = let
+        schema = pkgs.gsettings-desktop-schemas;
+      in ["${schema}/share/gsettings-schemas/${schema.name}"];
+    };
   };
 }

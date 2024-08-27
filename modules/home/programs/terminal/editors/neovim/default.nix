@@ -10,7 +10,6 @@
 
   cfg = config.${namespace}.programs.terminal.editors.neovim;
 in {
-  # https://nix-community.github.io/nixvim/
   options.${namespace}.programs.terminal.editors.neovim = {
     enable = mkEnableOption "neovim";
     default = mkBoolOpt true "Whether to set Neovim as the session EDITOR";
