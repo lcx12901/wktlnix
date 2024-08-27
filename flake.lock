@@ -1082,11 +1082,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1723599057,
-        "narHash": "sha256-cyeB0BdxpNsUyMpNNIN6B/pYiynRZ6fd35mSrd8vqrk=",
+        "lastModified": 1724722238,
+        "narHash": "sha256-DLtiPBpKBIL4+lxu7H8e6gPZvZ3Rb7D8mMh8OieBURM=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "a7fe9a8a727575753663a84a583aeccbe28a42f4",
+        "rev": "ad07ef4512e976b9537d05b7d2e4a5d7a2965ff7",
         "type": "github"
       },
       "original": {
