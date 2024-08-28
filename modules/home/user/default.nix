@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) types mkIf mkMerge mkDefault getExe;
-  inherit (lib.${namespace}) mkOpt;
+  inherit (lib.${namespace}) mkOpt enabled;
 
   cfg = config.${namespace}.user;
 
@@ -54,6 +54,8 @@ in {
         };
         username = mkDefault cfg.name;
       };
+
+      programs.home-manager = enabled;
     }
   ]);
 }

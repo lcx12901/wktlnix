@@ -31,6 +31,7 @@ in {
           spicetify = enabled;
           go-musicfox = enabled;
         };
+        editors.neovim = enabled;
         tools = {
           git = {
             enable = true;
