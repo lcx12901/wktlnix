@@ -38,7 +38,7 @@
       homes.modules = with inputs; [
         catppuccin.homeManagerModules.catppuccin
         impermanence.nixosModules.home-manager.impermanence
-        nixvim.homeManagerModules.nixvim
+        # nixvim.homeManagerModules.nixvim
         spicetify-nix.homeManagerModules.default
         ags.homeManagerModules.default
       ];
@@ -159,10 +159,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixvim = {
+    #   url = "github:nix-community/nixvim";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # my wallpapers
     wallpapers = {
