@@ -20,7 +20,7 @@ in {
       btdu
       btrfs-assistant
       btrfs-snap
-      compsize
+      # compsize # https://github.com/kilobyte/compsize/issues/52
       snapper
     ];
 
