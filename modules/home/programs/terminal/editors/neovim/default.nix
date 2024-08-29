@@ -66,6 +66,10 @@ in {
       '';
 
       packages = with pkgs; (
+        [
+          neovide
+        ]
+        ++
         # -*- Data & Configuration Languages -*-#
         [
           #-- nix
@@ -104,6 +108,10 @@ in {
 
           #-- frontend
           vue-language-server
+          nodePackages.typescript-language-server
+          # HTML/CSS/JSON/ESLint language servers extracted from vscode
+          nodePackages.vscode-langservers-extracted
+          emmet-ls
         ]
         ++ [
           fzf

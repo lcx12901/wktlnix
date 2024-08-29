@@ -1,8 +1,9 @@
 return {
   "catppuccin/nvim",
   name = "catppuccin",
-  opts = function(_, opts)
-    opts.flavour = "frappe" -- latte, frappe, macchiato, mocha
-    opts.transparent_background = true -- setting the background color.
-  end,
+  opts = {
+    flavour = "frappe", -- latte, frappe, macchiato, mocha
+    transparent_background = false, -- setting the background color.
+    term_colors = true, -- setting the terminal colors.
+  },
 }

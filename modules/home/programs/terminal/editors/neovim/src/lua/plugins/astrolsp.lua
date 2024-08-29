@@ -3,7 +3,6 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
-
 ---@type LazySpec
 return {
   "AstroNvim/astrolsp",
@@ -21,9 +20,9 @@ return {
       -- control auto formatting on save
       format_on_save = {
         enabled = true, -- enable or disable format on save globally
-        allow_filetypes = { -- enable format on save for specified filetypes only
-          "jsonnet",
-        },
+        -- allow_filetypes = { -- enable format on save for specified filetypes only
+        --   "jsonnet",
+        -- },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
@@ -61,7 +60,13 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
-      -- the offset_encoding of clangd will confilicts whit null-ls
+      volar = {
+        init_options = {
+          vue = {
+            hybridMode = false,
+          },
+        },
+      },
     },
     -- customize how language servers are attached
     handlers = {
