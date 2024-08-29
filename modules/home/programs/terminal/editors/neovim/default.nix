@@ -101,6 +101,9 @@ in {
           nodePackages.bash-language-server
           shellcheck
           shfmt
+
+          #-- frontend
+          vue-language-server
         ]
         ++ [
           fzf
