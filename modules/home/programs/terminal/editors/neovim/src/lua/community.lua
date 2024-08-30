@@ -6,17 +6,20 @@
 return {
   "AstroNvim/astrocommunity",
   -- Motion
-  { import = "astrocommunity.motion.mini-surround" },
   -- https://github.com/echasnovski/mini.ai
+  { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.motion.mini-ai" },
   { import = "astrocommunity.motion.flash-nvim" },
-  { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.motion.leap-nvim" },
+  { import = "astrocommunity.motion.flit-nvim" },
+  { import = "astrocommunity.scrolling.nvim-scrollbar" },
 
   -- Language Support
+  { import = "astrocommunity.pack.lua" },
   ---- Frontend & NodeJS
   { import = "astrocommunity.pack.typescript-all-in-one" },
   { import = "astrocommunity.pack.html-css" },
-  -- { import = "astrocommunity.pack.vue" },
+  { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.pack.prisma" },
   ---- Configuration Language
   { import = "astrocommunity.pack.markdown" },
@@ -35,4 +38,8 @@ return {
   { import = "astrocommunity.colorscheme.catppuccin" },
 
   { import = "astrocommunity.recipes.neovide" },
+
+  -- editing-support
+  { import = "astrocommunity.editing-support.todo-comments-nvim" },
+  { import = "astrocommunity.indent.indent-rainbowline" },
 }
