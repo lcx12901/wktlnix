@@ -28,7 +28,7 @@ return {
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
       },
-      timeout_ms = 1000, -- default format timeout
+      timeout_ms = 3000, -- default format timeout
     },
     -- enable servers that you already have installed without mason
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
@@ -56,11 +56,13 @@ return {
       "cssls", -- css language server
       "prismals", -- prisma language server
       "volar", -- vue language server
+      "eslint", -- frontend lint and format
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
       volar = {
+        filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" },
         init_options = {
           vue = {
             hybridMode = false,
