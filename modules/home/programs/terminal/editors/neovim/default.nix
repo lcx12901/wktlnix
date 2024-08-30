@@ -108,6 +108,7 @@ in {
 
           #-- frontend
           vue-language-server
+          typescript
           nodePackages.typescript-language-server
           # HTML/CSS/JSON/ESLint language servers extracted from vscode
           nodePackages.vscode-langservers-extracted
