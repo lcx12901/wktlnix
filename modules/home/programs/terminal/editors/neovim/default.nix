@@ -68,6 +68,7 @@ in {
       packages = with pkgs; (
         [
           neovide
+          wl-clipboard
         ]
         ++
         # -*- Data & Configuration Languages -*-#
