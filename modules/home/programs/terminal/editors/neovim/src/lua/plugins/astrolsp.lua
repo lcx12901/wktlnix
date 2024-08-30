@@ -51,18 +51,18 @@ return {
       "rust_analyzer", -- rust
 
       ---- Web Development
-      "tsserver", -- typescript/javascript language server
+      -- "tsserver", -- typescript/javascript language server
       "html", -- html language server
       "cssls", -- css language server
       "prismals", -- prisma language server
       "volar", -- vue language server
-      "eslint", -- frontend lint and format
+      "eslint",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
       volar = {
-        filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" },
+        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
         init_options = {
           vue = {
             hybridMode = false,
