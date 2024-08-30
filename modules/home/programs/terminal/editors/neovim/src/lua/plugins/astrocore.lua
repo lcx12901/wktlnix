@@ -34,6 +34,9 @@ return {
         -- The percentage of 'columns' to use for the title
         -- When the title is longer, only the end of the path name is shown.
         titlelen = 20,
+
+        clipboard = "unnamedplus", -- Use system clipboard
+        updatetime = 200, -- Update time for cursor blinking
       },
     },
   },
