@@ -30,7 +30,6 @@ in {
         video = enabled;
       };
       terminal = {
-        emulators.kitty = enabled;
         media.spicetify = enabled;
         tools = {
           git = enabled;
@@ -38,11 +37,6 @@ in {
           cava = enabled;
         };
       };
-    };
-
-    theme = {
-      gtk = enabled;
-      catppuccin = enabled;
     };
 
     scenes = {

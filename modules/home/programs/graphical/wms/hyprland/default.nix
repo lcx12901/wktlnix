@@ -70,6 +70,9 @@ in {
 
     wktlnix = {
       programs = {
+        terminal = {
+          emulators.kitty = enabled;
+        };
         graphical = {
           screenlockers.hyprlock = enabled;
           addons = {
@@ -80,6 +83,11 @@ in {
           };
           launchers.rofi = enabled;
         };
+      };
+
+      theme = {
+        gtk = enabled;
+        catppuccin = enabled;
       };
     };
   };
