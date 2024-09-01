@@ -97,15 +97,15 @@ in {
         "workbench.iconTheme" = "vscode-icons";
 
         # Font family
-        "editor.fontFamily" = "MonaspiceAr Nerd Font, CaskaydiaCove Nerd Font,Consolas, monospace,Hack Nerd Font";
-        "editor.codeLensFontFamily" = "MonaspiceNe Nerd Font, Liga SFMono Nerd Font, CaskaydiaCove Nerd Font,Consolas, 'Courier New', monospace,Hack Nerd Font";
-        "editor.inlayHints.fontFamily" = "MonaspiceKr Nerd Font";
-        "debug.console.fontFamily" = "Monaspace Krypton";
+        "editor.fontFamily" = "MonaspiceRn Nerd Font, WenQuanYi Zen Hei Mono";
+        "editor.codeLensFontFamily" = "MonaspiceRn Nerd Font, WenQuanYi Zen Hei Mono";
+        "editor.inlayHints.fontFamily" = "MonaspiceRn Nerd Font";
+        "debug.console.fontFamily" = "Monaspace Radon";
         "scm.inputFontFamily" = "Monaspace Radon";
         "notebook.output.fontFamily" = "Monapsace Radon";
-        "chat.editor.fontFamily" = "Monaspace Argon";
-        "markdown.preview.fontFamily" = "Monaspace Xenon; -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif";
-        "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font Mono";
+        "chat.editor.fontFamily" = "Monaspace Radon";
+        "markdown.preview.fontFamily" = "Monaspace Radon; -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif";
+        "terminal.integrated.fontFamily" = "MonaspiceRn Nerd Font, WenQuanYi Zen Hei Mono";
 
         # Git settings
         "git.allowForcePush" = true;
