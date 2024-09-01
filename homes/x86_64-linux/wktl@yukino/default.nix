@@ -26,12 +26,10 @@ in {
         };
       };
       terminal = {
-        emulators.kitty = enabled;
         media = {
           spicetify = enabled;
           go-musicfox = enabled;
         };
-        editors.neovim = enabled;
         tools = {
           git = {
             enable = true;
@@ -42,11 +40,6 @@ in {
           cava = enabled;
         };
       };
-    };
-
-    theme = {
-      gtk = enabled;
-      catppuccin = enabled;
     };
 
     scenes = {
