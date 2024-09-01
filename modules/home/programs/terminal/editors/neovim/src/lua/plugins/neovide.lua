@@ -23,6 +23,9 @@ return {
         neovide_cursor_animate_in_insert_mode = true,
         neovide_cursor_vfx_mode = "sonicboom",
       },
+      o = {
+        guifont = "MonaspiceRn Nerd font,WenQuanYi Zen Hei Mono:h14",
+      },
     },
   },
 }
