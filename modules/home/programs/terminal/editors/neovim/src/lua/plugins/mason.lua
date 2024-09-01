@@ -11,7 +11,8 @@ return {
     -- mason is unusable on NixOS, disable it.
     -- ensure_installed nothing
     opts = function(_, opts)
-      opts.ensure_installed = nil
+      -- vue-language-server install by nixpkgs, not normal run, so by the mesaon
+      opts.ensure_installed = { "volar" }
       opts.automatic_installation = false
     end,
 
@@ -50,8 +51,8 @@ return {
     -- mason is unusable on NixOS, disable it.
     -- ensure_installed nothing
     opts = function(_, opts)
-       opts.ensure_installed = nil
-       opts.automatic_installation = false
+      opts.ensure_installed = nil
+      opts.automatic_installation = false
     end,
 
     -- overrides `require("mason-nvim-dap").setup(...)`
