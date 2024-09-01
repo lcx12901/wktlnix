@@ -12,7 +12,7 @@
 in {
   options.${namespace}.system.fonts = with types; {
     enable = mkBoolOpt false "Whether or not to manage fonts.";
-    default = mkOpt str "MonaspiceNe Nerd Font" "Default font name";
+    default = mkOpt str "MonaspiceRn Nerd Font" "Default font name";
   };
 
   config = mkIf cfg.enable {
@@ -72,7 +72,7 @@ in {
 
         defaultFonts = let
           common = [
-            "MonaspiceNe Nerd Font"
+            "MonaspiceRn Nerd Font"
             "CaskaydiaCove Nerd Font Mono"
             "Iosevka Nerd Font"
             "Symbols Nerd Font"
@@ -81,11 +81,11 @@ in {
           ];
         in
           mapAttrs (_: fonts: fonts ++ common) {
-            serif = ["Noto Serif"];
-            sansSerif = ["Lexend"];
+            serif = ["WenQuanYi Zen Hei Mono"];
+            sansSerif = ["WenQuanYi Zen Hei Mono"];
             emoji = ["Noto Color Emoji"];
             monospace = [
-              "Source Code Pro Medium"
+              "MonaspiceRn Nerd Font"
               "Source Han Mono"
             ];
           };
