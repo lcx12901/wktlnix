@@ -90,6 +90,7 @@ in {
           immersive-translate
           vue-js-devtools
           tampermonkey
+          vimium
         ];
 
         search = {
