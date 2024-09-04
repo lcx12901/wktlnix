@@ -12,6 +12,7 @@ return {
   { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.motion.leap-nvim" },
   { import = "astrocommunity.motion.flit-nvim" },
+  { import = "astrocommunity.motion.nvim-spider" },
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
 
   -- Language Support
