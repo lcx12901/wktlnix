@@ -37,6 +37,7 @@ in {
           "float,title:微信"
           "float,class:^(org.gnome.Nautilus|nautilus)$"
           "float,class:discord"
+          "float,class:org.telegram.desktop"
         ];
 
         layerrule = [
