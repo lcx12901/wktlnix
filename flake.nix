@@ -30,17 +30,15 @@
       };
 
       overlays = with inputs; [
-        nix-ld-rs.overlays.default
-        nur.overlay
         catppuccin-vsc.overlays.default
       ];
 
       homes.modules = with inputs; [
         catppuccin.homeManagerModules.catppuccin
         impermanence.nixosModules.home-manager.impermanence
-        # nixvim.homeManagerModules.nixvim
         spicetify-nix.homeManagerModules.default
         ags.homeManagerModules.default
+        nur.hmModules.nur
       ];
 
       # Add modules to all NixOS systems.
