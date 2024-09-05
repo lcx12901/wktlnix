@@ -79,7 +79,7 @@ in {
 
         id = 0;
 
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        extensions = with config.nur.repos.rycee.firefox-addons; [
           firefox-color
           sidebery
           sponsorblock
