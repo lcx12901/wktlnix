@@ -75,7 +75,7 @@ in {
       programs = {
         terminal = {
           tools.lazygit = enabled;
-          editors.neovim = enabled;
+          # editors.neovim = enabled;
         };
       };
     };
