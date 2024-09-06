@@ -9,7 +9,7 @@
 
   cfg = config.${namespace}.system.xdg;
 
-  browser = ["firefox-beta.desktop"];
+  browser = ["firefox.desktop"];
   terminal = ["kitty.desktop"];
   video = ["vlc.desktop"];
 

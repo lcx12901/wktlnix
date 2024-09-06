@@ -42,7 +42,9 @@ in {
 
     programs.firefox = {
       enable = true;
-      package = pkgs.firefox-beta;
+      # FIXME: use devedition again when fixed
+      # pkgs.firefox-devedition
+      package = pkgs.firefox;
 
       policies = {
         CaptivePortal = false;
