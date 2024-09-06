@@ -3,6 +3,20 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
+-- eslint
+local customizations = {
+  { rule = "style/*", severity = "off", fixable = true },
+  { rule = "format/*", severity = "off", fixable = true },
+  { rule = "*-indent", severity = "off", fixable = true },
+  { rule = "*-spacing", severity = "off", fixable = true },
+  { rule = "*-spaces", severity = "off", fixable = true },
+  { rule = "*-order", severity = "off", fixable = true },
+  { rule = "*-dangle", severity = "off", fixable = true },
+  { rule = "*-newline", severity = "off", fixable = true },
+  { rule = "*quotes", severity = "off", fixable = true },
+  { rule = "*semi", severity = "off", fixable = true },
+}
+
 ---@type LazySpec
 return {
   "AstroNvim/astrolsp",
@@ -21,7 +35,11 @@ return {
       format_on_save = {
         enabled = false, -- enable or disable format on save globally
         -- allow_filetypes = { -- enable format on save for specified filetypes only
-        --   "jsonnet",
+        --   "vue",
+        --   "typescript",
+        --   "typescriptreact",
+        --   "javascript",
+        --   "javascriptreact",
         -- },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
@@ -68,6 +86,43 @@ return {
             hybridMode = false,
           },
         },
+      },
+      eslint = {
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "javascript.jsx",
+          "typescript",
+          "typescriptreact",
+          "typescript.tsx",
+          "vue",
+          "html",
+          "markdown",
+          "json",
+          "jsonc",
+          "yaml",
+          "toml",
+          "xml",
+          "gql",
+          "graphql",
+          "astro",
+          "svelte",
+          "css",
+          "less",
+          "scss",
+          "pcss",
+          "postcss",
+        },
+        settings = {
+          -- Silent the stylistic rules in you IDE, but still auto fix them
+          rulesCustomizations = customizations,
+        },
+        -- on_attach = function(client, bufnr)
+        --   vim.api.nvim_create_autocmd("BufWritePre", {
+        --     buffer = bufnr,
+        --     command = "EslintFixAll",
+        --   })
+        -- end,
       },
     },
     -- customize how language servers are attached
