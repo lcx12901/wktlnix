@@ -12,18 +12,9 @@ return {
     -- ensure_installed nothing
     opts = function(_, opts)
       -- vue-language-server install by nixpkgs, not normal run, so by the mesaon
-      opts.ensure_installed = { "volar" }
+      opts.ensure_installed = nil
       opts.automatic_installation = false
     end,
-
-    -- overrides `require("mason-lspconfig").setup(...)`
-    -- opts = function(_, opts)
-    --   -- add more things to the ensure_installed table protecting against community packs modifying it
-    --   opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-    --     "lua_ls",
-    --     -- add more arguments for adding more language servers
-    --   })
-    -- end,
   },
   -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
   {
@@ -34,16 +25,6 @@ return {
       opts.ensure_installed = nil
       opts.automatic_installation = false
     end,
-
-    -- -- overrides `require("mason-null-ls").setup(...)`
-    -- opts = function(_, opts)
-    --   -- add more things to the ensure_installed table protecting against community packs modifying it
-    --   opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-    --     "prettier",
-    --     "stylua",
-    --     -- add more arguments for adding more null-ls sources
-    --   })
-    -- end,
   },
   {
     -- https://docs.astronvim.com/recipes/dap/
@@ -54,14 +35,5 @@ return {
       opts.ensure_installed = nil
       opts.automatic_installation = false
     end,
-
-    -- overrides `require("mason-nvim-dap").setup(...)`
-    -- opts = function(_, opts)
-    --   -- add more things to the ensure_installed table protecting against community packs modifying it
-    --   opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-    --     "python",
-    --     -- add more arguments for adding more debuggers
-    --   })
-    -- end,
   },
 }

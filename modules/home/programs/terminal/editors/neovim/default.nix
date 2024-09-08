@@ -113,14 +113,53 @@ in {
           nodePackages.typescript-language-server
           # HTML/CSS/JSON/ESLint language servers extracted from vscode
           nodePackages.vscode-langservers-extracted
-          emmet-ls
+          eslint_d
         ]
         ++ [
           fzf
           gdu # disk usage analyzer, required by AstroNvim
           (ripgrep.override {withPCRE2 = true;}) # recursively searches directories for a regex pattern
+          tree-sitter # required by nvim-treesitter
         ]
       );
     };
+
+    xdg.configFile."nvim/lua/plugins/extraLsp.lua".text = ''
+      local vue_language_server_path = '${lib.getExe pkgs.vue-language-server}'
+
+      return {
+        "AstroNvim/astrolsp",
+        opts = {
+          config = {
+            tsserver = {
+              init_options = {
+                plugins = {
+                  {
+                    name = '@vue/typescript-plugin',
+                    location = vue_language_server_path,
+                    languages = { 'vue' },
+                  },
+                },
+              },
+              filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+            },
+          },
+        },
+      }
+    '';
+    xdg.configFile."nvim/lua/plugins/extraConform.lua".text = ''
+      return {
+        "stevearc/conform.nvim",
+        opts = {
+          formatters = {
+            eslint_d = {
+              command = "eslint_d",
+              args = { "--fix-to-stdout", "--stdin", "--stdin-filename", "$FILENAME" },
+              cwd = require("conform.util").root_file({ "package.json" }),
+            },
+          },
+        },
+      }
+    '';
   };
 }
