@@ -147,19 +147,5 @@ in {
         },
       }
     '';
-    xdg.configFile."nvim/lua/plugins/extraConform.lua".text = ''
-      return {
-        "stevearc/conform.nvim",
-        opts = {
-          formatters = {
-            eslint_d = {
-              command = "eslint_d",
-              args = { "--fix-to-stdout", "--stdin", "--stdin-filename", "$FILENAME" },
-              cwd = require("conform.util").root_file({ "package.json" }),
-            },
-          },
-        },
-      }
-    '';
   };
 }
