@@ -33,7 +33,6 @@ return {
       diagnostics.hadolint, -- Dockerfile linter
       formatting.black, -- Python formatter
       formatting.shfmt, -- Shell formatter
-      formatting.alejandra, -- Nix formatter
       formatting.sqlfluff.with { -- SQL formatter
         extra_args = { "--dialect", "postgres" }, -- change to your dialect
       },
