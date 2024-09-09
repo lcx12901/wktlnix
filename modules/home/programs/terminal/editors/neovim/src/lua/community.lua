@@ -43,4 +43,6 @@ return {
   -- editing-support
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.indent.indent-rainbowline" },
+
+  { import = "astrocommunity.diagnostics.trouble-nvim" },
 }
