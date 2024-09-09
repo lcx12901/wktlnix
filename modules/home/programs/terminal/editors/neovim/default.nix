@@ -108,12 +108,12 @@ in {
           shfmt
 
           #-- frontend
-          # vue-language-server
+          vue-language-server
           typescript
           nodePackages.typescript-language-server
           # HTML/CSS/JSON/ESLint language servers extracted from vscode
           nodePackages.vscode-langservers-extracted
-          eslint_d
+          emmet-ls
         ]
         ++ [
           fzf
@@ -142,6 +142,13 @@ in {
                 },
               },
               filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+            },
+            volar = {
+              init_options = {
+                typescript = {
+                  tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib",
+                },
+              },
             },
           },
         },

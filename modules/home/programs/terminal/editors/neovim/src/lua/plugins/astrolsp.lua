@@ -3,7 +3,6 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
--- eslint
 local customizations = {
   { rule = "style/*", severity = "off", fixable = true },
   { rule = "format/*", severity = "off", fixable = true },
@@ -24,7 +23,7 @@ return {
   opts = {
     -- Configuration table of features provided by AstroLSP
     features = {
-      autoformat = true, -- enable or disable auto formatting on start
+      autoformat = false, -- enable or disable auto formatting on start
       codelens = true, -- enable/disable codelens refresh on start
       inlay_hints = false, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
@@ -34,17 +33,6 @@ return {
       -- control auto formatting on save
       format_on_save = {
         enabled = false, -- enable or disable format on save globally
-        -- allow_filetypes = { -- enable format on save for specified filetypes only
-        --   "vue",
-        --   "typescript",
-        --   "typescriptreact",
-        --   "javascript",
-        --   "javascriptreact",
-        -- },
-      },
-      disabled = { -- disable formatting capabilities for the listed language servers
-        -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
-        -- "lua_ls",
       },
       timeout_ms = 3000, -- default format timeout
     },
@@ -70,7 +58,7 @@ return {
 
       ---- Web Development
       "tsserver", -- typescript/javascript language server
-      "html", -- html language server
+      "volar", -- vue language server
       "cssls", -- css language server
       "prismals", -- prisma language server
       "eslint",
@@ -110,15 +98,6 @@ return {
         },
       },
     },
-    -- customize how language servers are attached
-    handlers = {
-      -- a function without a key is simply the default handler, functions take two parameters, the server name and the configured options table for that server
-      -- function(server, opts) require("lspconfig")[server].setup(opts) end
-
-      -- the key is the server that is being setup with `lspconfig`
-      -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
-      -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end -- or a custom handler function can be passed
-    },
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
       -- first key is the `augroup` to add the auto commands to (:h augroup)
@@ -144,11 +123,5 @@ return {
         },
       },
     },
-    -- A custom `on_attach` function to be run after the default `on_attach` function
-    -- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
-    on_attach = function(client, bufnr)
-      -- this would disable semanticTokensProvider for all clients
-      -- client.server_capabilities.semanticTokensProvider = nil
-    end,
   },
 }
