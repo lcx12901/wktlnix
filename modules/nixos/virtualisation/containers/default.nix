@@ -8,6 +8,8 @@
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.virtualisation.containers;
+  # hasOptinPersistence = config.${namespace}.system.persist.enable;
+  # volumesRoot = "${lib.optionalString hasOptinPersistence "/persist"}/var/lib/containers/persist_data";
 in {
   options.${namespace}.virtualisation.containers = {
     enable = mkBoolOpt false "Whether or not to enable containers.";
