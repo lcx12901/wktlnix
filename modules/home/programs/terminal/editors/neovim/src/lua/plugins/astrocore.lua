@@ -39,5 +39,41 @@ return {
         updatetime = 200, -- Update time for cursor blinking
       },
     },
+    mappings = {
+      n = {
+        -- undo history
+        ["<Leader>uh"] = { "<cmd>Telescope undo<cr>", desc = "Telescope undo" },
+
+        -- implementation/definition preview
+        ["gpd"] = {
+          "<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
+          desc = "goto_preview_definition",
+        },
+        ["gpt"] = {
+          "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>",
+          desc = "goto_preview_type_definition",
+        },
+        ["gpi"] = {
+          "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>",
+          desc = "goto_preview_implementation",
+        },
+        ["gP"] = { "<cmd>lua require('goto-preview').close_all_win()<CR>", desc = "close_all_win" },
+        ["gpr"] = {
+          "<cmd>lua require('goto-preview').goto_preview_references()<CR>",
+          desc = "goto_preview_references",
+        },
+
+        -- search and replace globally
+        ["<Leader>ss"] = { '<cmd>lua require("spectre").toggle()<CR>', desc = "Toggle Spectre" },
+        ["<Leader>sw"] = {
+          '<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
+          desc = "Search current word",
+        },
+        ["<Leader>sp"] = {
+          '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
+          desc = "Search on current file",
+        },
+      },
+    },
   },
 }
