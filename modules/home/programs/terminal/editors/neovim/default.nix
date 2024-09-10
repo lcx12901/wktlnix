@@ -113,7 +113,7 @@ in {
           nodePackages.typescript-language-server
           # HTML/CSS/JSON/ESLint language servers extracted from vscode
           nodePackages.vscode-langservers-extracted
-          emmet-ls
+          eslint_d
         ]
         ++ [
           fzf
@@ -131,7 +131,7 @@ in {
         "AstroNvim/astrolsp",
         opts = {
           config = {
-            tsserver = {
+            ts_ls = {
               init_options = {
                 plugins = {
                   {

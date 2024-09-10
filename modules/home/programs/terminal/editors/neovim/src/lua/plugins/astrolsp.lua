@@ -35,6 +35,13 @@ return {
         enabled = false, -- enable or disable format on save globally
       },
       timeout_ms = 3000, -- default format timeout
+      disabled = {
+        "lua_ls",
+        "nil_ls",
+        "ts_ls",
+        "volar",
+        "eslint",
+      },
     },
     -- enable servers that you already have installed without mason
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
@@ -57,7 +64,7 @@ return {
       "rust_analyzer", -- rust
 
       ---- Web Development
-      "tsserver", -- typescript/javascript language server
+      "ts_ls", -- typescript/javascript language server
       "volar", -- vue language server
       "cssls", -- css language server
       "prismals", -- prisma language server
@@ -100,6 +107,7 @@ return {
     },
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
+      eslint_fix_on_save = false,
       -- first key is the `augroup` to add the auto commands to (:h augroup)
       lsp_document_highlight = {
         -- Optional condition to create/delete auto command group
