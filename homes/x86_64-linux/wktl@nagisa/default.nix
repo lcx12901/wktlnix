@@ -32,11 +32,6 @@ in {
           spicetify = enabled;
           go-musicfox = enabled;
         };
-        tools = {
-          git = enabled;
-          direnv = enabled;
-          cava = enabled;
-        };
       };
     };
 

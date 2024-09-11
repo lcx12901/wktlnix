@@ -74,7 +74,12 @@ in {
     wktlnix = {
       programs = {
         terminal = {
-          tools.lazygit = enabled;
+          tools = {
+            git = enabled;
+            lazygit = enabled;
+            fzf = enabled;
+            direnv = enabled;
+          };
           editors.neovim = enabled;
         };
       };

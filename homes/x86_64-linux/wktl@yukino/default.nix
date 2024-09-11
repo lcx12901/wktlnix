@@ -32,12 +32,9 @@ in {
         };
         tools = {
           git = {
-            enable = true;
             userName = "linchengxu";
             userEmail = "linchengxu@z9yun.com";
           };
-          direnv = enabled;
-          cava = enabled;
         };
       };
     };
