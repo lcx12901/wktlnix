@@ -47,6 +47,7 @@ in {
             line-numbers = true;
             navigate = true;
             side-by-side = true;
+            true-color = "always";
           };
         };
 
@@ -65,10 +66,10 @@ in {
           #   rebase = true;
           # };
 
-          # push = {
-          #   autoSetupRemote = true;
-          #   default = "current";
-          # };
+          push = {
+            autoSetupRemote = true;
+            default = "current";
+          };
 
           # rebase = {
           #   autoStash = true;
@@ -79,8 +80,28 @@ in {
           #     "~/$Coding/"
           #   ];
           # };
+          diff.tool = "nvimdiff";
+          diff.guitool = "nvimdiff";
+          merge.tool = "nvimdiff";
+          merge.conflictstyle = "diff3";
+          mergetool.keepBackup = false;
+          mergetool.prompt = false;
+          mergetool."vimdiff" = {
+            layout = "LOCAL,MERGED,REMOTE";
+          };
 
           http.postBuffer = 157286400;
+        };
+        aliases = {
+          # common aliases
+          br = "branch";
+          co = "checkout";
+          st = "status";
+          ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
+          ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
+          cm = "commit -m"; # commit via `git cm <message>`
+          ca = "commit -am"; # commit all changes via `git ca <message>`
+          dc = "diff --cached";
         };
       };
     };
