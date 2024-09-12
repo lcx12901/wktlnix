@@ -8,13 +8,14 @@
   ...
 }: let
   inherit (lib) mkIf mkEnableOption;
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.${namespace}) mkOpt enabled;
   inherit (inputs) hyprland;
 
   cfg = config.${namespace}.programs.graphical.wms.hyprland;
 in {
   options.${namespace}.programs.graphical.wms.hyprland = {
     enable = mkEnableOption "Hyprland.";
+    monitor = mkOpt lib.types.str ",highrr,auto,1" "Set up hyprland's monitor.";
     appendConfig = lib.mkOption {
       type = lib.types.lines;
       default = "";
