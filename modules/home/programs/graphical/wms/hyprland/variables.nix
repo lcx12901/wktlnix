@@ -19,7 +19,8 @@ in {
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       settings = {
-        monitor = ",highrr,auto,1";
+        inherit (cfg) monitor;
+
         env = "HYPRLAND_TRACE,1";
 
         input = {
