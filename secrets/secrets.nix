@@ -8,6 +8,7 @@ in {
   "service/mihomo.age".publicKeys = users;
 
   "keys/cloudflare.age".publicKeys = users;
+  "keys/aria2.age".publicKeys = users;
 
   "ssh/akari_rsa.age".publicKeys = users;
 }
