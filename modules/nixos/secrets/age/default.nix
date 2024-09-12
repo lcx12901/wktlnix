@@ -33,14 +33,14 @@ in {
           file = lib.snowfall.fs.get-file "secrets/service/dae.age";
         };
       })
-      (mkIf config.${namespace}.security.acme.enable {
-        "cloudflare.key" = {
-          file = lib.snowfall.fs.get-file "secrets/keys/cloudflare.age";
-        };
-      })
       (mkIf config.${namespace}.services.mihomo.enable {
         "mihomo.yaml" = {
           file = lib.snowfall.fs.get-file "secrets/service/mihomo.age";
+        };
+      })
+      (mkIf config.${namespace}.services.aria2.enable {
+        "aria2-rpc-token.text" = {
+          file = lib.snowfall.fs.get-file "secrets/keys/aria2.age";
         };
       })
 

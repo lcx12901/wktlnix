@@ -55,6 +55,7 @@ in {
     services = {
       mihomo = enabled;
       openssh = enabled;
+      aria2 = enabled;
       cloudflared = enabled;
     };
 
