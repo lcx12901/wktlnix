@@ -56,6 +56,7 @@ in {
       mihomo = enabled;
       openssh = enabled;
       aria2 = enabled;
+      inadyn = enabled;
       cloudflared = enabled;
     };
 
