@@ -60,6 +60,8 @@ in {
       cloudflared = enabled;
     };
 
+    security.acme = enabled;
+
     virtualisation = {
       podman = enabled;
       # containers = enabled;

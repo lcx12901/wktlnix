@@ -28,6 +28,11 @@ in {
     ];
 
     age.secrets = mkMerge [
+      (mkIf config.${namespace}.security.acme.enable {
+        "cloudflare.key" = {
+          file = lib.snowfall.fs.get-file "secrets/keys/cloudflare.age";
+        };
+      })
       (mkIf config.services.dae.enable {
         "config.dae" = {
           file = lib.snowfall.fs.get-file "secrets/service/dae.age";
