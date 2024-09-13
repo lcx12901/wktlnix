@@ -171,7 +171,7 @@ in {
 
         # default applications
         "$term" = "${getExe pkgs.kitty}";
-        "$browser" = "${getExe pkgs.firefox}";
+        "$browser" = "${getExe pkgs.firefox-devedition}";
         "$launcher" = "${getExe config.programs.rofi.package} -show drun -n";
         "$launcher_alt" = "${getExe config.programs.rofi.package} -show calc";
         "$launchpad" = "${getExe config.programs.rofi.package} -show drun -config '~/.config/rofi/appmenu/rofi.rasi'";
