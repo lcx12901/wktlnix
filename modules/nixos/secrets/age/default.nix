@@ -43,6 +43,13 @@ in {
           file = lib.snowfall.fs.get-file "secrets/keys/aria2.age";
         };
       })
+      (mkIf config.${namespace}.services.inadyn.enable {
+        "cf-nagisa-inadyn.conf" = {
+          file = lib.snowfall.fs.get-file "secrets/service/cf-nagisa-inadyn.age";
+          owner = config.services.inadyn.user;
+          group = config.services.inadyn.group;
+        };
+      })
 
       {
         "akari_rsa" = {

@@ -6,6 +6,7 @@ let
 in {
   "service/dae.age".publicKeys = users;
   "service/mihomo.age".publicKeys = users;
+  "service/cf-nagisa-inadyn.age".publicKeys = users;
 
   "keys/cloudflare.age".publicKeys = users;
   "keys/aria2.age".publicKeys = users;
