@@ -41,9 +41,9 @@ in {
 
     programs.firefox = {
       enable = true;
-      # FIXME: use devedition again when fixed
-      # pkgs.firefox-devedition
-      package = pkgs.firefox;
+      package = pkgs.firefox-devedition;
+
+      languagePacks = ["zh-CN"];
 
       policies = {
         CaptivePortal = false;
@@ -149,8 +149,8 @@ in {
               "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               "font.name.monospace.x-western" = "MonaspiceRn Nerd Font";
-              "font.name.sans-serif.x-western" = "WenQuanYi Zen Hei Mono";
-              "font.name.serif.x-western" = "WenQuanYi Zen Hei Mono";
+              "font.name.sans-serif.x-western" = "MonaspiceRn Nerd Font";
+              "font.name.serif.x-western" = "MonaspiceRn Nerd Font";
               "signon.autofillForms" = false;
             }
             (optionalAttrs cfg.gpuAcceleration {
