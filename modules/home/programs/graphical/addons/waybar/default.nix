@@ -56,7 +56,8 @@ in {
   config = mkIf cfg.enable {
     programs.waybar = {
       enable = true;
-      package = waybar.packages.${system}.waybar;
+      # FIXME:tray module not showing icons, wait for upstream fix
+      # package = waybar.packages.${system}.waybar;
       systemd.enable = true;
 
       settings.mainBar = mkMerge [
