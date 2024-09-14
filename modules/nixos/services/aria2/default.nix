@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   namespace,
   ...
 }: let
@@ -14,6 +15,13 @@ in {
     services.aria2 = {
       enable = true;
       rpcSecretFile = config.age.secrets."aria2-rpc-token.text".path;
+      extraArguments = lib.concatStringsSep " " [
+        "--enable-dht6"
+      ];
     };
+    systemd.services.aria2.serviceConfig.ExecStartPre = [
+      "${pkgs.coreutils}/bin/touch /var/lib/aria2/dht.dat"
+      "${pkgs.coreutils}/bin/touch /var/lib/aria2/dht6.dat"
+    ];
   };
 }

@@ -107,6 +107,9 @@ in {
           shellcheck
           shfmt
 
+          #-- markdown
+          marksman
+
           #-- frontend
           vue-language-server
           typescript
