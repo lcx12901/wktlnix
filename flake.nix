@@ -24,9 +24,6 @@
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
-
-        # TODO: wechat need, when can cleanup
-        permittedInsecurePackages = ["openssl-1.1.1w"];
       };
 
       overlays = with inputs; [
@@ -161,11 +158,6 @@
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # nixvim = {
-    #   url = "github:nix-community/nixvim";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     # my wallpapers
     wallpapers = {
