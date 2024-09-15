@@ -77,7 +77,7 @@ in {
           tools = {
             git = enabled;
             lazygit = enabled;
-            fzf = enabled;
+            eza = enabled;
             direnv = enabled;
           };
           editors.neovim = enabled;
