@@ -29,6 +29,7 @@ in {
       cpu.amd = enabled;
       gpu.amd = enabled;
       btrfs = enabled;
+      bluetooth = enabled;
     };
 
     programs = {
@@ -55,8 +56,9 @@ in {
     services = {
       mihomo = enabled;
       openssh = enabled;
-      aria2 = enabled;
-      inadyn = enabled;
+      # aria2 = enabled;
+      # inadyn = enabled;
+      # nginx = enabled;
       cloudflared = enabled;
     };
 

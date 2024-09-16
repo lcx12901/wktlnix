@@ -22,20 +22,11 @@ in {
           gpuAcceleration = true;
           hardwareDecoding = true;
         };
-        editors.vscode = {
-          enable = true;
-          zoomLevel = 0.5;
-        };
         launchers.rofi = enabled;
         video = enabled;
       };
       terminal = {
         media.spicetify = enabled;
-        tools = {
-          git = enabled;
-          direnv = enabled;
-          cava = enabled;
-        };
       };
     };
 
