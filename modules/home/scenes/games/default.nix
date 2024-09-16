@@ -7,7 +7,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib.${namespace}) mkBoolOpt;
 
   persist = osConfig.${namespace}.system.persist.enable;
 
@@ -19,30 +19,14 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      bottles
-      lutris
-      proton-caller
-      protontricks
-      protonup-ng
-      protonup-qt
+      parsec-bin
     ];
-
-    wktlnix = {
-      programs = {
-        terminal = {
-          tools = {
-            wine = enabled;
-          };
-        };
-      };
-    };
 
     home.persistence = mkIf persist {
       "/persist/home/${config.${namespace}.user.name}" = {
         directories = [
-          ".local/share/bottles"
-          ".local/share/lutris"
-          "Games"
+          ".parsec"
+          ".parsec-persistent"
         ];
       };
     };
