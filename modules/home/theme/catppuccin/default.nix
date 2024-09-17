@@ -71,6 +71,7 @@ in {
     };
 
     programs = {
+      btop.catppuccin = enabled;
       cava = {
         catppuccin = {
           enable = true;
