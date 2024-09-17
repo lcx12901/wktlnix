@@ -27,12 +27,6 @@ in {
         apps.discord = enabled;
         video = enabled;
       };
-      terminal = {
-        media = {
-          spicetify = enabled;
-          go-musicfox = enabled;
-        };
-      };
     };
 
     scenes = {

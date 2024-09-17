@@ -73,6 +73,10 @@ in {
       programs = {
         terminal = {
           emulators.kitty = enabled;
+          media = {
+            spicetify = enabled;
+            go-musicfox = enabled;
+          };
           tools.cava = enabled;
         };
         graphical = {

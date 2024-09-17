@@ -33,10 +33,6 @@ in {
         };
       };
       terminal = {
-        media = {
-          spicetify = enabled;
-          go-musicfox = enabled;
-        };
         tools = {
           git = {
             userName = "linchengxu";
