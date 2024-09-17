@@ -20,6 +20,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       parsec-bin
+      bottles
     ];
 
     home.persistence = mkIf persist {
@@ -27,6 +28,7 @@ in {
         directories = [
           ".parsec"
           ".parsec-persistent"
+          ".local/share/bottles"
         ];
       };
     };

@@ -22,11 +22,14 @@ in {
           gpuAcceleration = true;
           hardwareDecoding = true;
         };
-        launchers.rofi = enabled;
+        apps.discord = enabled;
         video = enabled;
       };
       terminal = {
-        media.spicetify = enabled;
+        media = {
+          spicetify = enabled;
+          go-musicfox = enabled;
+        };
       };
     };
 
