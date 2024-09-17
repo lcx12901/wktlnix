@@ -75,10 +75,13 @@ in {
       programs = {
         terminal = {
           tools = {
+            btop = enabled;
+            colorls = enabled;
             git = enabled;
             lazygit = enabled;
             eza = enabled;
             direnv = enabled;
+            ripgrep = enabled;
           };
           editors.neovim = enabled;
         };
