@@ -26,7 +26,6 @@ in {
 
       shellAliases = {
         du = "${pkgs.ncdu}/bin/ncdu --color dark -rr -x";
-        btop = "${getExe pkgs.btop}";
         nsn = "nix shell nixpkgs#";
         nsw = "sudo nixos-rebuild switch --flake .#${osConfig.networking.hostName}";
       };
