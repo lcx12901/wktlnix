@@ -6,7 +6,7 @@
   osConfig,
   ...
 }: let
-  inherit (lib) mkIf getExe;
+  inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.shell.fish;
