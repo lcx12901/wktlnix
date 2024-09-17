@@ -41,6 +41,8 @@ in {
           "float,class:org.telegram.desktop"
           "center 1,class:org.telegram.desktop"
           "size 55% 60%,class:org.telegram.desktop"
+
+          "opacity 1 override, class:firefox"
         ];
 
         layerrule = [
