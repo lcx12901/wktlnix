@@ -60,7 +60,7 @@ return {
 
       ---- General Purpose Languages
       "lua_ls", -- lua
-      "bashls", -- bash
+      -- "bashls", -- bash
       "rust_analyzer", -- rust
 
       ---- Web Development
