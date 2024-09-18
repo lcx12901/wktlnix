@@ -128,7 +128,7 @@ in {
     };
 
     xdg.configFile."nvim/lua/plugins/extraLsp.lua".text = ''
-      local vue_language_server_path = '${lib.getExe pkgs.vue-language-server}'
+      local vue_language_server_path = '${pkgs.vue-language-server}/lib/node_modules/@vue/language-server'
 
       return {
         "AstroNvim/astrolsp",
