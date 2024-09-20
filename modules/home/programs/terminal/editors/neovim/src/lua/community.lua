@@ -42,7 +42,14 @@ return {
 
   -- editing-support
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
-  { import = "astrocommunity.indent.indent-rainbowline" },
+  { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+
+  { import = "astrocommunity.indent.indent-blankline-nvim" },
+  { import = "astrocommunity.indent.mini-indentscope" },
 
   { import = "astrocommunity.diagnostics.trouble-nvim" },
+
+  -- workflow
+  { import = "astrocommunity.workflow.hardtime-nvim" },
+  { import = "astrocommunity.workflow.precognition-nvim" },
 }
