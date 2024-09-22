@@ -49,6 +49,9 @@ return {
 
   { import = "astrocommunity.diagnostics.trouble-nvim" },
 
+  -- git
+  { import = "astrocommunity.git.neogit" },
+
   -- workflow
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
   { import = "astrocommunity.workflow.precognition-nvim" },
