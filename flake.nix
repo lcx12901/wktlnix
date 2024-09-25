@@ -138,9 +138,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #FIXME: error: attribute mkIf already defined
-    # remove when fix in https://github.com/nix-community/impermanence/issues/215
-    impermanence.url = "github:nix-community/impermanence/63f4d0443e32b0dd7189001ee1894066765d18a5";
+    impermanence.url = "github:nix-community/impermanence";
 
     #FIXME: updated to include accents, https://github.com/catppuccin/nix/pull/343
     catppuccin.url = "github:catppuccin/nix";
