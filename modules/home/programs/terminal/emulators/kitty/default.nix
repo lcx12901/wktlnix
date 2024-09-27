@@ -11,20 +11,31 @@
 in {
   options.${namespace}.programs.terminal.emulators.kitty = {
     enable = mkBoolOpt false "Whether to enable kitty.";
-    font = mkOpt types.str "MonaspiceRn Nerd Font" "Font to use for kitty.";
+    font = mkOpt types.str "MonaspiceRn Nerd Font Mono" "Font to use for kitty.";
   };
 
   config = mkIf cfg.enable {
     programs.kitty = {
       enable = true;
 
+      extraConfig = ''
+        # Emoji font
+        symbol_map U+1F600-U+1F64F Noto Color Emoji
+
+        # Fallback to Nerd Font Symbols
+        symbol_map U+23FB-U+23FE,U+2665,U+26A1,U+2B58,U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0D4,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6AA,U+E700-U+E7C5,U+EA60-U+EBEB,U+F000-U+F2E0,U+F300-U+F32F,U+F400-U+F4A9,U+F500-U+F8FF,U+F0001-U+F1AF0 Symbols Nerd Font Mono
+      '';
+
+      font = {
+        name = cfg.font;
+        size = 14;
+      };
+
       settings = {
         # Fonts
-        font_family = cfg.font;
         italic_font = "auto";
         bold_font = "auto";
         bold_italic_font = "auto";
-        font_size = 12;
 
         adjust_line_height = 0;
         adjust_column_width = 0;
@@ -42,7 +53,7 @@ in {
 
         # URLs
         url_style = "double";
-        open_url_modifiers = "ctrl + shift";
+        # open_url_modifiers = "ctrl + shift";
         open_url_with = "default";
         copy_on_select = "yes";
 
@@ -70,8 +81,8 @@ in {
         initial_window_width = 700;
         initial_window_height = 400;
         window_border_width = 0;
-        window_margin_width = 12;
-        window_padding_width = 6;
+        window_margin_width = 0;
+        window_padding_width = 0;
         inactive_text_alpha = "1.0";
         background_opacity = "1.0";
         placement_strategy = "center";
