@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   namespace,
   ...
 }: let
@@ -80,6 +81,16 @@ in {
       };
       kitty.catppuccin = enabled;
       waybar.catppuccin = enabled;
+    };
+
+    xdg.dataFile."fcitx5/themes/catppuccin-${cfg.flavor}-${cfg.accent}" = {
+      source = "${inputs.catppuccin-fcitx5}/src/catppuccin-${cfg.flavor}-${cfg.accent}";
+      recursive = true;
+    };
+    xdg.configFile."fcitx5/conf/classicui.conf" = {
+      text = lib.generators.toINIWithGlobalSection {} {
+        globalSection.Theme = "catppuccin-${cfg.flavor}-${cfg.accent}";
+      };
     };
   };
 }
