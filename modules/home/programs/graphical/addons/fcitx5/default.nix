@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.addons.fcitx5;
 in {
@@ -18,7 +18,6 @@ in {
     i18n.inputMethod = {
       enabled = "fcitx5";
       fcitx5 = {
-        catppuccin = enabled;
         addons = with pkgs; [
           fcitx5-chinese-addons
           fcitx5-gtk
