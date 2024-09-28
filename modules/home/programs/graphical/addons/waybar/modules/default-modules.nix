@@ -123,7 +123,8 @@ in {
 
   clock = {
     tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-    format = "󰃭 {:%a %d %b  󰅐 %I:%M %p}";
+    format = "󰃭 {:%a %d %b  󰅐 %I:%M:%S %p}";
+    interval = 1;
     calendar = {
       mode = "year";
       mode-mon-col = 3;
