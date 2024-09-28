@@ -81,10 +81,7 @@ in {
 
     wktlnix = {
       user = {
-        extraGroups = [
-          "network"
-          # "networkmanager"
-        ];
+        extraGroups = ["network"];
       };
     };
 
@@ -101,27 +98,7 @@ in {
         "2606:4700:4700::1111"
         "2606:4700:4700::1001"
       ];
-
-      # networkmanager = {
-      #   enable = true;
-      #   dns = "dnsmasq";
-      #   connectionConfig = {
-      #     "connection.mdns" = "2";
-      #   };
-      #   plugins = with pkgs; [
-      #     networkmanager-l2tp
-      #     networkmanager-openvpn
-      #     networkmanager-sstp
-      #     networkmanager-vpnc
-      #   ];
-      #   unmanaged =
-      #     ["interface-name:br-*"]
-      #     ++ lib.optionals config.${namespace}.virtualisation.podman.enable ["interface-name:docker*"]
-      #     ++ lib.optionals config.${namespace}.virtualisation.kvm.enable ["interface-name:virbr*"];
-      # };
     };
-
-    # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
     services = {
       dnsmasq = {
