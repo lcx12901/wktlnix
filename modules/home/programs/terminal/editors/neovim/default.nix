@@ -65,66 +65,70 @@ in {
         ${pkgs.rsync}/bin/rsync -avz --chmod=D2755,F744 ${./src}/ ${config.xdg.configHome}/nvim/
       '';
 
-      packages = with pkgs; (
-        [
-          neovide
-          wl-clipboard
-        ]
-        ++
-        # -*- Data & Configuration Languages -*-#
-        [
-          #-- nix
-          nil
-          statix # Lints and suggestions for the nix programming language
-          deadnix # Find and remove unused code in .nix source files
-          alejandra # Nix Code Formatter
-        ]
-        ++
-        #-*- General Purpose Languages -*-#
-        [
-          #-- c/c++
-          cmake
-          cmake-language-server
-          gnumake
-          checkmake
-          # c/c++ compiler, required by nvim-treesitter!
-          gcc
-          gdb
-          # c/c++ tools with clang-tools, the unwrapped version won't
-          # add alias like `cc` and `c++`, so that it won't conflict with gcc
-          clang-tools
-          lldb
+      packages = with pkgs;
+        (
+          [
+            neovide
+            wl-clipboard
+          ]
+          ++
+          # -*- Data & Configuration Languages -*-#
+          [
+            #-- nix
+            nil
+            statix # Lints and suggestions for the nix programming language
+            deadnix # Find and remove unused code in .nix source files
+            alejandra # Nix Code Formatter
+          ]
+          ++
+          #-*- General Purpose Languages -*-#
+          [
+            #-- c/c++
+            cmake
+            cmake-language-server
+            gnumake
+            checkmake
+            # c/c++ compiler, required by nvim-treesitter!
+            gcc
+            gdb
+            # c/c++ tools with clang-tools, the unwrapped version won't
+            # add alias like `cc` and `c++`, so that it won't conflict with gcc
+            clang-tools
+            lldb
 
-          #-- zig
-          zls
+            #-- zig
+            zls
 
-          #-- lua
-          stylua
-          lua-language-server
+            #-- lua
+            stylua
+            lua-language-server
 
-          #-- bash
-          nodePackages.bash-language-server
-          shellcheck
-          shfmt
+            #-- bash
+            nodePackages.bash-language-server
+            shellcheck
+            shfmt
 
-          #-- markdown
-          marksman
+            #-- markdown
+            marksman
 
-          #-- frontend
-          vue-language-server
-          typescript
-          nodePackages.typescript-language-server
-          # HTML/CSS/JSON/ESLint language servers extracted from vscode
-          nodePackages.vscode-langservers-extracted
-          eslint_d
-        ]
-        ++ [
-          fzf
-          gdu # disk usage analyzer, required by AstroNvim
-          (ripgrep.override {withPCRE2 = true;}) # recursively searches directories for a regex pattern
-          tree-sitter # required by nvim-treesitter
-        ]
-      );
+            #-- frontend
+            vue-language-server
+            typescript
+            nodePackages.typescript-language-server
+            # HTML/CSS/JSON/ESLint language servers extracted from vscode
+            nodePackages.vscode-langservers-extracted
+            eslint_d
+          ]
+          ++ [
+            fzf
+            gdu # disk usage analyzer, required by AstroNvim
+            (ripgrep.override {withPCRE2 = true;}) # recursively searches directories for a regex pattern
+            tree-sitter # required by nvim-treesitter
+          ]
+        )
+        ++ (with pkgs.${namespace}; [
+          unocss-language-server
+        ]);
     };
 
     xdg.configFile."nvim/lua/plugins/extraLsp.lua".text = ''
