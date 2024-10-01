@@ -97,15 +97,15 @@ in {
         "workbench.iconTheme" = "vscode-icons";
 
         # Font family
-        "editor.fontFamily" = "MonaspiceRn Nerd Font, WenQuanYi Zen Hei Mono";
-        "editor.codeLensFontFamily" = "MonaspiceRn Nerd Font, WenQuanYi Zen Hei Mono";
+        "editor.fontFamily" = "MonaspiceRn Nerd Font, LXGW WenKai Mono Bold";
+        "editor.codeLensFontFamily" = "MonaspiceRn Nerd Font, LXGW WenKai Mono Bold";
         "editor.inlayHints.fontFamily" = "MonaspiceRn Nerd Font";
         "debug.console.fontFamily" = "Monaspace Radon";
         "scm.inputFontFamily" = "Monaspace Radon";
         "notebook.output.fontFamily" = "Monapsace Radon";
         "chat.editor.fontFamily" = "Monaspace Radon";
         "markdown.preview.fontFamily" = "Monaspace Radon; -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif";
-        "terminal.integrated.fontFamily" = "MonaspiceRn Nerd Font, WenQuanYi Zen Hei Mono";
+        "terminal.integrated.fontFamily" = "MonaspiceRn Nerd Font, LXGW WenKai Mono Bold";
 
         # Git settings
         "git.allowForcePush" = true;
