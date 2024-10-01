@@ -69,6 +69,7 @@ return {
       "cssls", -- css language server
       "prismals", -- prisma language server
       "eslint",
+      "unocss",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
