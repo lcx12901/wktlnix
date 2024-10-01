@@ -29,7 +29,7 @@ in {
 
       packages = with pkgs; [
         # Desktop Fonts
-        wqy_zenhei
+        lxgw-wenkai
         # Noto 系列字体是 Google 主导的，名字的含义是「没有豆腐」（no tofu），因为缺字时显示的方框或者方框被叫作 tofu
         # Noto 系列字族名只支持英文，命名规则是 Noto + Sans 或 Serif + 文字名称。
         # 其中汉字部分叫 Noto Sans/Serif CJK SC/TC/HK/JP/KR，最后一个词是地区变种。
@@ -76,17 +76,16 @@ in {
             "CaskaydiaCove Nerd Font Mono"
             "Iosevka Nerd Font"
             "Symbols Nerd Font"
-            "WenQuanYi Zen Hei Mono"
             "Noto Color Emoji"
           ];
         in
           mapAttrs (_: fonts: fonts ++ common) {
-            serif = ["WenQuanYi Zen Hei Mono"];
-            sansSerif = ["WenQuanYi Zen Hei Mono"];
+            serif = ["MonaspiceRn Nerd Font"];
+            sansSerif = ["MonaspiceRn Nerd Font"];
             emoji = ["Noto Color Emoji"];
             monospace = [
               "MonaspiceRn Nerd Font"
-              "Source Han Mono"
+              "LXGW WenKai Mono Bold"
             ];
           };
       };

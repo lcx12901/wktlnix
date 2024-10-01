@@ -24,7 +24,7 @@ return {
         neovide_cursor_vfx_mode = "sonicboom",
       },
       o = {
-        guifont = "MonaspiceRn Nerd font,WenQuanYi Zen Hei Mono:h14",
+        guifont = "MonaspiceRn Nerd font,LXGW WenKai Mono:h14",
       },
     },
   },
