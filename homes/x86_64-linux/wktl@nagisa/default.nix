@@ -20,10 +20,6 @@ in {
           gpuAcceleration = true;
           hardwareDecoding = true;
         };
-        editors.vscode = {
-          enable = true;
-          zoomLevel = 0.5;
-        };
         apps.discord = enabled;
         video = enabled;
       };
