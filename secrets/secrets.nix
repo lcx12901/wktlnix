@@ -12,4 +12,5 @@ in {
   "keys/aria2.age".publicKeys = users;
 
   "ssh/akari_rsa.age".publicKeys = users;
+  "ssh/host_rsa.age".publicKeys = users;
 }
