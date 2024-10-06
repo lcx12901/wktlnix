@@ -21,6 +21,10 @@ in {
         Host akari.lincx.top
           IdentityFile ${osConfig.age.secrets."akari_rsa".path}
           IdentitiesOnly yes
+
+        Host github.com
+          IdentityFile ${osConfig.age.secrets."host_rsa".path}
+          IdentitiesOnly yes
       '';
     };
   };
