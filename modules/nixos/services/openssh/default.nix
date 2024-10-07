@@ -48,6 +48,14 @@ in {
             hostNames = ["akari.lincx.top"];
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGcKaCEcZR316DCKO7fXP2nkF+krWnVm09WHKcxez5Fg";
           };
+          ryomori-rsa = {
+            hostNames = ["ryomori.lincx.top"];
+            publicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDfgvfR5ZkNMzywxPL0dQ80u8YEdQLYXW0OJlJpcdePay5ET9KDtSuLC3FFpIqAltXUAUDKi6QzMjSrQH8UnsmF1L2/UI9IAhvqgyBmUI+kPdGBOPIOpticH9HFJwm2ojL+u8kvA4LA2mPkPdovkc+AWv9zELzU4IeMhaVyByTkyyBIrzb+y++z8fkh8OAP6H0l4uDUBWPMVANp6QMQTpeR8P+lu3txoQdrvDB2gLq+mXte0GyGj2ycraYmmXyaQ5Gvvmopr0ZNXCSTG1Bp93PgAxk5n62IeWC8rMLGD5KIk999nyneA+VAiUvytcSq43JLT2pLeaaAyAl2c3xSjL5TFCVfaz8sF2JaudONJaPMr7btRbag3y9Kr56iuVP2QiqYkJw/9ZTCdVXD7wkAvyV3tWJGhjVST6lvg+iMrTOxZtTDTQ0T/DFf6luasc1OlUXA1EEpx48AWSY7VPMoLiXCQZ0ZNiJjISuVlohSWbjphbjvfhJhdzBJlfTKzfOl5Q8=";
+          };
+          ryomori-ed25519 = {
+            hostNames = ["ryomori.lincx.top"];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPH0FY3qnJ2Xfjv2jiMxB/N25gVvO3Dy5WKDi5OpuXjf";
+          };
         }
 
         (mkIf (host == "yukino") {

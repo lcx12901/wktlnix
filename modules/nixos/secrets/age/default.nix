@@ -65,6 +65,14 @@ in {
         };
       }
       {
+        "ryomori_rsa" = {
+          file = lib.snowfall.fs.get-file "secrets/ssh/ryomori_rsa.age";
+          owner = config.${namespace}.user.name;
+          group = "users";
+          mode = "0600";
+        };
+      }
+      {
         "host_rsa" = {
           file = lib.snowfall.fs.get-file "secrets/ssh/host_rsa.age";
           owner = config.${namespace}.user.name;
