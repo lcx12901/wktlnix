@@ -61,6 +61,15 @@ in {
     virtualisation.kvm = enabled;
   };
 
+  networking.wireless = {
+    enable = true;
+    networks = {
+      "wktl_5G_Game" = {
+        psk = "bP8Jq5TnjdHzLZ";
+      };
+    };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
