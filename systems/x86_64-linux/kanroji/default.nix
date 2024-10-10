@@ -12,7 +12,7 @@ in {
       boot = enabled;
       disko = {
         enable = true;
-        device = "/dev/nvme0n1";
+        device = "/dev/nvme0n1p5";
       };
       fonts = enabled;
       locale = {
