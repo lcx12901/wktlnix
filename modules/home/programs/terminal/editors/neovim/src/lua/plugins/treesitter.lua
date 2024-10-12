@@ -5,7 +5,11 @@ return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
     -- NOTE: additional parser
-    { "nushell/tree-sitter-nu" }, -- nushell scripts
+    {
+      -- nushell scripts
+      "nushell/tree-sitter-nu",
+      "nvim-treesitter/nvim-treesitter-context",
+    },
   },
   opts = function(_, opts)
     opts.incremental_selection = {

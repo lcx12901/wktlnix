@@ -73,6 +73,12 @@ return {
           '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
           desc = "Search on current file",
         },
+
+        -- treesitter context
+        ["[c"] = {
+          function() require("treesitter-context").go_to_context(vim.v.count1) end,
+          desc = "Go to context",
+        },
       },
     },
   },
