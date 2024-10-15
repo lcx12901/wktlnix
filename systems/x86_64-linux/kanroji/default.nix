@@ -20,7 +20,10 @@ in {
       };
       time = enabled;
       persist = enabled;
-      networking = enabled;
+      networking = {
+        enable = true;
+        wireless = true;
+      };
     };
 
     hardware = {
@@ -59,15 +62,6 @@ in {
     };
 
     virtualisation.kvm = enabled;
-  };
-
-  networking.wireless = {
-    enable = true;
-    networks = {
-      "wktl_5G_Game" = {
-        psk = "bP8Jq5TnjdHzLZ";
-      };
-    };
   };
 
   # This value determines the NixOS release from which the default
