@@ -14,7 +14,8 @@ in {
   options.${namespace}.system.networking = {
     enable = mkBoolOpt false "Whether or not to enable networking support";
     hosts = mkOpt attrs {} "An attribute set to merge with <option>networking.hosts</option>";
-    optimizeTcp = mkBoolOpt false "Optimize TCP connections";
+    optimizeTcp = mkBoolOpt true "Optimize TCP connections";
+    wireless = mkBoolOpt false "Whether or not to enable WIFI";
   };
 
   config = mkIf cfg.enable {
@@ -98,6 +99,15 @@ in {
         "2606:4700:4700::1111"
         "2606:4700:4700::1001"
       ];
+
+      wireless = {
+        enable = cfg.wireless;
+        networks = {
+          "wktl_5G_Game" = {
+            psk = "bP8Jq5TnjdHzLZ";
+          };
+        };
+      };
     };
 
     services = {

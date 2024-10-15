@@ -20,7 +20,10 @@ in {
       };
       time = enabled;
       persist = enabled;
-      networking = enabled;
+      networking = {
+        enable = true;
+        wireless = true;
+      };
     };
 
     hardware = {
@@ -59,13 +62,13 @@ in {
       # aria2 = enabled;
       # inadyn = enabled;
       # nginx = enabled;
-      cloudflared = enabled;
+      # cloudflared = enabled;
     };
 
-    security.acme = enabled;
+    # security.acme = enabled;
 
     virtualisation = {
-      podman = enabled;
+      # podman = enabled;
       # containers = enabled;
     };
   };
