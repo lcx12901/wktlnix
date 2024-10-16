@@ -22,6 +22,10 @@ in {
       terminal.tools.nix-ld = enabled;
     };
 
+    services = {
+      openssh = enabled;
+    };
+
     suites.common = enabled;
   };
 

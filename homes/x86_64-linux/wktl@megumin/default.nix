@@ -12,24 +12,10 @@ in {
       inherit (config.snowfallorg.user) name;
     };
 
-    programs = {
-      # graphical = {
-      #   browsers.firefox = enabled;
-      #   editors.vscode = enabled;
-      # };
-      terminal = {
-        editors.neovim = enabled;
-        tools = {
-          git = enabled;
-          direnv = enabled;
-        };
-      };
+    scenes = {
+      development = enabled;
     };
 
-    # theme = {
-    #   gtk = enabled;
-    #   catppuccin = enabled;
-    # };
   };
 
   home.stateVersion = "24.05";
