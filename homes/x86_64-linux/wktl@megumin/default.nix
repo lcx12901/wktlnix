@@ -13,11 +13,12 @@ in {
     };
 
     programs = {
-      graphical = {
-        browsers.firefox = enabled;
-        editors.vscode = enabled;
-      };
+      # graphical = {
+      #   browsers.firefox = enabled;
+      #   editors.vscode = enabled;
+      # };
       terminal = {
+        editors.neovim = enabled;
         tools = {
           git = enabled;
           direnv = enabled;
@@ -25,10 +26,10 @@ in {
       };
     };
 
-    theme = {
-      gtk = enabled;
-      catppuccin = enabled;
-    };
+    # theme = {
+    #   gtk = enabled;
+    #   catppuccin = enabled;
+    # };
   };
 
   home.stateVersion = "24.05";
