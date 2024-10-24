@@ -33,7 +33,7 @@ in {
             type = "gpt";
             partitions = {
 efi = {
-        size =" "512M";  # EFI 分区的大小，通常为 512MiB
+        size ="512M";  # EFI 分区的大小，通常为 512MiB
         type = "EF00";  # 指定为 EFI 分区类型
         content = {
                 type = "filesystem";
@@ -43,7 +43,6 @@ efi = {
       };
               boot = {
         size ="1G";  # /boot 分区大小，通常 512MiB 到 1GiB 即可
-        type = "linux";  # Linux 分区类型
 content = {
                 type = "filesystem";
                 format = "ext4";
