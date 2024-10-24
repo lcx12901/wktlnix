@@ -43,7 +43,7 @@ efi = {
       };
               boot = {
                 number = 2;
-        size = 1GiB;  # /boot 分区大小，通常 512MiB 到 1GiB 即可
+        size ="1GiB";  # /boot 分区大小，通常 512MiB 到 1GiB 即可
         type = "linux";  # Linux 分区类型
         filesystem = {
           format = "ext4";  # /boot 分区格式化为 ext4
