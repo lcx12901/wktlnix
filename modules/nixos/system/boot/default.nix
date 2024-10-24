@@ -48,16 +48,30 @@ in {
 
       loader = {
         efi = {
-          canTouchEfiVariables = true;
-          efiSysMountPoint = "/boot";
+          canTouchEfiVariables = false;
+          efiSysMountPoint = "/boot/efi";
         };
 
         generationsDir.copyKernels = true;
 
-        systemd-boot = {
-          enable = true;
-          configurationLimit = 20;
-          editor = false;
+        # systemd-boot = {
+        #   enable = true;
+        #   configurationLimit = 20;
+        #   editor = false;
+        # };
+
+        grub = {
+            enable = true;
+            device = "nodev";
+            efiSupport = true;
+            useOSProber = true;
+            efiInstallAsRemovable = true;
+            #extraEntries = ''
+                #menuentry "Windows" {
+                    #search --file --no-floppy --set=root /EFI/Microsoft/Boot/bootmgfw.efi
+                    #chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
+                #}
+            #'';
         };
       };
 

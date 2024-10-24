@@ -20,10 +20,7 @@ in {
       };
       time = enabled;
       persist = enabled;
-      networking = {
-        enable = true;
-        wireless = true;
-      };
+      networking = enabled;
     };
 
     hardware = {

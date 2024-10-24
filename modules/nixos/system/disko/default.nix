@@ -12,6 +12,7 @@ in {
   options.${namespace}.system.disko = {
     enable = mkBoolOpt false "Whether or not to enable declarative disk partitioning.";
     device = mkOpt types.str "/dev/nvme0n1" "this is a disk path.";
+    rootSize = mkOpt types.str "100%" "this is a root partition size.";
   };
 
   config = mkIf cfg.enable {
@@ -44,7 +45,7 @@ in {
                 };
               };
               root = {
-                size = "100%";
+                size = cfg.rootSize;
                 content = {
                   type = "btrfs";
                   extraArgs = ["-f"];
