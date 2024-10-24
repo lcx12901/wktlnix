@@ -33,26 +33,24 @@ in {
             type = "gpt";
             partitions = {
 efi = {
-        number = 1;
-        size = 512MiB;  # EFI 分区的大小，通常为 512MiB
-        type = "efi";  # 指定为 EFI 分区类型
-        filesystem = {
-          format = "vfat";  # 格式化为 FAT32
-          mountPoint = "/boot/efi";  # 挂载到 /boot/efi
-        };
+        size =" "512M";  # EFI 分区的大小，通常为 512MiB
+        type = "EF00";  # 指定为 EFI 分区类型
+        content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot/efi";
+              };
       };
               boot = {
-                number = 2;
-        size ="1GiB";  # /boot 分区大小，通常 512MiB 到 1GiB 即可
+        size ="1G";  # /boot 分区大小，通常 512MiB 到 1GiB 即可
         type = "linux";  # Linux 分区类型
-        filesystem = {
-          format = "ext4";  # /boot 分区格式化为 ext4
-          mountPoint = "/boot";  # 挂载到 /boot
-                
-
-              };};
+content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/boot";
+              };
+        };
               root = {
-                 number = 3;
                 size = cfg.rootSize;
                 content = {
                   type = "btrfs";
