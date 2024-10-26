@@ -1,4 +1,5 @@
 {
+  osConfig,
   config,
   lib,
   pkgs,
@@ -9,6 +10,8 @@
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.video;
+
+  persist = osConfig.${namespace}.system.persist.enable;
 in {
   options.${namespace}.programs.graphical.video = {
     enable = mkBoolOpt false "Whether or not to enable video configuration.";
@@ -18,6 +21,14 @@ in {
     home.packages = with pkgs; [
       ffmpeg-full
       vlc
+      tsukimi
     ];
+
+    home.persistence = mkIf persist {
+      "/persist/home/${config.${namespace}.user.name}" = {
+        allowOther = true;
+        files = [".config/tsukimi.toml"];
+      };
+    };
   };
 }
