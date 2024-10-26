@@ -104,9 +104,7 @@ in {
     smooth-scrolling-threshold = 1;
   };
 
-  network = let
-    nm-editor = "${getExe' pkgs.networkmanagerapplet "nm-connection-editor"}";
-  in {
+  network = {
     interval = 1;
     format-wifi = "󰜷 {bandwidthUpBytes} 󰜮 {bandwidthDownBytes}";
     format-ethernet = "󰜷 {bandwidthUpBytes} 󰜮 {bandwidthDownBytes}";
@@ -114,7 +112,6 @@ in {
     format-linked = "󰈁 {ifname} (No IP)";
     format-disconnected = " Disconnected";
     format-alt = "󰈀 {ifname}: {ipaddr}/{cidr}";
-    on-click-right = "${nm-editor}";
   };
 
   tray = {
