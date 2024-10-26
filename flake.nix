@@ -93,12 +93,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Run unpatched dynamically compiled binaries
-    nix-ld-rs = {
-      url = "github:nix-community/nix-ld-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # many of the extensions in nixpkgs are significantly out-of-date
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
