@@ -48,16 +48,24 @@ in {
 
       loader = {
         efi = {
-          canTouchEfiVariables = true;
-          efiSysMountPoint = "/boot";
+          canTouchEfiVariables = false;
+          efiSysMountPoint = "/boot/efi";
         };
 
         generationsDir.copyKernels = true;
 
-        systemd-boot = {
+        # systemd-boot = {
+        #   enable = !cfg.useGrub;
+        #   configurationLimit = 20;
+        #   editor = false;
+        # };
+
+        grub = {
           enable = true;
-          configurationLimit = 20;
-          editor = false;
+          device = "nodev";
+          efiSupport = true;
+          useOSProber = true;
+          efiInstallAsRemovable = true;
         };
       };
 

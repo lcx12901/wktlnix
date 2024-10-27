@@ -12,6 +12,7 @@ in {
   options.${namespace}.system.disko = {
     enable = mkBoolOpt false "Whether or not to enable declarative disk partitioning.";
     device = mkOpt types.str "/dev/nvme0n1" "this is a disk path.";
+    rootSize = mkOpt types.str "100%" "this is a root partition size.";
   };
 
   config = mkIf cfg.enable {
@@ -31,20 +32,25 @@ in {
           content = {
             type = "gpt";
             partitions = {
-              ESP = {
-                priority = 1;
-                name = "ESP";
-                start = "1M";
-                end = "512M";
-                type = "EF00";
+              efi = {
+                size = "512M"; # EFI 分区的大小，通常为 512MiB
+                type = "EF00"; # 指定为 EFI 分区类型
                 content = {
                   type = "filesystem";
                   format = "vfat";
+                  mountpoint = "/boot/efi";
+                };
+              };
+              boot = {
+                size = "1G"; # /boot 分区大小，通常 512MiB 到 1GiB 即可
+                content = {
+                  type = "filesystem";
+                  format = "ext4";
                   mountpoint = "/boot";
                 };
               };
               root = {
-                size = "100%";
+                size = cfg.rootSize;
                 content = {
                   type = "btrfs";
                   extraArgs = ["-f"];
