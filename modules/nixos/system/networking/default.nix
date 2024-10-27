@@ -102,10 +102,9 @@ in {
 
       wireless = {
         enable = cfg.wireless;
+        secretsFile = config.age.secrets."wireless.conf".path;
         networks = {
-          "wktl_5G_Game" = {
-            psk = "bP8Jq5TnjdHzLZ";
-          };
+          "wktl_5G_Game".pskRaw = "ext:psk_wktl_5G_Game";
         };
       };
     };

@@ -28,6 +28,11 @@ in {
     ];
 
     age.secrets = mkMerge [
+      (mkIf config.${namespace}.system.networking.wireless {
+        "wireless.conf" = {
+          file = lib.snowfall.fs.get-file "secrets/keys/wireless.age";
+        };
+      })
       (mkIf config.${namespace}.security.acme.enable {
         "cloudflare.key" = {
           file = lib.snowfall.fs.get-file "secrets/keys/cloudflare.age";
