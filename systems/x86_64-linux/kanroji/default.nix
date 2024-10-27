@@ -61,7 +61,8 @@ in {
       openssh = enabled;
     };
 
-    virtualisation.kvm = enabled;
+    security.pki.trustCa = enabled;
+    # virtualisation.kvm = enabled;
   };
 
   # This value determines the NixOS release from which the default
