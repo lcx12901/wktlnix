@@ -36,7 +36,14 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [swww];
+      packages = with pkgs; [
+        xwaylandvideobridge
+
+        swww
+
+        grim
+        slurp
+      ];
 
       sessionVariables = {
         CLUTTER_BACKEND = "wayland";
@@ -44,7 +51,7 @@ in {
         HYPRLAND_LOG_WLR = "1";
         MOZ_ENABLE_WAYLAND = "1";
         MOZ_USE_XINPUT2 = "1";
-        SDL_VIDEODRIVER = "wayland";
+        # SDL_VIDEODRIVER = "wayland";
         WLR_DRM_NO_ATOMIC = "1";
         XDG_CURRENT_DESKTOP = "Hyprland";
         XDG_SESSION_DESKTOP = "Hyprland";
@@ -59,7 +66,8 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
 
-      package = hyprland.packages.${system}.hyprland;
+      # package = hyprland.packages.${system}.hyprland;
+      package = pkgs.hyprland;
 
       systemd = {
         enable = true;
