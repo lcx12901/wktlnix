@@ -50,7 +50,10 @@ in {
     };
 
     services = {
-      displayManager.sessionPackages = [hyprland.packages.${system}.hyprland];
+      displayManager.sessionPackages = [
+        # hyprland.packages.${system}.hyprland
+        pkgs.hyprland
+      ];
 
       # needed for GNOME services outside of GNOME Desktop
       dbus.packages = [pkgs.gcr];
