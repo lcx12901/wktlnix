@@ -9,7 +9,10 @@ in {
 
   wktlnix = {
     system = {
-      boot = enabled;
+      boot = {
+        enable = true;
+        useGrub = true;
+      };
       disko = {
         enable = true;
         device = "/dev/nvme0n1";
