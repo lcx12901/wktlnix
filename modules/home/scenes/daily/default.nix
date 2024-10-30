@@ -3,6 +3,7 @@
   osConfig,
   lib,
   pkgs,
+  inputs,
   namespace,
   ...
 }: let
@@ -18,20 +19,21 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      telegram-desktop
-      (wechat-uos.override {
-        uosLicense = fetchurl {
-          # https://github.com/NixOS/nixpkgs/pull/305929
-          url = "https://aur.archlinux.org/cgit/aur.git/plain/license.tar.gz?h=wechat-uos-bwrap";
-          hash = "sha256-U3YAecGltY8vo9Xv/h7TUjlZCyiIQdgSIp705VstvWk=";
-        };
-      })
-    ];
+    home.packages = with pkgs;
+      [
+        (wechat-uos.override {
+          uosLicense = fetchurl {
+            # https://github.com/NixOS/nixpkgs/pull/305929
+            url = "https://aur.archlinux.org/cgit/aur.git/plain/license.tar.gz?h=wechat-uos-bwrap";
+            hash = "sha256-U3YAecGltY8vo9Xv/h7TUjlZCyiIQdgSIp705VstvWk=";
+          };
+        })
+      ]
+      ++ [inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop];
 
     home.persistence = mkIf persist {
       "/persist/home/${config.${namespace}.user.name}" = {
-        directories = [".local/share/TelegramDesktop"];
+        directories = [".local/share/AyuGramDesktop"];
       };
     };
   };

@@ -38,9 +38,9 @@ in {
           "float,class:^(org.gnome.Nautilus|nautilus)$"
           "float,class:discord"
 
-          "float,class:org.telegram.desktop"
-          "center 1,class:org.telegram.desktop"
-          "size 55% 60%,class:org.telegram.desktop"
+          "float,class:^(org.telegram.desktop|com.ayugram)$"
+          "center 1,class:^(org.telegram.desktop|com.ayugram)$"
+          "size 55% 60%,class:^(org.telegram.desktop|com.ayugram)$"
 
           "opacity 1 override, class:firefox"
         ];
