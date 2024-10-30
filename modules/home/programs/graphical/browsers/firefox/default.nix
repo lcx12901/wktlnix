@@ -95,7 +95,6 @@ in {
             auto-tab-discard
             darkreader
             immersive-translate
-            vue-js-devtools
             tampermonkey
             vimium
           ];
