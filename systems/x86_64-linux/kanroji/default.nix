@@ -32,7 +32,7 @@ in {
     hardware = {
       audio = enabled;
       graphics = enabled;
-      cpu.intel = enabled;
+      cpu.amd = enabled;
       gpu.amd = enabled;
       btrfs = enabled;
       bluetooth = enabled;
