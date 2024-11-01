@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   namespace,
   ...
 }: let
@@ -32,6 +33,18 @@ in {
       business = enabled;
       development = enabled;
       # games = enabled;
+    };
+  };
+
+  home.packages = with pkgs; [parsec-bin];
+
+  home.persistence = {
+    "/persist/home/${config.${namespace}.user.name}" = {
+      allowOther = true;
+      directories = [
+        ".parsec"
+        ".parsec-persistent"
+      ];
     };
   };
 
