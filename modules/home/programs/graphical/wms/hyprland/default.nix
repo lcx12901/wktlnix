@@ -66,8 +66,7 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
 
-      # package = hyprland.packages.${system}.hyprland;
-      package = pkgs.hyprland;
+      package = hyprland.packages.${system}.hyprland;
 
       systemd = {
         enable = true;
