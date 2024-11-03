@@ -51,10 +51,7 @@ in {
       openssh = enabled;
     };
 
-    virtualisation = {
-      kvm = enabled;
-      podman = enabled;
-    };
+    security.pki.trustCa = enabled;
   };
 
   networking.firewall.allowedTCPPortRanges = [
