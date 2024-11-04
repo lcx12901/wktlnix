@@ -2,9 +2,7 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit (lib) getExe';
-in {
+}: {
   "custom/launcher" = {
     format = "";
     tooltip = false;
