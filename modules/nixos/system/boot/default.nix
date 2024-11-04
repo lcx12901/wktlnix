@@ -49,7 +49,7 @@ in {
 
       loader = {
         efi = {
-          canTouchEfiVariables = !cfg.useGrub;
+          canTouchEfiVariables = true;
           efiSysMountPoint =
             if cfg.useGrub
             then "/boot/efi"
@@ -66,10 +66,9 @@ in {
 
         grub = {
           enable = cfg.useGrub;
-          device = "nodev";
+          devices = ["nodev"];
           efiSupport = true;
           useOSProber = true;
-          efiInstallAsRemovable = true;
         };
       };
 
