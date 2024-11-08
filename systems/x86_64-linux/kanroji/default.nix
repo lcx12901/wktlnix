@@ -11,7 +11,7 @@ in {
     system = {
       boot = {
         enable = true;
-        useGrub = true;
+        # useGrub = true;
       };
       disko = {
         enable = true;
