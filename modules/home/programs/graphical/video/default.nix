@@ -1,5 +1,5 @@
 {
-  osConfig,
+  # osConfig,
   config,
   lib,
   pkgs,
@@ -10,8 +10,7 @@
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.video;
-
-  persist = osConfig.${namespace}.system.persist.enable;
+  # persist = osConfig.${namespace}.system.persist.enable;
 in {
   options.${namespace}.programs.graphical.video = {
     enable = mkBoolOpt false "Whether or not to enable video configuration.";
@@ -24,11 +23,11 @@ in {
       tsukimi
     ];
 
-    home.persistence = mkIf persist {
-      "/persist/home/${config.${namespace}.user.name}" = {
-        allowOther = true;
-        files = [".config/tsukimi.toml"];
-      };
-    };
+    # home.persistence = mkIf persist {
+    #   "/persist/home/${config.${namespace}.user.name}" = {
+    #     allowOther = true;
+    #     files = [".config/tsukimi.toml"];
+    #   };
+    # };
   };
 }
