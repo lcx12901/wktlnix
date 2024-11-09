@@ -9,10 +9,7 @@ in {
 
   wktlnix = {
     system = {
-      boot = {
-        enable = true;
-        # useGrub = true;
-      };
+      boot = enabled;
       disko = {
         enable = true;
         device = "/dev/nvme0n1";
@@ -32,7 +29,7 @@ in {
     hardware = {
       audio = enabled;
       graphics = enabled;
-      cpu.amd = enabled;
+      cpu.intel = enabled;
       gpu.amd = enabled;
       btrfs = enabled;
       bluetooth = enabled;
