@@ -134,6 +134,8 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
+    nixvim.url = "github:nix-community/nixvim";
+
     #FIXME: updated to include accents, https://github.com/catppuccin/nix/pull/343
     catppuccin.url = "github:catppuccin/nix";
 
