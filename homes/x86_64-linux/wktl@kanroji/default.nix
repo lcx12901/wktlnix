@@ -23,8 +23,12 @@ in {
           gpuAcceleration = true;
           hardwareDecoding = true;
         };
+        editors.vscode = enabled;
         apps.discord = enabled;
         video = enabled;
+      };
+      terminal.editors.neovim = {
+        enable = lib.mkForce false;
       };
     };
 
@@ -35,7 +39,19 @@ in {
     };
   };
 
-  home.packages = with pkgs; [parsec-bin];
+  home = {
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+
+    packages =
+      (with pkgs; [
+        parsec-bin
+        neovide
+        alejandra
+      ])
+      ++ [pkgs.${namespace}.wktlvim];
+  };
 
   home.persistence = {
     "/persist/home/${config.${namespace}.user.name}" = {
