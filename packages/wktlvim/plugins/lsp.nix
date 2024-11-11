@@ -1,41 +1,12 @@
 {
+  config,
   lib,
   pkgs,
+  self,
   ...
-}: {
-  extraConfigLuaPre = ''
-    vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticError", linehl = "", numhl = "" })
-    vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
-    vim.fn.sign_define("DiagnosticSignHint", { text = " 󰌵", texthl = "DiagnosticHint", linehl = "", numhl = "" })
-    vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
-
-    local function preview_location_callback(_, result)
-      if result == nil or vim.tbl_isempty(result) then
-        vim.notify('No location found to preview')
-        return nil
-      end
-    local buf, _ = vim.lsp.util.preview_location(result[1])
-      if buf then
-        local cur_buf = vim.api.nvim_get_current_buf()
-        vim.bo[buf].filetype = vim.bo[cur_buf].filetype
-      end
-    end
-
-    function peek_definition()
-      local params = vim.lsp.util.make_position_params()
-      return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
-    end
-
-    local function peek_type_definition()
-      local params = vim.lsp.util.make_position_params()
-      return vim.lsp.buf_request(0, 'textDocument/typeDefinition', params, preview_location_callback)
-    end
-
-    require('lspconfig.ui.windows').default_options = {
-      border = "rounded"
-    }
-  '';
-
+}: let
+  inherit (config) icons;
+in {
   plugins = {
     lspkind.enable = true;
     lsp-lines.enable = true;
@@ -50,7 +21,6 @@
           # Navigate in diagnostics
           "<leader>l[" = "goto_prev";
           "<leader>l]" = "goto_next";
-          # TODO: fix theme of float
           "<leader>lH" = "open_float";
         };
 
@@ -87,20 +57,54 @@
         };
       };
 
+      postConfig = ''
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+
+        vim.diagnostic.config({
+          virtual_text = false,
+          signs = true,
+          underline = true,
+          update_in_insert = true,
+          severity_sort = false,
+        })
+
+        local signs = {
+          Error = "${icons.DiagnosticError}",
+          Warn = "${icons.DiagnosticWarn}",
+          Info = "${icons.DiagnosticInfo}",
+          Hint = "${icons.DiagnosticHint}",
+        }
+
+        for type, icon in pairs(signs) do
+          local hl = "DiagnosticSign" .. type
+          vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+        end
+      '';
+
       servers = {
-        nil_ls = {
+        nixd = {
           enable = true;
           filetypes = ["nix"];
-          settings = {
+          settings = let
+            flake = ''(builtins.getFlake "${self}")'';
+          in {
+            nixpkgs = {
+              expr = "import ${flake}.inputs.nixpkgs { }";
+            };
             formatting = {
               command = ["${lib.getExe pkgs.nixfmt-rfc-style}"];
             };
-            nix = {
-              flake = {
-                autoArchive = true;
-              };
+            options = {
+              nixos.expr = ''${flake}.nixosConfigurations.wktlnix.options'';
+              nixvim.expr = ''${flake}.packages.${pkgs.system}.nvim.options'';
+              home-manager.expr = ''${flake}.homeConfigurations."wktl@wktlnix".options'';
             };
           };
+        };
+
+        lua_ls = {
+          enable = true;
+          filetypes = ["lua"];
         };
       };
     };
