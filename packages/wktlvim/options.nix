@@ -32,6 +32,9 @@
     spell_enabled = true;
     colorizing_enabled = 1;
     first_buffer_opened = false;
+
+    loaded_netrw = 1;
+    loaded_netrwPlugin = 1;
   };
 
   opts = {
