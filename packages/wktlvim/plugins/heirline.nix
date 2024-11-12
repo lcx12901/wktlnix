@@ -84,4 +84,17 @@
       },
     })
   '';
+
+  keymaps = [
+    {
+      mode = "n";
+      key = "<leader>bb";
+      options.desc = "Select buffer from tabline";
+      action.__raw = ''
+        function()
+          require("astroui.status.heirline").buffer_picker(function(bufnr) vim.api.nvim_win_set_buf(0, bufnr) end)
+        end
+      '';
+    }
+  ];
 }
