@@ -20,7 +20,7 @@ in {
     require('astrolsp').setup({
       features = {
         codelens = true,
-        inlay_hints = false,
+        inlay_hints = true,
         semantic_tokens = true,
       },
       capabilities = vim.lsp.protocol.make_client_capabilities(),

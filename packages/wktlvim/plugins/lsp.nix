@@ -19,9 +19,9 @@ in {
         silent = true;
         diagnostic = {
           # Navigate in diagnostics
-          "<leader>l[" = "goto_prev";
-          "<leader>l]" = "goto_next";
-          "<leader>lH" = "open_float";
+          "<Leader>l[" = "goto_prev";
+          "<Leader>l]" = "goto_next";
+          "<Leader>lH" = "open_float";
         };
 
         extra = [
@@ -38,7 +38,7 @@ in {
               end
             '';
             mode = "v";
-            key = "<leader>lf";
+            key = "<Leader>lf";
             options = {
               desc = "Format selection";
             };
@@ -46,14 +46,14 @@ in {
         ];
 
         lspBuf = {
-          "<leader>la" = "code_action";
-          "<leader>ld" = "definition";
-          "<leader>lD" = "references";
-          "<leader>lf" = "format";
-          "<leader>lh" = "hover";
-          "<leader>li" = "implementation";
-          "<leader>lr" = "rename";
-          "<leader>lt" = "type_definition";
+          "<Leader>la" = "code_action";
+          "<Leader>ld" = "definition";
+          "<Leader>lD" = "references";
+          "<Leader>lf" = "format";
+          "<Leader>lh" = "hover";
+          "<Leader>li" = "implementation";
+          "<Leader>lr" = "rename";
+          "<Leader>lt" = "type_definition";
         };
       };
 
@@ -105,6 +105,70 @@ in {
         lua_ls = {
           enable = true;
           filetypes = ["lua"];
+        };
+
+        eslint = {
+          enable = true;
+          filetypes = [
+            "javascript"
+            "javascriptreact"
+            "typescript"
+            "typescriptreact"
+            "typescript.tsx"
+            "vue"
+            "astro"
+            "svelte"
+            "html"
+            "json"
+            "jsonc"
+            "css"
+            "scss"
+          ];
+          extraOptions = {
+            rulesCustomizations = [
+              {
+                rule = "style/*";
+                severity = "off";
+                fixable = true;
+              }
+            ];
+          };
+        };
+
+        ts_ls = {
+          enable = true;
+        };
+
+        volar = {
+          enable = true;
+          extraOptions = {
+            init_options = {
+              vue = {
+                hybridMode = false;
+              };
+              typescript = {
+                tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib";
+              };
+            };
+          };
+        };
+
+        jsonls = {
+          enable = true;
+          filetypes = [
+            "json"
+            "jsonc"
+          ];
+        };
+
+        yamlls = {
+          enable = true;
+          filetypes = ["yaml"];
+        };
+
+        taplo = {
+          enable = true;
+          filetypes = ["toml"];
         };
       };
     };

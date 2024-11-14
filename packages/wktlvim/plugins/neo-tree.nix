@@ -57,11 +57,9 @@ in {
         "<Space>".__raw = "false";
 
         # See extraOptions.commands for details on following keymaps
+        Y = "copy_selector";
         h = "parent_or_close";
         l = "child_or_open";
-        F = "find_file_in_dir";
-        W = "grep_in_dir";
-        Y = "copy_selector";
       };
     };
 
@@ -185,7 +183,7 @@ in {
   keymaps = lib.mkIf config.plugins.neo-tree.enable [
     {
       mode = "n";
-      key = "<leader>e";
+      key = "<Leader>e";
       action = "<Cmd>Neotree toggle<CR>";
       options = {
         desc = "Toggle Explorer";
@@ -193,7 +191,7 @@ in {
     }
     {
       mode = "n";
-      key = "<leader>o";
+      key = "<Leader>o";
       action.__raw = ''
         function()
           if vim.bo.filetype == "neo-tree" then
@@ -232,9 +230,8 @@ in {
             if package.loaded["neo-tree"] then
               return true
             else
-              local stats = (vim.uv or vim.loop).fs_stat(vim.api.nvim_buf_get_name(0))
+              local stats = vim.loop.fs_stat(vim.api.nvim_buf_get_name(0))
               if stats and stats.type == "directory" then
-                require("lazy").load { plugins = { "neo-tree.nvim" } }
                 return true
               end
             end
