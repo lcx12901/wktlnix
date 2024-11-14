@@ -14,7 +14,7 @@ in {
   keymaps = lib.mkIf cfg.enable [
     {
       mode = "n";
-      key = "<leader>gi";
+      key = "<Leader>gi";
       action.__raw = ''require('gitignore').generate'';
       options = {
         desc = "Gitignore generate";

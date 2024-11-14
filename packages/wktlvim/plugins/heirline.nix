@@ -4,13 +4,17 @@
   extraConfigLua = ''
     local status = require("astroui.status")
     local ui_config = require("astroui").config
+    local condition = require "astroui.status.condition"
 
     require("heirline").setup({
       opts = {
         colors = require("astroui").config.status.setup_colors(),
         disable_winbar_cb = function(args)
+          local enabled = vim.tbl_get(ui_config, "status", "winbar", "enabled")
+          if enabled and status.condition.buffer_matches(enabled, args.buf) then return false end
+          local disabled = vim.tbl_get(ui_config, "status", "winbar", "disabled")
           return not require("astrocore.buffer").is_valid(args.buf)
-            or status.condition.buffer_matches({ buftype = { "terminal", "nofile" } }, args.buf)
+            or (disabled and status.condition.buffer_matches(disabled, args.buf))
         end,
       },
       statusline = { -- statusline
@@ -23,7 +27,9 @@
         status.component.fill(),
         status.component.cmd_info(),
         status.component.fill(),
-        status.component.lsp(),
+        status.component.lsp({
+          lsp_client_names = { integrations = { null_ls = true, conform = true, lint = true }, truncate = 0.25 },
+        }),
         status.component.virtual_env(),
         status.component.treesitter(),
         status.component.nav(),
@@ -32,20 +38,57 @@
       winbar = { -- winbar
         init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,
         fallthrough = false,
+        -- inactive winbar
         {
-          condition = function() return not status.condition.is_active() end,
-          status.component.separated_path(),
-          status.component.file_info {
-            file_icon = { hl = status.hl.file_icon "winbar", padding = { left = 0 } },
+          condition = function()
+            return not status.condition.is_active()
+          end,
+          -- show the path to the file relative to the working directory
+          status.component.separated_path({
+            path_func = status.provider.filename({ modify = ":.:h" }),
+          }),
+          -- add the file name and icon
+          status.component.file_info({
+            file_icon = {
+              hl = status.hl.file_icon("winbar"),
+              padding = { left = 0 },
+            },
             filename = {},
             filetype = false,
+            file_modified = false,
             file_read_only = false,
             hl = status.hl.get_attributes("winbarnc", true),
             surround = false,
             update = "BufEnter",
-          },
+          }),
         },
-        status.component.breadcrumbs { hl = status.hl.get_attributes("winbar", true) },
+        -- active winbar
+        {
+          -- show the path to the file relative to the working directory
+          status.component.separated_path({
+            path_func = status.provider.filename({ modify = ":.:h" }),
+          }),
+          -- add the file name and icon
+          status.component.file_info({ -- add file_info to breadcrumbs
+            file_icon = { hl = status.hl.filetype_color, padding = { left = 0 } },
+            filename = {},
+            filetype = false,
+            file_modified = false,
+            file_read_only = false,
+            hl = status.hl.get_attributes("winbar", true),
+            surround = false,
+            update = "BufEnter",
+          }),
+          -- show the breadcrumbs
+          status.component.breadcrumbs({
+            icon = { hl = true },
+            hl = status.hl.get_attributes("winbar", true),
+            prefix = true,
+            padding = { left = 0 },
+            condition = condition.aerial_available,
+            update = { "CursorMoved", "CursorMovedI", "BufEnter" }
+          }),
+        },
       },
       tabline = { -- bufferline
         { -- automatic sidebar padding
@@ -88,11 +131,23 @@
   keymaps = [
     {
       mode = "n";
-      key = "<leader>bb";
+      key = "<Leader>bb";
       options.desc = "Select buffer from tabline";
       action.__raw = ''
         function()
           require("astroui.status.heirline").buffer_picker(function(bufnr) vim.api.nvim_win_set_buf(0, bufnr) end)
+        end
+      '';
+    }
+    {
+      mode = "n";
+      key = "<Leader>bd";
+      options.desc = "Close buffer from tabline";
+      action.__raw = ''
+        function()
+          require("astroui.status.heirline").buffer_picker(
+            function(bufnr) require("astrocore.buffer").close(bufnr) end
+          )
         end
       '';
     }

@@ -14,7 +14,11 @@
       transparent_background = true;
 
       integrations = {
+        cmp = true;
+        gitsigns = true;
         neotree = true;
+        treesitter = true;
+        treesitter_context = true;
         native_lsp = {
           enabled = true;
           virtual_text = {
@@ -33,6 +37,14 @@
             background = true;
           };
         };
+        notify = true;
+        telescope = {
+          enabled = true;
+          style = "nvchad";
+        };
+        semantic_tokens = true;
+        symbols_outline = true;
+        which_key = true;
       };
     };
   };
