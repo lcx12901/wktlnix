@@ -4,23 +4,25 @@
   # may be should read guide from https://nix.dev/
   description = "wktlNix";
 
-  outputs = inputs: let
-    inherit (inputs) snowfall-lib;
+  outputs =
+    inputs:
+    let
+      inherit (inputs) snowfall-lib;
 
-    lib = snowfall-lib.mkLib {
-      inherit inputs;
-      src = ./.;
+      lib = snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
 
-      snowfall = {
-        meta = {
-          name = "wktlnix";
-          title = "wktlNix";
+        snowfall = {
+          meta = {
+            name = "wktlnix";
+            title = "wktlNix";
+          };
+
+          namespace = "wktlnix";
         };
-
-        namespace = "wktlnix";
       };
-    };
-  in
+    in
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
