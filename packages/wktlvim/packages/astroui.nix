@@ -284,6 +284,7 @@ in {
       status = ${helpers.toLuaObject {
       inherit fallback_colors modes separators icon-highlights attributes sign_handlers setup_colors;
     }},
+      colorscheme = "catppuccin",
     })
   '';
 }

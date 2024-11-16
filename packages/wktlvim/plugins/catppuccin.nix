@@ -7,11 +7,11 @@
         percentage = 0.25;
       };
 
-      flavour = "macchiato";
+      flavour = "frappe";
 
       show_end_of_buffer = true;
       term_colors = true;
-      transparent_background = true;
+      transparent_background = false;
 
       integrations = {
         cmp = true;
@@ -37,7 +37,9 @@
             background = true;
           };
         };
+        alpha = true;
         notify = true;
+        aerial = true;
         telescope = {
           enabled = true;
           style = "nvchad";

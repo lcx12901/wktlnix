@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  namespace,
   self,
   ...
 }: let
@@ -151,6 +152,11 @@ in {
               };
             };
           };
+        };
+
+        unocss = {
+          enable = true;
+          package = pkgs.${namespace}.unocss-language-server;
         };
 
         jsonls = {

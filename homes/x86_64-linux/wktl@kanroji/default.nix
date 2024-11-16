@@ -4,9 +4,11 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib.${namespace}) enabled;
-in {
+in
+{
   wktlnix = {
     user = {
       enable = true;
@@ -23,12 +25,8 @@ in {
           gpuAcceleration = true;
           hardwareDecoding = true;
         };
-        editors.vscode = enabled;
         apps.discord = enabled;
         video = enabled;
-      };
-      terminal.editors.neovim = {
-        enable = lib.mkForce false;
       };
     };
 
@@ -39,19 +37,9 @@ in {
     };
   };
 
-  home = {
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
-
-    packages =
-      (with pkgs; [
-        parsec-bin
-        neovide
-        alejandra
-      ])
-      ++ [pkgs.${namespace}.wktlvim];
-  };
+  home.packages = with pkgs; [
+    parsec-bin
+  ];
 
   home.persistence = {
     "/persist/home/${config.${namespace}.user.name}" = {
