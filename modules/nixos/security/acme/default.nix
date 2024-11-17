@@ -3,14 +3,16 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.security.acme;
 
   domain = "${config.networking.hostName}.lincx.top";
-in {
+in
+{
   options.${namespace}.security.acme = {
     enable = mkBoolOpt false "default ACME configuration";
   };

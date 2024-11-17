@@ -3,15 +3,16 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.system.xdg;
 
-  browser = ["firefox-devedition.desktop"];
-  terminal = ["kitty.desktop"];
-  video = ["vlc.desktop"];
+  browser = [ "firefox-devedition.desktop" ];
+  terminal = [ "kitty.desktop" ];
+  video = [ "vlc.desktop" ];
 
   # XDG MIME types
   associations = {
@@ -36,13 +37,14 @@
     "x-scheme-handler/ftp" = browser;
     "x-scheme-handler/http" = browser;
     "x-scheme-handler/https" = browser;
-    "x-scheme-handler/spotify" = ["spotify.desktop"];
+    "x-scheme-handler/spotify" = [ "spotify.desktop" ];
     "x-scheme-handler/terminal" = terminal;
-    "x-scheme-handler/tg" = ["org.telegram.desktop"];
+    "x-scheme-handler/tg" = [ "org.telegram.desktop" ];
     "x-scheme-handler/unknown" = browser;
     "x-www-browser" = browser;
   };
-in {
+in
+{
   options.${namespace}.system.xdg = {
     enable = mkBoolOpt false "xdg";
   };

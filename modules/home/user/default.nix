@@ -4,17 +4,22 @@
   pkgs,
   namespace,
   ...
-}: let
-  inherit (lib) types mkIf mkMerge mkDefault getExe;
+}:
+let
+  inherit (lib)
+    types
+    mkIf
+    mkMerge
+    mkDefault
+    getExe
+    ;
   inherit (lib.${namespace}) mkOpt enabled;
 
   cfg = config.${namespace}.user;
 
-  home-directory =
-    if cfg.name == null
-    then null
-    else "/home/${cfg.name}";
-in {
+  home-directory = if cfg.name == null then null else "/home/${cfg.name}";
+in
+{
   options.${namespace}.user = {
     enable = mkOpt types.bool false "Whether to configure the user account.";
     email = mkOpt types.str "wktl1991504424@gmail.com" "The email of the user.";

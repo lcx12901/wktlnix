@@ -12,7 +12,11 @@
     }
     {
       desc = "Update buffers when adding new buffers";
-      event = ["BufAdd" "BufEnter" "TabNewEntered"];
+      event = [
+        "BufAdd"
+        "BufEnter"
+        "TabNewEntered"
+      ];
       group = "bufferline";
 
       callback.__raw = ''

@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) types mkIf mapAttrs;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.system.fonts;
-in {
+in
+{
   options.${namespace}.system.fonts = with types; {
     enable = mkBoolOpt false "Whether or not to manage fonts.";
     default = mkOpt str "MonaspiceRn Nerd Font" "Default font name";
@@ -70,19 +72,20 @@ in {
         antialias = true;
         hinting.enable = true;
 
-        defaultFonts = let
-          common = [
-            "MonaspiceRn Nerd Font"
-            "CaskaydiaCove Nerd Font Mono"
-            "Iosevka Nerd Font"
-            "Symbols Nerd Font"
-            "Noto Color Emoji"
-          ];
-        in
+        defaultFonts =
+          let
+            common = [
+              "MonaspiceRn Nerd Font"
+              "CaskaydiaCove Nerd Font Mono"
+              "Iosevka Nerd Font"
+              "Symbols Nerd Font"
+              "Noto Color Emoji"
+            ];
+          in
           mapAttrs (_: fonts: fonts ++ common) {
-            serif = ["MonaspiceRn Nerd Font"];
-            sansSerif = ["MonaspiceRn Nerd Font"];
-            emoji = ["Noto Color Emoji"];
+            serif = [ "MonaspiceRn Nerd Font" ];
+            sansSerif = [ "MonaspiceRn Nerd Font" ];
+            emoji = [ "Noto Color Emoji" ];
             monospace = [
               "MonaspiceRn Nerd Font"
               "LXGW WenKai Mono Bold"

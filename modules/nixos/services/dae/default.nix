@@ -5,12 +5,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.services.dae;
-in {
+in
+{
   # https://github.com/daeuniverse/dae/blob/main/example.dae
   # check dae's log by `journalctl -u dae -n 1000`
   options.${namespace}.services.dae = {
@@ -22,7 +24,10 @@ in {
       enable = true;
       package = inputs.daeuniverse.packages.${pkgs.system}.dae;
       configFile = config.age.secrets."config.dae".path;
-      assets = with pkgs; [v2ray-geoip v2ray-domain-list-community];
+      assets = with pkgs; [
+        v2ray-geoip
+        v2ray-domain-list-community
+      ];
       openFirewall = {
         enable = true;
         port = 12345;

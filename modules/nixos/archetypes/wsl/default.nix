@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.archetypes.wsl;
-in {
+in
+{
   options.${namespace}.archetypes.wsl = {
     enable = mkBoolOpt false "Whether or not to enable the wsl archetype.";
   };

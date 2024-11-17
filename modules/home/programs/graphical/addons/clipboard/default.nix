@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf getExe;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.addons.clipboard;
-in {
+in
+{
   options.${namespace}.programs.graphical.addons.clipboard = {
     enable = mkBoolOpt false "Whether to enable clipboard service.";
   };
@@ -19,11 +21,11 @@ in {
       cliphist = {
         Unit = {
           Description = "Clipboard history service";
-          PartOf = ["graphical-session.target"];
-          After = ["graphical-session.target"];
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
         };
 
-        Install.WantedBy = ["graphical-session.target"];
+        Install.WantedBy = [ "graphical-session.target" ];
 
         Service = {
           ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${getExe pkgs.cliphist} store";
@@ -34,11 +36,11 @@ in {
       wl-clip-persist = {
         Unit = {
           Description = "Persistent clipboard for Wayland";
-          PartOf = ["graphical-session.target"];
-          After = ["graphical-session.target"];
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
         };
 
-        Install.WantedBy = ["graphical-session.target"];
+        Install.WantedBy = [ "graphical-session.target" ];
 
         Service = {
           ExecStart = "${getExe pkgs.wl-clip-persist} --clipboard both";

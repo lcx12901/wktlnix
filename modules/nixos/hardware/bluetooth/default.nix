@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.hardware.bluetooth;
-in {
+in
+{
   options.${namespace}.hardware.bluetooth = {
     enable = mkBoolOpt false "Whether or not to enable support for extra bluetooth devices.";
   };
@@ -31,7 +33,7 @@ in {
       };
     };
 
-    boot.kernelParams = ["btusb"];
+    boot.kernelParams = [ "btusb" ];
 
     services.blueman = {
       enable = true;

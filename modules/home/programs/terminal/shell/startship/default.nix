@@ -3,13 +3,15 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
   inherit (lib.strings) concatStrings;
 
   cfg = config.${namespace}.programs.terminal.shell.startship;
-in {
+in
+{
   options.${namespace}.programs.terminal.shell.startship = {
     enable = mkBoolOpt true "The minimal, blazing-fast, and infinitely customizable prompt for any shell!";
   };

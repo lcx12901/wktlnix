@@ -5,16 +5,17 @@
   inputs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkMerge mkIf types;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
   inherit (inputs) waybar;
 
   cfg = config.${namespace}.programs.graphical.addons.waybar;
 
-  default-modules = import ./modules/default-modules.nix {inherit config lib pkgs;};
+  default-modules = import ./modules/default-modules.nix { inherit config lib pkgs; };
   group-modules = import ./modules/group-modules.nix;
-  hyprland-modules = import ./modules/hyprland-modules.nix {inherit config lib;};
+  hyprland-modules = import ./modules/hyprland-modules.nix { inherit config lib; };
 
   style = builtins.readFile ./styles/style.css;
   workspacesStyle = builtins.readFile ./styles/workspaces.css;
@@ -46,7 +47,8 @@
       "clock"
     ];
   };
-in {
+in
+{
   options.${namespace}.programs.graphical.addons.waybar = {
     enable = mkBoolOpt false "Whether to enable waybar in Hyprland.";
     basicFontSize = mkOpt types.str "15" "Set waybar basic font size.";

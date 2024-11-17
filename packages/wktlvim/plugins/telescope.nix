@@ -3,8 +3,9 @@
   lib,
   pkgs,
   ...
-}: {
-  extraPackages = with pkgs; [ripgrep];
+}:
+{
+  extraPackages = with pkgs; [ ripgrep ];
 
   plugins.telescope = {
     enable = true;

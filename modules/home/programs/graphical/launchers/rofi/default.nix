@@ -4,18 +4,20 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.launchers.rofi;
-in {
+in
+{
   options.${namespace}.programs.graphical.launchers.rofi = {
     enable = mkBoolOpt false "Whether to enable Rofi in the desktop environment.";
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [wtype];
+    home.packages = with pkgs; [ wtype ];
 
     programs.rofi = {
       enable = true;
@@ -40,7 +42,7 @@ in {
 
     xdg.configFile = {
       "rofi" = {
-        source = lib.cleanSourceWith {src = lib.cleanSource ./config/.;};
+        source = lib.cleanSourceWith { src = lib.cleanSource ./config/.; };
 
         recursive = true;
       };

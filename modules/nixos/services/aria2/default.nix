@@ -4,9 +4,11 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.services.aria2;
-in {
+in
+{
   options.${namespace}.services.aria2 = {
     enable = lib.${namespace}.mkBoolOpt false "Whether or not to configure aria2.";
   };

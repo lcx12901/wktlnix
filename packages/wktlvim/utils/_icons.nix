@@ -1,6 +1,8 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   inherit (lib) types;
-in {
+in
+{
   options = {
     icons = lib.mkOption {
       type = with types; attrs;

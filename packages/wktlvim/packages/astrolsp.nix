@@ -1,6 +1,8 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   version = "2.1.0";
-in {
+in
+{
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {
       inherit version;

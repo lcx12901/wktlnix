@@ -3,12 +3,14 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) types mkIf;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.programs.terminal.emulators.kitty;
-in {
+in
+{
   options.${namespace}.programs.terminal.emulators.kitty = {
     enable = mkBoolOpt false "Whether to enable kitty.";
     font = mkOpt types.str "MonaspiceRn Nerd Font Mono" "Font to use for kitty.";

@@ -4,11 +4,13 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.tools.btop;
-in {
+in
+{
   options.${namespace}.programs.terminal.tools.btop = {
     enable = mkBoolOpt false "Whether or not to enable btop.";
   };

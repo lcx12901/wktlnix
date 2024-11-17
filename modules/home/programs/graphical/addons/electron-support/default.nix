@@ -3,12 +3,14 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.addons.electron-support;
-in {
+in
+{
   options.${namespace}.programs.graphical.addons.electron-support = {
     enable = mkBoolOpt false "Whether to enable wayland electron support in the desktop environment.";
   };

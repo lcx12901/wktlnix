@@ -3,30 +3,31 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   plugins = {
     conform-nvim = {
       enable = true;
 
       settings = {
         formatters_by_ft = {
-          lua = ["stylua"];
-          nix = ["nixfmt"];
-          toml = ["taplo"];
-          yaml = ["yamlfmt"];
+          lua = [ "stylua" ];
+          nix = [ "nixfmt" ];
+          toml = [ "taplo" ];
+          yaml = [ "yamlfmt" ];
           "_" = [
             "squeeze_blanks"
             "trim_whitespace"
             "trim_newlines"
           ];
-          json = ["eslint_d"];
-          jsonc = ["eslint_d"];
-          typescript = ["eslint_d"];
-          javascript = ["eslint_d"];
-          typescriptreact = ["eslint_d"];
-          vue = ["eslint_d"];
-          css = ["eslint_d"];
-          scss = ["eslint_d"];
+          json = [ "eslint_d" ];
+          jsonc = [ "eslint_d" ];
+          typescript = [ "eslint_d" ];
+          javascript = [ "eslint_d" ];
+          typescriptreact = [ "eslint_d" ];
+          vue = [ "eslint_d" ];
+          css = [ "eslint_d" ];
+          scss = [ "eslint_d" ];
         };
 
         formatters = {
@@ -56,7 +57,7 @@
   autoCmd = lib.mkIf config.plugins.conform-nvim.enable [
     {
       event = "BufWritePre";
-      pattern = ["*"];
+      pattern = [ "*" ];
       callback.__raw = ''
         function(args) require("conform").format({ bufnr = args.buf }) end
       '';

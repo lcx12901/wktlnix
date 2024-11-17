@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   version = "2.4.5";
 
   # https://github.com/AstroNvim/AstroNvim/blob/v4.27.2/lua/astronvim/plugins/_astroui_status.lua#L47
@@ -69,11 +70,26 @@
 
   # https://github.com/AstroNvim/AstroNvim/blob/v4.27.2/lua/astronvim/plugins/_astroui_status.lua#L102
   separators = {
-    none = ["" ""];
-    left = ["" "  "];
-    right = ["  " ""];
-    center = ["  " "  "];
-    tab = ["" " "];
+    none = [
+      ""
+      ""
+    ];
+    left = [
+      ""
+      "  "
+    ];
+    right = [
+      "  "
+      ""
+    ];
+    center = [
+      "  "
+      "  "
+    ];
+    tab = [
+      ""
+      " "
+    ];
     breadcrumbs = "  ";
     path = "  ";
   };
@@ -84,11 +100,21 @@
       bold = true;
       italic = true;
     };
-    buffer_picker = {bold = true;};
-    macro_recording = {bold = true;};
-    git_branch = {bold = true;};
-    git_diff = {bold = true;};
-    virtual_env = {bold = true;};
+    buffer_picker = {
+      bold = true;
+    };
+    macro_recording = {
+      bold = true;
+    };
+    git_branch = {
+      bold = true;
+    };
+    git_diff = {
+      bold = true;
+    };
+    virtual_env = {
+      bold = true;
+    };
   };
 
   # https://github.com/AstroNvim/AstroNvim/blob/v4.27.2/lua/astronvim/plugins/_astroui_status.lua#L119
@@ -262,7 +288,8 @@
       return colors
     end
   '';
-in {
+in
+{
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {
       inherit version;
@@ -281,9 +308,19 @@ in {
   extraConfigLuaPre = ''
     require('astroui').setup({
       icons = ${helpers.toLuaObject config.icons},
-      status = ${helpers.toLuaObject {
-      inherit fallback_colors modes separators icon-highlights attributes sign_handlers setup_colors;
-    }},
+      status = ${
+        helpers.toLuaObject {
+          inherit
+            fallback_colors
+            modes
+            separators
+            icon-highlights
+            attributes
+            sign_handlers
+            setup_colors
+            ;
+        }
+      },
       colorscheme = "catppuccin",
     })
   '';

@@ -5,9 +5,9 @@
   pkgs,
   namespace,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     mkIf
     types
     ;
@@ -15,16 +15,17 @@
   inherit (inputs) hyprland;
 
   cfg = config.${namespace}.programs.graphical.wms.hyprland;
-in {
+in
+{
   options.${namespace}.programs.graphical.wms.hyprland = {
     enable = mkBoolOpt false "Whether or not to enable Hyprland.";
     customConfigFiles =
-      mkOpt types.attrs {}
-      "Custom configuration files that can be used to override the default files.";
-    customFiles = mkOpt types.attrs {} "Custom files that can be used to override the default files.";
+      mkOpt types.attrs { }
+        "Custom configuration files that can be used to override the default files.";
+    customFiles = mkOpt types.attrs { } "Custom files that can be used to override the default files.";
   };
 
-  disabledModules = ["programs/hyprland.nix"];
+  disabledModules = [ "programs/hyprland.nix" ];
 
   config = mkIf cfg.enable {
     environment = {
@@ -55,8 +56,8 @@ in {
       ];
 
       # needed for GNOME services outside of GNOME Desktop
-      dbus.packages = [pkgs.gcr];
-      udev.packages = with pkgs; [gnome-settings-daemon];
+      dbus.packages = [ pkgs.gcr ];
+      udev.packages = with pkgs; [ gnome-settings-daemon ];
     };
   };
 }

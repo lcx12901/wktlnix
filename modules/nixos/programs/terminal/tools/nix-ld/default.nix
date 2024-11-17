@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.tools.nix-ld;
-in {
+in
+{
   options.${namespace}.programs.terminal.tools.nix-ld = {
     enable = mkBoolOpt false "Whether or not to enable nix-ld.";
   };

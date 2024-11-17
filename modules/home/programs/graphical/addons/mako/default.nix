@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf getExe getExe';
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.addons.mako;
-in {
+in
+{
   options.${namespace}.programs.graphical.addons.mako = {
     enable = mkBoolOpt false "Whether to enable Mako in Hyprland.";
   };
@@ -25,13 +27,13 @@ in {
     systemd.user.services.mako = {
       Unit = {
         Description = "Mako notification daemon";
-        After = ["graphical-session.target"];
-        PartOf = ["graphical-session.target"];
+        After = [ "graphical-session.target" ];
+        PartOf = [ "graphical-session.target" ];
         Documentation = "man:mako(1)";
       };
 
       Install = {
-        WantedBy = ["graphical-session.target"];
+        WantedBy = [ "graphical-session.target" ];
       };
 
       Service = {

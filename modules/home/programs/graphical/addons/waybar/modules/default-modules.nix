@@ -1,7 +1,8 @@
 {
   pkgs,
   ...
-}: {
+}:
+{
   "custom/launcher" = {
     format = "";
     tooltip = false;
@@ -76,7 +77,11 @@
     format-muted = "󰝟";
     format-icons = {
       headphone = "";
-      default = ["" "" ""];
+      default = [
+        ""
+        ""
+        ""
+      ];
     };
     scroll-step = 2;
     on-click = "${pkgs.killall}/bin/killall pavucontrol || ${pkgs.pavucontrol}/bin/pavucontrol";

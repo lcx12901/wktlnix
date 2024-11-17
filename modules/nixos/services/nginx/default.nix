@@ -4,24 +4,27 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (config.networking) hostName;
 
   cfg = config.${namespace}.services.nginx;
 
-  hasMyContainer = containerName: lib.hasAttr containerName config.virtualisation.oci-containers.containers;
-in {
+  hasMyContainer =
+    containerName: lib.hasAttr containerName config.virtualisation.oci-containers.containers;
+in
+{
   options.${namespace}.services.nginx = {
     enable = lib.${namespace}.mkBoolOpt false "Whether or not to enable nginx.";
   };
 
   config = lib.mkIf cfg.enable {
-    users.users.nginx.extraGroups = ["acme"];
+    users.users.nginx.extraGroups = [ "acme" ];
 
     services.nginx = {
       enable = true;
 
-      package = pkgs.nginxQuic.override {withKTLS = true;};
+      package = pkgs.nginxQuic.override { withKTLS = true; };
 
       defaultHTTPListenPort = 404;
       defaultSSLListenPort = 302;
@@ -65,6 +68,6 @@ in {
       };
     };
 
-    networking.firewall.allowedTCPPorts = [302];
+    networking.firewall.allowedTCPPorts = [ 302 ];
   };
 }

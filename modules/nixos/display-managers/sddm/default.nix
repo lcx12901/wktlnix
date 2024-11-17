@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled;
 
   cfg = config.${namespace}.display-managers.sddm;
-in {
+in
+{
   options.${namespace}.display-managers.sddm = {
     enable = mkBoolOpt false "Whether or not to enable sddm.";
   };

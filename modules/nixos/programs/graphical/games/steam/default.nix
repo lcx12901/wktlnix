@@ -4,7 +4,8 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled;
 
@@ -13,14 +14,15 @@
   username = config.${namespace}.user.name;
 
   cfg = config.${namespace}.programs.graphical.games.steam;
-in {
+in
+{
   options.${namespace}.programs.graphical.games.steam = {
     enable = mkBoolOpt false "Whether or not to enable support for Steam.";
   };
 
   config = mkIf cfg.enable {
     environment = {
-      systemPackages = with pkgs; [steamtinkerlaunch];
+      systemPackages = with pkgs; [ steamtinkerlaunch ];
 
       persistence."/persist" = mkIf persist {
         users."${username}" = {
@@ -37,8 +39,8 @@ in {
 
       # fix gamescope inside steam
       package = pkgs.steam.override {
-        extraPkgs = pkgs:
-          with pkgs; [
+        extraPkgs =
+          pkgs: with pkgs; [
             libgdiplus
             keyutils
             libkrb5
@@ -77,7 +79,7 @@ in {
       # Whether to open ports in the firewall for Source Dedicated Server
       dedicatedServer.openFirewall = false;
 
-      extraCompatPackages = [pkgs.proton-ge-bin.steamcompattool];
+      extraCompatPackages = [ pkgs.proton-ge-bin.steamcompattool ];
     };
 
     hardware = {

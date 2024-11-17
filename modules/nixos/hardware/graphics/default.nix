@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.hardware.graphics;
-in {
+in
+{
   options.${namespace}.hardware.graphics = {
     enable = mkBoolOpt false "Whether or not to enable support for graphics.";
   };

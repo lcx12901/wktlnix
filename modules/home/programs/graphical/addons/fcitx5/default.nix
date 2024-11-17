@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.addons.fcitx5;
-in {
+in
+{
   options.${namespace}.programs.graphical.addons.fcitx5 = {
     enable = mkBoolOpt false "Whether to enable fcitx5 in Hyprland.";
   };

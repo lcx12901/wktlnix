@@ -5,7 +5,8 @@
   osConfig,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkMerge optionalAttrs;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
   inherit (lib.types) str attrs;
@@ -15,14 +16,15 @@
   persist = osConfig.${namespace}.system.persist.enable;
 
   firefoxPath = ".mozilla/firefox/${config.${namespace}.user.name}";
-in {
+in
+{
   # https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
   options.${namespace}.programs.graphical.browsers.firefox = {
     enable = mkBoolOpt false "Whether or not to enable Firefox.";
     hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
     gpuAcceleration = mkBoolOpt false "Enable GPU acceleration.";
     extraConfig = mkOpt str "" "Extra configuration for the user profile JS file.";
-    settings = mkOpt attrs {} "Settings to apply to the profile.";
+    settings = mkOpt attrs { } "Settings to apply to the profile.";
     userChrome = mkOpt str "" "Extra configuration for the user chrome CSS file.";
   };
 
@@ -31,7 +33,7 @@ in {
       file = mkMerge [
         {
           "${firefoxPath}/chrome/img" = {
-            source = lib.cleanSourceWith {src = lib.cleanSource ./chrome/img/.;};
+            source = lib.cleanSourceWith { src = lib.cleanSource ./chrome/img/.; };
 
             recursive = true;
           };
@@ -43,7 +45,7 @@ in {
       enable = true;
       package = pkgs.firefox-devedition;
 
-      languagePacks = ["zh-CN"];
+      languagePacks = [ "zh-CN" ];
 
       policies = {
         CaptivePortal = false;
@@ -71,7 +73,7 @@ in {
           "ddg@search.mozilla.org".installation_mode = "blocked";
           "wikipedia@search.mozilla.org".installation_mode = "blocked";
         };
-        Preferences = {};
+        Preferences = { };
       };
 
       profiles = {
@@ -179,7 +181,7 @@ in {
     home.persistence = mkIf persist {
       "/persist/home/${config.${namespace}.user.name}" = {
         allowOther = true;
-        directories = [firefoxPath];
+        directories = [ firefoxPath ];
       };
     };
   };

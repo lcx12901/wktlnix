@@ -5,7 +5,8 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf makeBinPath;
   inherit (lib.${namespace}) mkBoolOpt;
 
@@ -36,7 +37,8 @@
     powerprofilesctl set balanced
     notify-send -a 'Gamemode' 'Optimizations deactivated' -u 'low'
   '';
-in {
+in
+{
   options.${namespace}.programs.graphical.games.gamemode = {
     enable = mkBoolOpt false "Whether or not to enable gamemode.";
   };

@@ -5,8 +5,14 @@
   inputs,
   namespace,
   ...
-}: let
-  inherit (lib) mkIf mkEnableOption mkOption types;
+}:
+let
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    types
+    ;
   inherit (lib.${namespace}) enabled;
 
   catppuccinAccents = [
@@ -34,7 +40,8 @@
   ];
 
   cfg = config.${namespace}.theme.catppuccin;
-in {
+in
+{
   options.${namespace}.theme.catppuccin = {
     enable = mkEnableOption "Enable catppuccin theme for applications.";
 
@@ -88,7 +95,7 @@ in {
       recursive = true;
     };
     xdg.configFile."fcitx5/conf/classicui.conf" = {
-      text = lib.generators.toINIWithGlobalSection {} {
+      text = lib.generators.toINIWithGlobalSection { } {
         globalSection.Theme = "catppuccin-${cfg.flavor}-${cfg.accent}";
       };
     };

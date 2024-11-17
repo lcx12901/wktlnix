@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  extraPlugins = with pkgs.vimPlugins; [aerial-nvim];
+{ pkgs, ... }:
+{
+  extraPlugins = with pkgs.vimPlugins; [ aerial-nvim ];
 
   extraConfigLua = ''
     local large_buf = vim.tbl_get(require("astrocore").config, "features", "large_buf")
