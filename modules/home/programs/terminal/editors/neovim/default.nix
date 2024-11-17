@@ -20,6 +20,10 @@ in
 
   config = mkIf cfg.enable {
     home = {
+      sessionVariables = {
+        EDITOR = "nvim";
+      };
+
       packages = [
         pkgs.neovide
         pkgs.${namespace}.wktlvim
