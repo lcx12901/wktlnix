@@ -28,6 +28,10 @@ in
           IdentityFile ${osConfig.age.secrets."ryomori_rsa".path}
           IdentitiesOnly yes
 
+        Host akame.lincx.top
+          IdentityFile ${osConfig.age.secrets."akame_rsa".path}
+          IdentitiesOnly yes
+
         Host github.com
           IdentityFile ${osConfig.age.secrets."host_rsa".path}
           IdentitiesOnly yes
