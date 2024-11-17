@@ -3,14 +3,16 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.system.persist;
 
   username = config.${namespace}.user.name;
-in {
+in
+{
   options.${namespace}.system.persist = {
     enable = mkBoolOpt false "Whether or not to enable impermanence.";
   };
@@ -38,15 +40,17 @@ in {
 
     programs.fuse.userAllowOther = true;
 
-    system.activationScripts.persistent-dirs.text = let
-      mkHomePersist = user:
-        lib.optionalString user.createHome ''
-          mkdir -p /persist/${user.home}
-          chown ${user.name}:${user.group} /persist/${user.home}
-          chmod ${user.homeMode} /persist/${user.home}
-        '';
-      users = lib.attrValues config.users.users;
-    in
+    system.activationScripts.persistent-dirs.text =
+      let
+        mkHomePersist =
+          user:
+          lib.optionalString user.createHome ''
+            mkdir -p /persist/${user.home}
+            chown ${user.name}:${user.group} /persist/${user.home}
+            chmod ${user.homeMode} /persist/${user.home}
+          '';
+        users = lib.attrValues config.users.users;
+      in
       lib.concatLines (map mkHomePersist users);
   };
 }

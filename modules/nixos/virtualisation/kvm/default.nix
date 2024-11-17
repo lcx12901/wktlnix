@@ -4,7 +4,8 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.types) enum;
   inherit (lib.${namespace}) mkBoolOpt mkOpt enabled;
@@ -12,7 +13,8 @@
   inherit (config.${namespace}) user;
 
   cfg = config.${namespace}.virtualisation.kvm;
-in {
+in
+{
   options.${namespace}.virtualisation.kvm = {
     enable = mkBoolOpt false "Whether or not to enable KVM virtualisation.";
     platform = mkOpt (enum [
@@ -37,7 +39,7 @@ in {
       ];
     };
 
-    environment.systemPackages = with pkgs; [virt-manager];
+    environment.systemPackages = with pkgs; [ virt-manager ];
 
     # trust bridge network interface(s)
     networking.firewall.trustedInterfaces = [

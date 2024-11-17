@@ -4,7 +4,7 @@
       enable = true;
 
       modules = {
-        bufremove = {};
+        bufremove = { };
       };
     };
   };

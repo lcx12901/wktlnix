@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled;
 
   cfg = config.${namespace}.programs.terminal.media.mpd;
-in {
+in
+{
   options.${namespace}.programs.terminal.media.mpd = {
     enable = mkBoolOpt false "Whether or not to enable support for mpd.";
   };

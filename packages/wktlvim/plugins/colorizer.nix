@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   plugins.nvim-colorizer = {
     enable = false;
   };

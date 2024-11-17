@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.hardware.btrfs;
-in {
+in
+{
   options.${namespace}.hardware.btrfs = {
     enable = mkBoolOpt false "Whether or not to enable support for btrfs devices.";
     autoScrub = mkBoolOpt true "Whether to enable btrfs autoScrub;";
@@ -28,7 +30,7 @@ in {
       btrfs = {
         autoScrub = mkIf cfg.autoScrub {
           enable = true;
-          fileSystems = ["/"];
+          fileSystems = [ "/" ];
           interval = "weekly";
         };
       };

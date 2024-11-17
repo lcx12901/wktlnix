@@ -1,5 +1,7 @@
-{pkgs, ...}: let
-in {
+{ pkgs, ... }:
+let
+in
+{
   extraPlugins = [
     pkgs.vimPlugins.resession-nvim
   ];

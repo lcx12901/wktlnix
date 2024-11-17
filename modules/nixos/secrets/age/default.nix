@@ -5,7 +5,8 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkMerge;
   inherit (lib.${namespace}) mkBoolOpt;
 
@@ -13,7 +14,8 @@
   # hasMyContainer = containerName: lib.hasAttr containerName config.virtualisation.oci-containers.containers;
 
   cfg = config.${namespace}.secrets.age;
-in {
+in
+{
   options.${namespace}.secrets.age = {
     enable = mkBoolOpt true "Whether or not to enable agenix.";
   };

@@ -4,16 +4,18 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf optionals;
   inherit (lib.types) attrs;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.system.networking;
-in {
+in
+{
   options.${namespace}.system.networking = {
     enable = mkBoolOpt false "Whether or not to enable networking support";
-    hosts = mkOpt attrs {} "An attribute set to merge with <option>networking.hosts</option>";
+    hosts = mkOpt attrs { } "An attribute set to merge with <option>networking.hosts</option>";
     optimizeTcp = mkBoolOpt true "Optimize TCP connections";
     wireless = mkBoolOpt false "Whether or not to enable WIFI";
   };
@@ -23,7 +25,7 @@ in {
       extraModprobeConfig = "options bonding max_bonds=0";
 
       kernelModules =
-        ["af_packet"]
+        [ "af_packet" ]
         ++ optionals cfg.optimizeTcp [
           "tls"
           "tcp_bbr"
@@ -82,16 +84,14 @@ in {
 
     wktlnix = {
       user = {
-        extraGroups = ["network"];
+        extraGroups = [ "network" ];
       };
     };
 
     networking = {
-      hosts =
-        {
-          "127.0.0.1" = cfg.hosts."127.0.0.1" or [];
-        }
-        // cfg.hosts;
+      hosts = {
+        "127.0.0.1" = cfg.hosts."127.0.0.1" or [ ];
+      } // cfg.hosts;
 
       nameservers = [
         "1.1.1.1"

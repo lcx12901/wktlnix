@@ -5,14 +5,16 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled;
 
   persist = osConfig.${namespace}.system.persist.enable;
 
   cfg = config.${namespace}.programs.terminal.media.go-musicfox;
-in {
+in
+{
   options.${namespace}.programs.terminal.media.go-musicfox = {
     enable = mkBoolOpt false "Whether or not to enable support for go-musicfox.";
   };
@@ -24,7 +26,7 @@ in {
 
     home.persistence = mkIf persist {
       "/persist/home/${config.${namespace}.user.name}" = {
-        directories = [".config/go-musicfox"];
+        directories = [ ".config/go-musicfox" ];
       };
     };
 

@@ -4,11 +4,13 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf getExe;
 
   cfg = config.${namespace}.programs.graphical.wms.hyprland;
-in {
+in
+{
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       settings = {
@@ -82,17 +84,19 @@ in {
           # Switch workspaces with CTRL_ALT + [0-9]
           ++ (builtins.concatLists (
             builtins.genList (
-              x: let
-                ws = let
-                  c = (x + 1) / 10;
-                in
+              x:
+              let
+                ws =
+                  let
+                    c = (x + 1) / 10;
+                  in
                   builtins.toString (x + 1 - (c * 10));
-              in [
+              in
+              [
                 "SUPER, ${ws}, workspace, ${toString (x + 1)}"
                 "SUPERSHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
               ]
-            )
-            10
+            ) 10
           ));
         bindl = [
           ",XF86AudioMedia,exec,${getExe pkgs.playerctl} play-pause"

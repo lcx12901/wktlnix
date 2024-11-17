@@ -6,13 +6,15 @@
   system,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
   inherit (inputs) hyprlock wallpapers;
 
   cfg = config.${namespace}.programs.graphical.screenlockers.hyprlock;
-in {
+in
+{
   options.${namespace}.programs.graphical.screenlockers.hyprlock = {
     enable = mkBoolOpt false "Whether to enable hyprlock in the desktop environment.";
   };

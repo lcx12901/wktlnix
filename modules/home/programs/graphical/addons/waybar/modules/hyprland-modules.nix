@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) getExe';
-in {
+in
+{
   "hyprland/workspaces" = {
     all-outputs = false;
     active-only = false;

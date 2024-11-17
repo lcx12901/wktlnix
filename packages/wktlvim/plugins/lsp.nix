@@ -5,9 +5,11 @@
   namespace,
   self,
   ...
-}: let
+}:
+let
   inherit (config) icons;
-in {
+in
+{
   plugins = {
     lspkind.enable = true;
     lsp-lines.enable = true;
@@ -85,27 +87,29 @@ in {
       servers = {
         nixd = {
           enable = true;
-          filetypes = ["nix"];
-          settings = let
-            flake = ''(builtins.getFlake "${self}")'';
-          in {
-            nixpkgs = {
-              expr = "import ${flake}.inputs.nixpkgs { }";
+          filetypes = [ "nix" ];
+          settings =
+            let
+              flake = ''(builtins.getFlake "${self}")'';
+            in
+            {
+              nixpkgs = {
+                expr = "import ${flake}.inputs.nixpkgs { }";
+              };
+              formatting = {
+                command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+              };
+              options = {
+                nixos.expr = ''${flake}.nixosConfigurations.wktlnix.options'';
+                nixvim.expr = ''${flake}.packages.${pkgs.system}.nvim.options'';
+                home-manager.expr = ''${flake}.homeConfigurations."wktl@wktlnix".options'';
+              };
             };
-            formatting = {
-              command = ["${lib.getExe pkgs.nixfmt-rfc-style}"];
-            };
-            options = {
-              nixos.expr = ''${flake}.nixosConfigurations.wktlnix.options'';
-              nixvim.expr = ''${flake}.packages.${pkgs.system}.nvim.options'';
-              home-manager.expr = ''${flake}.homeConfigurations."wktl@wktlnix".options'';
-            };
-          };
         };
 
         lua_ls = {
           enable = true;
-          filetypes = ["lua"];
+          filetypes = [ "lua" ];
         };
 
         eslint = {
@@ -169,12 +173,12 @@ in {
 
         yamlls = {
           enable = true;
-          filetypes = ["yaml"];
+          filetypes = [ "yaml" ];
         };
 
         taplo = {
           enable = true;
-          filetypes = ["toml"];
+          filetypes = [ "toml" ];
         };
       };
     };

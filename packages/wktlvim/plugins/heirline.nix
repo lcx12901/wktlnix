@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  extraPlugins = [pkgs.vimPlugins.heirline-nvim];
+{ pkgs, ... }:
+{
+  extraPlugins = [ pkgs.vimPlugins.heirline-nvim ];
 
   extraConfigLua = ''
     local status = require("astroui.status")

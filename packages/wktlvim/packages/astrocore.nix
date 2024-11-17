@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   version = "1.11.0";
 
   # https://github.com/AstroNvim/AstroNvim/blob/v4.27.2/lua/astronvim/plugins/_astrocore.lua#L43
@@ -89,8 +90,8 @@
     ];
 
     ignore = {
-      dirs = {};
-      servers = {};
+      dirs = { };
+      servers = { };
     };
   };
 
@@ -102,12 +103,16 @@
     };
 
     ignore = {
-      buftypes = {};
-      dirs = {};
-      filetypes = ["gitcommit" "gitrebase"];
+      buftypes = { };
+      dirs = { };
+      filetypes = [
+        "gitcommit"
+        "gitrebase"
+      ];
     };
   };
-in {
+in
+{
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {
       inherit version;

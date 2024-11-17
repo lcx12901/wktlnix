@@ -3,12 +3,14 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.system.boot;
-in {
+in
+{
   options.${namespace}.system.boot = {
     enable = mkBoolOpt false "Whether or not to enable booting.";
     plymouth = mkBoolOpt false "Whether or not to enable plymouth boot splash.";
@@ -19,7 +21,7 @@ in {
   config = mkIf cfg.enable {
     boot = {
       kernelParams =
-        lib.optionals cfg.plymouth ["quiet"]
+        lib.optionals cfg.plymouth [ "quiet" ]
         ++ lib.optionals cfg.silentBoot [
           # tell the kernel to not be verbose
           "quiet"
@@ -50,10 +52,7 @@ in {
       loader = {
         efi = {
           canTouchEfiVariables = true;
-          efiSysMountPoint =
-            if cfg.useGrub
-            then "/boot/efi"
-            else "/boot";
+          efiSysMountPoint = if cfg.useGrub then "/boot/efi" else "/boot";
         };
 
         generationsDir.copyKernels = true;
@@ -66,7 +65,7 @@ in {
 
         grub = {
           enable = cfg.useGrub;
-          devices = ["nodev"];
+          devices = [ "nodev" ];
           efiSupport = true;
           useOSProber = true;
         };

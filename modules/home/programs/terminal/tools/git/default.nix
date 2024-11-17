@@ -4,18 +4,25 @@
   pkgs,
   namespace,
   ...
-}: let
-  inherit (lib) types mkEnableOption mkIf mkForce;
+}:
+let
+  inherit (lib)
+    types
+    mkEnableOption
+    mkIf
+    mkForce
+    ;
   inherit (lib.${namespace}) mkOpt enabled;
   inherit (config.${namespace}) user;
 
   cfg = config.${namespace}.programs.terminal.tools.git;
 
   ignores = import ./ignores.nix;
-in {
+in
+{
   options.${namespace}.programs.terminal.tools.git = {
     enable = mkEnableOption "Git";
-    includes = mkOpt (types.listOf types.attrs) [] "Git includeIf paths and conditions.";
+    includes = mkOpt (types.listOf types.attrs) [ ] "Git includeIf paths and conditions.";
     userName = mkOpt types.str "lcx12901" "The name to configure git with.";
     userEmail = mkOpt types.str user.email "The email to configure git with.";
   };

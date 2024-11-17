@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled;
 
   cfg = config.${namespace}.virtualisation.podman;
-in {
+in
+{
   options.${namespace}.virtualisation.podman = {
     enable = mkBoolOpt false "Whether or not to enable Podman.";
   };
@@ -42,7 +44,7 @@ in {
         # prune images and containers periodically
         autoPrune = {
           enable = true;
-          flags = ["--all"];
+          flags = [ "--all" ];
           dates = "weekly";
         };
 

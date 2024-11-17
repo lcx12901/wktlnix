@@ -5,14 +5,16 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   persist = osConfig.${namespace}.system.persist.enable;
 
   cfg = config.${namespace}.scenes.business;
-in {
+in
+{
   options.${namespace}.scenes.business = {
     enable = mkBoolOpt false "Whether or not to enable business configuration.";
   };
@@ -24,7 +26,7 @@ in {
 
     home.persistence = mkIf persist {
       "/persist/home/${config.${namespace}.user.name}" = {
-        directories = [".config/LarkShell"];
+        directories = [ ".config/LarkShell" ];
       };
     };
   };

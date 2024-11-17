@@ -2,21 +2,38 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   plugins.toggleterm = {
     enable = true;
 
     settings = {
       direction = "float";
       highlights = {
-        Normal = {link = "Normal";};
-        NormalNC = {link = "NormalNC";};
-        NormalFloat = {link = "NormalFloat";};
-        FloatBorder = {link = "FloatBorder";};
-        StatusLine = {link = "StatusLine";};
-        StatusLineNC = {link = "StatusLineNC";};
-        WinBar = {link = "WinBar";};
-        WinBarNC = {link = "WinBarNC";};
+        Normal = {
+          link = "Normal";
+        };
+        NormalNC = {
+          link = "NormalNC";
+        };
+        NormalFloat = {
+          link = "NormalFloat";
+        };
+        FloatBorder = {
+          link = "FloatBorder";
+        };
+        StatusLine = {
+          link = "StatusLine";
+        };
+        StatusLineNC = {
+          link = "StatusLineNC";
+        };
+        WinBar = {
+          link = "WinBar";
+        };
+        WinBarNC = {
+          link = "WinBarNC";
+        };
       };
       size = 10;
       on_create.__raw = ''

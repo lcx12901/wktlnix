@@ -2,10 +2,12 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib.${namespace}) enabled;
-in {
-  imports = [./hardware.nix];
+in
+{
+  imports = [ ./hardware.nix ];
 
   wktlnix = {
     system = {

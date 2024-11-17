@@ -5,20 +5,29 @@
   osConfig,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkDefault;
   inherit (lib.types) str package int;
-  inherit (lib.${namespace}) boolToNum mkBoolOpt nested-default-attrs mkOpt;
+  inherit (lib.${namespace})
+    boolToNum
+    mkBoolOpt
+    nested-default-attrs
+    mkOpt
+    ;
 
   cfg = config.${namespace}.theme.gtk;
-in {
+in
+{
   options.${namespace}.theme.gtk = {
     enable = mkBoolOpt false "Whether to customize GTK and apply themes.";
     usePortal = mkBoolOpt true "Whether to use the GTK Portal.";
 
     cursor = {
       name = mkOpt str "catppuccin-macchiato-lavender-cursors" "The name of the cursor theme to apply.";
-      package = mkOpt package pkgs.catppuccin-cursors.macchiatoLavender "The package to use for the cursor theme.";
+      package =
+        mkOpt package pkgs.catppuccin-cursors.macchiatoLavender
+          "The package to use for the cursor theme.";
       size = mkOpt int 22 "The size of the cursor.";
     };
 
@@ -33,7 +42,7 @@ in {
     theme = {
       name = mkOpt str "catppuccin-macchiato-lavender-standard" "The name of the theme to apply";
       package = mkOpt package (pkgs.catppuccin-gtk.override {
-        accents = ["lavender"];
+        accents = [ "lavender" ];
         size = "standard";
         variant = "macchiato";
       }) "The package to use for the theme";
@@ -81,8 +90,8 @@ in {
 
         # tell virt-manager to use the system connection
         "org/virt-manager/virt-manager/connections" = {
-          autoconnect = ["qemu:///system"];
-          uris = ["qemu:///system"];
+          autoconnect = [ "qemu:///system" ];
+          uris = [ "qemu:///system" ];
         };
       };
     };
@@ -140,17 +149,21 @@ in {
     };
 
     xdg = {
-      configFile = let
-        gtk4Dir = "${cfg.theme.package}/share/themes/${cfg.theme.name}/gtk-4.0";
-      in {
-        "gtk-4.0/assets".source = "${gtk4Dir}/assets";
-        "gtk-4.0/gtk.css".source = "${gtk4Dir}/gtk.css";
-        "gtk-4.0/gtk-dark.css".source = "${gtk4Dir}/gtk-dark.css";
-      };
+      configFile =
+        let
+          gtk4Dir = "${cfg.theme.package}/share/themes/${cfg.theme.name}/gtk-4.0";
+        in
+        {
+          "gtk-4.0/assets".source = "${gtk4Dir}/assets";
+          "gtk-4.0/gtk.css".source = "${gtk4Dir}/gtk.css";
+          "gtk-4.0/gtk-dark.css".source = "${gtk4Dir}/gtk-dark.css";
+        };
 
-      systemDirs.data = let
-        schema = pkgs.gsettings-desktop-schemas;
-      in ["${schema}/share/gsettings-schemas/${schema.name}"];
+      systemDirs.data =
+        let
+          schema = pkgs.gsettings-desktop-schemas;
+        in
+        [ "${schema}/share/gsettings-schemas/${schema.name}" ];
     };
   };
 }

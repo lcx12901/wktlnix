@@ -3,11 +3,13 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.security.pki.trustCa;
-in {
+in
+{
   options.${namespace}.security.pki.trustCa = {
     enable = mkBoolOpt false "trustCa";
   };

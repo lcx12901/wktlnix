@@ -3,9 +3,11 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib.${namespace}) enabled;
-in {
+in
+{
   wktlnix = {
     user = {
       enable = true;

@@ -5,7 +5,8 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
@@ -20,24 +21,25 @@
       nss = pkgs.nss_latest;
       withOpenASAR = true;
       withVencord = true;
-    })
-    .overrideAttrs (old: {
-      libPath = old.libPath + ":${pkgs.libglvnd}/lib";
-      nativeBuildInputs = old.nativeBuildInputs ++ [pkgs.makeWrapper];
+    }).overrideAttrs
+      (old: {
+        libPath = old.libPath + ":${pkgs.libglvnd}/lib";
+        nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.makeWrapper ];
 
-      postFixup = ''
-        wrapProgram $out/opt/DiscordCanary/DiscordCanary \
-          --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform=wayland}}"
-      '';
-    });
-in {
+        postFixup = ''
+          wrapProgram $out/opt/DiscordCanary/DiscordCanary \
+            --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform=wayland}}"
+        '';
+      });
+in
+{
   options.${namespace}.programs.graphical.apps.discord = {
     enable = mkBoolOpt false "discord";
   };
 
   config = mkIf cfg.enable {
     home = {
-      packages = [discord-wrapped];
+      packages = [ discord-wrapped ];
 
       persistence = mkIf persist {
         "/persist/home/${config.${namespace}.user.name}" = {

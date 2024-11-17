@@ -5,13 +5,15 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.graphical.video;
-  # persist = osConfig.${namespace}.system.persist.enable;
-in {
+in
+# persist = osConfig.${namespace}.system.persist.enable;
+{
   options.${namespace}.programs.graphical.video = {
     enable = mkBoolOpt false "Whether or not to enable video configuration.";
   };

@@ -1,6 +1,8 @@
-{config, ...}: let
+{ config, ... }:
+let
   inherit (config) icons;
-in {
+in
+{
   plugins.which-key = {
     enable = true;
 

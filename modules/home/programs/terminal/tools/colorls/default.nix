@@ -4,19 +4,21 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.tools.colorls;
-in {
+in
+{
   options.${namespace}.programs.terminal.tools.colorls = {
     enable = mkBoolOpt false "Whether or not to enable colorls.";
   };
 
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [colorls];
+      packages = with pkgs; [ colorls ];
 
       shellAliases = {
         lc = "colorls --sd";

@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (config) icons;
-in {
+in
+{
   plugins.neo-tree = {
     enable = true;
 
@@ -207,19 +209,20 @@ in {
     }
   ];
 
-  autoCmd = let
-    refresh = ''
-      function()
-        local manager_avail, manager = pcall(require, "neo-tree.sources.manager")
-        if manager_avail then
-          for _, source in ipairs { "filesystem", "git_status", "document_symbols" } do
-            local module = "neo-tree.sources." .. source
-            if package.loaded[module] then manager.refresh(require(module).name) end
+  autoCmd =
+    let
+      refresh = ''
+        function()
+          local manager_avail, manager = pcall(require, "neo-tree.sources.manager")
+          if manager_avail then
+            for _, source in ipairs { "filesystem", "git_status", "document_symbols" } do
+              local module = "neo-tree.sources." .. source
+              if package.loaded[module] then manager.refresh(require(module).name) end
+            end
           end
         end
-      end
-    '';
-  in
+      '';
+    in
     lib.mkIf config.plugins.neo-tree.enable [
       {
         event = "BufEnter";

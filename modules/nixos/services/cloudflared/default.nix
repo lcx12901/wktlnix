@@ -4,9 +4,11 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.services.cloudflared;
-in {
+in
+{
   options.${namespace}.services.cloudflared = {
     enable = lib.${namespace}.mkBoolOpt false "Whether or not to configure cloudflared";
   };

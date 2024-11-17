@@ -6,7 +6,8 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.types) number;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
@@ -16,7 +17,8 @@
   persist = osConfig.${namespace}.system.persist.enable;
 
   extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
-in {
+in
+{
   options.${namespace}.programs.graphical.editors.vscode = {
     enable = mkBoolOpt false "Whether or not to enable vscode.";
     zoomLevel = mkOpt number 0 "set vscode window zoom level.";
@@ -86,8 +88,8 @@ in {
             extraBordersEnabled = false;
             workbenchMode = "default";
             bracketMode = "rainbow";
-            colorOverrides = {};
-            customUIColors = {};
+            colorOverrides = { };
+            customUIColors = { };
           })
         ];
 
@@ -227,7 +229,7 @@ in {
     home.persistence = mkIf persist {
       "/persist/home/${config.${namespace}.user.name}" = {
         allowOther = true;
-        directories = [".config/Code"];
+        directories = [ ".config/Code" ];
       };
     };
   };

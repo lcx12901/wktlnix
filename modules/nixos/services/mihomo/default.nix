@@ -4,12 +4,14 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.services.mihomo;
-in {
+in
+{
   options.${namespace}.services.mihomo = {
     enable = mkBoolOpt false "Whether or not to enable mihomo.";
   };
@@ -31,6 +33,6 @@ in {
       CapabilityBoundingSet = lib.mkForce "CAP_NET_ADMIN CAP_NET_RAW CAP_NET_BIND_SERVICE CAP_SYS_TIME CAP_SYS_PTRACE CAP_DAC_READ_SEARCH CAP_DAC_OVERRIDE";
     };
 
-    networking.firewall.allowedTCPPorts = [9090];
+    networking.firewall.allowedTCPPorts = [ 9090 ];
   };
 }

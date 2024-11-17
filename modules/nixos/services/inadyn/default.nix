@@ -3,9 +3,11 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   cfg = config.${namespace}.services.inadyn;
-in {
+in
+{
   options.${namespace}.services.inadyn = {
     enable = lib.${namespace}.mkBoolOpt false "Whether or not to configure inadyn for ddns.";
   };

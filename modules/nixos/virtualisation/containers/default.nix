@@ -3,14 +3,16 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.virtualisation.containers;
-  # hasOptinPersistence = config.${namespace}.system.persist.enable;
-  # volumesRoot = "${lib.optionalString hasOptinPersistence "/persist"}/var/lib/containers/persist_data";
-in {
+in
+# hasOptinPersistence = config.${namespace}.system.persist.enable;
+# volumesRoot = "${lib.optionalString hasOptinPersistence "/persist"}/var/lib/containers/persist_data";
+{
   options.${namespace}.virtualisation.containers = {
     enable = mkBoolOpt false "Whether or not to enable containers.";
   };
@@ -40,7 +42,11 @@ in {
       ariang = {
         image = "p3terx/ariang:latest";
         autoStart = true;
-        extraOptions = ["--network=host" "--log-opt=max-size=1m" "--pull=newer"];
+        extraOptions = [
+          "--network=host"
+          "--log-opt=max-size=1m"
+          "--pull=newer"
+        ];
       };
     };
   };

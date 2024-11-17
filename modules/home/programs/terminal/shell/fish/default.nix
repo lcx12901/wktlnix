@@ -5,12 +5,14 @@
   namespace,
   osConfig,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.shell.fish;
-in {
+in
+{
   options.${namespace}.programs.terminal.shell.fish = {
     enable = mkBoolOpt true "Whether or not to enable fish shell.";
   };

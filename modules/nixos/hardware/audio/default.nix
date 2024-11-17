@@ -4,13 +4,15 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkForce;
   inherit (lib.types) listOf package;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.hardware.audio;
-in {
+in
+{
   options.${namespace}.hardware.audio = {
     enable = mkBoolOpt false "Whether or not to enable audio support.";
     extra-packages = mkOpt (listOf package) [
@@ -31,7 +33,7 @@ in {
     hardware.pulseaudio.enable = mkForce false;
 
     wktlnix = {
-      user.extraGroups = ["audio"];
+      user.extraGroups = [ "audio" ];
     };
 
     services.pipewire = {

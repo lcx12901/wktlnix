@@ -4,12 +4,14 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.tools.ssh;
-in {
+in
+{
   options.${namespace}.programs.terminal.tools.ssh = {
     enable = mkBoolOpt true "Whether or not to enable ssh.";
   };

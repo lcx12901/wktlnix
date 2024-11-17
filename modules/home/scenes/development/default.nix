@@ -5,7 +5,8 @@
   pkgs,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled;
 
@@ -14,7 +15,8 @@
   persist = osConfig.${namespace}.system.persist.enable;
 
   cfg = config.${namespace}.scenes.development;
-in {
+in
+{
   options.${namespace}.scenes.development = {
     enable = mkBoolOpt false "Whether or not to enable development configuration.";
   };
@@ -31,7 +33,7 @@ in {
       persistence = mkIf persist {
         "/persist/home/${config.${namespace}.user.name}" = {
           allowOther = true;
-          directories = [".bun"];
+          directories = [ ".bun" ];
         };
       };
     };

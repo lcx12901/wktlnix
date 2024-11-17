@@ -3,14 +3,16 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf types;
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
 
   cfg = config.${namespace}.system.disko;
 
   isGrub = config.${namespace}.system.boot.useGrub;
-in {
+in
+{
   options.${namespace}.system.disko = {
     enable = mkBoolOpt false "Whether or not to enable declarative disk partitioning.";
     device = mkOpt types.str "/dev/nvme0n1" "this is a disk path.";
@@ -68,23 +70,29 @@ in {
                 size = cfg.rootSize;
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-f"];
+                  extraArgs = [ "-f" ];
                   subvolumes = {
                     nix = {
                       mountpoint = "/nix";
-                      mountOptions = ["compress-force=zstd:1" "noatime"];
+                      mountOptions = [
+                        "compress-force=zstd:1"
+                        "noatime"
+                      ];
                     };
                     persist = {
                       mountpoint = "/persist";
-                      mountOptions = ["compress-force=zstd:1" "noatime"];
+                      mountOptions = [
+                        "compress-force=zstd:1"
+                        "noatime"
+                      ];
                     };
                     tmp = {
                       mountpoint = "/tmp";
-                      mountOptions = ["noatime"];
+                      mountOptions = [ "noatime" ];
                     };
                     swap = {
                       mountpoint = "/swap";
-                      mountOptions = ["noatime"];
+                      mountOptions = [ "noatime" ];
                       swap.swapfile.size = "16G";
                     };
                   };

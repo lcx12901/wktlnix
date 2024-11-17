@@ -6,7 +6,8 @@
   system,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf getExe getExe';
   inherit (inputs) nixpkgs-wayland hyprland-contrib;
 
@@ -14,7 +15,8 @@
   grimblast = getExe hyprland-contrib.packages.${system}.grimblast;
 
   cfg = config.${namespace}.programs.graphical.wms.hyprland;
-in {
+in
+{
   # follow this dotfiles: https://github.com/end-4/dots-hyprland
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
@@ -86,7 +88,7 @@ in {
             size = 14;
             passes = 4;
             brightness = 1;
-            noise = 0.01;
+            noise = 1.0e-2;
             contrast = 1;
             popups = true;
             popups_ignorealpha = 0.6;
