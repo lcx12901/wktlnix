@@ -86,7 +86,7 @@ in
 
       servers = {
         nixd = {
-          enable = true;
+          enable = false;
           filetypes = [ "nix" ];
           settings =
             let
@@ -105,6 +105,22 @@ in
                 home-manager.expr = ''${flake}.homeConfigurations."wktl@wktlnix".options'';
               };
             };
+        };
+        nil_ls = {
+          # FIXME: when nixd works again
+          # enable = !config.plugins.lsp.servers.nixd.enable;
+          enable = true;
+          filetypes = [ "nix" ];
+          settings = {
+            formatting = {
+              command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+            };
+            nix = {
+              flake = {
+                autoArchive = true;
+              };
+            };
+          };
         };
 
         lua_ls = {
