@@ -16,4 +16,5 @@ in
   "ssh/akari_rsa.age".publicKeys = users;
   "ssh/ryomori_rsa.age".publicKeys = users;
   "ssh/host_rsa.age".publicKeys = users;
+  "ssh/akame_rsa.age".publicKeys = users;
 }
