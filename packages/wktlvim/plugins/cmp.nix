@@ -84,11 +84,11 @@ in
             # Lua
             ''
               cmp.mapping(function(fallback)
-                if cmp.visible() then
+                if cmp_is_visible(cmp) then
                   cmp.select_next_item()
-                elseif vim.api.nvim_get_mode().mode ~= "c" and luasnip.expand_or_locally_jumpable() then
-                  luasnip.expand_or_jump()
-                elseif has_words_before() then
+                elseif vim.api.nvim_get_mode().mode ~= "c" and require("luasnip").expand_or_locally_jumpable() then
+                  require("luasnip").expand_or_jump()
+                elseif cmp_has_words_before() then
                   cmp.complete()
                 else
                   fallback()
@@ -99,10 +99,10 @@ in
             # Lua
             ''
               cmp.mapping(function(fallback)
-                if cmp.visible() then
+                if cmp_is_visible(cmp) then
                   cmp.select_prev_item()
-                elseif vim.api.nvim_get_mode().mode ~= "c" and luasnip.jumpable(-1) then
-                  luasnip.jump(-1)
+                elseif vim.api.nvim_get_mode().mode ~= "c" and require("luasnip").jumpable(-1) then
+                  require("luasnip").jump(-1)
                 else
                   fallback()
                 end
@@ -216,4 +216,14 @@ in
       };
     };
   };
+
+  extraConfigLuaPre = ''
+    local cmp = require "cmp"
+
+    local function cmp_has_words_before()
+      local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
+      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+    end
+    local function cmp_is_visible(cmp) return cmp.core.view:visible() or vim.fn.pumvisible() == 1 end
+  '';
 }
