@@ -1,41 +1,10 @@
 {
   helpers,
-  config,
   pkgs,
   ...
 }:
 let
   version = "1.11.0";
-
-  # https://github.com/AstroNvim/AstroNvim/blob/v4.27.2/lua/astronvim/plugins/_astrocore.lua#L43
-  diagnostics = {
-    virtual_text = true;
-    update_in_insert = true;
-    underline = true;
-    severity_sort = true;
-
-    float = {
-      focused = false;
-      style = "minimal";
-      border = "rounded";
-      source = "always";
-      header = "";
-      prefix = "";
-    };
-
-    signs = {
-      text = {
-        # vim.diagnostic.severity.ERROR
-        "1" = config.icons.DiagnosticError;
-        # vim.diagnostic.severity.WARN
-        "2" = config.icons.DiagnosticWarn;
-        # vim.diagnostic.severity.INFO
-        "3" = config.icons.DiagnosticInfo;
-        # vim.diagnostic.severity.HINT
-        "4" = config.icons.DiagnosticHint;
-      };
-    };
-  };
 
   # https://github.com/AstroNvim/AstroNvim/blob/v4.27.2/lua/astronvim/plugins/_astrocore.lua#L35
   features = {
@@ -135,7 +104,7 @@ in
 
   extraConfigLuaPre = ''
     require("astrocore").setup({
-      diagnostics = ${helpers.toLuaObject diagnostics},
+      diagnostics = {},
       features = ${helpers.toLuaObject features},
       options = ${helpers.toLuaObject options},
       rooter = ${helpers.toLuaObject rooter},

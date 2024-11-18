@@ -89,5 +89,32 @@
         desc = "Toggle terminal";
       };
     }
+    {
+      mode = "t";
+      key = "<F7>";
+      action = "<Cmd>ToggleTerm<CR>";
+      options.desc = "Toggle terminal";
+    }
+    {
+      mode = "i";
+      key = "<F7>";
+      action = "<Esc><Cmd>ToggleTerm<CR>";
+      options.desc = "Toggle terminal";
+    }
+    {
+      mode = "t";
+      key = "<Esc><Esc>";
+      action = "<C-\\><C-n>";
+      options.desc = "Switch to normal mode";
+    }
+    {
+      mode = [
+        "n"
+        "t"
+      ];
+      key = "<Leader>ts";
+      action = "<cmd>TermSelect<cr>";
+      options.desc = "List terminals";
+    }
   ];
 }

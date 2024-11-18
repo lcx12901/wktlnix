@@ -66,6 +66,14 @@ in
     };
 
     defaultComponentConfigs = {
+      diagnostics = {
+        symbols = {
+          error = icons.DiagnosticError;
+          hint = icons.DiagnosticHint;
+          info = icons.DiagnosticInfo;
+          warn = icons.DiagnosticWarn;
+        };
+      };
       gitStatus.symbols = {
         added = icons.GitAdd;
         conflict = icons.GitConflict;

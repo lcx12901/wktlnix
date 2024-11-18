@@ -7,6 +7,120 @@
 {
   extraPackages = with pkgs; [ ripgrep ];
 
+  keymaps = lib.mkIf config.plugins.telescope.enable [
+    {
+      mode = "n";
+      key = "<leader>fc";
+      action.__raw = ''
+        function()
+          require("telescope.builtin").find_files {
+            prompt_title = "Config Files",
+            cwd = vim.fn.stdpath "config",
+            follow = true,
+          }
+        end
+      '';
+      options = {
+        desc = "Find config files";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>fF";
+      action.__raw = ''
+        function()
+          require("telescope.builtin").find_files({ hidden = true, no_ignore = true})
+        end
+      '';
+      options = {
+        desc = "Find all files";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>fT";
+      action.__raw = ''
+        function()
+          require("telescope.builtin").colorscheme({ enable_preview = true })
+        end
+      '';
+      options = {
+        desc = "Find theme";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>fW";
+      action.__raw = ''
+        function()
+          require("telescope.builtin").live_grep {
+            additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
+          }
+        end
+      '';
+      options = {
+        desc = "Find words in all files";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>f?";
+      action.__raw = ''
+        function()
+          require("telescope.builtin").live_grep { grep_open_files=true }
+        end
+      '';
+      options = {
+        desc = "Find words in all open buffers";
+        silent = true;
+      };
+    }
+    (lib.mkIf config.plugins.telescope.extensions.file-browser.enable {
+      mode = "n";
+      key = "<leader>fe";
+      action = "<cmd>Telescope file_browser<CR>";
+      options = {
+        desc = "File Explorer";
+      };
+    })
+    (lib.mkIf config.plugins.telescope.extensions.frecency.enable {
+      mode = "n";
+      key = "<leader>fO";
+      action = "<cmd>Telescope frecency<CR>";
+      options = {
+        desc = "Find Frequent Files";
+      };
+    })
+    (lib.mkIf config.plugins.telescope.extensions.undo.enable {
+      mode = "n";
+      key = "<leader>fu";
+      action = "<cmd>Telescope undo<CR>";
+      options = {
+        desc = "List undo history";
+      };
+    })
+    (lib.mkIf config.plugins.telescope.extensions.manix.enable {
+      mode = "n";
+      key = "<leader>fM";
+      action = "<cmd>Telescope manix<CR>";
+      options = {
+        desc = "Search manix";
+      };
+    })
+    (lib.mkIf config.plugins.telescope.extensions.live-grep-args.enable {
+      mode = "n";
+      key = "<leader>fw";
+      action = "<cmd>Telescope live_grep_args<CR>";
+      options = {
+        desc = "Live grep (args)";
+      };
+    })
+  ];
+
   plugins.telescope = {
     enable = true;
 
@@ -51,87 +165,91 @@
     highlightTheme = "Catppuccin Macchiato";
 
     keymaps = {
-      "<Leader>f'" = {
+      "<leader>f'" = {
         action = "marks";
         options.desc = "View marks";
       };
-      "<Leader>f/" = {
+      "<leader>f/" = {
         action = "current_buffer_fuzzy_find";
         options.desc = "Fuzzy find in current buffer";
       };
-      "<Leader>f<CR>" = {
+      "<leader>f<CR>" = {
         action = "resume";
         options.desc = "Resume action";
       };
-      "<Leader>fa" = {
+      "<leader>fa" = {
         action = "autocommands";
         options.desc = "View autocommands";
       };
-      "<Leader>fC" = {
+      "<leader>fC" = {
         action = "commands";
         options.desc = "View commands";
       };
-      "<Leader>fb" = {
+      "<leader>fb" = {
         action = "buffers";
         options.desc = "View buffers";
       };
-      "<Leader>fc" = {
+      "<leader>fc" = {
         action = "grep_string";
         options.desc = "Grep string";
       };
-      "<Leader>fd" = {
+      "<leader>fd" = {
         action = "diagnostics";
         options.desc = "View diagnostics";
       };
-      "<Leader>ff" = {
+      "<leader>ff" = {
         action = "find_files";
         options.desc = "Find files";
       };
-      "<Leader>fh" = {
+      "<leader>fh" = {
         action = "help_tags";
         options.desc = "View help tags";
       };
-      "<Leader>fk" = {
+      "<leader>fk" = {
         action = "keymaps";
         options.desc = "View keymaps";
       };
-      "<Leader>fm" = {
+      "<leader>fm" = {
         action = "man_pages";
         options.desc = "View man pages";
       };
-      "<Leader>fo" = {
+      "<leader>fo" = {
         action = "oldfiles";
         options.desc = "View old files";
       };
-      "<Leader>fr" = {
+      "<leader>fr" = {
         action = "registers";
         options.desc = "View registers";
       };
-      "<Leader>fs" = {
+      "<leader>fs" = {
         action = "lsp_document_symbols";
         options.desc = "Search symbols";
       };
-      "<Leader>fq" = {
+      "<leader>fq" = {
         action = "quickfix";
         options.desc = "Search quickfix";
       };
-      "<Leader>fw" = lib.mkIf (!config.plugins.telescope.extensions.live-grep-args.enable) {
+      "<leader>fw" = lib.mkIf (!config.plugins.telescope.extensions.live-grep-args.enable) {
         action = "live_grep";
         options.desc = "Live grep";
       };
-      "<Leader>gB" = {
+      # "<leader>gC" = {
+      #   action = "git_bcommits";
+      #   options.desc = "View git bcommits";
+      # };
+      "<leader>gB" = {
         action = "git_branches";
         options.desc = "View git branches";
       };
-      "<Leader>gC" = {
+      "<leader>gC" = {
         action = "git_commits";
         options.desc = "View git commits";
       };
-      "<Leader>gs" = {
+      "<leader>gs" = {
         action = "git_status";
         options.desc = "View git status";
       };
-      "<Leader>gS" = {
+      "<leader>gS" = {
         action = "git_stash";
         options.desc = "View git stashes";
       };
@@ -147,7 +265,6 @@
           "^data/"
           "%.ipynb"
         ];
-
         set_env.COLORTERM = "truecolor";
       };
 
