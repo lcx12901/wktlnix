@@ -10,6 +10,39 @@ let
   inherit (config) icons;
 in
 {
+  extraConfigLuaPre = ''
+    vim.fn.sign_define("DiagnosticSignError", { text = " ${icons.DiagnosticError}", texthl = "DiagnosticError", linehl = "", numhl = "" })
+    vim.fn.sign_define("DiagnosticSignWarn", { text = " ${icons.DiagnosticWarn}", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
+    vim.fn.sign_define("DiagnosticSignHint", { text = " ${icons.DiagnosticHint}", texthl = "DiagnosticHint", linehl = "", numhl = "" })
+    vim.fn.sign_define("DiagnosticSignInfo", { text = " ${icons.DiagnosticInfo}", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
+
+    local function preview_location_callback(_, result)
+      if result == nil or vim.tbl_isempty(result) then
+        vim.notify('No location found to preview')
+        return nil
+      end
+    local buf, _ = vim.lsp.util.preview_location(result[1])
+      if buf then
+        local cur_buf = vim.api.nvim_get_current_buf()
+        vim.bo[buf].filetype = vim.bo[cur_buf].filetype
+      end
+    end
+
+    function peek_definition()
+      local params = vim.lsp.util.make_position_params()
+      return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+    end
+
+    local function peek_type_definition()
+      local params = vim.lsp.util.make_position_params()
+      return vim.lsp.buf_request(0, 'textDocument/typeDefinition', params, preview_location_callback)
+    end
+
+    require('lspconfig.ui.windows').default_options = {
+      border = "rounded"
+    }
+  '';
+
   plugins = {
     lspkind.enable = true;
     lsp-lines.enable = true;
@@ -46,6 +79,22 @@ in
               desc = "Format selection";
             };
           }
+          {
+            action.__raw = "peek_definition";
+            mode = "n";
+            key = "<leader>lp";
+            options = {
+              desc = "Preview definition";
+            };
+          }
+          {
+            action.__raw = "peek_type_definition";
+            mode = "n";
+            key = "<leader>lP";
+            options = {
+              desc = "Preview type definition";
+            };
+          }
         ];
 
         lspBuf = {
@@ -59,30 +108,6 @@ in
           "<Leader>lt" = "type_definition";
         };
       };
-
-      postConfig = ''
-        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-
-        vim.diagnostic.config({
-          virtual_text = false,
-          signs = true,
-          underline = true,
-          update_in_insert = true,
-          severity_sort = false,
-        })
-
-        local signs = {
-          Error = "${icons.DiagnosticError}",
-          Warn = "${icons.DiagnosticWarn}",
-          Info = "${icons.DiagnosticInfo}",
-          Hint = "${icons.DiagnosticHint}",
-        }
-
-        for type, icon in pairs(signs) do
-          local hl = "DiagnosticSign" .. type
-          vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-        end
-      '';
 
       servers = {
         nixd = {
@@ -198,5 +223,57 @@ in
         };
       };
     };
+
+    which-key.settings.spec = [
+      {
+        __unkeyed = "<leader>l";
+        group = "LSP";
+        icon = " ";
+      }
+      {
+        __unkeyed = "<leader>la";
+        desc = "Code Action";
+      }
+      {
+        __unkeyed = "<leader>ld";
+        desc = "Definition";
+      }
+      {
+        __unkeyed = "<leader>lD";
+        desc = "References";
+      }
+      {
+        __unkeyed = "<leader>lf";
+        desc = "Format";
+      }
+      {
+        __unkeyed = "<leader>l[";
+        desc = "Prev";
+      }
+      {
+        __unkeyed = "<leader>l]";
+        desc = "Next";
+      }
+      {
+        __unkeyed = "<leader>lt";
+        desc = "Type Definition";
+      }
+      {
+        __unkeyed = "<leader>li";
+        desc = "Implementation";
+      }
+      {
+        __unkeyed = "<leader>lh";
+        desc = "Lsp Hover";
+      }
+      {
+        __unkeyed = "<leader>lH";
+        desc = "Diagnostic Hover";
+      }
+      {
+        __unkeyed = "<leader>lr";
+        desc = "Rename";
+      }
+    ];
   };
 }
