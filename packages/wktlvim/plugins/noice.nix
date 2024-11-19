@@ -118,6 +118,15 @@
               skip = true;
             };
           }
+          {
+            filter = {
+              event = "notify";
+              find = "No information available";
+            };
+            opts = {
+              skip = true;
+            };
+          }
         ];
 
         views = {

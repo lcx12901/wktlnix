@@ -16,6 +16,14 @@ in
     vim.fn.sign_define("DiagnosticSignHint", { text = " ${icons.DiagnosticHint}", texthl = "DiagnosticHint", linehl = "", numhl = "" })
     vim.fn.sign_define("DiagnosticSignInfo", { text = " ${icons.DiagnosticInfo}", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
 
+    vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
+      if not (result and result.contents) or vim.tbl_isempty(result.contents) then
+        return
+      end
+
+      vim.lsp.with(vim.lsp.handlers.hover, {})(_, result, ctx, config)
+    end
+
     local function preview_location_callback(_, result)
       if result == nil or vim.tbl_isempty(result) then
         vim.notify('No location found to preview')
