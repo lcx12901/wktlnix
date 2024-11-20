@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  inherit (config) icons;
+in
 {
   plugins.gitsigns = {
     enable = true;
@@ -14,7 +18,16 @@
         virt_text_pos = "eol";
       };
 
-      signcolumn = false;
+      signs = {
+        add.text = icons.GitSign;
+        change.text = icons.GitSign;
+        changedelete.text = icons.GitSign;
+        delete.text = icons.GitSign;
+        topdelete.text = icons.GitSign;
+        untracked.text = icons.GitSign;
+      };
+
+      signcolumn = true;
     };
   };
 }
