@@ -98,17 +98,23 @@
     # many of the extensions in nixpkgs are significantly out-of-date
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
+    hyprland = {
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Hyprlock
     hyprlock = {
       url = "github:hyprwm/Hyprlock";
       # NOTE: required to prevent red screen on lock
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
     # Hyprland user contributions flake
-    hyprland-contrib.url = "github:hyprwm/contrib";
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+    };
 
     # Hyprland plugins
     hyprland-plugins = {
