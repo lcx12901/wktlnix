@@ -66,6 +66,7 @@ in
     };
 
     defaultComponentConfigs = {
+      modified.symbol = icons.FileModified;
       diagnostics = {
         symbols = {
           error = icons.DiagnosticError;

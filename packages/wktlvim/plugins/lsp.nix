@@ -11,10 +11,10 @@ let
 in
 {
   extraConfigLuaPre = ''
-    vim.fn.sign_define("DiagnosticSignError", { text = " ${icons.DiagnosticError}", texthl = "DiagnosticError", linehl = "", numhl = "" })
-    vim.fn.sign_define("DiagnosticSignWarn", { text = " ${icons.DiagnosticWarn}", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
-    vim.fn.sign_define("DiagnosticSignHint", { text = " ${icons.DiagnosticHint}", texthl = "DiagnosticHint", linehl = "", numhl = "" })
-    vim.fn.sign_define("DiagnosticSignInfo", { text = " ${icons.DiagnosticInfo}", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
+    vim.fn.sign_define("DiagnosticSignError", { text = "${icons.DiagnosticError}" .. (" "), texthl = "DiagnosticError", linehl = "", numhl = "" })
+    vim.fn.sign_define("DiagnosticSignWarn", { text = "${icons.DiagnosticWarn}" .. (" "), texthl = "DiagnosticWarn", linehl = "", numhl = "" })
+    vim.fn.sign_define("DiagnosticSignHint", { text = "${icons.DiagnosticHint}" .. (" "), texthl = "DiagnosticHint", linehl = "", numhl = "" })
+    vim.fn.sign_define("DiagnosticSignInfo", { text = "${icons.DiagnosticInfo}" .. (" "), texthl = "DiagnosticInfo", linehl = "", numhl = "" })
 
     vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
       if not (result and result.contents) or vim.tbl_isempty(result.contents) then
