@@ -70,7 +70,7 @@ in
 
           vue.volar
           antfu.unocss
-          simonhe.common-intellisense
+          # simonhe.common-intellisense
 
           evils.uniapp-vscode
           uni-helper.uni-helper-vscode
