@@ -190,11 +190,22 @@ in
         };
 
         ts_ls = {
-          enable = true;
+          enable = false;
         };
 
         volar = {
           enable = true;
+          package = pkgs.${namespace}.vue-language-server;
+          filetypes = [
+            "javascript"
+            "javascriptreact"
+            "typescript"
+            "typescriptreact"
+            "typescript.tsx"
+            "vue"
+            "astro"
+            "svelte"
+          ];
           extraOptions = {
             init_options = {
               vue = {
