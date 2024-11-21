@@ -86,7 +86,7 @@ in
             spicetify = enabled;
             go-musicfox = enabled;
           };
-          tools.cava = enabled;
+          # tools.cava = enabled;
         };
         graphical = {
           screenlockers.hyprlock = enabled;
