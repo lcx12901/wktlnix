@@ -36,9 +36,9 @@ let
     ];
 
     modules-center = [
-      "cava#left"
+      # "cava#left"
       "hyprland/workspaces"
-      "cava#right"
+      # "cava#right"
     ];
 
     modules-right = [
