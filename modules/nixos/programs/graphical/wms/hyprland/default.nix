@@ -3,6 +3,7 @@
   inputs,
   lib,
   pkgs,
+  system,
   namespace,
   ...
 }:
@@ -51,8 +52,8 @@ in
 
     services = {
       displayManager.sessionPackages = [
-        # hyprland.packages.${system}.hyprland
-        pkgs.hyprland
+        hyprland.packages.${system}.hyprland
+        # pkgs.hyprland
       ];
 
       # needed for GNOME services outside of GNOME Desktop
