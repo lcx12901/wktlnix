@@ -119,8 +119,7 @@ in
 
       servers = {
         nixd = {
-          enable = false;
-          filetypes = [ "nix" ];
+          enable = true;
           settings =
             let
               flake = ''(builtins.getFlake "${self}")'';
@@ -140,10 +139,7 @@ in
             };
         };
         nil_ls = {
-          # FIXME: when nixd works again
-          # enable = !config.plugins.lsp.servers.nixd.enable;
-          enable = true;
-          filetypes = [ "nix" ];
+          enable = false;
           settings = {
             formatting = {
               command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
