@@ -36,6 +36,10 @@
 
     loaded_netrw = 1;
     loaded_netrwPlugin = 1;
+
+    # matchparen is a built-in plugin for highlighting matching parentheses
+    # disable to use "//" comments
+    loaded_matchparen = 1;
   };
 
   opts = {
