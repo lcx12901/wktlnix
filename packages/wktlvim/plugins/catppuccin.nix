@@ -38,6 +38,7 @@
           };
         };
         alpha = true;
+        noice = true;
         notify = true;
         aerial = true;
         telescope = {
