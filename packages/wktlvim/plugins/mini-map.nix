@@ -14,8 +14,15 @@
             "__unkeyed.diagnostic".__raw = "require('mini.map').gen_integration.diagnostic()";
           };
 
+          symbols = {
+            encode.__raw = ''require('mini.map').gen_encode_symbols.dot "3x2"'';
+          };
+
           window = {
-            winblend = 0;
+            side = "right";
+            width = 12;
+            winblend = 5;
+            show_integration_count = true;
           };
         };
       };
