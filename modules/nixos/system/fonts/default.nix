@@ -54,14 +54,11 @@ in
         twemoji-color-font
 
         # Nerd Fonts
-        (nerdfonts.override {
-          fonts = [
-            "CascadiaCode"
-            "Iosevka"
-            "Monaspace"
-            "NerdFontsSymbolsOnly"
-          ];
-        })
+        # "https://github.com/NixOS/nixpkgs/blob/nixos-unstable-small/pkgs/data/fonts/nerd-fonts/manifests/fonts.json"
+        nerd-fonts.symbols-only # symbols icon only
+        nerd-fonts.caskaydia-cove
+        nerd-fonts.iosevka
+        nerd-fonts.monaspace
       ];
 
       enableDefaultPackages = true;
