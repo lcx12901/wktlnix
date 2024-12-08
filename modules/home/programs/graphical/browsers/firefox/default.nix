@@ -88,8 +88,7 @@ in
 
           id = 1;
 
-          extensions = with config.nur.repos.rycee.firefox-addons; [
-            firefox-color
+          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             sidebery
             sponsorblock
             bitwarden
