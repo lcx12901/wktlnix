@@ -52,11 +52,11 @@ in
           };
           ryomori-rsa = {
             hostNames = [ "ryomori.lincx.top" ];
-            publicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDfgvfR5ZkNMzywxPL0dQ80u8YEdQLYXW0OJlJpcdePay5ET9KDtSuLC3FFpIqAltXUAUDKi6QzMjSrQH8UnsmF1L2/UI9IAhvqgyBmUI+kPdGBOPIOpticH9HFJwm2ojL+u8kvA4LA2mPkPdovkc+AWv9zELzU4IeMhaVyByTkyyBIrzb+y++z8fkh8OAP6H0l4uDUBWPMVANp6QMQTpeR8P+lu3txoQdrvDB2gLq+mXte0GyGj2ycraYmmXyaQ5Gvvmopr0ZNXCSTG1Bp93PgAxk5n62IeWC8rMLGD5KIk999nyneA+VAiUvytcSq43JLT2pLeaaAyAl2c3xSjL5TFCVfaz8sF2JaudONJaPMr7btRbag3y9Kr56iuVP2QiqYkJw/9ZTCdVXD7wkAvyV3tWJGhjVST6lvg+iMrTOxZtTDTQ0T/DFf6luasc1OlUXA1EEpx48AWSY7VPMoLiXCQZ0ZNiJjISuVlohSWbjphbjvfhJhdzBJlfTKzfOl5Q8=";
+            publicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDGCLxynLT4epa8cyk2fP8pVQWj1QftlEUW7dGNP7jOf4Av+tYViJep5bRhXuvpxsOmN50M+vQAponNd3Zm6Kok31+7UfmV8TbCKNGo6vQeg1xhM5NF5cDgtGfM+2IHUuVz083Wr5nrStHMvuNR8N1N1R1isd9R7SZdy0nINhYxBbleJHbDVzH/ebLziJSqdSoGQ4C2+6hZIZ3NzDJZGwvBIwqmShYmSUAEmXdra2lviRYkQTtyZ8NuhyS0taWnW57JCw5UQWB03pUCZwYB8DRjTKotK225L5UxfpeD/jkxyjBXexWpGaVfJe+C6ePGBK11SAfF+lAG+uGYiYo7vnUVz/97RaQERsOIv8LuxjqIq3itJVzvRwQlgZ+oTFjsQkU52sb/0oIXsBuFvalxlAg3UdwrGAyA2TmoozdgEwQTKQel79WYVXPG0QxFjIV9Zcz9+pXaZkFQSx91uVDQDj/waLg3ect5NcTWd5Qmkgw1cRA2lUCASTEkvNAv+k4wVaM=";
           };
           ryomori-ed25519 = {
             hostNames = [ "ryomori.lincx.top" ];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPH0FY3qnJ2Xfjv2jiMxB/N25gVvO3Dy5WKDi5OpuXjf";
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIXCpJT3DLO3Rnu2a0wk2DmYmdZDDOD/uFO3v9hjyEKd";
           };
           akame-rsa = {
             hostNames = [ "akame.lincx.top" ];
