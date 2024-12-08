@@ -23,6 +23,7 @@ in
       enableBashIntegration = true;
       enableZshIntegration = true;
       enableFishIntegration = true;
+      enableNushellIntegration = true;
 
       extraOptions = [
         "--group-directories-first"
