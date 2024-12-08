@@ -1,5 +1,6 @@
 {
   # example by https://github.com/khaneliman/khanelinix
+  # https://github.com/Misterio77/nix-config
   # part disk example by https://github.com/Anomalocaridid/dotfiles
   # may be should read guide from https://nix.dev/
   description = "wktlNix";
@@ -30,6 +31,7 @@
 
       overlays = with inputs; [
         catppuccin-vsc.overlays.default
+        nur.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -37,7 +39,7 @@
         impermanence.nixosModules.home-manager.impermanence
         spicetify-nix.homeManagerModules.default
         ags.homeManagerModules.default
-        nur.hmModules.nur
+        # nur.modules.home-manager.default
       ];
 
       # Add modules to all NixOS systems.
@@ -87,6 +89,7 @@
     # Nix User Repository (master)
     nur = {
       url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Declarative disk partitioning
@@ -131,6 +134,11 @@
     # NixPkgs-Wayland
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
