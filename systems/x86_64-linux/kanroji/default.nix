@@ -45,7 +45,7 @@ in
         games = {
           steam = enabled;
           gamemode = enabled;
-          gamescope = enabled;
+          # gamescope = enabled;
         };
         addons.xdg-portal = enabled;
         file-managers.nautilus = enabled;
