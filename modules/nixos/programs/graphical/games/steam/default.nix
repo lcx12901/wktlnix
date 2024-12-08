@@ -22,7 +22,7 @@ in
 
   config = mkIf cfg.enable {
     environment = {
-      systemPackages = with pkgs; [ steamtinkerlaunch ];
+      # systemPackages = with pkgs; [ steamtinkerlaunch ];
 
       persistence."/persist" = mkIf persist {
         users."${username}" = {
@@ -37,47 +37,48 @@ in
     programs.steam = {
       enable = true;
 
+      # https://github.com/ValveSoftware/gamescope
+      gamescopeSession.enable = true;
+
       # fix gamescope inside steam
       package = pkgs.steam.override {
         extraPkgs =
           pkgs: with pkgs; [
-            libgdiplus
-            keyutils
-            libkrb5
-            libpng
-            libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib
             xorg.libXcursor
             xorg.libXi
             xorg.libXinerama
             xorg.libXScrnSaver
-            at-spi2-atk
-            fmodex
-            gtk3-x11
-            harfbuzz
-            icu
-            glxinfo
-            inetutils
-            libthai
-            mono5
-            pango
-            strace
-            zlib
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib
+            libkrb5
+            keyutils
 
             # fix CJK fonts
             source-sans
             source-serif
             source-han-sans
             source-han-serif
+
+            # audio
+            pipewire
+
+            # other common
+            udev
+            alsa-lib
+            vulkan-loader
+            xorg.libX11
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXrandr # To use the x11 feature
+            libxkbcommon
+            wayland # To use the wayland feature
           ];
       };
 
       # Whether to open ports in the firewall for Steam Remote Play
       remotePlay.openFirewall = false;
-
-      # Whether to open ports in the firewall for Source Dedicated Server
-      dedicatedServer.openFirewall = false;
 
       extraCompatPackages = [ pkgs.proton-ge-bin.steamcompattool ];
     };
@@ -86,6 +87,22 @@ in
       steam-hardware = enabled;
       xone = enabled;
       xpadneo = enabled;
+    };
+
+    networking.firewall = {
+      allowedUDPPorts = [
+        # Warframe
+        4950
+        4955
+      ];
+
+      allowedTCPPortRanges = [
+        # Warframe
+        {
+          from = 6695;
+          to = 6699;
+        }
+      ];
     };
   };
 }

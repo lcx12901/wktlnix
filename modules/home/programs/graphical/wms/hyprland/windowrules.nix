@@ -45,6 +45,8 @@ in
           "size 55% 60%,class:^(org.telegram.desktop|com.ayugram)$"
 
           "opacity 1 override, class:firefox"
+          "opacity 1 override, title:Warframe"
+
         ];
 
         layerrule = [
