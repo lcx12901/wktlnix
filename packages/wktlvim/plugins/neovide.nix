@@ -11,7 +11,7 @@
       vim.g.neovide_cursor_animate_in_insert_mode = true
       vim.g.neovide_cursor_vfx_mode = "sonicboom"
 
-      vim.o.guifont = "MonaspiceRn Nerd font,LXGW WenKai Mono:h14"
+      vim.o.guifont = "MonaspiceRn Nerd Font:h14"
     end
   '';
 }
