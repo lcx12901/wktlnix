@@ -80,12 +80,12 @@ in
             ];
           in
           mapAttrs (_: fonts: fonts ++ common) {
-            serif = [ "MonaspiceRn Nerd Font" ];
-            sansSerif = [ "MonaspiceRn Nerd Font" ];
+            serif = [ "LXGW WenKai Mono" ];
+            sansSerif = [ "LXGW WenKai Mono" ];
             emoji = [ "Noto Color Emoji" ];
             monospace = [
               "MonaspiceRn Nerd Font"
-              "LXGW WenKai Mono Bold"
+              "LXGW WenKai Mono"
             ];
           };
       };
