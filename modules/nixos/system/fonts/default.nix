@@ -59,6 +59,7 @@ in
         nerd-fonts.caskaydia-cove
         nerd-fonts.iosevka
         nerd-fonts.monaspace
+        nerd-fonts.victor-mono
       ];
 
       enableDefaultPackages = true;
