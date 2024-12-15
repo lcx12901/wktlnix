@@ -64,7 +64,7 @@ in
     };
 
     security.pki.trustCa = enabled;
-    # virtualisation.kvm = enabled;
+    virtualisation.waydroid = enabled;
   };
 
   # This value determines the NixOS release from which the default

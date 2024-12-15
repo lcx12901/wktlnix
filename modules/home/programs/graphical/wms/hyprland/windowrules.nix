@@ -44,9 +44,15 @@ in
           "center 1,class:^(org.telegram.desktop|com.ayugram)$"
           "size 55% 60%,class:^(org.telegram.desktop|com.ayugram)$"
 
+          "size 720 1280, class:^(waydroid)(.*)$"
+          "float, class:^(waydroid)(.*)$"
+          "center, class:^(waydroid)(.*)$"
+          "noborder, class:^(waydroid)(.*)$"
+
+          "opacity 1 override, class:^(waydroid)(.*)$"
           "opacity 1 override, class:firefox"
           "opacity 1 override, title:Warframe"
-
+          "opacity 1 override, title:Tsukimi"
         ];
 
         layerrule = [
