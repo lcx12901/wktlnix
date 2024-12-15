@@ -1,5 +1,7 @@
 {
   colorschemes.catppuccin = {
+    lazyLoad.enable = true;
+
     settings = {
       default_integrations = true;
       dim_inactive = {

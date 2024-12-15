@@ -6,6 +6,8 @@ in
   plugins.which-key = {
     enable = true;
 
+    lazyLoad.settings.event = "UIEnter";
+
     settings = {
       spec = [
         {
