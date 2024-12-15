@@ -109,7 +109,6 @@
     # Hyprlock
     hyprlock = {
       url = "github:hyprwm/Hyprlock";
-      # NOTE: required to prevent red screen on lock
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
 
