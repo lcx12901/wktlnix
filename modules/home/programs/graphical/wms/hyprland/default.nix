@@ -48,8 +48,7 @@ in
       ];
 
       sessionVariables = {
-        CLUTTER_BACKEND = "wayland";
-        GDK_BACKEND = "wayland,x11";
+        GDK_BACKEND = "wayland";
         HYPRLAND_LOG_WLR = "1";
         MOZ_ENABLE_WAYLAND = "1";
         MOZ_USE_XINPUT2 = "1";
