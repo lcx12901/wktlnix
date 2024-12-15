@@ -5,7 +5,9 @@
 }:
 {
   plugins.colorizer = {
-    enable = false;
+    enable = true;
+
+    lazyLoad.settings.cmd = "ColorizerToggle";
   };
 
   keymaps = lib.mkIf config.plugins.colorizer.enable [

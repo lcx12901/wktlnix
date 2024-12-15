@@ -7,6 +7,16 @@
   plugins.toggleterm = {
     enable = true;
 
+    lazyLoad = {
+      settings = {
+        cmd = "ToggleTerm";
+        keys = [
+          "<leader>tf"
+          "<leader>tl"
+        ];
+      };
+    };
+
     settings = {
       direction = "float";
       highlights = {
