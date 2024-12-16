@@ -99,15 +99,16 @@ in
         "workbench.iconTheme" = "vscode-icons";
 
         # Font family
-        "editor.fontFamily" = "MonaspiceRn Nerd Font, LXGW WenKai Mono Bold";
-        "editor.codeLensFontFamily" = "MonaspiceRn Nerd Font, LXGW WenKai Mono Bold";
-        "editor.inlayHints.fontFamily" = "MonaspiceRn Nerd Font";
-        "debug.console.fontFamily" = "Monaspace Radon";
-        "scm.inputFontFamily" = "Monaspace Radon";
-        "notebook.output.fontFamily" = "Monapsace Radon";
-        "chat.editor.fontFamily" = "Monaspace Radon";
-        "markdown.preview.fontFamily" = "Monaspace Radon; -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif";
-        "terminal.integrated.fontFamily" = "MonaspiceRn Nerd Font, LXGW WenKai Mono Bold";
+        "editor.fontFamily" = "RecMonoCasual Nerd Font, LXGW WenKai Mono Bold";
+        "editor.codeLensFontFamily" = "RecMonoCasual Nerd Font, LXGW WenKai Mono Bold";
+        "editor.inlayHints.fontFamily" = "RecMonoCasual Nerd Font";
+        "debug.console.fontFamily" = "RecMonoCasual Nerd Font";
+        "scm.inputFontFamily" = "RecMonoCasual Nerd Font";
+        "notebook.output.fontFamily" = "RecMonoCasual Nerd Font";
+        "chat.editor.fontFamily" = "RecMonoCasual Nerd Font";
+        "markdown.preview.fontFamily" =
+          "RecMonoCasual Nerd Font; -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif";
+        "terminal.integrated.fontFamily" = "RecMonoCasual Nerd Font, LXGW WenKai Mono Bold";
 
         # Git settings
         "git.allowForcePush" = true;

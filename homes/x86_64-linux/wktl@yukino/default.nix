@@ -18,11 +18,10 @@ in
 
     programs = {
       graphical = {
-        # wms.hyprland = {
-        #   enable = true;
-        #   monitor = ",1920x1080@60,auto,1";
-        # };
-        wms.hyprland = enabled;
+        wms.hyprland = {
+          enable = true;
+          monitor = ",1920x1080@60,auto,1";
+        };
         browsers.firefox = {
           enable = true;
           gpuAcceleration = true;
