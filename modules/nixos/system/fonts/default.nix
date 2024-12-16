@@ -14,7 +14,7 @@ in
 {
   options.${namespace}.system.fonts = with types; {
     enable = mkBoolOpt false "Whether or not to manage fonts.";
-    default = mkOpt str "MonaspiceRn Nerd Font" "Default font name";
+    default = mkOpt str "RecMonoCasual Nerd Font" "Default font name";
   };
 
   config = mkIf cfg.enable {
@@ -60,6 +60,7 @@ in
         nerd-fonts.iosevka
         nerd-fonts.monaspace
         nerd-fonts.victor-mono
+        nerd-fonts.recursive-mono
       ];
 
       enableDefaultPackages = true;
@@ -73,7 +74,7 @@ in
         defaultFonts =
           let
             common = [
-              "MonaspiceRn Nerd Font"
+              "RecMonoCasual Nerd Font"
               "CaskaydiaCove Nerd Font Mono"
               "Iosevka Nerd Font"
               "Symbols Nerd Font"
@@ -81,11 +82,11 @@ in
             ];
           in
           mapAttrs (_: fonts: fonts ++ common) {
-            serif = [ "MonaspiceRn Nerd Font" ];
-            sansSerif = [ "MonaspiceRn Nerd Font" ];
+            serif = [ "RecMonoCasual Nerd Font" ];
+            sansSerif = [ "RecMonoCasual Nerd Font" ];
             emoji = [ "Noto Color Emoji" ];
             monospace = [
-              "MonaspiceRn Nerd Font"
+              "RecMonoCasual Nerd Font"
               "LXGW WenKai Mono Medium"
             ];
           };

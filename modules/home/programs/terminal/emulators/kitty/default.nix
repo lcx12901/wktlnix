@@ -13,7 +13,7 @@ in
 {
   options.${namespace}.programs.terminal.emulators.kitty = {
     enable = mkBoolOpt false "Whether to enable kitty.";
-    font = mkOpt types.str "MonaspiceRn Nerd Font Mono" "Font to use for kitty.";
+    font = mkOpt types.str "RecMonoCasual Nerd Font" "Font to use for kitty.";
   };
 
   config = mkIf cfg.enable {

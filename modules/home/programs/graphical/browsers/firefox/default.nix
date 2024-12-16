@@ -150,9 +150,9 @@ in
               "media.eme.enabled" = true;
               "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-              "font.name.monospace.x-western" = "MonaspiceRn Nerd Font";
-              "font.name.sans-serif.x-western" = "MonaspiceRn Nerd Font";
-              "font.name.serif.x-western" = "MonaspiceRn Nerd Font";
+              "font.name.monospace.x-western" = "RecMonoCasual Nerd Font";
+              "font.name.sans-serif.x-western" = "RecMonoCasual Nerd Font";
+              "font.name.serif.x-western" = "RecMonoCasual Nerd Font";
               "signon.autofillForms" = false;
             }
             (optionalAttrs cfg.gpuAcceleration {

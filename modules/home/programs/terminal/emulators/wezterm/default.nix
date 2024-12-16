@@ -63,7 +63,7 @@ in
           -- font
           font_size = 14,
           font = wezterm.font_with_fallback {
-            { family = "MonaspiceRn Nerd Font", weight = "Regular" },
+            { family = "RecMonoCasual Nerd Font", weight = "Regular" },
             { family = "CaskaydiaCove Nerd Font", weight = "Regular" },
             { family = "Symbols Nerd Font", weight = "Regular" },
             { family = "Noto Color Emoji", weight = "Regular" },

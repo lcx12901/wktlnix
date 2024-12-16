@@ -23,7 +23,7 @@ in
       enable = true;
       package = pkgs.rofi-wayland;
 
-      font = "MonaspiceNe Nerd Font 14";
+      font = "RecMonoCasual Nerd Font 14";
 
       location = "center";
       theme = "catppuccin";
