@@ -30,6 +30,7 @@ in
         du = "${pkgs.ncdu}/bin/ncdu --color dark -rr -x";
         nsn = "nix shell nixpkgs#";
         nsw = "sudo nixos-rebuild switch --flake .#${osConfig.networking.hostName}";
+        nfu = "nix flake update";
       };
     };
   };

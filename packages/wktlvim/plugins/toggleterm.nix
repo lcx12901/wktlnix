@@ -73,22 +73,22 @@
         desc = "ToggleTerm float";
       };
     }
-    {
-      mode = "n";
-      key = "<Leader>tl";
-      action.__raw = ''
-        function()
-          local astro = require "astrocore"
-          local worktree = astro.file_worktree()
-          local flags = worktree and (" --work-tree=%s --git-dir=%s"):format(worktree.toplevel, worktree.gitdir)
-            or ""
-          astro.toggle_term_cmd { cmd = "lazygit " .. flags, direction = "float" }
-        end
-      '';
-      options = {
-        desc = "ToggleTerm lazygit";
-      };
-    }
+    # {
+    #   mode = "n";
+    #   key = "<Leader>tl";
+    #   action.__raw = ''
+    #     function()
+    #       local astro = require "astrocore"
+    #       local worktree = astro.file_worktree()
+    #       local flags = worktree and (" --work-tree=%s --git-dir=%s"):format(worktree.toplevel, worktree.gitdir)
+    #         or ""
+    #       astro.toggle_term_cmd { cmd = "lazygit " .. flags, direction = "float" }
+    #     end
+    #   '';
+    #   options = {
+    #     desc = "ToggleTerm lazygit";
+    #   };
+    # }
     {
       mode = "n";
       key = "<F7>";
