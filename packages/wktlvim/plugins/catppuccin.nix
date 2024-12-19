@@ -47,8 +47,13 @@
           enabled = true;
           style = "nvchad";
         };
+        navic = {
+          enabled = true;
+        };
         semantic_tokens = true;
         symbols_outline = true;
+        snacks = false;
+        ufo = true;
         which_key = true;
       };
     };
