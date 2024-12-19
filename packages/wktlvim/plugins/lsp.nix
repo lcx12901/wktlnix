@@ -158,7 +158,7 @@ in
         };
 
         eslint = {
-          enable = true;
+          enable = false;
           filetypes = [
             "javascript"
             "javascriptreact"
