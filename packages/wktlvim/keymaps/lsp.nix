@@ -54,15 +54,6 @@
               };
               cond = "textDocument/codeLens";
             };
-            # "<Leader>uL" = {
-            #   action.__raw = ''
-            #     function() require("astrolsp.toggles").codelens() end
-            #   '';
-            #   options = {
-            #     desc = "Toggle CodeLens";
-            #   };
-            #   cond = "textDocument/codeLens";
-            # };
             "gD" = {
               action.__raw = ''
                 function() vim.lsp.buf.declaration() end
@@ -144,19 +135,6 @@
               };
               cond = "workspace/symbol";
             };
-            # "<Leader>uY" = {
-            #   action.__raw = ''
-            #     function() require("astrolsp.toggles").buffer_semantic_tokens() end
-            #   '';
-            #   options = {
-            #     desc = "Toggle LSP semantic highlight (buffer)";
-            #   };
-            #   cond.__raw = ''
-            #     function(client)
-            #       return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens
-            #     end
-            #   '';
-            # };
           };
     in
     helpers.keymaps.mkKeymaps { options.silent = true; } normal;
