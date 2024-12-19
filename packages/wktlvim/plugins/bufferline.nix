@@ -1,4 +1,7 @@
 { config, lib, ... }:
+let
+  inherit (config) icons;
+in
 {
   plugins.bufferline =
     let
@@ -22,17 +25,17 @@
         options = {
           mode = "buffers";
           always_show_bufferline = true;
-          buffer_close_icon = "󰅖";
+          buffer_close_icon = icons.BufferClose;
           close_command.__raw = mouse.close;
-          close_icon = "";
+          close_icon = icons.BufferClose;
           diagnostics = "nvim_lsp";
           diagnostics_indicator = # Lua
             ''
               function(count, level, diagnostics_dict, context)
                 local s = ""
                 for e, n in pairs(diagnostics_dict) do
-                  local sym = e == "error" and " "
-                    or (e == "warning" and " " or "" )
+                  local sym = e == "error" and " ${icons.DiagnosticError}"
+                    or (e == "warning" and " ${icons.DiagnosticWarn}" or "" )
                   if(sym ~= "") then
                     s = s .. " " .. n .. sym
                   end
@@ -43,53 +46,15 @@
           # Will make sure all names in bufferline are unique
           enforce_regular_tabs = false;
 
-          groups = {
-            options = {
-              toggle_hidden_on_enter = true;
-            };
-
-            items = [
-              {
-                name = "Tests";
-                highlight = {
-                  underline = true;
-                  fg = "#a6da95";
-                  sp = "#494d64";
-                };
-                priority = 2;
-                # icon = "";
-                matcher.__raw = ''
-                  function(buf)
-                    return buf.name:match('%test') or buf.name:match('%.spec')
-                  end
-                '';
-              }
-              {
-                name = "Docs";
-                highlight = {
-                  undercurl = true;
-                  fg = "#ffffff";
-                  sp = "#494d64";
-                };
-                auto_close = false;
-                matcher.__raw = ''
-                  function(buf)
-                    return buf.name:match('%.md') or buf.name:match('%.txt')
-                  end
-                '';
-              }
-            ];
-          };
-
           indicator = {
             style = "icon";
-            icon = "▎";
+            icon = "${icons.GitSign}";
           };
 
-          left_trunc_marker = "";
+          left_trunc_marker = icons.ArrowLeft;
           max_name_length = 18;
           max_prefix_length = 15;
-          modified_icon = "●";
+          modified_icon = icons.FileModified;
 
           numbers.__raw = ''
             function(opts)
@@ -99,8 +64,8 @@
 
           persist_buffer_sort = true;
           right_mouse_command.__raw = mouse.right;
-          right_trunc_marker = "";
-          separator_style = "slant";
+          right_trunc_marker = icons.ArrowRight;
+          separator_style = "thin";
           show_buffer_close_icons = true;
           show_buffer_icons = true;
           show_close_icon = true;
