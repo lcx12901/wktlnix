@@ -85,7 +85,7 @@ in
             '';
             icon = "${icons.ActiveLSP} ";
             color = {
-              fg = "#ffffff";
+              fg = "#95de64";
               gui = "bold";
             };
           }
