@@ -76,18 +76,14 @@ in
       enable = false;
 
       inherit (cfg) accent flavor;
-    };
 
-    programs = {
-      btop.catppuccin = enabled;
+      btop = enabled;
       cava = {
-        catppuccin = {
-          enable = true;
-          transparent = true;
-        };
+        enable = true;
+        transparent = true;
       };
-      kitty.catppuccin = enabled;
-      waybar.catppuccin = enabled;
+      kitty = enabled;
+      waybar = enabled;
     };
 
     xdg.dataFile."fcitx5/themes/catppuccin-${cfg.flavor}-${cfg.accent}" = {
