@@ -48,6 +48,7 @@ in
       daily = enabled;
       business = enabled;
       development = enabled;
+      music = enabled;
     };
   };
 
