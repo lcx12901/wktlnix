@@ -75,11 +75,16 @@ in
               function()
                 local buf_client_names = {}
                 for _, client in ipairs(vim.lsp.get_active_clients()) do
-                    local filetypes = client.config.filetypes
-                    if filetypes and vim.fn.index(filetypes, vim.api.nvim_buf_get_option(0, 'filetype')) ~= -1 then
-                      table.insert(buf_client_names, client.name)
-                    end
+                  local filetypes = client.config.filetypes
+                  if filetypes and vim.fn.index(filetypes, vim.api.nvim_buf_get_option(0, 'filetype')) ~= -1 then
+                    table.insert(buf_client_names, client.name)
+                  end
                 end
+                local bufnr = vim.api.nvim_buf_get_number(0)
+                vim.list_extend(
+                    buf_client_names,
+                    vim.tbl_map(function(c) return c.name end, require("conform").list_formatters_to_run(bufnr))
+                )
                 return table.concat(buf_client_names, ", ")
               end
             '';
