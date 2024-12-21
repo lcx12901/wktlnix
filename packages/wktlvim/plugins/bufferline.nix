@@ -96,10 +96,18 @@ in
     }
     {
       mode = "n";
-      key = "<leader>bp";
+      key = "<leader>bb";
       action = "<cmd>BufferLinePick<cr>";
       options = {
         desc = "Pick Buffer";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>bd";
+      action = "<cmd>BufferLinePickClose<cr>";
+      options = {
+        desc = "Pick Buffer Close";
       };
     }
     {
