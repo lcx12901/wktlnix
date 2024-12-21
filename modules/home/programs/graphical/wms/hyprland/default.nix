@@ -52,7 +52,6 @@ in
         HYPRLAND_LOG_WLR = "1";
         MOZ_ENABLE_WAYLAND = "1";
         MOZ_USE_XINPUT2 = "1";
-        # SDL_VIDEODRIVER = "wayland";
         WLR_DRM_NO_ATOMIC = "1";
         XDG_CURRENT_DESKTOP = "Hyprland";
         XDG_SESSION_DESKTOP = "Hyprland";
@@ -81,10 +80,6 @@ in
       programs = {
         terminal = {
           emulators.kitty = enabled;
-          media = {
-            spicetify = enabled;
-            go-musicfox = enabled;
-          };
           # tools.cava = enabled;
         };
         graphical = {

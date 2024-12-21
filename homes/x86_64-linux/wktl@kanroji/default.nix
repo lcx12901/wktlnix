@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   namespace,
   ...
 }:
@@ -35,20 +34,7 @@ in
       daily = enabled;
       business = enabled;
       development = enabled;
-    };
-  };
-
-  home.packages = with pkgs; [
-    parsec-bin
-  ];
-
-  home.persistence = {
-    "/persist/home/${config.${namespace}.user.name}" = {
-      allowOther = true;
-      directories = [
-        ".parsec"
-        ".parsec-persistent"
-      ];
+      music = enabled;
     };
   };
 
