@@ -8,7 +8,7 @@ let
 in
 {
   plugins.neo-tree = {
-    enable = true;
+    enable = !config.plugins.yazi.enable;
 
     # Close Neo-tree if it is the last window left in the tab
     closeIfLastWindow = true;
