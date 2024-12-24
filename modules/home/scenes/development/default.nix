@@ -84,6 +84,7 @@ in
             eza = enabled;
             direnv = enabled;
             ripgrep = enabled;
+            yazi = enabled;
           };
           editors.neovim = enabled;
         };

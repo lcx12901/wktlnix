@@ -84,6 +84,7 @@ in
       };
       kitty = enabled;
       waybar = enabled;
+      yazi = enabled;
     };
 
     xdg.dataFile."fcitx5/themes/catppuccin-${cfg.flavor}-${cfg.accent}" = {
