@@ -231,12 +231,7 @@ in
         };
 
         ts_ls = {
-          enable = false;
-        };
-
-        volar = {
           enable = true;
-          package = pkgs.${namespace}.vue-language-server;
           filetypes = [
             "javascript"
             "javascriptreact"
@@ -244,19 +239,32 @@ in
             "typescriptreact"
             "typescript.tsx"
             "vue"
-            "astro"
-            "svelte"
           ];
-          extraOptions = {
-            init_options = {
-              vue = {
-                hybridMode = false;
-              };
-              typescript = {
-                tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib";
-              };
-            };
-          };
+        };
+
+        volar = {
+          enable = true;
+          package = pkgs.${namespace}.vue-language-server;
+          # filetypes = [
+          #   "javascript"
+          #   "javascriptreact"
+          #   "typescript"
+          #   "typescriptreact"
+          #   "typescript.tsx"
+          #   "vue"
+          #   "astro"
+          #   "svelte"
+          # ];
+          # extraOptions = {
+          #   init_options = {
+          #     vue = {
+          #       hybridMode = false;
+          #     };
+          #     typescript = {
+          #       tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib";
+          #     };
+          #   };
+          # };
         };
 
         unocss = {
