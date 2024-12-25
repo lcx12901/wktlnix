@@ -1,29 +1,12 @@
 {
-  config,
   lib,
   pkgs,
   namespace,
   self,
   ...
 }:
-let
-  inherit (config) icons;
-in
 {
   extraConfigLuaPre = ''
-    vim.fn.sign_define("DiagnosticSignError", { text = "${icons.DiagnosticError}" .. (" "), texthl = "DiagnosticError", linehl = "", numhl = "" })
-    vim.fn.sign_define("DiagnosticSignWarn", { text = "${icons.DiagnosticWarn}" .. (" "), texthl = "DiagnosticWarn", linehl = "", numhl = "" })
-    vim.fn.sign_define("DiagnosticSignHint", { text = "${icons.DiagnosticHint}" .. (" "), texthl = "DiagnosticHint", linehl = "", numhl = "" })
-    vim.fn.sign_define("DiagnosticSignInfo", { text = "${icons.DiagnosticInfo}" .. (" "), texthl = "DiagnosticInfo", linehl = "", numhl = "" })
-
-    vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
-      if not (result and result.contents) or vim.tbl_isempty(result.contents) then
-        return
-      end
-
-      vim.lsp.with(vim.lsp.handlers.hover, {})(_, result, ctx, config)
-    end
-
     local function preview_location_callback(_, result)
       if result == nil or vim.tbl_isempty(result) then
         vim.notify('No location found to preview')
@@ -58,6 +41,7 @@ in
 
     lsp = {
       enable = true;
+      inlayHints = true;
 
       keymaps = {
         silent = true;
@@ -118,11 +102,16 @@ in
       };
 
       servers = {
+        bashls = {
+          enable = true;
+        };
+
         nixd = {
           enable = true;
           settings =
             let
               flake = ''(builtins.getFlake "${self}")'';
+              system = ''''${builtins.currentSystem}'';
             in
             {
               nixpkgs = {
@@ -133,7 +122,7 @@ in
               };
               options = {
                 nixos.expr = ''${flake}.nixosConfigurations.wktlnix.options'';
-                nixvim.expr = ''${flake}.packages.${pkgs.system}.nvim.options'';
+                nixvim.expr = ''${flake}.packages.${system}.nvim.options'';
                 home-manager.expr = ''${flake}.homeConfigurations."wktl@wktlnix".options'';
               };
             };
@@ -231,7 +220,7 @@ in
         };
 
         ts_ls = {
-          enable = true;
+          enable = false;
           filetypes = [
             "javascript"
             "javascriptreact"
@@ -245,26 +234,26 @@ in
         volar = {
           enable = true;
           package = pkgs.${namespace}.vue-language-server;
-          # filetypes = [
-          #   "javascript"
-          #   "javascriptreact"
-          #   "typescript"
-          #   "typescriptreact"
-          #   "typescript.tsx"
-          #   "vue"
-          #   "astro"
-          #   "svelte"
-          # ];
-          # extraOptions = {
-          #   init_options = {
-          #     vue = {
-          #       hybridMode = false;
-          #     };
-          #     typescript = {
-          #       tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib";
-          #     };
-          #   };
-          # };
+          filetypes = [
+            "javascript"
+            "javascriptreact"
+            "typescript"
+            "typescriptreact"
+            "typescript.tsx"
+            "vue"
+            "astro"
+            "svelte"
+          ];
+          extraOptions = {
+            init_options = {
+              vue = {
+                hybridMode = false;
+              };
+              typescript = {
+                tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib";
+              };
+            };
+          };
         };
 
         unocss = {

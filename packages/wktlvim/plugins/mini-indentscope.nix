@@ -35,7 +35,10 @@
       enable = true;
 
       modules = {
-        indentscope = { };
+        indentscope = lib.mkIf (
+          !lib.hasAttr "indent" config.plugins.snacks.settings
+          || !config.plugins.snacks.settings.indent.enabled
+        ) { };
       };
     };
   };
