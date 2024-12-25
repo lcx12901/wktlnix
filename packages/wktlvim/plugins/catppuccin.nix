@@ -52,7 +52,7 @@
         };
         semantic_tokens = true;
         symbols_outline = true;
-        snacks = false;
+        snacks = true;
         ufo = true;
         which_key = true;
       };
