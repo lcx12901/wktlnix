@@ -7,6 +7,9 @@
 
       lsp = {
         auto_attach = true;
+        preference = [
+          "tsserver"
+        ];
       };
     };
   };
