@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   namespace,
@@ -35,9 +36,12 @@
   '';
 
   plugins = {
-    lspkind.enable = true;
-    lsp-lines.enable = true;
-    lsp-signature.enable = true;
+    lsp-lines = {
+      inherit (config.plugins.lsp) enable;
+    };
+    lsp-signature = {
+      inherit (config.plugins.lsp) enable;
+    };
 
     lsp = {
       enable = true;

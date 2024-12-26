@@ -186,6 +186,15 @@
 
     ayugram-desktop.url = "github:/ayugram-port/ayugram-desktop/release?submodules=1";
 
+    blink-cmp = {
+      url = "github:saghen/blink.cmp";
+    };
+
+    blink-compat = {
+      url = "github:saghen/blink.compat";
+      flake = false;
+    };
+
     yazi-plugins = {
       url = "github:yazi-rs/plugins";
       flake = false;
