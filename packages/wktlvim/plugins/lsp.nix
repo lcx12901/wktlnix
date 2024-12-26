@@ -39,9 +39,9 @@
     lsp-lines = {
       inherit (config.plugins.lsp) enable;
     };
-    lsp-signature = {
-      inherit (config.plugins.lsp) enable;
-    };
+    # lsp-signature = {
+    #   inherit (config.plugins.lsp) enable;
+    # };
 
     lsp = {
       enable = true;
