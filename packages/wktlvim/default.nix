@@ -12,7 +12,7 @@ in
 nixvim.legacyPackages.${system}.makeNixvimWithModule {
   inherit pkgs;
   extraSpecialArgs = {
-    inherit namespace;
+    inherit inputs system namespace;
     inherit (inputs) self;
   };
 
