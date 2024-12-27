@@ -1,128 +1,14 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
-  extraPackages = with pkgs; [ ripgrep ];
-
-  keymaps = lib.mkIf config.plugins.telescope.enable [
-    {
-      mode = "n";
-      key = "<leader>fc";
-      action.__raw = ''
-        function()
-          require("telescope.builtin").find_files {
-            prompt_title = "Config Files",
-            cwd = vim.fn.stdpath "config",
-            follow = true,
-          }
-        end
-      '';
-      options = {
-        desc = "Find config files";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>fF";
-      action.__raw = ''
-        function()
-          require("telescope.builtin").find_files({ hidden = true, no_ignore = true})
-        end
-      '';
-      options = {
-        desc = "Find all files";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>fT";
-      action.__raw = ''
-        function()
-          require("telescope.builtin").colorscheme({ enable_preview = true })
-        end
-      '';
-      options = {
-        desc = "Find theme";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>fW";
-      action.__raw = ''
-        function()
-          require("telescope.builtin").live_grep {
-            additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
-          }
-        end
-      '';
-      options = {
-        desc = "Find words in all files";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>f?";
-      action.__raw = ''
-        function()
-          require("telescope.builtin").live_grep { grep_open_files=true }
-        end
-      '';
-      options = {
-        desc = "Find words in all open buffers";
-        silent = true;
-      };
-    }
-    (lib.mkIf config.plugins.telescope.extensions.file-browser.enable {
-      mode = "n";
-      key = "<leader>fe";
-      action = "<cmd>Telescope file_browser<CR>";
-      options = {
-        desc = "File Explorer";
-      };
-    })
-    (lib.mkIf config.plugins.telescope.extensions.frecency.enable {
-      mode = "n";
-      key = "<leader>fO";
-      action = "<cmd>Telescope frecency<CR>";
-      options = {
-        desc = "Find Frequent Files";
-      };
-    })
-    (lib.mkIf config.plugins.telescope.extensions.undo.enable {
-      mode = "n";
-      key = "<leader>fu";
-      action = "<cmd>Telescope undo<CR>";
-      options = {
-        desc = "List undo history";
-      };
-    })
-    (lib.mkIf config.plugins.telescope.extensions.manix.enable {
-      mode = "n";
-      key = "<leader>fM";
-      action = "<cmd>Telescope manix<CR>";
-      options = {
-        desc = "Search manix";
-      };
-    })
-    (lib.mkIf config.plugins.telescope.extensions.live-grep-args.enable {
-      mode = "n";
-      key = "<leader>fw";
-      action = "<cmd>Telescope live_grep_args<CR>";
-      options = {
-        desc = "Live grep (args)";
-      };
-    })
-  ];
-
   plugins.telescope = {
     enable = true;
+
+    # TODO: figure out proper lazy loading
+    lazyLoad.settings.cmd = "Telescope";
 
     extensions = {
       file-browser = {
@@ -133,10 +19,19 @@
       };
 
       frecency = {
-        enable = true;
+        # FIXME: super slow loading
+        # enable = true;
         settings = {
           auto_validate = false;
         };
+      };
+
+      # fzy-native = {
+      #   enable = true;
+      # };
+
+      fzf-native = {
+        enable = true;
       };
 
       live-grep-args.enable = true;
@@ -164,7 +59,7 @@
 
     highlightTheme = "Catppuccin Macchiato";
 
-    keymaps = {
+    keymaps = lib.mkIf (!config.plugins.fzf-lua.enable) {
       "<leader>f'" = {
         action = "marks";
         options.desc = "View marks";
@@ -181,7 +76,7 @@
         action = "autocommands";
         options.desc = "View autocommands";
       };
-      "<leader>fC" = {
+      "<leader>fc" = {
         action = "commands";
         options.desc = "View commands";
       };
@@ -189,10 +84,10 @@
         action = "buffers";
         options.desc = "View buffers";
       };
-      "<leader>fc" = {
-        action = "grep_string";
-        options.desc = "Grep string";
-      };
+      # "<leader>fc" = {
+      #   action = "grep_string";
+      #   options.desc = "Grep string";
+      # };
       "<leader>fd" = {
         action = "diagnostics";
         options.desc = "View diagnostics";
@@ -275,4 +170,121 @@
       };
     };
   };
+
+  keymaps = lib.mkIf config.plugins.telescope.enable [
+    (lib.mkIf (!config.plugins.fzf-lua.enable) {
+      mode = "n";
+      key = "<leader>fC";
+      action.__raw = ''
+        function()
+          require("telescope.builtin").find_files {
+            prompt_title = "Config Files",
+            cwd = vim.fn.stdpath "config",
+            follow = true,
+          }
+        end
+      '';
+      options = {
+        desc = "Find config files";
+        silent = true;
+      };
+    })
+    {
+      mode = "n";
+      key = "<leader>fF";
+      action.__raw = ''
+        function()
+          require("telescope.builtin").find_files({ hidden = true, no_ignore = true})
+        end
+      '';
+      options = {
+        desc = "Find all files";
+        silent = true;
+      };
+    }
+    (lib.mkIf (!config.plugins.fzf-lua.enable) {
+      mode = "n";
+      key = "<leader>fT";
+      action.__raw = ''
+        function()
+          require("telescope.builtin").colorscheme({ enable_preview = true })
+        end
+      '';
+      options = {
+        desc = "Find theme";
+        silent = true;
+      };
+    })
+    {
+      mode = "n";
+      key = "<leader>fW";
+      action.__raw = ''
+        function()
+          require("telescope.builtin").live_grep {
+            additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
+          }
+        end
+      '';
+      options = {
+        desc = "Find words in all files";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>f?";
+      action.__raw = ''
+        function()
+          require("telescope.builtin").live_grep { grep_open_files=true }
+        end
+      '';
+      options = {
+        desc = "Find words in all open buffers";
+        silent = true;
+      };
+    }
+    (lib.mkIf config.plugins.telescope.extensions.file-browser.enable {
+      mode = "n";
+      key = "<leader>fe";
+      action = "<cmd>Telescope file_browser<CR>";
+      options = {
+        desc = "File Explorer";
+      };
+    })
+    (lib.mkIf config.plugins.telescope.extensions.frecency.enable {
+      mode = "n";
+      key = "<leader>fO";
+      action = "<cmd>Telescope frecency<CR>";
+      options = {
+        desc = "Find Frequent Files";
+      };
+    })
+    (lib.mkIf config.plugins.telescope.extensions.undo.enable {
+      mode = "n";
+      key = "<leader>fu";
+      action = "<cmd>Telescope undo<CR>";
+      options = {
+        desc = "List undo history";
+      };
+    })
+    (lib.mkIf config.plugins.telescope.extensions.manix.enable {
+      mode = "n";
+      key = "<leader>fM";
+      action = "<cmd>Telescope manix<CR>";
+      options = {
+        desc = "Search manix";
+      };
+    })
+    (lib.mkIf
+      (config.plugins.telescope.extensions.live-grep-args.enable && !config.plugins.fzf-lua.enable)
+      {
+        mode = "n";
+        key = "<leader>fw";
+        action = "<cmd>Telescope live_grep_args<CR>";
+        options = {
+          desc = "Live grep (args)";
+        };
+      }
+    )
+  ];
 }
