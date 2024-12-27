@@ -50,6 +50,12 @@
               };
             };
           };
+          fuzzy = {
+            prebuilt_binaries = {
+              download = false;
+              ignore_version_mismatch = true;
+            };
+          };
           appearance = {
             use_nvim_cmp_as_default = true;
           };
