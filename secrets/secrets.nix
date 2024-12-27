@@ -12,6 +12,7 @@ in
   "keys/cloudflare.age".publicKeys = users;
   "keys/aria2.age".publicKeys = users;
   "keys/wireless.age".publicKeys = users;
+  "keys/codeium.age".publicKeys = users;
 
   "ssh/akari_rsa.age".publicKeys = users;
   "ssh/ryomori_rsa.age".publicKeys = users;
