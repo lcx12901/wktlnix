@@ -26,7 +26,11 @@ in
 
       packages = [
         pkgs.neovide
-        pkgs.${namespace}.wktlvim
+        (pkgs.${namespace}.wktlvim.extend {
+          plugins.codeium-nvim.settings = {
+            config_path = "${osConfig.age.secrets."codeium.config".path}";
+          };
+        })
       ];
 
       persistence = mkIf persist {
