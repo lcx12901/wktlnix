@@ -80,7 +80,7 @@ in
       programs = {
         terminal = {
           emulators.kitty = enabled;
-          # tools.cava = enabled;
+          tools.cava = enabled;
         };
         graphical = {
           screenlockers.hyprlock = enabled;

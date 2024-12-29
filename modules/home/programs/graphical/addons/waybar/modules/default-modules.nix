@@ -89,7 +89,7 @@
 
   mpd = {
     interval = 1;
-    format = "{stateIcon} {artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ";
+    format = "{stateIcon} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ";
     format-stopped = "Stopped ";
     format-disconnected = " Disconnected";
     unknown-tag = "N/A";
