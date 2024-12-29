@@ -67,7 +67,7 @@
           '';
         };
         bufdelete.enabled = true;
-        indent.enabled = true;
+        # indent.enabled = true;
         lazygit.enabled = true;
         scroll.enabled = true;
         profiler.enabled = true;

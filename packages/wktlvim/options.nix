@@ -127,6 +127,7 @@
     virtualedit = "block";
     writebackup = false;
 
+    scrolloff = 5;
     lazyredraw = false; # Faster scrolling if enabled, breaks noice
     synmaxcol = 240; # Max column for syntax highlight
     showmatch = true; # when closing a bracket, briefly flash the matching one
