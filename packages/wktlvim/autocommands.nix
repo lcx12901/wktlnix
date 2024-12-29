@@ -10,6 +10,17 @@
       event = "BufWrite";
       command = "%s/\\s\\+$//e";
     }
+    # Disable snacks animate when  neovide run
+    {
+      event = "VimEnter";
+      callback.__raw = ''
+        function()
+          if vim.g.neovide then
+            vim.g.snacks_scroll = false
+          end
+        end
+      '';
+    }
     # {
     #   desc = "Update buffers when adding new buffers";
     #   event = [

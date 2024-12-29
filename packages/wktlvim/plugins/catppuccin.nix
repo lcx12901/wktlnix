@@ -16,6 +16,10 @@
       transparent_background = false;
 
       integrations = {
+        mini = {
+          enabled = true;
+          indentscope_color = "lavender";
+        };
         cmp = true;
         blink_cmp = true;
         gitsigns = true;
