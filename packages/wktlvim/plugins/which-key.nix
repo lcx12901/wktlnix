@@ -31,11 +31,6 @@ in
           icon = "${icons.Search}";
         }
         {
-          __unkeyed = "<Leader>S";
-          group = "Find";
-          icon = "${icons.Session}";
-        }
-        {
           __unkeyed = "<Leader>l";
           group = "Find";
           icon = "${icons.ActiveLSP}";
