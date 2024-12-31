@@ -78,6 +78,7 @@ in
       inherit (cfg) accent flavor;
 
       btop = enabled;
+      bat = enabled;
       cava = {
         enable = true;
         transparent = true;
