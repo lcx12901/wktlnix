@@ -52,6 +52,7 @@
           enabled = true;
           style = "nvchad";
         };
+        fzf = true;
         navic = {
           enabled = true;
         };

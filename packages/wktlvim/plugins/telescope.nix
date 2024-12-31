@@ -26,10 +26,6 @@
         };
       };
 
-      # fzy-native = {
-      #   enable = true;
-      # };
-
       fzf-native = {
         enable = true;
       };

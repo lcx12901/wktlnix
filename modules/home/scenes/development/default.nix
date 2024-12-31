@@ -78,6 +78,7 @@ in
         terminal = {
           tools = {
             btop = enabled;
+            bat = enabled;
             colorls = enabled;
             git = enabled;
             lazygit = enabled;
