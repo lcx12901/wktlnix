@@ -24,10 +24,6 @@ in
           IdentityFile ${osConfig.age.secrets."akari_rsa".path}
           IdentitiesOnly yes
 
-        Host ryomori.lincx.top
-          IdentityFile ${osConfig.age.secrets."ryomori_rsa".path}
-          IdentitiesOnly yes
-
         Host akame.lincx.top
           IdentityFile ${osConfig.age.secrets."akame_rsa".path}
           IdentitiesOnly yes
