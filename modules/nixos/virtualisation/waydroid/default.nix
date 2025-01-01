@@ -30,6 +30,7 @@ in
       ];
       users."${username}" = {
         directories = [
+          ".waydroid"
           "waydroid"
           ".share/waydroid"
           ".local/share/applications"
