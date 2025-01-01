@@ -228,13 +228,5 @@
         desc = "Code Action";
       };
     }
-    {
-      mode = "n";
-      key = "<leader>lA";
-      action = ''<cmd>:lua require('fzf-lua').lsp_code_actions({ range = nil })<CR>'';
-      options = {
-        desc = "Code Action";
-      };
-    }
   ];
 }
