@@ -35,8 +35,7 @@ in
           ## No shadow for tiled windows
           "noshadow,floating:0"
 
-          "float,title:图片"
-          "float,title:微信"
+          "float,class:wechat"
           "float,class:^(org.gnome.Nautilus|nautilus)$"
           "float,class:discord"
 
@@ -46,6 +45,7 @@ in
 
           "size 720 1280, class:^(waydroid)(.*)$"
           "float, class:^(waydroid)(.*)$"
+          "float, class:Waydroid"
           "center, class:^(waydroid)(.*)$"
           "noborder, class:^(waydroid)(.*)$"
 
