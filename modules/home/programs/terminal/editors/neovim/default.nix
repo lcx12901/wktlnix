@@ -1,4 +1,5 @@
 {
+  inputs,
   osConfig,
   config,
   lib,
@@ -27,8 +28,21 @@ in
       packages = [
         pkgs.neovide
         (pkgs.${namespace}.wktlvim.extend {
-          plugins.codeium-nvim.settings = {
-            config_path = "${osConfig.age.secrets."codeium.config".path}";
+          plugins = {
+            codeium-nvim.settings = {
+              config_path = "${osConfig.age.secrets."codeium.config".path}";
+            };
+            lsp.servers.nixd.settings =
+              let
+                flake = ''(builtins.getFlake "${inputs.self}")'';
+              in
+              {
+                options = rec {
+                  nix-darwin.expr = ''${flake}.darwinConfigurations.khanelimac.options'';
+                  nixos.expr = ''${flake}.nixosConfigurations.khanelinix.options'';
+                  home-manager.expr = ''${nixos.expr}.home-manager.users.type.getSubOptions [ ]'';
+                };
+              };
           };
         })
       ];
@@ -36,7 +50,6 @@ in
       persistence = mkIf persist {
         "/persist/home/${config.${namespace}.user.name}" = {
           allowOther = true;
-          files = [ ".local/cache/nvim/codeium/config.json" ];
           directories = [ ".local/share/nvim" ];
         };
       };
