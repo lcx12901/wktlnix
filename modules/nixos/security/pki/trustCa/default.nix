@@ -15,8 +15,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    security.pki.certificates = [
-      (builtins.readFile ./ryomori.cer)
-    ];
+    security.pki.certificates = [ ];
   };
 }
