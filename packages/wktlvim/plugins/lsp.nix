@@ -1,7 +1,9 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
+  system,
   namespace,
   self,
   ...
@@ -219,7 +221,7 @@
 
         volar = {
           enable = true;
-          package = pkgs.${namespace}.vue-language-server;
+          package = inputs.wktlpkgs.packages.${system}.vue-language-server;
           extraOptions = {
             init_options = {
               vue = {
