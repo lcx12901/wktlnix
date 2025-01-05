@@ -32,6 +32,7 @@
       overlays = with inputs; [
         catppuccin-vsc.overlays.default
         nur.overlays.default
+        niri.overlays.niri
       ];
 
       homes.modules = with inputs; [
@@ -40,6 +41,7 @@
         spicetify-nix.homeManagerModules.default
         ags.homeManagerModules.default
         # nur.modules.home-manager.default
+        niri.homeModules.niri
       ];
 
       # Add modules to all NixOS systems.
@@ -92,6 +94,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Personal package repository
+    wktlpkgs = {
+      url = "github:lcx12901/wktlpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Declarative disk partitioning
     disko = {
       url = "github:nix-community/disko";
@@ -100,6 +108,11 @@
 
     # many of the extensions in nixpkgs are significantly out-of-date
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -199,5 +212,7 @@
       url = "github:yazi-rs/plugins";
       flake = false;
     };
+
+    ghostty.url = "github:ghostty-org/ghostty";
   };
 }

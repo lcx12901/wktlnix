@@ -236,7 +236,7 @@
 
         unocss = {
           enable = true;
-          package = pkgs.${namespace}.unocss-language-server;
+          package = inputs.wktlpkgs.packages.${system}.unocss-language-server;
         };
 
         jsonls = {

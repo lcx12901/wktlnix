@@ -30,7 +30,7 @@ in
       ])
       ++ cfg.extra-packages;
 
-    hardware.pulseaudio.enable = mkForce false;
+    services.pulseaudio.enable = mkForce false;
 
     wktlnix = {
       user.extraGroups = [ "audio" ];
