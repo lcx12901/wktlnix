@@ -152,13 +152,13 @@ in
 
           # substituters to use
           substituters = [
+            "https://cache.garnix.io" # garnix binary cache, hosts prismlauncher
             "https://cache.nixos.org" # funny binary cache
             "https://nixpkgs-wayland.cachix.org" # automated builds of *some* wayland packages
             "https://nix-community.cachix.org" # nix-community cache
             "https://hyprland.cachix.org" # hyprland
             "https://nixpkgs-unfree.cachix.org" # unfree-package cache
             "https://numtide.cachix.org" # another unfree package cache
-            "https://cache.garnix.io" # garnix binary cache, hosts prismlauncher
           ];
 
           trusted-public-keys = [
