@@ -41,6 +41,7 @@ in
       graphical = {
         wms = {
           hyprland = enabled;
+          # niri = enabled;
         };
         games = {
           steam = enabled;
