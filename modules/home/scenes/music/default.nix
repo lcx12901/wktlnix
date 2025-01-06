@@ -16,7 +16,6 @@ in
   };
 
   config = mkIf cfg.enable {
-
     wktlnix = {
       programs = {
         terminal = {
