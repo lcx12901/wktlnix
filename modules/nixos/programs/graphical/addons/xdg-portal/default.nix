@@ -23,35 +23,39 @@ in
     xdg = {
       portal = {
         enable = true;
-        config = {
-          common =
-            let
-              portal =
-                if config.${namespace}.programs.graphical.wms.hyprland.enable then
-                  "hyprland"
-                # else if config.${namespace}.programs.graphical.wms.sway.enable == "sway" then
-                #   "wlr"
-                else
-                  "gtk";
-            in
-            {
-              default = [
-                "hyprland"
-                "gtk"
-              ];
 
-              # for flameshot to work
-              # https://github.com/flameshot-org/flameshot/issues/3363#issuecomment-1753771427
-              "org.freedesktop.impl.portal.Screencast" = "${portal}";
-              "org.freedesktop.impl.portal.Screenshot" = "${portal}";
-            };
+        configPackages = lib.optionals config.${namespace}.programs.graphical.wms.hyprland.enable [
+          hyprland.packages.${system}.hyprland
+        ];
+
+        config = {
+          hyprland = mkIf config.${namespace}.programs.graphical.wms.hyprland.enable {
+            default = [
+              "hyprland"
+              "gtk"
+            ];
+            "org.freedesktop.impl.portal.Screencast" = "hyprland";
+            "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+          };
+
+          common = {
+            default = [ "gtk" ];
+
+            "org.freedesktop.impl.portal.Screencast" = "gtk";
+            "org.freedesktop.impl.portal.Screenshot" = "gtk";
+            "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+          };
         };
         extraPortals =
-          [ pkgs.xdg-desktop-portal-gtk ]
-          # ++ (lib.optional config.${namespace}.programs.graphical.wms.sway.enable xdg-desktop-portal-wlr)
-          ++ (lib.optional config.${namespace}.programs.graphical.wms.hyprland.enable
-            hyprland.packages.${system}.xdg-desktop-portal-hyprland
-          );
+          with pkgs;
+          [ xdg-desktop-portal-gtk ]
+          ++ (lib.optional config.${namespace}.programs.graphical.wms.hyprland.enable (
+            hyprland.packages.${system}.xdg-desktop-portal-hyprland.override {
+              debug = true;
+              # TODO: use same package as home-manager
+              inherit (hyprland.packages.${system}) hyprland;
+            }
+          ));
       };
     };
   };
