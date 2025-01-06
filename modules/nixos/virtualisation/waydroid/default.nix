@@ -19,6 +19,12 @@ in
     enable = mkBoolOpt false "Whether or not to enable Waydroid.";
   };
 
+  ### /var/lib/waydroid/waydroid_base.prop
+  # qemu.hw.mainkeys=1
+  # persist.waydroid.width=720
+  # persist.waydroid.height=1280
+  # persist.waydroid.dpi=320
+
   config = mkIf cfg.enable {
     environment.systemPackages = [
       inputs.wktlpkgs.packages.${system}.waydroid-script
