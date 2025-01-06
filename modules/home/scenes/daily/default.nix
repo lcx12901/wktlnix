@@ -3,7 +3,6 @@
   osConfig,
   lib,
   pkgs,
-  inputs,
   namespace,
   ...
 }:
@@ -21,14 +20,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [
-      pkgs.wechat-uos
-      inputs.ayugram-desktop.packages.${pkgs.system}.ayugram-desktop
+    home.packages = with pkgs; [
+      wechat-uos
+      telegram-desktop
     ];
 
     home.persistence = mkIf persist {
       "/persist/home/${config.${namespace}.user.name}" = {
-        directories = [ ".local/share/AyuGramDesktop" ];
+        directories = [ ".local/share/TelegramDesktop" ];
       };
     };
   };
