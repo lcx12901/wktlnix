@@ -197,8 +197,6 @@
 
     catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
 
-    ayugram-desktop.url = "github:/ayugram-port/ayugram-desktop/release?submodules=1";
-
     blink-cmp = {
       url = "github:saghen/blink.cmp";
     };
