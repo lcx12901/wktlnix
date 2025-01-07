@@ -70,13 +70,16 @@ in
         };
 
         dwindle = {
-          preserve_split = true;
-          smart_split = false;
-          smart_resizing = false;
+          pseudotile = 1;
+          force_split = 0;
+          # preserve_split = true;
+          # smart_split = false;
+          # smart_resizing = false;
         };
 
         decoration = {
           rounding = 10;
+          # rounding_power = 2.0;
           active_opacity = 0.9;
           inactive_opacity = 0.9;
 
@@ -85,13 +88,14 @@ in
             xray = true;
             special = false;
             new_optimizations = true;
-            size = 14;
-            passes = 4;
+            size = 3;
+            passes = 3;
             brightness = 1;
+            ignore_opacity = true;
             noise = 1.0e-2;
             contrast = 1;
             popups = true;
-            popups_ignorealpha = 0.6;
+            # popups_ignorealpha = 0.6;
           };
 
           shadow = {
@@ -113,53 +117,58 @@ in
           enabled = true;
 
           bezier = [
-            "linear, 0, 0, 1, 1"
-            "md3_standard, 0.2, 0, 0, 1"
-            "md3_decel, 0.05, 0.7, 0.1, 1"
-            "md3_accel, 0.3, 0, 0.8, 0.15"
-            "overshot, 0.05, 0.9, 0.1, 1.1"
-            "crazyshot, 0.1, 1.5, 0.76, 0.92"
-            "hyprnostretch, 0.05, 0.9, 0.1, 1.0"
-            "menu_decel, 0.1, 1, 0, 1"
-            "menu_accel, 0.38, 0.04, 1, 0.07"
-            "easeInOutCirc, 0.85, 0, 0.15, 1"
-            "easeOutCirc, 0, 0.55, 0.45, 1"
-            "easeOutExpo, 0.16, 1, 0.3, 1"
-            "softAcDecel, 0.26, 0.26, 0.15, 1"
-            "md2, 0.4, 0, 0.2, 1" # use with .2s duration
+            "overshot,0.13,0.99,0.29,1.1"
+            # "linear, 0, 0, 1, 1"
+            # "md3_standard, 0.2, 0, 0, 1"
+            # "md3_decel, 0.05, 0.7, 0.1, 1"
+            # "md3_accel, 0.3, 0, 0.8, 0.15"
+            # "overshot, 0.05, 0.9, 0.1, 1.1"
+            # "crazyshot, 0.1, 1.5, 0.76, 0.92"
+            # "hyprnostretch, 0.05, 0.9, 0.1, 1.0"
+            # "menu_decel, 0.1, 1, 0, 1"
+            # "menu_accel, 0.38, 0.04, 1, 0.07"
+            # "easeInOutCirc, 0.85, 0, 0.15, 1"
+            # "easeOutCirc, 0, 0.55, 0.45, 1"
+            # "easeOutExpo, 0.16, 1, 0.3, 1"
+            # "softAcDecel, 0.26, 0.26, 0.15, 1"
+            # "md2, 0.4, 0, 0.2, 1" # use with .2s duration
           ];
 
           animation = [
-            "windows, 1, 3, md3_decel, popin 60%"
-            "windowsIn, 1, 3, md3_decel, popin 60%"
-            "windowsOut, 1, 3, md3_accel, popin 60%"
-            "border, 1, 10, default"
-            "fade, 1, 3, md3_decel"
-            "layersIn, 1, 3, menu_decel, slide"
-            "layersOut, 1, 1.6, menu_accel"
-            "fadeLayersIn, 1, 2, menu_decel"
-            "fadeLayersOut, 1, 4.5, menu_accel"
-            "workspaces, 1, 7, menu_decel, slide"
-            "specialWorkspace, 1, 3, md3_decel, slidevert"
+            "windows,1,4,overshot,slide"
+            "border,1,10,default"
+            "fade,1,10,default"
+            "workspaces,1,6,overshot,slidevert"
+            # "windows, 1, 3, md3_decel, popin 60%"
+            # "windowsIn, 1, 3, md3_decel, popin 60%"
+            # "windowsOut, 1, 3, md3_accel, popin 60%"
+            # "border, 1, 10, default"
+            # "fade, 1, 3, md3_decel"
+            # "layersIn, 1, 3, menu_decel, slide"
+            # "layersOut, 1, 1.6, menu_accel"
+            # "fadeLayersIn, 1, 2, menu_decel"
+            # "fadeLayersOut, 1, 4.5, menu_accel"
+            # "workspaces, 1, 7, menu_decel, slide"
+            # "specialWorkspace, 1, 3, md3_decel, slidevert"
           ];
         };
 
         misc = {
-          vfr = 1;
-          vrr = 1;
-          focus_on_activate = true;
-          animate_manual_resizes = false;
-          animate_mouse_windowdragging = false;
-          enable_swallow = false;
-          swallow_regex = "(foot|kitty|allacritty|Alacritty)";
-
-          disable_hyprland_logo = true;
-          force_default_wallpaper = 0;
-          new_window_takes_over_fullscreen = 2;
-          allow_session_lock_restore = true;
-          initial_workspace_tracking = false;
-
-          background_color = "rgba(1D1011FF)";
+          # vfr = 1;
+          # vrr = 1;
+          # focus_on_activate = true;
+          # animate_manual_resizes = false;
+          # animate_mouse_windowdragging = false;
+          # enable_swallow = false;
+          # swallow_regex = "(foot|kitty|allacritty|Alacritty)";
+          #
+          # disable_hyprland_logo = true;
+          # force_default_wallpaper = 0;
+          # new_window_takes_over_fullscreen = 2;
+          # allow_session_lock_restore = true;
+          # initial_workspace_tracking = false;
+          #
+          # background_color = "rgba(1D1011FF)";
         };
 
         master = {
@@ -177,8 +186,10 @@ in
         "$browser" = "${getExe pkgs.firefox-devedition}";
         "$launcher" = "${getExe config.programs.rofi.package} -show drun -n";
         "$launcher_alt" = "${getExe config.programs.rofi.package} -show calc";
-        "$launchpad" = "${getExe config.programs.rofi.package} -show drun -config '~/.config/rofi/appmenu/rofi.rasi'";
-        "$cliphist" = "${getExe pkgs.cliphist} list | ${getExe config.programs.rofi.package} -dmenu | ${getExe pkgs.cliphist} decode | ${wl-copy}";
+        "$launchpad" =
+          "${getExe config.programs.rofi.package} -show drun -config '~/.config/rofi/appmenu/rofi.rasi'";
+        "$cliphist" =
+          "${getExe pkgs.cliphist} list | ${getExe config.programs.rofi.package} -dmenu | ${getExe pkgs.cliphist} decode | ${wl-copy}";
         "$grimblast_area_clipboard" = "${grimblast} --freeze --notify copy area";
         "$grimblast_active_clipboard" = "${grimblast} --notify copy active";
         "$grimblast_screen_clipboard" = "${grimblast} --notify copy screen";
