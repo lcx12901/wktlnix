@@ -13,7 +13,7 @@ in
     wayland.windowManager.hyprland = {
       settings = {
         windowrule = [
-          "noblur,.*"
+          # "noblur,.*"
 
           ## Dialogs
           "float,title:^(Open File)(.*)$"
@@ -56,10 +56,10 @@ in
         ];
 
         layerrule = [
-          "xray 1, .*"
-          "blur, shell:*"
-          "ignorealpha 0.6, shell:*"
-          "noanim, noanim"
+          # "xray 1, .*"
+          # "blur, shell:*"
+          # "ignorealpha 0.6, shell:*"
+          # "noanim, noanim"
         ];
       };
     };
