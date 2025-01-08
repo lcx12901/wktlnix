@@ -72,14 +72,14 @@ in
         dwindle = {
           pseudotile = 1;
           force_split = 0;
-          # preserve_split = true;
-          # smart_split = false;
-          # smart_resizing = false;
+          preserve_split = true;
+          smart_split = false;
+          smart_resizing = false;
         };
 
         decoration = {
           rounding = 10;
-          # rounding_power = 2.0;
+          rounding_power = 4.0;
           active_opacity = 0.9;
           inactive_opacity = 0.9;
 
@@ -154,19 +154,19 @@ in
         };
 
         misc = {
-          # vfr = 1;
-          # vrr = 1;
-          # focus_on_activate = true;
-          # animate_manual_resizes = false;
-          # animate_mouse_windowdragging = false;
-          # enable_swallow = false;
-          # swallow_regex = "(foot|kitty|allacritty|Alacritty)";
+          vfr = 1;
+          vrr = 1;
+          focus_on_activate = true;
+          animate_manual_resizes = false;
+          animate_mouse_windowdragging = false;
+          enable_swallow = false;
+          swallow_regex = "(foot|kitty|allacritty|Alacritty)";
           #
-          # disable_hyprland_logo = true;
-          # force_default_wallpaper = 0;
-          # new_window_takes_over_fullscreen = 2;
-          # allow_session_lock_restore = true;
-          # initial_workspace_tracking = false;
+          disable_hyprland_logo = true;
+          force_default_wallpaper = 0;
+          new_window_takes_over_fullscreen = 2;
+          allow_session_lock_restore = true;
+          initial_workspace_tracking = false;
           #
           # background_color = "rgba(1D1011FF)";
         };
