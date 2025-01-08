@@ -20,10 +20,9 @@
         enable = true;
         package = inputs.blink-cmp.packages.${system}.default;
 
-        luaConfig.pre = # lua
-          ''
-            require('blink.compat').setup({debug = false, impersonate_nvim_cmp = true})
-          '';
+        luaConfig.pre = ''
+          require('blink.compat').setup({debug = false, impersonate_nvim_cmp = true})
+        '';
 
         settings = {
           completion = {
@@ -82,18 +81,17 @@
             enabled = true;
             window.border = "rounded";
           };
+          snippets.preset = "mini_snippets";
           sources = {
             default = [
               "buffer"
-              "calc"
               "codeium"
-              "emoji"
-              "git"
               "lsp"
-              "luasnip"
-              #"npm"
               "path"
               "snippets"
+              "emoji"
+              "git"
+              #"npm"
               "spell"
               #"treesitter"
               # "zsh"
