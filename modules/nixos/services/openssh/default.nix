@@ -58,6 +58,14 @@ in
             hostNames = [ "akame.lincx.top" ];
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ5zj8Ii9OAfwiHMly+kCDAjiqvLnfRrktWUfMVxtUWB";
           };
+          akeno-rsa = {
+            hostNames = [ "akeno.lincx.top" ];
+            publicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC0uLZfb7O7Rs8F07VeZTUArliPCdEbAkY+U5DlrzkwTrBtxXXcv0w9UM71oKygWe5wq5ExJMxrD/GzsZIevAcjEYnrZt/OlUVsnqsmGqvQI61IIxaj8lK3sR25iRcyJN3U6RKV0Y1EHt2V19YddKsIXKkakaqgRs/Qje6o39yFvy2joXRPawCDmGYO4Sk9oqWo3ykppBF68PxUnsb0cN8rZutJVHQ2I5aCJdLZdoNUnWpsBmKAWsJ4rOa2lZNypBB3btCxQ3SLBU8pj5YPRLiJoOi5A8yxDcfoVSAlb8/6A5B3qVdf2b4e6gdPUHCADtrT6vp28kZEwT5gE2+ZiInQJUGqlLYVkY6IByNqQXytx99Nxjkec8YCBeLMoLQFyiLPs5MvqdWk0g/6fu+CYqRuo68V4ATMECiWmtzIPZV/kDOSHiouAJfr1yPfCa2j6Avpco0o2Qexl5uylGKIkI2c241Su+Wmwl5761oDx486R4aknFQuUKY7uaUmdaLjLVE=";
+          };
+          akeno-ed25519 = {
+            hostNames = [ "akeno.lincx.top" ];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMuvmHU/Ssuu83KgbvzagrSd1vgbDGvzSFPnCDzCpYCg";
+          };
         }
 
         (mkIf (host == "yukino") {

@@ -87,7 +87,14 @@ in
           mode = "0600";
         };
       }
-
+      {
+        "akeno_rsa" = {
+          file = lib.snowfall.fs.get-file "secrets/ssh/akeno_rsa.age";
+          owner = config.${namespace}.user.name;
+          group = "users";
+          mode = "0600";
+        };
+      }
       {
         "codeium.config" = {
           file = lib.snowfall.fs.get-file "secrets/keys/codeium.age";

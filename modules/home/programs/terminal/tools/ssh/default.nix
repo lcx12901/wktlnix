@@ -31,6 +31,10 @@ in
           IdentityFile ${osConfig.age.secrets."akame_rsa".path}
           IdentitiesOnly yes
 
+        Host akeno.lincx.top
+          IdentityFile ${osConfig.age.secrets."akeno_rsa".path}
+          IdentitiesOnly yes
+
         Host github.com
           IdentityFile ${osConfig.age.secrets."host_rsa".path}
           IdentitiesOnly yes
