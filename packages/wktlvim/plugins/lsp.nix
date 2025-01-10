@@ -4,7 +4,6 @@
   lib,
   pkgs,
   system,
-  namespace,
   self,
   ...
 }:
@@ -16,9 +15,9 @@
   '';
 
   plugins = {
-    lsp-lines = {
-      inherit (config.plugins.lsp) enable;
-    };
+    # lsp-lines = {
+    #   inherit (config.plugins.lsp) enable;
+    # };
     # lsp-signature = {
     #   inherit (config.plugins.lsp) enable;
     # };
