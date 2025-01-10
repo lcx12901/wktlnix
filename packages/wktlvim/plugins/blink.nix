@@ -10,7 +10,7 @@
   extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
     with pkgs;
     [
-      wktlnix.blink-compat
+      vimPlugins.blink-compat
     ]
   );
 
