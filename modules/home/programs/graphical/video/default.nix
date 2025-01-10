@@ -24,12 +24,5 @@ in
       vlc
       tsukimi
     ];
-
-    # home.persistence = mkIf persist {
-    #   "/persist/home/${config.${namespace}.user.name}" = {
-    #     allowOther = true;
-    #     files = [".config/tsukimi.toml"];
-    #   };
-    # };
   };
 }
