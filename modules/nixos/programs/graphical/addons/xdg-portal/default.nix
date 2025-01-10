@@ -51,7 +51,7 @@ in
           [ xdg-desktop-portal-gtk ]
           ++ (lib.optional config.${namespace}.programs.graphical.wms.hyprland.enable (
             hyprland.packages.${system}.xdg-desktop-portal-hyprland.override {
-              debug = true;
+              # debug = true;
               # TODO: use same package as home-manager
               inherit (hyprland.packages.${system}) hyprland;
             }
