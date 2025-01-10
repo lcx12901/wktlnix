@@ -4,8 +4,9 @@ let
 in
 {
   diagnostics = {
+    underline = false;
     virtual_text = false;
-    # update_in_insert = true;
+    update_in_insert = false;
     severity_sort = true;
 
     float = {
