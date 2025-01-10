@@ -103,9 +103,7 @@
                 command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
               };
               options = {
-                # nixos.expr = ''${flake}.nixosConfigurations.wktlnix.options'';
                 nixvim.expr = ''${flake}.packages.${system}.nvim.options'';
-                # home-manager.expr = ''${flake}.homeConfigurations."wktl@wktlnix".options'';
               };
             };
         };
