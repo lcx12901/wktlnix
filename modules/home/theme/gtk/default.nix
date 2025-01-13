@@ -74,6 +74,11 @@ in
       enable = true;
 
       settings = nested-default-attrs {
+        "org/gnome/shell" = {
+          disable-user-extensions = false;
+          enabled-extensions = [ "user-theme@gnome-shell-extensions.gcampax.github.com" ];
+        };
+
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
           cursor-size = cfg.cursor.size;
