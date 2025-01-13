@@ -48,7 +48,10 @@ in
       ];
 
       sessionVariables = {
-        GDK_BACKEND = "wayland";
+        GDK_BACKEND = "wayland,x11";
+        # FIXME: https://github.com/NixOS/nixpkgs/issues/361216
+        # https://github.com/NixOS/nixpkgs/issues/353990
+        GSK_RENDERER = "gl";
         HYPRLAND_LOG_WLR = "1";
         MOZ_ENABLE_WAYLAND = "1";
         MOZ_USE_XINPUT2 = "1";
