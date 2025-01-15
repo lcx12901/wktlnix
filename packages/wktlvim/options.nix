@@ -49,7 +49,7 @@
     relativenumber = true; # Relative line numbers
     number = true; # Display the absolute line number of the current line
     hidden = true; # Keep closed buffer open in the background
-    mouse = "a"; # Enable mouse control
+    mouse = ""; # Enable mouse control
     mousemodel = "extend"; # Mouse right-click extends the current selection
     splitbelow = true; # A new window is put below the current one
     splitright = true; # A new window is put right of the current one
