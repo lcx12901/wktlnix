@@ -19,8 +19,8 @@ in
     programs = {
       graphical = {
         wms = {
-          hyprland = enabled;
-          # niri = enabled;
+          # hyprland = enabled;
+          niri = enabled;
         };
         browsers.firefox = {
           enable = true;

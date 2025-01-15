@@ -29,6 +29,8 @@ in
 
     programs.niri.settings = {
       environment = {
+        GDK_BACKEND = "wayland,x11";
+        GSK_RENDERER = "gl";
         NIXOS_OZONE_WL = "1";
         QT_QPA_PLATFORM = "wayland";
         DISPLAY = ":0";
@@ -38,9 +40,18 @@ in
         XDG_SESSION_TYPE = "wayland";
       };
 
+      outputs = {
+        "DP-1" = {
+          mode = {
+            width = 2560;
+            height = 1440;
+            refresh = 164.998;
+          };
+          variable-refresh-rate = true;
+        };
+      };
+
       spawn-at-startup = [
-        # "fcitx5 -dr"
-        # "swww init && swww img ${inputs.wallpapers}/Hoshino-eye.jpg"
         {
           command = [ "xwayland-satellite" ];
         }
@@ -52,6 +63,13 @@ in
         }
         {
           command = [ "${pkgs.swww}/bin/swww-daemon" ];
+        }
+        {
+          command = [
+            "swww"
+            "img"
+            "${inputs.wallpapers}/Hoshino-eye.jpg"
+          ];
         }
       ];
 
@@ -69,9 +87,23 @@ in
       hotkey-overlay.skip-at-startup = true;
 
       input = {
-        focus-follows-mouse.enable = true;
+        focus-follows-mouse = {
+          enable = true;
+          max-scroll-amount = "0%";
+        };
         warp-mouse-to-focus = true;
       };
+      window-rules = [
+        {
+          geometry-corner-radius = {
+            top-left = 10.0;
+            top-right = 10.0;
+            bottom-left = 10.0;
+            bottom-right = 10.0;
+          };
+          clip-to-geometry = true;
+        }
+      ];
 
       binds =
         with config.lib.niri.actions;
@@ -150,13 +182,6 @@ in
         };
     };
 
-    systemd.user.services = {
-      waybar.Unit = {
-        Requisite = [ "niri.service" ];
-        After = [ "niri.service" ];
-      };
-    };
-
     wktlnix = {
       programs = {
         terminal = {
@@ -169,7 +194,6 @@ in
             fcitx5 = enabled;
             mako = enabled;
             clipboard = enabled;
-            waybar = enabled;
           };
           launchers.rofi = enabled;
         };
