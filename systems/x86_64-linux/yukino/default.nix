@@ -35,7 +35,8 @@ in
     programs = {
       graphical = {
         wms = {
-          hyprland = enabled;
+          # hyprland = enabled;
+          niri = enabled;
         };
         addons.xdg-portal = enabled;
         file-managers.nautilus = enabled;

@@ -18,9 +18,12 @@ in
 
     programs = {
       graphical = {
-        wms.hyprland = {
-          enable = true;
-          monitor = ",1920x1080@60,auto,1";
+        wms = {
+          hyprland = {
+            enable = false;
+            monitor = ",1920x1080@60,auto,1";
+          };
+          niri = enabled;
         };
         browsers.firefox = {
           enable = true;
