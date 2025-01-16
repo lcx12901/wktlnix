@@ -7,7 +7,7 @@ let
   inherit (lib) getExe';
 in
 {
-  "hyprland/workspaces" = {
+  "niri/workspaces" = {
     all-outputs = false;
     active-only = false;
     disable-scroll = false;
