@@ -38,6 +38,19 @@ in
             "org.freedesktop.impl.portal.Screenshot" = "hyprland";
           };
 
+          niri = mkIf config.${namespace}.programs.graphical.wms.niri.enable {
+            default = [
+              "gtk"
+              "gnome"
+            ];
+
+            "org.freedesktop.impl.portal.Access" = "gtk";
+            "org.freedesktop.impl.portal.Notification" = "gtk";
+            "org.freedesktop.impl.portal.Screencast" = "gtk";
+            "org.freedesktop.impl.portal.Screenshot" = "gtk";
+            "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+          };
+
           common = {
             default = [ "gtk" ];
 
@@ -48,7 +61,10 @@ in
         };
         extraPortals =
           with pkgs;
-          [ xdg-desktop-portal-gtk ]
+          [
+            xdg-desktop-portal-gtk
+          ]
+          ++ (lib.optional config.${namespace}.programs.graphical.wms.niri.enable xdg-desktop-portal-gnome)
           ++ (lib.optional config.${namespace}.programs.graphical.wms.hyprland.enable (
             hyprland.packages.${system}.xdg-desktop-portal-hyprland.override {
               # debug = true;
