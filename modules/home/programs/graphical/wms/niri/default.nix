@@ -81,6 +81,20 @@ in
           { proportion = 1.0 / 1.0; }
         ];
         gaps = 10;
+
+        focus-ring = {
+          enable = true;
+          width = 4;
+          active.color = "#ca9ee6";
+          inactive.color = "#505050";
+        };
+
+        border = {
+          enable = false;
+          width = 4;
+          active.color = "#ffc87f";
+          inactive.color = "#505050";
+        };
       };
 
       prefer-no-csd = true;
@@ -93,6 +107,7 @@ in
         };
         warp-mouse-to-focus = true;
       };
+
       window-rules = [
         {
           geometry-corner-radius = {
@@ -104,6 +119,11 @@ in
           clip-to-geometry = true;
         }
       ];
+
+      animations = {
+        enable = true;
+        # all default
+      };
 
       binds =
         with config.lib.niri.actions;
@@ -155,6 +175,8 @@ in
           "Mod+Page_Down".action = focus-workspace-down;
           "Mod+Page_Up".action = focus-workspace-up;
 
+          "Mod+C".action = center-column;
+
           "Mod+Shift+1".action.move-window-to-workspace = 1;
           "Mod+Shift+2".action.move-window-to-workspace = 2;
           "Mod+Shift+3".action.move-window-to-workspace = 3;
@@ -179,6 +201,10 @@ in
 
           "Mod+Shift+H".action.set-column-width = "-5%";
           "Mod+Shift+L".action.set-column-width = "+5%";
+
+          "Print".action = screenshot;
+          "Ctrl+Print".action = screenshot-screen;
+          "Alt+Print".action = screenshot-window;
         };
     };
 
@@ -194,6 +220,7 @@ in
             fcitx5 = enabled;
             mako = enabled;
             clipboard = enabled;
+            waybar = enabled;
           };
           launchers.rofi = enabled;
         };
