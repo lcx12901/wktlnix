@@ -55,10 +55,10 @@ in
           gpu_device = 0;
           amd_performance_level = "high";
         };
-        custom = {
-          start = startscript.outPath;
-          end = endscript.outPath;
-        };
+        # custom = {
+        #   start = startscript.outPath;
+        #   end = endscript.outPath;
+        # };
       };
     };
 
