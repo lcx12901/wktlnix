@@ -64,14 +64,6 @@ in
       })
 
       {
-        "akari_rsa" = {
-          file = lib.snowfall.fs.get-file "secrets/ssh/akari_rsa.age";
-          owner = config.${namespace}.user.name;
-          group = "users";
-          mode = "0600";
-        };
-      }
-      {
         "akame_rsa" = {
           file = lib.snowfall.fs.get-file "secrets/ssh/akame_rsa.age";
           owner = config.${namespace}.user.name;

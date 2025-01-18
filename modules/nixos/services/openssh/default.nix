@@ -42,14 +42,6 @@ in
             hostNames = [ "github.com" ];
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
           };
-          akari-rsa = {
-            hostNames = [ "akari.lincx.top" ];
-            publicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDunawOwShyVJLbRlTIz1Sk3POwCbCX9Zr5VAFaU5nED4KPMubZbeZRjgGb5tBlkoL6sfgzSvEMFAEIDB31KiOE0oDGoESv6yvVunZCyJaqQ5AkeSAToz8UD7fO4YUVwYA3gKfsYufPCF98Q+p0gqWzGpHUZ4dNvwaYKG65tPnAmAYKg7ifJpOcaIcvytZatl3w4FIYtbC/uqb2z0n1FI5tAqEon3vpx7R70InEU+NS52M61XNNjAJFBrm5WFgxt6qoHTRiWacXIYIH8EkyvzruwwWezrWWSRYFCrv1AsS/sIQhYQsbvxgooRDvmZwoYuyfjIYPK5jXYovrBZBLMZyuFJWYYOi//XYnZvglbn45hvMoFxQpb3z1Huz9zgbJQE110+bPrAO6QLfYkeA/7AEQ6kCcCrZNZAFuSXeODYSaLNVDmyA+DHkoJ+5KaF9Y9+kRX+foOWBoYDiCXEt45SGLojSD3ob6wGevA6ZW2cC6R2GvgwtamcAcYPUKkDb5LAM=";
-          };
-          akari-ed25519 = {
-            hostNames = [ "akari.lincx.top" ];
-            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGcKaCEcZR316DCKO7fXP2nkF+krWnVm09WHKcxez5Fg";
-          };
           akame-rsa = {
             hostNames = [ "akame.lincx.top" ];
             publicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCPCPkwWm1vyvCW8py6KO1Ua7udTWZVUa3DWbE9us7IS9KWtR0BfgyhdygWJzHWqXFcQ5upVMWpllAtmxHwzthOBcLvRzUVMORSJ8uJCeeTowj5IrijsMT7SBxZdOZ/Ca3WkHI+W9vwzzHX4DkLnF9D18nbr3nlp40xAkgu7S7K2OmX76QwTiZgYM9EVQzHatmKZ844PEqwDYCJmqz+WpRiGwgHc1O2MXx/XtCJFylyHVJsJkwY8ilzkb8sbsFZ5CCQl3ZdAmcyKnY0ZRADFV6L2rV5CEiOK+Yfut5rf6rOPp71fDwSGu3SEfvdQZhrCNf9rddV2+sG5aOS05ugyVFLy9ogb+a1CDNI7Z9vCrSSQJ2Rlcc3YiEUxPKRIpHS8Fhm4VPjiLC1VagQ8LgjJE1ZPK2gBq+PmyurAmdItNOt/M+ysyqKwRA/hRGQiHrxDkjNuaLvGbOuypAJVNnHbtRXRv6K6lRc3x8bs/jWYQzzHCJD8yvXZk2ThcqD313uJ6E=";
