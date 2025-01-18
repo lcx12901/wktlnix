@@ -14,7 +14,6 @@ in
   "keys/wireless.age".publicKeys = users;
   "keys/codeium.age".publicKeys = users;
 
-  "ssh/akari_rsa.age".publicKeys = users;
   "ssh/host_rsa.age".publicKeys = users;
   "ssh/akame_rsa.age".publicKeys = users;
   "ssh/akeno_rsa.age".publicKeys = users;

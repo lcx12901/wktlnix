@@ -23,10 +23,6 @@ in
         ServerAliveInterval 60
         ServerAliveCountMax 120
 
-        Host akari.lincx.top
-          IdentityFile ${osConfig.age.secrets."akari_rsa".path}
-          IdentitiesOnly yes
-
         Host akame.lincx.top
           IdentityFile ${osConfig.age.secrets."akame_rsa".path}
           IdentitiesOnly yes
