@@ -1,0 +1,13 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      astal:
+        specifier: link:/nix/store/k0c751h491ygbpjqp22rjz57inhlngdx-astal-gjs/share/astal/gjs
+        version: link:../../../../../../nix/store/k0c751h491ygbpjqp22rjz57inhlngdx-astal-gjs/share/astal/gjs
