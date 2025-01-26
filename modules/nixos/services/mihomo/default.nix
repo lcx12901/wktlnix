@@ -1,17 +1,13 @@
 {
-  inputs,
   config,
   lib,
   pkgs,
-  system,
   namespace,
   ...
 }:
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
-
-  inherit (inputs) wktlpkgs;
 
   cfg = config.${namespace}.services.mihomo;
 in
@@ -24,7 +20,7 @@ in
     services.mihomo = {
       enable = true;
       tunMode = true;
-      package = wktlpkgs.packages.${system}.mihomo-alpha;
+      package = pkgs.${namespace}.mihomo-alpha;
       configFile = config.age.secrets."mihomo.yaml".path;
       webui = pkgs.metacubexd;
     };

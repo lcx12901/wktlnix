@@ -26,6 +26,7 @@ in
           gpuAcceleration = true;
           hardwareDecoding = true;
         };
+        video = enabled;
       };
     };
 
