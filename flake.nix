@@ -91,12 +91,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Personal package repository
-    wktlpkgs = {
-      url = "github:lcx12901/wktlpkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Declarative disk partitioning
     disko = {
       url = "github:nix-community/disko";
