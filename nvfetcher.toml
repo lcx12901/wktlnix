@@ -1,0 +1,8 @@
+[mihomo-alpha]
+src.git = "https://github.com/MetaCubeX/mihomo"
+src.branch = "Alpha"
+fetch.github = "MetaCubeX/mihomo"
+
+[waydroid_script]
+src.git = "https://github.com/huakim/waydroid_script"
+fetch.github = "huakim/waydroid_script"
