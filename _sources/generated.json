@@ -1,0 +1,44 @@
+{
+    "mihomo-alpha": {
+        "cargoLocks": null,
+        "date": "2025-01-21",
+        "extract": null,
+        "name": "mihomo-alpha",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "MetaCubeX",
+            "repo": "mihomo",
+            "rev": "b69e52d4d72846b8201a4073ed68c4c332c40db9",
+            "sha256": "sha256-0SEaRU3GBNz3dfMBjpIDC25yFvNhhcz/FYv4yxwp2Ak=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "b69e52d4d72846b8201a4073ed68c4c332c40db9"
+    },
+    "waydroid_script": {
+        "cargoLocks": null,
+        "date": "2024-12-15",
+        "extract": null,
+        "name": "waydroid_script",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "huakim",
+            "repo": "waydroid_script",
+            "rev": "3cfa1e43e7da4b0c07a4c83d331e4776012e2acd",
+            "sha256": "sha256-O29v/lF2YCUhyCo+M7Sesoes0MObHsS2tutW88rOM/U=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "3cfa1e43e7da4b0c07a4c83d331e4776012e2acd"
+    }
+}

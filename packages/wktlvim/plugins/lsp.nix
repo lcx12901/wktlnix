@@ -1,10 +1,9 @@
 {
-  inputs,
   config,
   lib,
   pkgs,
-  system,
   self,
+  namespace,
   ...
 }:
 {
@@ -201,24 +200,11 @@
 
         ts_ls = {
           enable = true;
-          # extraOptions = {
-          #   init_options = {
-          #     plugins = [
-          #       {
-          #         name = "@vue/typescript-plugin";
-          #         location = "${
-          #           lib.getBin pkgs.${namespace}.vue-language-server
-          #         }/lib/node_modules/@vue/language-server";
-          #         languages = [ "vue" ];
-          #       }
-          #     ];
-          #   };
-          # };
         };
 
         volar = {
           enable = true;
-          package = inputs.wktlpkgs.packages.${system}.vue-language-server;
+          package = pkgs.${namespace}.vue-language-server;
           extraOptions = {
             init_options = {
               vue = {
@@ -233,7 +219,7 @@
 
         unocss = {
           enable = true;
-          package = inputs.wktlpkgs.packages.${system}.unocss-language-server;
+          package = pkgs.${namespace}.unocss-language-server;
         };
 
         jsonls = {

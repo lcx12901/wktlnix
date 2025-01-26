@@ -1,8 +1,7 @@
 {
-  inputs,
   config,
   lib,
-  system,
+  pkgs,
   namespace,
   ...
 }:
@@ -27,7 +26,7 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = [
-      inputs.wktlpkgs.packages.${system}.waydroid-script
+      pkgs.${namespace}.waydroid-script
     ];
 
     environment.persistence."/persist" = {
