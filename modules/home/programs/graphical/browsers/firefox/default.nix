@@ -88,7 +88,7 @@ in
 
           id = 1;
 
-          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          extensions = with pkgs.firefox-addons; [
             sidebery
             sponsorblock
             bitwarden

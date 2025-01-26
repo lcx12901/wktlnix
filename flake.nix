@@ -31,7 +31,6 @@
 
       overlays = with inputs; [
         catppuccin-vsc.overlays.default
-        nur.overlays.default
         niri.overlays.niri
       ];
 
@@ -40,7 +39,6 @@
         impermanence.nixosModules.home-manager.impermanence
         spicetify-nix.homeManagerModules.default
         ags.homeManagerModules.default
-        # nur.modules.home-manager.default
         niri.homeModules.niri
       ];
 
@@ -88,9 +86,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Nix User Repository (master)
-    nur = {
-      url = "github:nix-community/NUR";
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
