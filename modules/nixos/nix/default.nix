@@ -156,7 +156,7 @@ in
             "https://cache.nixos.org" # funny binary cache
             "https://nixpkgs-wayland.cachix.org" # automated builds of *some* wayland packages
             "https://nix-community.cachix.org" # nix-community cache
-            "https://hyprland.cachix.org" # hyprland
+            # "https://hyprland.cachix.org" # hyprland
             "https://nixpkgs-unfree.cachix.org" # unfree-package cache
             "https://numtide.cachix.org" # another unfree package cache
           ];
@@ -165,7 +165,7 @@ in
             "cache.ngi0.nixos.org-1:KqH5CBLNSyX184S9BKZJo1LxrxJ9ltnY2uAs5c/f1MA="
             "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-            "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+            # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
             "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
             "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="

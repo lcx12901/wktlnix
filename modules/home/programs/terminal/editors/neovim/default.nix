@@ -1,5 +1,4 @@
 {
-  inputs,
   osConfig,
   config,
   lib,
@@ -30,19 +29,8 @@ in
         (pkgs.${namespace}.wktlvim.extend {
           plugins = {
             codeium-nvim.settings = {
-              config_path = "${osConfig.age.secrets."codeium.config".path}";
+              config_path = "${config.sops.secrets."codeium_key".path}";
             };
-            lsp.servers.nixd.settings =
-              let
-                flake = ''(builtins.getFlake "${inputs.self}")'';
-              in
-              {
-                options = rec {
-                  nix-darwin.expr = ''${flake}.darwinConfigurations.khanelimac.options'';
-                  nixos.expr = ''${flake}.nixosConfigurations.khanelinix.options'';
-                  home-manager.expr = ''${nixos.expr}.home-manager.users.type.getSubOptions [ ]'';
-                };
-              };
           };
         })
       ];
@@ -52,6 +40,12 @@ in
           allowOther = true;
           directories = [ ".local/share/nvim" ];
         };
+      };
+    };
+
+    sops.secrets = {
+      "codeium_key" = {
+        sopsFile = lib.snowfall.fs.get-file "secrets/default.yaml";
       };
     };
   };

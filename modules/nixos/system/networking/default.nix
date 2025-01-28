@@ -102,26 +102,17 @@ in
 
       wireless = {
         enable = cfg.wireless;
-        secretsFile = config.age.secrets."wireless.conf".path;
+        secretsFile = config.sops.secrets."wireless".path;
         networks = {
           "wktl_5G_Game".pskRaw = "ext:psk_wktl_5G_Game";
         };
       };
     };
 
-    # services = {
-    #   dnsmasq = {
-    #     enable = true;
-    #     resolveLocalQueries = true;
-    #     settings = {
-    #       server = [
-    #         "1.1.1.1"
-    #         "1.0.0.1"
-    #         "2606:4700:4700::1111"
-    #         "2606:4700:4700::1001"
-    #       ];
-    #     };
-    #   };
-    # };
+    sops.secrets = {
+      "wireless" = {
+        sopsFile = lib.snowfall.fs.get-file "secrets/default.yaml";
+      };
+    };
   };
 }

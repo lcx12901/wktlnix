@@ -25,7 +25,7 @@ in
         group = mkIf config.services.nginx.enable "nginx";
         dnsProvider = "cloudflare";
         dnsResolver = "1.1.1.1:53";
-        credentialsFile = config.age.secrets."cloudflare.key".path;
+        # credentialsFile = null;
       };
     };
   };

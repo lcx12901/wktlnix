@@ -1,0 +1,11 @@
+keys:
+  # hosts
+  - &host_hiyori age1ay9wumxmumd7gx9kwz7vzvgmh6l3qyxj6jka4y58rucnzrckgssss8jzdy
+  # user
+  - &user_wktl age1rrpde8u95jscps6uyc6as6r05qanxhw2cpm5tfgc5p2gjmu5u49qqpa9c9
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *host_hiyori
+          - *user_wktl
