@@ -38,7 +38,7 @@
         catppuccin.homeManagerModules.catppuccin
         impermanence.nixosModules.home-manager.impermanence
         spicetify-nix.homeManagerModules.default
-        ags.homeManagerModules.default
+        sops-nix.homeManagerModules.sops
         niri.homeModules.niri
       ];
 
@@ -46,7 +46,7 @@
       systems.modules.nixos = with inputs; [
         nixos-wsl.nixosModules.wsl
         disko.nixosModules.disko
-        agenix.nixosModules.default
+        sops-nix.nixosModules.sops
         impermanence.nixosModules.impermanence
       ];
     };
@@ -145,11 +145,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # agenix (Secrets)
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    sops-nix.url = "github:Mic92/sops-nix";
 
     impermanence.url = "github:nix-community/impermanence";
 

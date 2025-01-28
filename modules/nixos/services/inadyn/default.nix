@@ -15,7 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     services.inadyn = {
       enable = true;
-      configFile = config.age.secrets."cf-nagisa-inadyn.conf".path;
+      # configFile = config.age.secrets."cf-nagisa-inadyn.conf".path;
     };
   };
 }

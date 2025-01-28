@@ -17,7 +17,7 @@ in
     services.aria2 = {
       enable = true;
       openPorts = true;
-      rpcSecretFile = config.age.secrets."aria2-rpc-token.text".path;
+      rpcSecretFile = config.sops.secrets."aria2/rpc_token".path;
       settings = {
         # file setting
         disk-cache = "64M";
@@ -97,5 +97,11 @@ in
       "${pkgs.coreutils}/bin/touch /var/lib/aria2/dht.dat"
       "${pkgs.coreutils}/bin/touch /var/lib/aria2/dht6.dat"
     ];
+
+    sops.secrets = {
+      "aria/rpc_token" = {
+        sopsFile = lib.snowfall.fs.get-file "secrets/default.yaml";
+      };
+    };
   };
 }
