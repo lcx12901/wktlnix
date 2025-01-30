@@ -31,7 +31,6 @@ in
       cpu.amd = enabled;
       gpu.amd = enabled;
       btrfs = enabled;
-      bluetooth = enabled;
     };
 
     programs = {
@@ -60,7 +59,6 @@ in
     };
 
     security.pki.trustCa = enabled;
-    virtualisation.waydroid = enabled;
   };
 
   # This value determines the NixOS release from which the default
