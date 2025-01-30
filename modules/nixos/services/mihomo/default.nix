@@ -34,8 +34,12 @@ in
 
     systemd.services.mihomo.serviceConfig = {
       ExecStartPre = [
-        "${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-geoip}/share/v2ray/geoip.dat /var/lib/private/mihomo/GeoIP.dat"
-        "${pkgs.coreutils}/bin/ln -sf ${pkgs.v2ray-domain-list-community}/share/v2ray/geosite.dat /var/lib/private/mihomo/GeoSite.dat"
+        "${pkgs.coreutils}/bin/ln -sf ${
+          pkgs.${namespace}.v2ray-rules-dat
+        }/share/geoip.dat /var/lib/private/mihomo/GeoIP.dat"
+        "${pkgs.coreutils}/bin/ln -sf ${
+          pkgs.${namespace}.v2ray-rules-dat
+        }/share/geosite.dat /var/lib/private/mihomo/GeoSite.dat"
         "${pkgs.coreutils}/bin/ln -sf ${config.sops.secrets.mihomo_nodes.path} /var/lib/private/mihomo/nodes.yaml"
         "${pkgs.coreutils}/bin/ln -sf ${configFile} /var/lib/private/mihomo/text.yaml"
       ];
