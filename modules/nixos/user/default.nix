@@ -58,6 +58,8 @@ in
 
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZAyn741cbW5FmNFKplhY2nMGYDDpx2aC0ZQFzNIkMB" # hiyori
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICMR+SUAz22LypQObBh7mOhcIsY3sbeJ4xIbD8/Ju2UD" # kanroji
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8Nmp08PzTfykfAz1lIsN3rNfurnYssyxGO0O3iXGnJ" # yukino
       ];
     } // cfg.extraOptions;
 
