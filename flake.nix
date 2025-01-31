@@ -44,7 +44,6 @@
 
       # Add modules to all NixOS systems.
       systems.modules.nixos = with inputs; [
-        nixos-wsl.nixosModules.wsl
         disko.nixosModules.disko
         sops-nix.nixosModules.sops
         impermanence.nixosModules.impermanence
@@ -55,17 +54,6 @@
     # NixPkgs (nixos-unstable)
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
-    };
-
-    # NixPkgs (nixos-unstable)
-    nixpkgs-small = {
-      url = "github:nixos/nixpkgs/nixos-unstable-small";
-    };
-
-    # NixOS WSL Support
-    nixos-wsl = {
-      url = "github:nix-community/nixos-wsl";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Home Manager (master)
@@ -103,29 +91,6 @@
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Hyprlock
-    hyprlock = {
-      url = "github:hyprwm/Hyprlock";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-    };
-
-    # Hyprland user contributions flake
-    hyprland-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-    };
-
-    # Hyprland plugins
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
     };
 
     # Weekly updating nix-index database
@@ -183,8 +148,8 @@
       url = "github:saghen/blink.cmp";
     };
 
-    blink-compat = {
-      url = "github:saghen/blink.compat";
+    snacks-nvim = {
+      url = "github:folke/snacks.nvim";
       flake = false;
     };
 

@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  namespace,
   ...
 }:
 {
@@ -27,6 +28,8 @@
   plugins = {
     snacks = {
       enable = true;
+
+      package = pkgs.${namespace}.snacks-nvim;
 
       settings = {
         bigfile = {
