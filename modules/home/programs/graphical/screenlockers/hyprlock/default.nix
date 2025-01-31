@@ -3,14 +3,13 @@
   inputs,
   lib,
   osConfig,
-  system,
   namespace,
   ...
 }:
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
-  inherit (inputs) hyprlock wallpapers;
+  inherit (inputs) wallpapers;
 
   cfg = config.${namespace}.programs.graphical.screenlockers.hyprlock;
 in
@@ -22,7 +21,6 @@ in
   config = mkIf cfg.enable {
     programs.hyprlock = {
       enable = true;
-      package = hyprlock.packages.${system}.hyprlock;
 
       settings = {
         background = {
