@@ -1,16 +1,13 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
-  system,
   namespace,
   ...
 }:
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
-  inherit (inputs) hyprland;
 
   cfg = config.${namespace}.programs.graphical.addons.xdg-portal;
 in
@@ -24,20 +21,7 @@ in
       portal = {
         enable = true;
 
-        configPackages = lib.optionals config.${namespace}.programs.graphical.wms.hyprland.enable [
-          hyprland.packages.${system}.hyprland
-        ];
-
         config = {
-          hyprland = mkIf config.${namespace}.programs.graphical.wms.hyprland.enable {
-            default = [
-              "hyprland"
-              "gtk"
-            ];
-            "org.freedesktop.impl.portal.Screencast" = "hyprland";
-            "org.freedesktop.impl.portal.Screenshot" = "hyprland";
-          };
-
           niri = mkIf config.${namespace}.programs.graphical.wms.niri.enable {
             default = [
               "gtk"
@@ -63,15 +47,9 @@ in
           with pkgs;
           [
             xdg-desktop-portal-gtk
+            xdg-desktop-portal-wlr
           ]
-          ++ (lib.optional config.${namespace}.programs.graphical.wms.niri.enable xdg-desktop-portal-gnome)
-          ++ (lib.optional config.${namespace}.programs.graphical.wms.hyprland.enable (
-            hyprland.packages.${system}.xdg-desktop-portal-hyprland.override {
-              # debug = true;
-              # TODO: use same package as home-manager
-              inherit (hyprland.packages.${system}) hyprland;
-            }
-          ));
+          ++ (lib.optional config.${namespace}.programs.graphical.wms.niri.enable xdg-desktop-portal-gnome);
       };
     };
   };
