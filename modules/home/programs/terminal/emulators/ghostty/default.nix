@@ -28,15 +28,21 @@ in
       enableZshIntegration = true;
 
       settings = {
-        adw-toolbar-style = "flat";
+        adw-toolbar-style = "raised";
 
         background-opacity = 0.8;
 
+        clipboard-trim-trailing-spaces = true;
+        copy-on-select = "clipboard";
+
+        focus-follows-mouse = true;
+
         font-size = 13;
-        font-family = "MonaspiceNe Nerd Font";
-        font-family-bold = "MonaspiceXe Nerd Font";
-        font-family-italic = "MonaspiceRn Nerd Font";
-        font-family-bold-italic = "MonaspiceKr Nerd Font";
+        font-family = "RecMonoCasual Nerd Font";
+
+        gtk-single-instance = false;
+
+        quit-after-last-window-closed = true;
 
         window-decoration = false;
       };
