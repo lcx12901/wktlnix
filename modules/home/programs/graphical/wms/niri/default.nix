@@ -13,6 +13,8 @@ let
   inherit (inputs) nixpkgs-wayland;
 
   wl-copy = getExe' nixpkgs-wayland.packages.${system}.wl-clipboard "wl-copy";
+  wl-paste = getExe' nixpkgs-wayland.packages.${system}.wl-clipboard "wl-paste";
+  wl-clip-persist = getExe pkgs.wl-clip-persist;
 
   cfg = config.${namespace}.programs.graphical.wms.niri;
 in
@@ -32,9 +34,10 @@ in
         GDK_BACKEND = "wayland,x11";
         GSK_RENDERER = "gl";
         NIXOS_OZONE_WL = "1";
-        QT_QPA_PLATFORM = "wayland";
-        DISPLAY = ":0";
+        DISPLAY = ":1";
         MOZ_ENABLE_WAYLAND = "1";
+        # use wayland as the default backend, fallback to xcb if wayland is not available
+        QT_QPA_PLATFORM = "wayland;xcb";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         XDG_CURRENT_DESKTOP = "niri";
         XDG_SESSION_TYPE = "wayland";
@@ -53,7 +56,10 @@ in
 
       spawn-at-startup = [
         {
-          command = [ "xwayland-satellite" ];
+          command = [
+            "xwayland-satellite"
+            ":1"
+          ];
         }
         {
           command = [
@@ -71,6 +77,33 @@ in
             "${inputs.wallpapers}/Hoshino-eye.jpg"
           ];
         }
+        {
+          command = [
+            "${wl-paste}"
+            "--type"
+            "image"
+            "--watch"
+            "cliphist"
+            "store"
+          ];
+        }
+        {
+          command = [
+            "${wl-paste}"
+            "--type"
+            "text"
+            "--watch"
+            "cliphist"
+            "store"
+          ];
+        }
+        {
+          command = [
+            "${wl-clip-persist}"
+            "--clipboard"
+            "both"
+          ];
+        }
       ];
 
       layout = {
@@ -80,6 +113,7 @@ in
           { proportion = 2.0 / 3.0; }
           { proportion = 1.0 / 1.0; }
         ];
+
         gaps = 10;
 
         focus-ring = {
@@ -95,17 +129,6 @@ in
           active.color = "#e78284";
           inactive.color = "#babbf1";
         };
-
-        # shadow = {
-        #   enable = true;
-        #   softness = 30;
-        #   spread = 5;
-        #   offset = {
-        #     x = 1;
-        #     y = 5;
-        #   };
-        #   color = "#ea999c";
-        # };
       };
 
       prefer-no-csd = true;
@@ -128,6 +151,9 @@ in
             bottom-right = 10.0;
           };
           clip-to-geometry = true;
+        }
+        {
+          draw-border-with-background = false;
         }
       ];
 
@@ -182,9 +208,9 @@ in
           "Mod+Q".action = close-window;
           "Mod+Shift+E".action = quit;
 
-          "Mod+Return".action.spawn = "kitty";
+          "Mod+Return".action.spawn = "ghostty";
           "Mod+N".action.spawn = "neovide";
-          "Mod+F".action.spawn = "firefox-devedition";
+          "Mod+B".action.spawn = "firefox-devedition";
           "Mod+A".action.spawn = "ayugram-desktop";
           "Mod+T".action.spawn = "tsukimi";
           "Mod+W".action.spawn = [
@@ -195,6 +221,8 @@ in
           ];
           "Mod+X".action =
             sh "${getExe pkgs.cliphist} list | ${getExe config.programs.rofi.package} -dmenu | ${getExe pkgs.cliphist} decode | ${wl-copy}";
+
+          "Mod+F".action = toggle-window-floating;
 
           "Mod+Left".action = focus-column-left;
           "Mod+Down".action = focus-window-down;
@@ -253,13 +281,15 @@ in
           "Print".action = screenshot;
           "Ctrl+Print".action = screenshot-screen;
           "Alt+Print".action = screenshot-window;
+
+          "Mod+Shift+P".action.spawn = "hyprlock";
         };
     };
 
     wktlnix = {
       programs = {
         terminal = {
-          emulators.kitty = enabled;
+          emulators.ghostty = enabled;
           tools.cava = enabled;
         };
         graphical = {
@@ -267,10 +297,16 @@ in
           addons = {
             fcitx5 = enabled;
             mako = enabled;
-            clipboard = enabled;
             waybar = enabled;
           };
           launchers.rofi = enabled;
+        };
+      };
+
+      services = {
+        cliphist = {
+          enable = true;
+          systemdTargets = [ "niri.service" ];
         };
       };
 
