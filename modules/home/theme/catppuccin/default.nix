@@ -84,6 +84,7 @@ in
       };
       fcitx5 = enabled;
       kitty = enabled;
+      ghostty = enabled;
       waybar = enabled;
       yazi = enabled;
     };
