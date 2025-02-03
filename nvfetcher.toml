@@ -11,3 +11,15 @@ fetch.github = "huakim/waydroid_script"
 src.git = "https://github.com/Loyalsoldier/v2ray-rules-dat"
 src.branch = "release"
 fetch.github = "Loyalsoldier/v2ray-rules-dat"
+
+[miller-yazi]
+src.git = "https://github.com/Reledia/miller.yazi"
+fetch.github = "Reledia/miller.yazi"
+
+[glow-yazi]
+src.git = "https://github.com/Reledia/glow.yazi"
+fetch.github = "Reledia/glow.yazi"
+
+[ouch-yazi]
+src.git = "https://github.com/ndtoan96/ouch.yazi"
+fetch.github = "ndtoan96/ouch.yazi"
