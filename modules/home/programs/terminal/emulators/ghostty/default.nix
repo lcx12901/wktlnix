@@ -30,8 +30,6 @@ in
       settings = {
         adw-toolbar-style = "raised";
 
-        background-opacity = 0.8;
-
         clipboard-trim-trailing-spaces = true;
         copy-on-select = "clipboard";
 
