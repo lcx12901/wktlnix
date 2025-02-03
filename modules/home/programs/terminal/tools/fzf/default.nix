@@ -55,6 +55,10 @@ in
       enableBashIntegration = true;
       enableZshIntegration = false;
       enableFishIntegration = true;
+
+      tmux = {
+        enableShellIntegration = true;
+      };
     };
   };
 }
