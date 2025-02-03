@@ -153,6 +153,11 @@
       flake = false;
     };
 
+    typescript-tools-nvim = {
+      url = "github:Parsifa1/typescript-tools.nvim";
+      flake = false;
+    };
+
     yazi-plugins = {
       url = "github:yazi-rs/plugins";
       flake = false;
