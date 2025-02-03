@@ -87,6 +87,20 @@ in
       ghostty = enabled;
       waybar = enabled;
       yazi = enabled;
+      lazygit = enabled;
+    };
+
+    programs = {
+      tmux.plugins = [
+        {
+          plugin = pkgs.tmuxPlugins.catppuccin;
+          extraConfig = ''
+            set -g @catppuccin_flavour '${cfg.flavor}'
+            set -g @catppuccin_host 'on'
+            set -g @catppuccin_user 'on'
+          '';
+        }
+      ];
     };
   };
 }
