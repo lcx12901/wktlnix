@@ -199,7 +199,7 @@
         };
 
         ts_ls = {
-          enable = true;
+          enable = !config.plugins.typescript-tools.enable;
         };
 
         volar = {
