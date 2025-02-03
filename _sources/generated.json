@@ -1,4 +1,25 @@
 {
+    "glow-yazi": {
+        "cargoLocks": null,
+        "date": "2024-12-27",
+        "extract": null,
+        "name": "glow-yazi",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Reledia",
+            "repo": "glow.yazi",
+            "rev": "5ce76dc92ddd0dcef36e76c0986919fda3db3cf5",
+            "sha256": "sha256-UljcrXXO5DZbufRfavBkiNV3IGUNct31RxCujRzC9D4=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "5ce76dc92ddd0dcef36e76c0986919fda3db3cf5"
+    },
     "mihomo-alpha": {
         "cargoLocks": null,
         "date": "2025-01-21",
@@ -20,9 +41,51 @@
         },
         "version": "b69e52d4d72846b8201a4073ed68c4c332c40db9"
     },
-    "v2ray-rules-dat": {
+    "miller-yazi": {
+        "cargoLocks": null,
+        "date": "2024-08-28",
+        "extract": null,
+        "name": "miller-yazi",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Reledia",
+            "repo": "miller.yazi",
+            "rev": "40e02654725a9902b689114537626207cbf23436",
+            "sha256": "sha256-GXZZ/vI52rSw573hoMmspnuzFoBXDLcA0fqjF76CdnY=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "40e02654725a9902b689114537626207cbf23436"
+    },
+    "ouch-yazi": {
         "cargoLocks": null,
         "date": "2025-01-31",
+        "extract": null,
+        "name": "ouch-yazi",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "ndtoan96",
+            "repo": "ouch.yazi",
+            "rev": "ce6fb75431b9d0d88efc6ae92e8a8ebb9bc1864a",
+            "sha256": "sha256-oUEUGgeVbljQICB43v9DeEM3XWMAKt3Ll11IcLCS/PA=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "ce6fb75431b9d0d88efc6ae92e8a8ebb9bc1864a"
+    },
+    "v2ray-rules-dat": {
+        "cargoLocks": null,
+        "date": "2025-02-02",
         "extract": null,
         "name": "v2ray-rules-dat",
         "passthru": null,
@@ -34,12 +97,12 @@
             "name": null,
             "owner": "Loyalsoldier",
             "repo": "v2ray-rules-dat",
-            "rev": "e235dc45ed30eb029c7ce3b0d6ea222a4ecfb819",
-            "sha256": "sha256-fEX7GguL4YwqyaEOxSvRYSeu8GrrBSYG1sS/PciFy2k=",
+            "rev": "fa79e16df655a1d9fd5aaf0fe93e5023cc7742e5",
+            "sha256": "sha256-LdRSzgW3rJJlVTPyoXgnwkoIwEiBhbiU6o5XzIaAjr4=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "e235dc45ed30eb029c7ce3b0d6ea222a4ecfb819"
+        "version": "fa79e16df655a1d9fd5aaf0fe93e5023cc7742e5"
     },
     "waydroid_script": {
         "cargoLocks": null,

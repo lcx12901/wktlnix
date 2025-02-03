@@ -62,13 +62,6 @@ _: {
         run = "arrow 5";
         desc = "Move cursor down 5 lines";
       }
-
-      # Filtering
-      {
-        on = [ "/" ];
-        run = "filter";
-        desc = "Apply a filter for the help items";
-      }
     ];
   };
 }
