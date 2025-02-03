@@ -8,11 +8,6 @@ let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
-  logo = builtins.fetchurl {
-    url = "https://raw.githubusercontent.com/gytis-ivaskevicius/high-quality-nix-content/refs/heads/master/emoji/nix-owo-transparent.png";
-    sha256 = "137k3i7z4va68v4rvrazy26szc7p2w59h7bc2h8japzjyj6xjs71";
-  };
-
   cfg = config.${namespace}.programs.terminal.tools.fastfetch;
 in
 {
@@ -26,11 +21,6 @@ in
 
       settings = {
         "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
-        logo = {
-          source = logo;
-          type = "kitty";
-          width = 33;
-        };
         display = {
           color = {
             keys = "green";
