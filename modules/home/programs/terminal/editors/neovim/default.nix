@@ -25,7 +25,6 @@ in
       };
 
       packages = [
-        pkgs.neovide
         (pkgs.${namespace}.wktlvim.extend {
           plugins = {
             codeium-nvim.settings = {
