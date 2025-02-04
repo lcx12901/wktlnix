@@ -31,13 +31,8 @@ in
 
     environment.persistence."/persist" = {
       hideMounts = true;
-      directories = [
-        "/home/.waydroid"
-      ];
       users."${username}" = {
         directories = [
-          ".waydroid"
-          "waydroid"
           ".share/waydroid"
           ".local/share/applications"
           ".local/share/waydroid"
