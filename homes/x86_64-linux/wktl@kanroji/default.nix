@@ -18,10 +18,7 @@ in
 
     programs = {
       graphical = {
-        wms = {
-          # hyprland = enabled;
-          niri = enabled;
-        };
+        wms.niri = enabled;
         browsers.firefox = {
           enable = true;
           gpuAcceleration = true;

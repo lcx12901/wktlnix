@@ -18,9 +18,7 @@ in
 
     programs = {
       graphical = {
-        wms = {
-          niri = enabled;
-        };
+        wms.niri = enabled;
         browsers.firefox = {
           enable = true;
           gpuAcceleration = true;
