@@ -35,9 +35,7 @@ in
 
     programs = {
       graphical = {
-        wms = {
-          niri = enabled;
-        };
+        wms.niri = enabled;
         games = {
           steam = enabled;
           gamemode = enabled;

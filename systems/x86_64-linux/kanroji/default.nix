@@ -39,10 +39,7 @@ in
 
     programs = {
       graphical = {
-        wms = {
-          # hyprland = enabled;
-          niri = enabled;
-        };
+        wms.niri = enabled;
         games = {
           steam = enabled;
           gamemode = enabled;
