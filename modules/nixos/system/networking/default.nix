@@ -110,9 +110,7 @@ in
     };
 
     sops.secrets = {
-      "wireless" = {
-        sopsFile = lib.snowfall.fs.get-file "secrets/default.yaml";
-      };
+      "wireless" = { };
     };
   };
 }

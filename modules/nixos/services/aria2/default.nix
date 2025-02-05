@@ -99,9 +99,7 @@ in
     ];
 
     sops.secrets = {
-      "aria/rpc_token" = {
-        sopsFile = lib.snowfall.fs.get-file "secrets/default.yaml";
-      };
+      "aria/rpc_token" = { };
     };
   };
 }

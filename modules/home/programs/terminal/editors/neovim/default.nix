@@ -42,10 +42,6 @@ in
       };
     };
 
-    sops.secrets = {
-      "codeium_key" = {
-        sopsFile = lib.snowfall.fs.get-file "secrets/default.yaml";
-      };
-    };
+    sops.secrets."codeium_key" = { };
   };
 }
