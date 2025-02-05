@@ -22,7 +22,7 @@ in
     home.packages = with pkgs; [
       ffmpeg-full
       vlc
-      tsukimi
+      # tsukimi
     ];
   };
 }
