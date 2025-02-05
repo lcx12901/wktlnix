@@ -21,13 +21,12 @@ in
     environment.persistence."/persist" = {
       hideMounts = true;
 
-      directories = [
-        "/etc/ssh"
-        "/var/lib"
-        "/var/log"
-      ];
+      directories = [ "/var/lib/nixos" ];
 
-      files = [ "/etc/machine-id" ];
+      files = [
+        "/etc/machine-id"
+        "/etc/ssh/ssh_host_ed25519_key"
+      ];
 
       users."${username}" = {
         directories = [
