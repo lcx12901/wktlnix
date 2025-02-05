@@ -14,8 +14,6 @@ let
   format = pkgs.formats.yaml { };
   configFile = format.generate "config.yaml" mihomoConfig;
 
-  sopsFile = lib.snowfall.fs.get-file "secrets/default.yaml";
-
   cfg = config.${namespace}.services.mihomo;
 in
 {
@@ -50,12 +48,8 @@ in
     networking.firewall.allowedTCPPorts = [ 9090 ];
 
     sops.secrets = {
-      "mihomo_nodes" = {
-        inherit sopsFile;
-      };
-      "mihomo_secret" = {
-        inherit sopsFile;
-      };
+      "mihomo_nodes" = { };
+      "mihomo_secret" = { };
     };
 
     sops.templates."config.yaml".content = ''

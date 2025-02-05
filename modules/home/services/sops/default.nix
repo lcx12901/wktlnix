@@ -14,7 +14,7 @@ in
 {
   options.${namespace}.services.sops = with types; {
     enable = mkBoolOpt true "Whether to enable sops.";
-    defaultSopsFile = mkOpt path null "Default sops file.";
+    defaultSopsFile = mkOpt path (lib.snowfall.fs.get-file "secrets/default.yaml") "Default sops file.";
     sshKeyPaths = mkOpt (listOf path) [ ] "SSH Key paths to use.";
   };
 
@@ -35,7 +35,6 @@ in
       };
 
       secrets."sops_keys" = {
-        sopsFile = lib.snowfall.fs.get-file "secrets/default.yaml";
         path = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
       };
 
