@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.programs.terminal.emulators.ghostty;
 
@@ -14,6 +14,7 @@ in
 {
   options.${namespace}.programs.terminal.emulators.ghostty = {
     enable = mkBoolOpt false "Whether or not to enable ghostty.";
+    fontSize = mkOpt lib.types.number 16 "ghostty font size.";
   };
 
   config = mkIf cfg.enable {
@@ -35,7 +36,7 @@ in
 
         focus-follows-mouse = true;
 
-        font-size = 13;
+        font-size = cfg.fontSize;
         font-family = "RecMonoCasual Nerd Font";
 
         gtk-single-instance = false;
