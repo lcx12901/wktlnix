@@ -21,7 +21,10 @@ in
     environment.persistence."/persist" = {
       hideMounts = true;
 
-      directories = [ "/var/lib/nixos" ];
+      directories = [
+        "/var/lib/nixos"
+        "/var/log"
+      ];
 
       files = [
         "/etc/machine-id"
