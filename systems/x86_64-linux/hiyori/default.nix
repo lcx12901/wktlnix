@@ -40,7 +40,6 @@ in
           steam = enabled;
           gamemode = enabled;
         };
-        addons.xdg-portal = enabled;
         file-managers.nautilus = enabled;
       };
       terminal.tools.nix-ld = enabled;

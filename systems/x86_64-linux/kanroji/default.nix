@@ -34,7 +34,6 @@ in
       cpu.intel = enabled;
       gpu.amd = enabled;
       btrfs = enabled;
-      bluetooth = enabled;
     };
 
     programs = {
@@ -43,9 +42,7 @@ in
         games = {
           steam = enabled;
           gamemode = enabled;
-          # gamescope = enabled;
         };
-        addons.xdg-portal = enabled;
         file-managers.nautilus = enabled;
       };
       terminal.tools.nix-ld = enabled;

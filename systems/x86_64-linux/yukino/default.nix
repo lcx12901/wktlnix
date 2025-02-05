@@ -35,7 +35,6 @@ in
     programs = {
       graphical = {
         wms.niri = enabled;
-        addons.xdg-portal = enabled;
         file-managers.nautilus = enabled;
       };
       terminal.tools.nix-ld = enabled;
