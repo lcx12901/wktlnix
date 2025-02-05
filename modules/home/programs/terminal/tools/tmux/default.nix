@@ -1,4 +1,5 @@
 {
+  osConfig,
   config,
   lib,
   pkgs,
@@ -10,6 +11,9 @@ let
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.tools.tmux;
+
+  persist = osConfig.${namespace}.system.persist.enable;
+
   configFiles = lib.snowfall.fs.get-files ./config;
 
   plugins = with pkgs.tmuxPlugins; [
@@ -54,6 +58,13 @@ in
       extraConfig = builtins.concatStringsSep "\n" (builtins.map lib.strings.fileContents configFiles);
 
       inherit plugins;
+    };
+
+    home.persistence = mkIf persist {
+      "/persist/home/${config.${namespace}.user.name}" = {
+        allowOther = true;
+        directories = [ ".tmux" ];
+      };
     };
   };
 }
