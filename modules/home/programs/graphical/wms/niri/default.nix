@@ -170,10 +170,6 @@ in
           matches = [ { app-id = "^com\.mitchellh\.ghostty$"; } ];
           opacity = 0.9;
         }
-        {
-          matches = [ { app-id = "Waydroid"; } ];
-          default-column-width.proportion = 3.0 / 3.0;
-        }
       ];
 
       animations = {
