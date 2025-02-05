@@ -22,7 +22,7 @@ in
   # qemu.hw.mainkeys=1
   # persist.waydroid.width=720
   # persist.waydroid.height=1280
-  # persist.waydroid.dpi=320
+  # persist.waydroid.dpi=280
 
   config = mkIf cfg.enable {
     environment.systemPackages = [
@@ -31,6 +31,9 @@ in
 
     environment.persistence."/persist" = {
       hideMounts = true;
+
+      directories = [ "/var/lib/waydroid" ];
+
       users."${username}" = {
         directories = [
           ".share/waydroid"
