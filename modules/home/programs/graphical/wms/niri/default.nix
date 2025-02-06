@@ -167,7 +167,10 @@ in
           open-floating = true;
         }
         {
-          matches = [ { app-id = "^com\.mitchellh\.ghostty$"; } ];
+          matches = [
+            { app-id = "^com\.mitchellh\.ghostty$"; }
+            { app-id = "neovide"; }
+          ];
           opacity = 0.9;
         }
       ];

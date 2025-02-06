@@ -32,6 +32,8 @@ in
             };
           };
         })
+
+        pkgs.neovide
       ];
 
       persistence = mkIf persist {
