@@ -85,7 +85,7 @@
     },
     "v2ray-rules-dat": {
         "cargoLocks": null,
-        "date": "2025-02-04",
+        "date": "2025-02-05",
         "extract": null,
         "name": "v2ray-rules-dat",
         "passthru": null,
@@ -97,12 +97,12 @@
             "name": null,
             "owner": "Loyalsoldier",
             "repo": "v2ray-rules-dat",
-            "rev": "141d62d103daf52ddf0060a0bf7cd3693efbfc65",
-            "sha256": "sha256-ao6AHpabtPbHbrB5++71L3kbJZAOydI3+zzX5woGAQc=",
+            "rev": "fa07e8150a2d7d9c401a8f391b0cd05a63251cc8",
+            "sha256": "sha256-KJLE4Lnq+ITehZ12rvR7TyxcE88rP6JE9aJlzyDUIBo=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "141d62d103daf52ddf0060a0bf7cd3693efbfc65"
+        "version": "fa07e8150a2d7d9c401a8f391b0cd05a63251cc8"
     },
     "waydroid_script": {
         "cargoLocks": null,
