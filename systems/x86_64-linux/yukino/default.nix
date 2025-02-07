@@ -51,6 +51,7 @@ in
     };
 
     security.pki.trustCa = enabled;
+    virtualisation.waydroid = enabled;
   };
 
   networking.firewall.allowedTCPPortRanges = [
