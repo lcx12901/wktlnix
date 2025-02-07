@@ -14,24 +14,23 @@ in
       inherit (config.snowfallorg.user) name;
     };
 
-    system.xdg = enabled;
-
     programs = {
-      graphical = {
-        wms.niri = enabled;
-        browsers.firefox = {
-          enable = true;
-          gpuAcceleration = true;
-          hardwareDecoding = true;
+      terminal = {
+        tools = {
+          btop = enabled;
+          bat = enabled;
+          colorls = enabled;
+          git = enabled;
+          lazygit = enabled;
+          eza = enabled;
+          direnv = enabled;
+          ripgrep = enabled;
+          yazi = enabled;
         };
-        video = enabled;
+        shell.startship = {
+          enable = false;
+        };
       };
-    };
-
-    scenes = {
-      daily = enabled;
-      business = enabled;
-      development = enabled;
     };
   };
 

@@ -34,20 +34,11 @@ in
     };
 
     programs = {
-      graphical = {
-        wms.niri = enabled;
-        games = {
-          steam = enabled;
-          gamemode = enabled;
-        };
-        file-managers.nautilus = enabled;
-      };
       terminal.tools.nix-ld = enabled;
     };
 
     suites = {
       common = enabled;
-      wlroots = enabled;
     };
 
     services = {
