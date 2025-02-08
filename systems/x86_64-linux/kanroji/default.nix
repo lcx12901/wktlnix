@@ -56,6 +56,7 @@ in
     services = {
       mihomo = enabled;
       openssh = enabled;
+      avahi = enabled;
     };
 
     security.pki.trustCa = enabled;

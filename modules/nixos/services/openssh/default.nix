@@ -10,6 +10,8 @@ let
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
   inherit (lib.types) port;
 
+  hasOptinPersistence = config.${namespace}.system.persist.enable;
+
   cfg = config.${namespace}.services.openssh;
 in
 {
@@ -25,12 +27,36 @@ in
       settings = {
         PermitRootLogin = "no";
         PasswordAuthentication = false;
+        AuthenticationMethods = "publickey";
+        PubkeyAuthentication = "yes";
         KbdInteractiveAuthentication = false;
         # Automatically remove stale sockets
         StreamLocalBindUnlink = "yes";
         # Allow forwarding ports to everywhere
         GatewayPorts = "clientspecified";
+
+        # key exchange algorithms recommended by `nixpkgs#ssh-audit`
+        KexAlgorithms = [
+          "curve25519-sha256"
+          "curve25519-sha256@libssh.org"
+          "diffie-hellman-group16-sha512"
+          "diffie-hellman-group18-sha512"
+          "diffie-hellman-group-exchange-sha256"
+          "sntrup761x25519-sha512@openssh.com"
+        ];
+
       };
+
+      startWhenNeeded = true;
+
+      hostKeys = [
+        {
+          path = "${lib.optionalString hasOptinPersistence "/persist"}/etc/ssh/ssh_host_ed25519_key";
+          type = "ed25519";
+        }
+      ];
+
+      openFirewall = true;
 
       knownHosts = mkMerge [
         {
@@ -70,6 +96,13 @@ in
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGLt+JQ8Er8iN5OepJHT/hBf1ioDP9PV5S4HuKmGYzKn";
           };
         })
+
+        {
+          hiyori = {
+            hostNames = [ "hiyori.local" ];
+            publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZAyn741cbW5FmNFKplhY2nMGYDDpx2aC0ZQFzNIkMB";
+          };
+        }
       ];
     };
   };
