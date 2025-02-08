@@ -51,15 +51,15 @@
   };
   v2ray-rules-dat = {
     pname = "v2ray-rules-dat";
-    version = "a8ce68c098159ff4b820f462442a366483cb8812";
+    version = "4ce43f31be5ba8c73c9b47d334a545f84f0d2523";
     src = fetchFromGitHub {
       owner = "Loyalsoldier";
       repo = "v2ray-rules-dat";
-      rev = "a8ce68c098159ff4b820f462442a366483cb8812";
+      rev = "4ce43f31be5ba8c73c9b47d334a545f84f0d2523";
       fetchSubmodules = false;
-      sha256 = "sha256-9XvrOaANsRO+RakRxb0/IjHj3+kSWjzAnlkAsej4r9A=";
+      sha256 = "sha256-TCppfA+vciesUQa5lHQzrbrBUbcrSBWZLk/MIxmr6pU=";
     };
-    date = "2025-02-06";
+    date = "2025-02-07";
   };
   waydroid_script = {
     pname = "waydroid_script";
