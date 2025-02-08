@@ -29,11 +29,8 @@ in
         PasswordAuthentication = false;
         AuthenticationMethods = "publickey";
         PubkeyAuthentication = "yes";
-        KbdInteractiveAuthentication = false;
-        # Automatically remove stale sockets
+        UseDns = false;
         StreamLocalBindUnlink = "yes";
-        # Allow forwarding ports to everywhere
-        GatewayPorts = "clientspecified";
 
         # key exchange algorithms recommended by `nixpkgs#ssh-audit`
         KexAlgorithms = [
