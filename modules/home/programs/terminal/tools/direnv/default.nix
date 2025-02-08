@@ -30,6 +30,7 @@ in
 
     home.persistence = mkIf persist {
       "/persist/home/${config.${namespace}.user.name}" = {
+        allowOther = true;
         directories = [ ".local/share/direnv" ];
       };
     };
