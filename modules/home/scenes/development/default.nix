@@ -83,7 +83,7 @@ in
             lazygit = enabled;
             eza = enabled;
             direnv = enabled;
-            tmux = enabled;
+            # tmux = enabled;
             ripgrep = enabled;
             yazi = enabled;
           };

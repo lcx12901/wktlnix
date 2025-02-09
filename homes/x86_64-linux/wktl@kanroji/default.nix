@@ -32,7 +32,7 @@ in
 
     scenes = {
       daily = enabled;
-      business = enabled;
+      # business = enabled;
       development = enabled;
       music = enabled;
     };

@@ -47,6 +47,7 @@
         disko.nixosModules.disko
         sops-nix.nixosModules.sops
         impermanence.nixosModules.impermanence
+        daeuniverse.nixosModules.dae
       ];
     };
 
@@ -162,6 +163,8 @@
       url = "github:yazi-rs/plugins";
       flake = false;
     };
+
+    daeuniverse.url = "github:daeuniverse/flake.nix";
 
     ghostty.url = "github:ghostty-org/ghostty";
   };
