@@ -83,9 +83,9 @@ in
             lazygit = enabled;
             eza = enabled;
             direnv = enabled;
-            # tmux = enabled;
             ripgrep = enabled;
             yazi = enabled;
+            zellij = enabled;
           };
           editors.neovim = enabled;
         };
