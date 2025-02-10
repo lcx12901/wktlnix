@@ -20,6 +20,6 @@ layout {
   }
 
   tab name="Shell" name="Shell" {
-    pane command="fish"
+    pane command="nu"
   }
 }
