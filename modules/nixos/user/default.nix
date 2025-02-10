@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib.types) str listOf attrs;
-  inherit (lib.${namespace}) mkOpt enabled;
+  inherit (lib.${namespace}) mkOpt;
 
   cfg = config.${namespace}.user;
 in
@@ -25,8 +25,6 @@ in
       fortune
       lolcat
     ];
-
-    programs.fish = enabled;
 
     users.mutableUsers = false;
 
@@ -51,7 +49,7 @@ in
       home = "/home/${cfg.name}";
       createHome = true;
       isNormalUser = true;
-      shell = pkgs.fish;
+      shell = pkgs.nushell;
       uid = 1000;
 
       hashedPassword = "$6$XXUp9uRF41kC5YHm$lsOLgDuECYb9CbDHBRpsPashoBzB794KoLWI2NCpOl5cB9puDosikhJwGXNxuLf/mW6nJ0SdYkasIAIHfd99/0";
