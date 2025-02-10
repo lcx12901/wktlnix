@@ -25,13 +25,6 @@ in
         set fish_greeting # Disable greeting
         ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       '';
-
-      shellAliases = {
-        du = "${pkgs.ncdu}/bin/ncdu --color dark -rr -x";
-        nsn = "nix shell nixpkgs#";
-        nsw = "sudo nixos-rebuild switch --flake .#${osConfig.networking.hostName}";
-        nfu = "nix flake update";
-      };
     };
   };
 }

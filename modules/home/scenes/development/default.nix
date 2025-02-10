@@ -19,17 +19,20 @@ in
 {
   options.${namespace}.scenes.development = {
     enable = mkBoolOpt false "Whether or not to enable development configuration.";
+    nodejsEnable = mkBoolOpt false "Whether or not to enable nodejs development configuration.";
   };
 
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [
-        nodejs
-        pnpm
-        bun
-      ];
+      packages =
+        with pkgs;
+        lib.optionals cfg.nodejsEnable [
+          nodejs
+          pnpm
+          bun
+        ];
 
-      persistence = mkIf persist {
+      persistence = mkIf (persist && cfg.nodejsEnable) {
         "/persist/home/${config.${namespace}.user.name}" = {
           allowOther = true;
           directories = [ ".bun" ];
@@ -37,13 +40,13 @@ in
       };
     };
 
-    nixpkgs.config = {
+    nixpkgs.config = mkIf cfg.nodejsEnable {
       programs.npm.npmrc = ''
         prefix = ${homeDirectory}/Coding/.npm-global
       '';
     };
 
-    xdg.configFile = {
+    xdg.configFile = mkIf cfg.nodejsEnable {
       "pnpm/rc".text = ''
         cache-dir=${homeDirectory}/Coding/.pnpm-store/cache
         global-bin-dir=${homeDirectory}/Coding/.pnpm-store
@@ -90,6 +93,13 @@ in
           editors.neovim = enabled;
         };
       };
+    };
+
+    home.shellAliases = {
+      du = "${pkgs.ncdu}/bin/ncdu --color dark -rr -x";
+      nsn = "nix shell nixpkgs#";
+      nsw = "sudo nixos-rebuild switch --flake .#${osConfig.networking.hostName}";
+      nfu = "nix flake update";
     };
   };
 }

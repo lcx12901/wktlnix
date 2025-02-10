@@ -27,11 +27,10 @@ in
           ripgrep = enabled;
           yazi = enabled;
         };
-        shell.startship = {
-          enable = false;
-        };
       };
     };
+
+    scenes.development = enabled;
   };
 
   home.stateVersion = "24.05";
