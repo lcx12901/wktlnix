@@ -79,6 +79,10 @@ in
 
         dip(geoip:cn, geoip:private) -> direct
 
+        domain(suffix: steamcommunity.com, suffix: steampowered.com, suffix: fastly.steamstatic.com) -> proxy
+        domain(suffix: warframe.com) -> proxy
+        domain(geosite: steam) -> direct
+
         fallback: proxy
       }
     '';
