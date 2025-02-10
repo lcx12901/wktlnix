@@ -45,7 +45,10 @@ in
     scenes = {
       daily = enabled;
       business = enabled;
-      development = enabled;
+      development = {
+        enable = true;
+        nodejsEnable = true;
+      };
       music = enabled;
     };
   };
