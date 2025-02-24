@@ -50,8 +50,6 @@ in
       };
       graphics = {
         extraPackages = with pkgs; [
-          amdvlk
-
           # mesa
           mesa
 
@@ -62,6 +60,8 @@ in
         ];
       };
     };
+
+    nixpkgs.config.rocmSupport = true;
 
     services.xserver.videoDrivers = lib.mkDefault [
       "modesetting"
