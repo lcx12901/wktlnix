@@ -24,7 +24,7 @@ in
           gpuAcceleration = true;
           hardwareDecoding = true;
         };
-        editors.vscode = enabled;
+        # editors.vscode = enabled;
         apps.discord = enabled;
         video = enabled;
         addons = {
