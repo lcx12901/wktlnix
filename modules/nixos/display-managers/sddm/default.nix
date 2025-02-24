@@ -19,7 +19,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       catppuccin-sddm-corners
-      sddm
+      kdePackages.sddm
     ];
 
     services = {
