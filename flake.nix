@@ -56,11 +56,11 @@
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
-
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # Home Manager (master)
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # Snowfall Lib
