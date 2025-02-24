@@ -88,17 +88,40 @@ in
 
           id = 1;
 
-          extensions = with pkgs.firefox-addons; [
-            sidebery
-            sponsorblock
-            bitwarden
-            ublock-origin
-            auto-tab-discard
-            darkreader
-            immersive-translate
-            tampermonkey
-            vimium
-          ];
+          extensions = {
+            packages = with pkgs.firefox-addons; [
+              sidebery
+              sponsorblock
+              bitwarden
+              ublock-origin
+              auto-tab-discard
+              darkreader
+              immersive-translate
+              tampermonkey
+              vimium
+            ];
+            force = true;
+            settings = {
+              "uBlock0@raymondhill.net" = {
+                settings = {
+                  selectedFilterLists = [
+                    "easylist"
+                    "easylist-annoyances"
+                    "easylist-chat"
+                    "easylist-newsletters"
+                    "easylist-notifications"
+                    "fanboy-cookiemonster"
+                    "ublock-badware"
+                    "ublock-cookies-easylist"
+                    "ublock-filters"
+                    "ublock-privacy"
+                    "ublock-quick-fixes"
+                    "ublock-unbreak"
+                  ];
+                };
+              };
+            };
+          };
 
           search = {
             default = "Google";
