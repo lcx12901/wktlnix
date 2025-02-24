@@ -40,11 +40,11 @@ in
       };
     };
 
-    nixpkgs.config = mkIf cfg.nodejsEnable {
-      programs.npm.npmrc = ''
-        prefix = ${homeDirectory}/Coding/.npm-global
-      '';
-    };
+    # nixpkgs.config = mkIf cfg.nodejsEnable {
+    #   programs.npm.npmrc = ''
+    #     prefix = ${homeDirectory}/Coding/.npm-global
+    #   '';
+    # };
 
     xdg.configFile = mkIf cfg.nodejsEnable {
       "pnpm/rc".text = ''
