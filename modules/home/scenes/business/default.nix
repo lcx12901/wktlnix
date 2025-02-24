@@ -21,7 +21,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      # feishu
+      feishu
     ];
 
     home.persistence = mkIf persist {
