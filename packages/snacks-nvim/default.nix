@@ -28,5 +28,9 @@ vimUtils.buildVimPlugin {
     "snacks.scroll"
     "snacks.words"
     "snacks.picker.core.list"
+    "snacks.image.convert"
+    "snacks.image.image"
+    "snacks.image.init"
+    "snacks.image.placement"
   ];
 }
