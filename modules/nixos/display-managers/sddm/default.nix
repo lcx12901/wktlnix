@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -18,7 +19,14 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      catppuccin-sddm-corners
+      (catppuccin-sddm.override {
+        flavor = "macchiato";
+        font = "RecMonoCasual Nerd Font";
+        fontSize = "9";
+        background = "${inputs.wallpapers}/violinGirl.jpg";
+        loginBackground = true;
+      })
+
       kdePackages.sddm
     ];
 
@@ -26,7 +34,7 @@ in
       displayManager = {
         sddm = {
           inherit (cfg) enable;
-          theme = "catppuccin-sddm-corners";
+          theme = "catppuccin-macchiato";
           wayland = enabled;
         };
       };
