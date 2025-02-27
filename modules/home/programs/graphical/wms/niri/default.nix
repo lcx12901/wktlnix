@@ -53,6 +53,13 @@ in
           };
           variable-refresh-rate = true;
         };
+        "HDMI-A-1" = {
+          mode = {
+            width = 1920;
+            height = 1080;
+            refresh = 100.000;
+          };
+        };
       };
 
       spawn-at-startup = [
@@ -248,6 +255,15 @@ in
       theme = {
         gtk = enabled;
         catppuccin = enabled;
+      };
+    };
+
+    systemd.user.services.cliphist = {
+      Unit = {
+        ConditionEnvironment = [
+          "WAYLAND_DISPLAY"
+        ];
+        After = "niri.service";
       };
     };
   };
