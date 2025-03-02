@@ -35,6 +35,7 @@ in
 
     sops.templates."config.dae".content = ''
       global {
+        lan_interface: waydroid0
         wan_interface: auto
 
         log_level: info
@@ -75,13 +76,19 @@ in
         dip(224.0.0.0/3, 'ff00::/8') -> direct
 
         domain(geosite:category-ads) -> block
+        domain(suffix: pornhub.com) -> block
+
+        domain(suffix: ota.waydro.id, suffix: sourceforge.net) -> proxy
+
         domain(geosite:cn) -> direct
 
         dip(geoip:cn, geoip:private) -> direct
 
         domain(suffix: steamcommunity.com, suffix: steampowered.com, suffix: fastly.steamstatic.com) -> proxy
         domain(suffix: warframe.com) -> proxy
+
         domain(geosite: steam) -> direct
+
 
         fallback: proxy
       }
