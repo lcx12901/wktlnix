@@ -12,7 +12,6 @@ let
 
   cfg = config.${namespace}.programs.graphical.video;
 in
-# persist = osConfig.${namespace}.system.persist.enable;
 {
   options.${namespace}.programs.graphical.video = {
     enable = mkBoolOpt false "Whether or not to enable video configuration.";
@@ -22,7 +21,7 @@ in
     home.packages = with pkgs; [
       ffmpeg-full
       vlc
-      # tsukimi
+      tsukimi
     ];
   };
 }
