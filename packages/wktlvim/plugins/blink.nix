@@ -20,7 +20,7 @@
         enable = true;
         package = inputs.blink-cmp.packages.${system}.default;
 
-        lazyLoad.settings.event = "InsertEnter";
+        # lazyLoad.settings.event = "InsertEnter";
 
         settings = {
           completion = {
@@ -28,6 +28,10 @@
             documentation = {
               auto_show = true;
               window.border = "rounded";
+            };
+            list.selection = {
+              auto_insert = false;
+              preselect = false;
             };
             menu = {
               border = "rounded";
@@ -68,6 +72,7 @@
             };
           };
           fuzzy = {
+            implementation = "rust";
             prebuilt_binaries = {
               download = false;
               ignore_version_mismatch = true;
