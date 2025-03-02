@@ -23,7 +23,7 @@ in
         flavor = "macchiato";
         font = "RecMonoCasual Nerd Font";
         fontSize = "9";
-        background = "${inputs.wallpapers}/violinGirl.jpg";
+        background = "${inputs.wallpapers}/wallhaven-x6em53.png";
         loginBackground = true;
       })
 
