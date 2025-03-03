@@ -42,6 +42,7 @@ in
             sh "${getExe pkgs.cliphist} list | ${getExe config.programs.rofi.package} -dmenu | ${getExe pkgs.cliphist} decode | ${wl-copy}";
 
           "Mod+F".action = toggle-window-floating;
+          "Mod+Space".action = toggle-column-tabbed-display;
 
           "Mod+Left".action = focus-column-left;
           "Mod+Down".action = focus-window-down;
