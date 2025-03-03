@@ -83,11 +83,17 @@ in
         transparent = true;
       };
       fcitx5 = enabled;
+      fzf = enabled;
       kitty = enabled;
       ghostty = enabled;
       waybar = enabled;
       yazi = enabled;
-      lazygit = enabled;
+      lazygit = {
+        enable = true;
+        inherit (cfg) accent;
+      };
+      nvim = enabled;
+      zsh-syntax-highlighting = enabled;
       zellij = enabled;
     };
   };
