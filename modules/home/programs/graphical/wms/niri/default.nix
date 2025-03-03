@@ -37,7 +37,6 @@ in
         NIXOS_OZONE_WL = "1";
         DISPLAY = ":1";
         MOZ_ENABLE_WAYLAND = "1";
-        # use wayland as the default backend, fallback to xcb if wayland is not available
         QT_QPA_PLATFORM = "wayland;xcb";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         XDG_CURRENT_DESKTOP = "niri";
@@ -137,10 +136,28 @@ in
           active.color = "#e78284";
           inactive.color = "#babbf1";
         };
+
+        always-center-single-column = true;
+
+        # empty-workspace-above-first = true;
+
+        shadow.enable = true;
+
+        tab-indicator = {
+          position = "left";
+          gaps-between-tabs = 10;
+
+          hide-when-single-tab = true;
+          # place-within-column = true;
+
+          # active.color = "red";
+        };
       };
 
       prefer-no-csd = true;
       hotkey-overlay.skip-at-startup = true;
+
+      clipboard.disable-primary = true;
 
       input = {
         focus-follows-mouse = {
@@ -181,6 +198,16 @@ in
           opacity = 0.9;
         }
       ];
+
+      gestures.dnd-edge-view-scroll = {
+
+        trigger-width = 64;
+
+        delay-ms = 250;
+
+        max-speed = 12000;
+
+      };
 
       animations = {
         enable = true;
