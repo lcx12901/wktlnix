@@ -170,5 +170,7 @@
     daeuniverse.url = "github:daeuniverse/flake.nix";
 
     ghostty.url = "github:ghostty-org/ghostty";
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 }

@@ -44,6 +44,7 @@ in
           gamemode = enabled;
         };
         file-managers.nautilus = enabled;
+        browsers.zen = enabled;
       };
       terminal.tools.nix-ld = enabled;
     };
