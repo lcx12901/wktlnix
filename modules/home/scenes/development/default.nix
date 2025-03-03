@@ -88,7 +88,7 @@ in
             direnv = enabled;
             ripgrep = enabled;
             yazi = enabled;
-            zellij = enabled;
+            # zellij = enabled;
           };
           editors.neovim = enabled;
         };

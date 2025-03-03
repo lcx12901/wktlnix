@@ -26,6 +26,8 @@ in
       lolcat
     ];
 
+    programs.fish.enable = true;
+
     users.mutableUsers = false;
 
     users.users.${cfg.name} = {
@@ -49,7 +51,7 @@ in
       home = "/home/${cfg.name}";
       createHome = true;
       isNormalUser = true;
-      shell = pkgs.nushell;
+      shell = pkgs.fish;
       uid = 1000;
 
       hashedPassword = "$6$XXUp9uRF41kC5YHm$lsOLgDuECYb9CbDHBRpsPashoBzB794KoLWI2NCpOl5cB9puDosikhJwGXNxuLf/mW6nJ0SdYkasIAIHfd99/0";
