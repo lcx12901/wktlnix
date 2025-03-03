@@ -20,7 +20,7 @@ in
       graphical = {
         wms.niri = enabled;
         browsers.firefox = {
-          enable = true;
+          enable = false;
           gpuAcceleration = true;
           hardwareDecoding = true;
         };
