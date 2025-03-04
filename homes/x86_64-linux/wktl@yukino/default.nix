@@ -19,11 +19,6 @@ in
     programs = {
       graphical = {
         wms.niri = enabled;
-        browsers.firefox = {
-          enable = false;
-          gpuAcceleration = true;
-          hardwareDecoding = true;
-        };
         editors.vscode = enabled;
         apps.discord = enabled;
         video = enabled;
