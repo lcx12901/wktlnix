@@ -25,6 +25,7 @@ in
           fcitx5-gtk
           fcitx5-lua
         ];
+        waylandFrontend = true;
       };
     };
   };
