@@ -29,7 +29,7 @@ in
 
           "Mod+Return".action.spawn = "ghostty";
           "Mod+N".action.spawn = "neovide";
-          "Mod+B".action.spawn = "firefox-devedition";
+          "Mod+B".action.spawn = "zen";
           "Mod+A".action.spawn = "ayugram-desktop";
           "Mod+T".action.spawn = "tsukimi";
           "Mod+W".action.spawn = [
@@ -98,9 +98,16 @@ in
           "Mod+Shift+H".action.set-column-width = "-5%";
           "Mod+Shift+L".action.set-column-width = "+5%";
 
-          "Print".action = screenshot;
-          "Ctrl+Print".action = screenshot-screen;
-          "Alt+Print".action = screenshot-window;
+          "Print".action = sh "flameshot gui";
+          "Mod+Print".action.screenshot = {
+            write-to-disk = false;
+          };
+          "Ctrl+Print".action.screenshot-screen = {
+            write-to-disk = false;
+          };
+          "Alt+Print".action.screenshot-window = {
+            write-to-disk = false;
+          };
 
           "Mod+Shift+P".action.spawn = "hyprlock";
         };

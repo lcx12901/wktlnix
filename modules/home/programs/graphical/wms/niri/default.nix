@@ -28,6 +28,7 @@ in
     home.packages = with pkgs; [
       swww
       xwayland-satellite
+      flameshot
     ];
 
     programs.niri.settings = {
@@ -111,6 +112,7 @@ in
             "both"
           ];
         }
+        { command = [ "flameshot" ]; }
       ];
 
       layout = {
@@ -187,6 +189,7 @@ in
               app-id = "^Bytedance-feishu$";
               title = "图片";
             }
+            { title = "flameshot-pin"; }
           ];
           open-floating = true;
         }
@@ -194,6 +197,7 @@ in
           matches = [
             { app-id = "^com\.mitchellh\.ghostty$"; }
             { app-id = "neovide"; }
+            { app-id = "zen"; }
           ];
           opacity = 0.9;
         }
