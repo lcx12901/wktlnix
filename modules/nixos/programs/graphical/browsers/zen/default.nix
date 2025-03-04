@@ -16,7 +16,23 @@ let
   policyFormat = pkgs.formats.json { };
 
   policies = {
+    CaptivePortal = false;
+    AppAutoUpdate = false;
+    DisableFirefoxStudies = true;
     PasswordManagerEnabled = false;
+    DisplayBookmarksToolbar = true;
+    DontCheckDefaultBrowser = true;
+    UserMessaging = {
+      ExtensionRecommendations = false;
+      SkipOnboarding = true;
+    };
+    ExtensionSettings = {
+      "ebay@search.mozilla.org".installation_mode = "blocked";
+      "amazondotcom@search.mozilla.org".installation_mode = "blocked";
+      "bing@search.mozilla.org".installation_mode = "blocked";
+      "ddg@search.mozilla.org".installation_mode = "blocked";
+      "wikipedia@search.mozilla.org".installation_mode = "blocked";
+    };
   };
 in
 {
@@ -32,7 +48,7 @@ in
         policiesJSON = policyFormat.generate "firefox-policies.json" { inherit policies; };
       in
       {
-        "firefox/policies/policies.json".source = "${policiesJSON}";
+        "zen/policies/policies.json".source = "${policiesJSON}";
       };
   };
 }
