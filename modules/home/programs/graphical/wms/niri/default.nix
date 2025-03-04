@@ -198,6 +198,7 @@ in
             { app-id = "^com\.mitchellh\.ghostty$"; }
             { app-id = "neovide"; }
             { app-id = "zen"; }
+            { app-id = "^org\.telegram\.desktop$"; }
           ];
           opacity = 0.9;
         }
