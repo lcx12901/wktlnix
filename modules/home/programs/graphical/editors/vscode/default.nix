@@ -64,7 +64,7 @@ in
               jnoortheen.nix-ide
               eamodio.gitlens
               philsinatra.nested-comments
-              mhutchie.git-graph
+              # mhutchie.git-graph
               mkhl.direnv
               nrwl.angular-console
               fittentech.fitten-code
