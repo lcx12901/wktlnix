@@ -115,6 +115,12 @@ let
     tampermonkey
     github-file-icons
   ];
+
+  userChrome = ''
+    ${builtins.readFile ./chrome/bleeding-corners-fix.css}
+    ${builtins.readFile ./chrome/floating-blur.css}
+    ${builtins.readFile ./chrome/animations-plus.css}
+  '';
 in
 {
   config = lib.mkIf cfg.enable {
@@ -141,6 +147,7 @@ in
           force = true;
         };
       }
+      { ".zen/${userName}/chrome/userChrome.css".text = userChrome; }
     ];
 
     home.persistence = lib.mkIf persist {
