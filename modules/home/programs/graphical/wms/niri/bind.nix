@@ -99,9 +99,7 @@ in
           "Mod+Shift+L".action.set-column-width = "+5%";
 
           "Print".action = sh "flameshot gui";
-          "Mod+Print".action.screenshot = {
-            write-to-disk = false;
-          };
+          "Mod+Print".action = screenshot;
           "Ctrl+Print".action.screenshot-screen = {
             write-to-disk = false;
           };
