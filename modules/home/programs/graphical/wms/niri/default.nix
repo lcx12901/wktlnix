@@ -199,6 +199,8 @@ in
             { app-id = "neovide"; }
             { app-id = "zen"; }
             { app-id = "^org\.telegram\.desktop$"; }
+            { app-id = "Bytedance-feishu"; }
+            { app-id = "wechat"; }
           ];
           opacity = 0.9;
         }
