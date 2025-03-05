@@ -42,6 +42,7 @@ let
     )}
   '';
 
+  # https://github.com/yokoffing/Betterfox
   settings = {
     "accessibility.typeaheadfind.enablesound" = false;
     "accessibility.typeaheadfind.flashBar" = 0;
@@ -112,6 +113,7 @@ let
     darkreader
     immersive-translate
     tampermonkey
+    github-file-icons
   ];
 in
 {
