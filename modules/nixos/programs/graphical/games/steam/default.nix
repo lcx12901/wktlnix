@@ -80,7 +80,7 @@ in
       # Whether to open ports in the firewall for Steam Remote Play
       remotePlay.openFirewall = false;
 
-      extraCompatPackages = [ pkgs.proton-ge-bin.steamcompattool ];
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
     hardware = {
