@@ -118,8 +118,7 @@ let
 
   userChrome = ''
     ${builtins.readFile ./chrome/bleeding-corners-fix.css}
-    ${builtins.readFile ./chrome/floating-blur.css}
-    ${builtins.readFile ./chrome/animations-plus.css}
+    ${builtins.readFile ./chrome/zen.css}
   '';
 in
 {
