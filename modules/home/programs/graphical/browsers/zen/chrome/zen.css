@@ -1,0 +1,55 @@
+:root[zen-single-toolbar='true'] {
+  & #zen-appcontent-navbar-container {
+    --zen-toolbar-height: 6px !important;
+    &[zen-has-over="true"] {
+      .titlebar-buttonbox-container {
+        display: none !important;
+      }
+    }
+  }
+}
+
+/* Animations */
+/* website view animations */
+#browser:not(:has(.zen-glance-background)) .browserContainer {
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important;
+}
+
+/* URL bar page animation */
+#browser:has(#urlbar[open][zen-floating-urlbar="true"]) .browserContainer {
+  pointer-events: none;
+  scale: 1.1 !important;
+  filter: blur(10px) brightness(70%) !important;
+}
+
+#urlbar[open][zen-floating-urlbar="true"] #urlbar-background {
+    border-radius: 1em !important;
+}
+
+/* Loading tab animation */
+tab[busy] {
+  scale: 0.95 !important;
+  .tab-background {
+    opacity: 0.3 !important;
+  }
+}
+
+/* trackpad gestures*/
+tabpanels .browserStack browser {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.1s !important;
+}
+
+/*  transparent url bar  */
+#urlbar[open][zen-floating-urlbar="true"] {
+  #urlbar-background {
+    background-color: light-dark(
+      color-mix(in srgb, #fdfdfd 75%, transparent),
+      color-mix(in srgb, #0e0e0e 75%, transparent)
+    ) !important;
+  }
+}
+
+/* url search item color */
+.urlbarView-row:is([type="search"],[type="autofill_origin"]) {
+  color: white !important;
+}
