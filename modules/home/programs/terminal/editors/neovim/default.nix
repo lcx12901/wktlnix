@@ -22,6 +22,7 @@ in
     home = {
       sessionVariables = {
         EDITOR = "nvim";
+        DEEPSEEK_API_KEY = "$(cat ${config.sops.secrets.DEEPSEEK_API_KEY.path})";
       };
 
       packages = [
@@ -45,5 +46,7 @@ in
     };
 
     sops.secrets."codeium_key" = { };
+
+    sops.secrets."DEEPSEEK_API_KEY" = { };
   };
 }
