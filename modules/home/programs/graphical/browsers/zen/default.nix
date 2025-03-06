@@ -79,8 +79,6 @@ let
     "gfx.font_rendering.cleartype_params.enhanced_contrast" = 25;
     "gfx.font_rendering.cleartype_params.force_gdi_classic_for_families" = "";
     "intl.locale.requested" = "zh-CN,en-US";
-    # "intl.multilingual.enabled" = true;
-    # "intl.multilingual.downloadEnabled" = true;
     "media.eme.enabled" = true;
     "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;

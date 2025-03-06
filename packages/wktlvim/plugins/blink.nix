@@ -75,7 +75,6 @@
             implementation = "rust";
             prebuilt_binaries = {
               download = false;
-              ignore_version_mismatch = true;
             };
           };
           appearance = {
@@ -115,7 +114,6 @@
                 "emoji"
                 # "git"
                 "dictionary"
-                "npm"
                 "calc"
                 "spell"
                 #"treesitter"
@@ -123,6 +121,11 @@
               ]
               ++ lib.optionals config.plugins.codeium-nvim.enable [
                 "codeium"
+              ]
+              ++ lib.optionals config.plugins.avante.enable [
+                "avante_commands"
+                "avante_files"
+                "avante_mentions"
               ];
             providers =
               {
@@ -154,17 +157,29 @@
                   module = "blink.compat.source";
                   score_offset = 2;
                 };
-                npm = {
-                  name = "npm";
-                  module = "blink.compat.source";
-                  score_offset = -3;
-                };
               }
               // lib.optionalAttrs config.plugins.codeium-nvim.enable {
                 codeium = {
                   name = "codeium";
                   module = "blink.compat.source";
                   score_offset = 100;
+                };
+              }
+              // lib.optionalAttrs (config.plugins.avante.enable && config.plugins.blink-compat.enable) {
+                avante_commands = {
+                  name = "avante_commands";
+                  module = "blink.compat.source";
+                  score_offset = 90;
+                };
+                avante_files = {
+                  name = "avante_files";
+                  module = "blink.compat.source";
+                  score_offset = 100;
+                };
+                avante_mentions = {
+                  name = "avante_mentions";
+                  module = "blink.compat.source";
+                  score_offset = 1000;
                 };
               };
           };
@@ -173,7 +188,6 @@
 
       blink-cmp-dictionary.enable = true;
       blink-cmp-spell.enable = true;
-      blink-copilot.enable = true;
       blink-emoji.enable = true;
       blink-ripgrep.enable = true;
       blink-compat.enable = true;
