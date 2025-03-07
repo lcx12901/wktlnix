@@ -44,6 +44,7 @@ let
 
   # https://github.com/yokoffing/Betterfox
   settings = {
+    # Browser behavior
     "accessibility.typeaheadfind.enablesound" = false;
     "accessibility.typeaheadfind.flashBar" = 0;
     "browser.aboutConfig.showWarning" = false;
@@ -60,42 +61,59 @@ let
     "browser.startup.page" = 3;
     "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
     "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+
+    # Developer tools
     "devtools.chrome.enabled" = true;
     "devtools.debugger.remote-enabled" = true;
+
+    # Storage & forms
     "dom.storage.next_gen" = true;
     "dom.forms.autocomplete.formautofill" = true;
+
+    # Extensions
     "extensions.htmlaboutaddons.recommendations.enabled" = false;
     "extensions.formautofill.addresses.enabled" = false;
     "extensions.formautofill.creditCards.enabled" = false;
     "extensions.autoDisableScopes" = 0;
     "extensions.enabledScopes" = 15;
+
+    # Scrolling & UI
     "general.autoScroll" = false;
     "general.smoothScroll.msdPhysics.enabled" = true;
+
+    # Geolocation
     "geo.enabled" = false;
     "geo.provider.use_corelocation" = false;
     "geo.provider.use_geoclue" = false;
     "geo.provider.use_gpsd" = false;
+
+    # Font rendering
     "gfx.font_rendering.directwrite.bold_simulation" = 2;
     "gfx.font_rendering.cleartype_params.enhanced_contrast" = 25;
     "gfx.font_rendering.cleartype_params.force_gdi_classic_for_families" = "";
-    "intl.locale.requested" = "zh-CN,en-US";
-    "media.eme.enabled" = true;
-    "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
-    "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
     "font.name.monospace.x-western" = "RecMonoCasual Nerd Font";
     "font.name.sans-serif.x-western" = "RecMonoCasual Nerd Font";
     "font.name.serif.x-western" = "RecMonoCasual Nerd Font";
-    # gpu acceleration
+
+    # Media & localization
+    "media.eme.enabled" = true;
+    "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
+    "intl.locale.requested" = "zh-CN,en-US";
+    "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+    # GPU acceleration
     "signon.autofillForms" = false;
     "dom.webgpu.enabled" = true;
     "gfx.webrender.all" = true;
     "layers.gpu-process.enabled" = true;
     "layers.mlgpu.enabled" = true;
-    # hardwareDecoding
+
+    # Hardware decoding
     "media.ffmpeg.vaapi.enabled" = true;
     "media.gpu-process-decoder" = true;
     "media.hardware-video-decoding.enabled" = true;
-    # zen only has
+
+    # Zen specific
     "zen.theme.accent-color" = "#f6b0ea";
     "zen.theme.color-prefs.use-workspace-colors" = true;
     "zen.welcome-screen.seen" = true;

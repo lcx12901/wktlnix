@@ -50,6 +50,6 @@ tabpanels .browserStack browser {
 }
 
 /* url search item color */
-.urlbarView-row:is([type="search"],[type="autofill_origin"]) {
+.urlbarView-row:is([type="search"],[type="autofill_origin"],[type="url"]) {
   color: white !important;
 }
