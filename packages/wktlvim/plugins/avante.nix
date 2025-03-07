@@ -33,20 +33,12 @@
         };
 
         provider = "siliconflow_chat";
-        auto_suggestions_provider = "siliconflow_suggestions";
         vendors = {
           siliconflow_chat = {
             __inherited_from = "openai";
             api_key_name = "DEEPSEEK_API_KEY";
             endpoint = "https://api.siliconflow.cn/v1";
             model = "deepseek-ai/DeepSeek-R1";
-            disable_tools = true;
-          };
-          siliconflow_suggestions = {
-            __inherited_from = "openai";
-            api_key_name = "DEEPSEEK_API_KEY";
-            endpoint = "https://api.siliconflow.cn/v1";
-            model = "Qwen/Qwen2.5-Coder-32B-Instruct";
             disable_tools = true;
           };
         };
