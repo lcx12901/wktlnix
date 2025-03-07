@@ -23,6 +23,10 @@ in
 
       rocmOverrideGfx = "11.0.0";
 
+      loadModels = [
+        "qwen2.5-coder:32b"
+      ];
+
       environmentVariables =
         lib.optionalAttrs cfg.enableDebug {
           OLLAMA_DEBUG = "1";
