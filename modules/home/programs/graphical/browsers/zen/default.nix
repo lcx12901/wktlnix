@@ -133,7 +133,7 @@ let
   ];
 
   userChrome = ''
-    ${builtins.readFile ./chrome/bleeding-corners-fix.css}
+    ${builtins.readFile ./chrome/Animations-plus.css}
     ${builtins.readFile ./chrome/zen.css}
   '';
 in
