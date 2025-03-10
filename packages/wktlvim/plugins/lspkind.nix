@@ -21,7 +21,7 @@
         path = "";
         spell = "";
         treesitter = "󰔱";
-        nixpkgs_maintainers = "";
+        FittenCode = "";
       };
     };
   };

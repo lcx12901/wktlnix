@@ -47,6 +47,10 @@ in
 
     sops.secrets."codeium_key" = { };
 
+    sops.secrets."fittencode_key" = {
+      path = "${config.home.homeDirectory}/.local/share/nvim/fittencode/api_key.json";
+    };
+
     sops.secrets."DEEPSEEK_API_KEY" = { };
   };
 }
