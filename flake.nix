@@ -157,6 +157,11 @@
       flake = false;
     };
 
+    fittencode-nvim = {
+      url = "github:luozhiya/fittencode.nvim";
+      flake = false;
+    };
+
     typescript-tools-nvim = {
       url = "github:Parsifa1/typescript-tools.nvim";
       flake = false;
