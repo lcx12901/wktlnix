@@ -3,6 +3,7 @@ keys:
   - &host_hiyori age1ay9wumxmumd7gx9kwz7vzvgmh6l3qyxj6jka4y58rucnzrckgssss8jzdy
   - &host_kanroji age1zhg38324c6uaexfdhgermpsgwk2ll6795qn0n9j2pxula94yr36qaqfph4
   - &host_yukino age1ag79ucstq460ysr78e2d78vkgg5tl2sq8r6wpa2kvmf5x2qh5s6szupsa0
+  - &host_milet age1ug0s0wd45s7c8zleahzsrkxdprwz9sssrqyyhre6jljzhykt7qeqctxkt0
   # user
   - &user_wktl age1rrpde8u95jscps6uyc6as6r05qanxhw2cpm5tfgc5p2gjmu5u49qqpa9c9
 creation_rules:
@@ -12,4 +13,5 @@ creation_rules:
           - *host_hiyori
           - *host_kanroji
           - *host_yukino
+          - *host_milet
           - *user_wktl

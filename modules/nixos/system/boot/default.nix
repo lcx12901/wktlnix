@@ -51,8 +51,8 @@ in
 
       loader = {
         efi = {
-          canTouchEfiVariables = true;
-          efiSysMountPoint = if cfg.useGrub then "/boot/efi" else "/boot";
+          canTouchEfiVariables = !cfg.useGrub;
+          efiSysMountPoint = "/boot";
         };
 
         generationsDir.copyKernels = true;
@@ -65,9 +65,10 @@ in
 
         grub = {
           enable = cfg.useGrub;
+          default = "saved";
           devices = [ "nodev" ];
           efiSupport = true;
-          useOSProber = true;
+          efiInstallAsRemovable = true;
         };
       };
 
