@@ -24,9 +24,10 @@ in
       nodev."/" = {
         fsType = "tmpfs";
         mountOptions = [
-          "defaults"
-          "size=4G"
+          "relatime"
           "mode=755"
+          "nosuid"
+          "nodev"
         ];
       };
       disk = {
@@ -36,36 +37,39 @@ in
           content = {
             type = "gpt";
             partitions = {
-              efi = mkIf isGrub {
-                size = "512M"; # EFI 分区的大小，通常为 512MiB
-                type = "EF00"; # 指定为 EFI 分区类型
-                content = {
-                  type = "filesystem";
-                  format = "vfat";
-                  mountpoint = "/boot/efi";
-                };
-              };
               boot = mkIf isGrub {
-                size = "1G"; # /boot 分区大小，通常 512MiB 到 1GiB 即可
-                content = {
-                  type = "filesystem";
-                  format = "ext4";
-                  mountpoint = "/boot";
-                };
+                size = "1M";
+                type = "EF02";
+                priority = 0;
               };
 
-              ESP = mkIf (!isGrub) {
-                priority = 1;
-                name = "ESP";
-                start = "1M";
-                end = "512M";
-                type = "EF00";
-                content = {
-                  type = "filesystem";
-                  format = "vfat";
-                  mountpoint = "/boot";
-                };
-              };
+              # FIXME: when all devices are use Grub
+              ESP =
+                if isGrub then
+                  {
+                    priority = 1;
+                    name = "ESP";
+                    size = "512M";
+                    type = "EF00";
+                    content = {
+                      type = "filesystem";
+                      format = "vfat";
+                      mountpoint = "/boot";
+                    };
+                  }
+                else
+                  {
+                    priority = 1;
+                    name = "ESP";
+                    start = "1M";
+                    end = "512M";
+                    type = "EF00";
+                    content = {
+                      type = "filesystem";
+                      format = "vfat";
+                      mountpoint = "/boot";
+                    };
+                  };
               root = {
                 size = cfg.rootSize;
                 content = {
