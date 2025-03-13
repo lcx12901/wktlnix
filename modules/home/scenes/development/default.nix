@@ -40,12 +40,6 @@ in
       };
     };
 
-    # nixpkgs.config = mkIf cfg.nodejsEnable {
-    #   programs.npm.npmrc = ''
-    #     prefix = ${homeDirectory}/Coding/.npm-global
-    #   '';
-    # };
-
     xdg.configFile = mkIf cfg.nodejsEnable {
       "pnpm/rc".text = ''
         cache-dir=${homeDirectory}/Coding/.pnpm-store/cache
@@ -88,18 +82,10 @@ in
             direnv = enabled;
             ripgrep = enabled;
             yazi = enabled;
-            # zellij = enabled;
           };
           editors.neovim = enabled;
         };
       };
-    };
-
-    home.shellAliases = {
-      du = "${pkgs.ncdu}/bin/ncdu --color dark -rr -x";
-      nsn = "nix shell nixpkgs#";
-      nsw = "sudo nixos-rebuild switch --flake .#${osConfig.networking.hostName}";
-      nfu = "nix flake update";
     };
   };
 }
