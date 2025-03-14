@@ -23,3 +23,7 @@ fetch.github = "Reledia/glow.yazi"
 [ouch-yazi]
 src.git = "https://github.com/ndtoan96/ouch.yazi"
 fetch.github = "ndtoan96/ouch.yazi"
+
+[logger-nvim]
+src.git = "https://github.com/rmagatti/logger.nvim"
+fetch.github = "rmagatti/logger.nvim"

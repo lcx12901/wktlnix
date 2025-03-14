@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, namespace, ... }:
 {
-  extraPlugins = with pkgs; [
-    vimPlugins.goto-preview
+  extraPlugins =  [
+    pkgs.vimPlugins.goto-preview
+    pkgs.${namespace}.logger-nvim
   ];
 
   extraConfigLua = ''

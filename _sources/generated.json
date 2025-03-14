@@ -20,9 +20,30 @@
         },
         "version": "c76bf4fb612079480d305fe6fe570bddfe4f99d3"
     },
+    "logger-nvim": {
+        "cargoLocks": null,
+        "date": "2025-03-09",
+        "extract": null,
+        "name": "logger-nvim",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "rmagatti",
+            "repo": "logger.nvim",
+            "rev": "63dd10c9b9a159fd6cfe08435d9606384ff103c5",
+            "sha256": "sha256-4xQFk7+3NWEx1XUZApy4Ldi2xdsna+HdkOmq9vWP3B0=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "63dd10c9b9a159fd6cfe08435d9606384ff103c5"
+    },
     "mihomo-alpha": {
         "cargoLocks": null,
-        "date": "2025-03-10",
+        "date": "2025-03-13",
         "extract": null,
         "name": "mihomo-alpha",
         "passthru": null,
@@ -34,12 +55,12 @@
             "name": null,
             "owner": "MetaCubeX",
             "repo": "mihomo",
-            "rev": "c0de3c0e42dcbd7f6176143b00741f7774b70a08",
-            "sha256": "sha256-QXYaggZTS3WTNKUyXiPUmqsQFM6PaSPHC6CDAGI9fTQ=",
+            "rev": "a7a796bb307e67723b57b79c5fe7b1e39c189c93",
+            "sha256": "sha256-ZMnmcD/MtGUQwm7LFIxNZ8/r5IwURWdPu359QHrpruU=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "c0de3c0e42dcbd7f6176143b00741f7774b70a08"
+        "version": "a7a796bb307e67723b57b79c5fe7b1e39c189c93"
     },
     "miller-yazi": {
         "cargoLocks": null,
@@ -85,7 +106,7 @@
     },
     "v2ray-rules-dat": {
         "cargoLocks": null,
-        "date": "2025-03-10",
+        "date": "2025-03-13",
         "extract": null,
         "name": "v2ray-rules-dat",
         "passthru": null,
@@ -97,12 +118,12 @@
             "name": null,
             "owner": "Loyalsoldier",
             "repo": "v2ray-rules-dat",
-            "rev": "221c7eb704c6a203d554e9750513b6d0aa5c2616",
-            "sha256": "sha256-rqRctKtw52wp6mm+Pc9aIxhEs3fo7L21p6uZJJzl3SA=",
+            "rev": "40ee71545634998b10365d7b643d44cadd951410",
+            "sha256": "sha256-NxXLQVhPmJC011V6hmF816cj50FfXeA5HsFntD04QPg=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "221c7eb704c6a203d554e9750513b6d0aa5c2616"
+        "version": "40ee71545634998b10365d7b643d44cadd951410"
     },
     "waydroid_script": {
         "cargoLocks": null,
