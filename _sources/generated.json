@@ -22,7 +22,7 @@
     },
     "mihomo-alpha": {
         "cargoLocks": null,
-        "date": "2025-02-28",
+        "date": "2025-03-10",
         "extract": null,
         "name": "mihomo-alpha",
         "passthru": null,
@@ -34,12 +34,12 @@
             "name": null,
             "owner": "MetaCubeX",
             "repo": "mihomo",
-            "rev": "05e8f13a8d65e287a7c050219342950dd8e015b4",
-            "sha256": "sha256-nIOu3mYzR6ejjzbnSaEhMi74WDMdJ4Guef2lk5IjBZ0=",
+            "rev": "c0de3c0e42dcbd7f6176143b00741f7774b70a08",
+            "sha256": "sha256-QXYaggZTS3WTNKUyXiPUmqsQFM6PaSPHC6CDAGI9fTQ=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "05e8f13a8d65e287a7c050219342950dd8e015b4"
+        "version": "c0de3c0e42dcbd7f6176143b00741f7774b70a08"
     },
     "miller-yazi": {
         "cargoLocks": null,
@@ -85,7 +85,7 @@
     },
     "v2ray-rules-dat": {
         "cargoLocks": null,
-        "date": "2025-02-28",
+        "date": "2025-03-10",
         "extract": null,
         "name": "v2ray-rules-dat",
         "passthru": null,
@@ -97,12 +97,12 @@
             "name": null,
             "owner": "Loyalsoldier",
             "repo": "v2ray-rules-dat",
-            "rev": "5bd73838f33520d4adf931c992610919c09600b1",
-            "sha256": "sha256-/8kn4sDszhvLf5+n03dLom5+hCmM3NHRYzWcit8kOJs=",
+            "rev": "221c7eb704c6a203d554e9750513b6d0aa5c2616",
+            "sha256": "sha256-rqRctKtw52wp6mm+Pc9aIxhEs3fo7L21p6uZJJzl3SA=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "5bd73838f33520d4adf931c992610919c09600b1"
+        "version": "221c7eb704c6a203d554e9750513b6d0aa5c2616"
     },
     "waydroid_script": {
         "cargoLocks": null,
