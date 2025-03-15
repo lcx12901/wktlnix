@@ -61,8 +61,6 @@ in
       dae = enabled;
       openssh = enabled;
       avahi = enabled;
-      ollama = enabled;
-      ollama-ui = enabled;
     };
 
     security.pki.trustCa = enabled;
