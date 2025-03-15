@@ -43,6 +43,9 @@ in
       openssh = enabled;
     };
 
+    security = {
+      sudo-rs = enabled;
+    };
   };
 
   # This value determines the NixOS release from which the default

@@ -63,7 +63,10 @@ in
       avahi = enabled;
     };
 
-    security.pki.trustCa = enabled;
+    security = {
+      sudo-rs = enabled;
+    };
+
     virtualisation.waydroid = enabled;
   };
 
