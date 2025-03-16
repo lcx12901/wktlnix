@@ -1,5 +1,7 @@
 {
+  config,
   lib,
+  pkgs,
   namespace,
   ...
 }:
@@ -41,11 +43,29 @@ in
 
     services = {
       openssh = enabled;
+      sing-box = {
+        enable = true;
+        configFile = config.sops.secrets."milet_sing".path;
+      };
     };
 
     security = {
       sudo-rs = enabled;
     };
+  };
+
+  networking.firewall.allowedTCPPorts = [
+    15631
+    15632
+  ];
+
+  networking.firewall.allowedUDPPorts = [
+    15631
+    15632
+  ];
+
+  sops.secrets = {
+    "milet_sing" = { };
   };
 
   # This value determines the NixOS release from which the default
