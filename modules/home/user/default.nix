@@ -85,8 +85,6 @@ in
           pls = "sudo";
           psg = "${getExe pkgs.ps} aux | grep";
           myip = "${getExe pkgs.curl} ifconfig.me";
-
-          remote = "ssh -i /etc/ssh/ssh_host_ed25519_key ";
         };
         username = mkDefault cfg.name;
       };
