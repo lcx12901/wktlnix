@@ -47,26 +47,6 @@ in
         state-dir=${homeDirectory}/Coding/.pnpm-store/state
         global-dir=${homeDirectory}/Coding/.pnpm-store/global
       '';
-
-      ".bunfig.toml".text = ''
-        [install]
-        # where `bun install --global` installs packages
-        globalDir = "~/.bun/install/global"
-
-        # where globally-installed package bins are linked
-        globalBinDir = "~/.bun/bin"
-
-        [install.cache]
-        # the directory to use for the cache
-        dir = "~/.bun/install/cache"
-
-        # when true, don't load from the global cache.
-        # Bun may still write to node_modules/.cache
-        disable = false
-
-        # when true, always resolve the latest versions from the registry
-        disableManifest = false
-      '';
     };
 
     wktlnix = {
