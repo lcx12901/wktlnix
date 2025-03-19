@@ -27,7 +27,6 @@ in
           fcitx5-pinyin-zhwiki
           fcitx5-pinyin-moegirl
         ];
-        waylandFrontend = true;
       };
     };
   };
