@@ -16,7 +16,6 @@ in
 
     programs = {
       terminal = {
-        editors.neovim = enabled;
         tools = {
           btop = enabled;
           bat = enabled;
