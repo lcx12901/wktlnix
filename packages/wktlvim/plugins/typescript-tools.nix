@@ -1,4 +1,4 @@
-{ pkgs, namespace, ... }:
+{ ... }:
 {
   plugins = {
     typescript-tools = {
