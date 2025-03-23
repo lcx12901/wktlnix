@@ -82,7 +82,7 @@ in
           command = [
             "swww"
             "img"
-            "${inputs.wallpapers}/Hoshino-eye.jpg"
+            "${inputs.wallpapers}/kobeni_by_lxlbanner.png"
           ];
         }
         {
@@ -202,6 +202,12 @@ in
             { app-id = "wechat"; }
           ];
           opacity = 0.9;
+        }
+        {
+          matches = [
+            { app-id = "neovide"; }
+          ];
+          opacity = 0.85;
         }
       ];
 
