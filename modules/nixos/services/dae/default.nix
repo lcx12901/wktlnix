@@ -45,11 +45,17 @@ in
 
       node {
         ${config.sops.placeholder.dae_nodes}
+        'socks5://localhost:1099'
       }
 
       group {
         proxy {
           policy: random
+          filter: name(milet, akeno)
+        }
+        tailscale {
+          policy: random
+          filter: !name(milet,akeno)
         }
       }
 
@@ -72,11 +78,13 @@ in
       }
 
       routing {
-        pname(NetworkManager) -> direct
+        pname(NetworkManager, tailscaled) -> direct
         dip(224.0.0.0/3, 'ff00::/8') -> direct
 
-        domain(geosite:category-ads) -> block
-        domain(suffix: pornhub.com) -> block
+        domain(suffix: macaw-ayu.ts.net) -> tailscale
+        dip(100.64.0.0/10) -> tailscale
+
+        domain(geosite: category-ads) -> block
 
         domain(suffix: ota.waydro.id, suffix: sourceforge.net) -> proxy
 
