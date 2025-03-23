@@ -26,10 +26,10 @@ let
         libPath = old.libPath + ":${pkgs.libglvnd}/lib";
         nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.makeWrapper ];
 
-        postFixup = ''
-          wrapProgram $out/opt/DiscordCanary/DiscordCanary \
-            --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform=wayland}}"
-        '';
+        # postFixup = ''
+        #   wrapProgram $out/opt/DiscordCanary/DiscordCanary \
+        #     --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform=wayland}}"
+        # '';
       });
 in
 {
