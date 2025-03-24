@@ -67,8 +67,6 @@ in
     security = {
       sudo-rs = enabled;
     };
-
-    virtualisation.waydroid = enabled;
   };
 
   # This value determines the NixOS release from which the default
