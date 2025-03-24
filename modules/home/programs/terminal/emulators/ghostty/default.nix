@@ -37,7 +37,7 @@ in
         focus-follows-mouse = true;
 
         font-size = cfg.fontSize;
-        font-family = "RecMonoCasual Nerd Font";
+        font-family = "Maple Mono NF CN";
 
         gtk-single-instance = false;
 

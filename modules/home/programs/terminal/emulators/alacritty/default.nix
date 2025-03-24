@@ -14,7 +14,7 @@ in
 {
   options.${namespace}.programs.terminal.emulators.alacritty = {
     enable = mkBoolOpt false "Whether to enable alacritty.";
-    font = mkOpt types.str "RecMonoCasual Nerd Font" "Font to use for alacritty.";
+    font = mkOpt types.str "Maple Mono NF CN" "Font to use for alacritty.";
   };
 
   config = mkIf cfg.enable {

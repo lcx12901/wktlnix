@@ -21,7 +21,7 @@ in
     environment.systemPackages = with pkgs; [
       (catppuccin-sddm.override {
         flavor = "macchiato";
-        font = "RecMonoCasual Nerd Font";
+        font = "Maple Mono NF CN";
         fontSize = "9";
         background = "${inputs.wallpapers}/wallhaven-x6em53.png";
         loginBackground = true;

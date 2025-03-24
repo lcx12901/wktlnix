@@ -101,16 +101,16 @@ in
             "workbench.iconTheme" = "vscode-icons";
 
             # Font family
-            "editor.fontFamily" = "RecMonoCasual Nerd Font, LXGW WenKai Mono Bold";
-            "editor.codeLensFontFamily" = "RecMonoCasual Nerd Font, LXGW WenKai Mono Bold";
-            "editor.inlayHints.fontFamily" = "RecMonoCasual Nerd Font";
-            "debug.console.fontFamily" = "RecMonoCasual Nerd Font";
-            "scm.inputFontFamily" = "RecMonoCasual Nerd Font";
-            "notebook.output.fontFamily" = "RecMonoCasual Nerd Font";
-            "chat.editor.fontFamily" = "RecMonoCasual Nerd Font";
+            "editor.fontFamily" = "Maple Mono NF CN";
+            "editor.codeLensFontFamily" = "Maple Mono NF CN";
+            "editor.inlayHints.fontFamily" = "Maple Mono NF CN";
+            "debug.console.fontFamily" = "Maple Mono NF CN";
+            "scm.inputFontFamily" = "Maple Mono NF CN";
+            "notebook.output.fontFamily" = "Maple Mono NF CN";
+            "chat.editor.fontFamily" = "Maple Mono NF CN";
             "markdown.preview.fontFamily" =
-              "RecMonoCasual Nerd Font; -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif";
-            "terminal.integrated.fontFamily" = "RecMonoCasual Nerd Font, LXGW WenKai Mono Bold";
+              "Maple Mono NF CN; -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif";
+            "terminal.integrated.fontFamily" = "Maple Mono NF CN";
 
             # Git settings
             "git.allowForcePush" = true;

@@ -14,7 +14,7 @@ in
 {
   options.${namespace}.system.fonts = with types; {
     enable = mkBoolOpt false "Whether or not to manage fonts.";
-    default = mkOpt str "RecMonoCasual Nerd Font" "Default font name";
+    default = mkOpt str "Maple Mono NF CN" "Default font name";
   };
 
   config = mkIf cfg.enable {
@@ -56,11 +56,10 @@ in
         # Nerd Fonts
         # "https://github.com/NixOS/nixpkgs/blob/nixos-unstable-small/pkgs/data/fonts/nerd-fonts/manifests/fonts.json"
         nerd-fonts.symbols-only # symbols icon only
-        nerd-fonts.caskaydia-cove
-        nerd-fonts.iosevka
         nerd-fonts.monaspace
-        nerd-fonts.victor-mono
         nerd-fonts.recursive-mono
+
+        maple-mono.NF-CN
       ];
 
       enableDefaultPackages = true;
@@ -74,20 +73,17 @@ in
         defaultFonts =
           let
             common = [
-              "RecMonoCasual Nerd Font"
-              "CaskaydiaCove Nerd Font Mono"
-              "Iosevka Nerd Font"
+              "Maple Mono NF CN"
               "Symbols Nerd Font"
               "Noto Color Emoji"
             ];
           in
           mapAttrs (_: fonts: fonts ++ common) {
-            serif = [ "RecMonoCasual Nerd Font" ];
-            sansSerif = [ "RecMonoCasual Nerd Font" ];
+            serif = [ "Maple Mono NF CN" ];
+            sansSerif = [ "Maple Mono NF CN" ];
             emoji = [ "Noto Color Emoji" ];
             monospace = [
-              "RecMonoCasual Nerd Font"
-              "LXGW WenKai Mono Medium"
+              "Maple Mono NF CN"
             ];
           };
       };
