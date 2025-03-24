@@ -1,10 +1,8 @@
 :root[zen-single-toolbar='true'] {
   & #zen-appcontent-navbar-container {
     --zen-toolbar-height: 6px !important;
-    &[zen-has-over="true"] {
-      .titlebar-buttonbox-container {
-        display: none !important;
-      }
+    .titlebar-buttonbox-container {
+      display: none !important;
     }
   }
 }
