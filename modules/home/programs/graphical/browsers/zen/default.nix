@@ -91,9 +91,9 @@ let
     "gfx.font_rendering.directwrite.bold_simulation" = 2;
     "gfx.font_rendering.cleartype_params.enhanced_contrast" = 25;
     "gfx.font_rendering.cleartype_params.force_gdi_classic_for_families" = "";
-    "font.name.monospace.x-western" = "RecMonoCasual Nerd Font";
-    "font.name.sans-serif.x-western" = "RecMonoCasual Nerd Font";
-    "font.name.serif.x-western" = "RecMonoCasual Nerd Font";
+    "font.name.monospace.x-western" = "Maple Mono NF CN";
+    "font.name.sans-serif.x-western" = "Maple Mono NF CN";
+    "font.name.serif.x-western" = "Maple Mono NF CN";
 
     # Media & localization
     "media.eme.enabled" = true;

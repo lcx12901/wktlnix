@@ -1,7 +1,7 @@
 configuration{
     modi: "run,drun";
     lines: 6;
-    font: "RecMonoCasual Nerd Font 14";
+    font: "Maple Mono NF CN 14";
     show-icons: true;
     icon-theme: "Papirus-Dark";
     terminal: "st";

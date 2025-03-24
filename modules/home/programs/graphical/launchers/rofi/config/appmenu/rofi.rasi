@@ -1,5 +1,5 @@
 configuration {
-	font: "RecMonoCasual Nerd Font 14";
+	font: "Maple Mono NF CN 14";
 	show-icons: true;
 	drun-display-format: "{name}";
   icon-theme: "Papirus-Dark";
@@ -27,7 +27,7 @@ window {
 button {
 	action: "ok";
 	str: " ";
-	font: "RecMonoCasual Nerd Font 11";
+	font: "Maple Mono NF CN 11";
 	expand: false;
 	text-color: @text;
 	background-color: @base;
@@ -36,7 +36,7 @@ button {
 }
 
 entry {
-	font: "RecMonoCasual Nerd Font 11";
+	font: "Maple Mono NF CN 11";
 	background-color: @base;
 	text-color: @text;
 	expand: true;

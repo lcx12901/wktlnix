@@ -1,5 +1,5 @@
 configuration {
-    font: "RecMonoCasual Nerd Font 14";
+    font: "Maple Mono NF CN 14";
 	show-icons: true;
 	drun-display-format: "{name}";
     icon-theme: "Papirus-Dark";
