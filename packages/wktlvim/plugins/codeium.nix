@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   ...
@@ -22,14 +21,14 @@
     };
   };
 
-  keymaps = lib.mkIf config.plugins.codeium-nvim.enable [
-    {
-      mode = "n";
-      key = "<leader>uc";
-      action = "<cmd>Codeium Chat<CR>";
-      options = {
-        desc = "Codeium Chat";
-      };
-    }
-  ];
+  # keymaps = lib.mkIf config.plugins.codeium-nvim.enable [
+  #   {
+  #     mode = "n";
+  #     key = "<leader>uc";
+  #     action = "<cmd>Codeium Chat<CR>";
+  #     options = {
+  #       desc = "Codeium Chat";
+  #     };
+  #   }
+  # ];
 }
