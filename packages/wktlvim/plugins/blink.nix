@@ -80,7 +80,7 @@
           appearance = {
             use_nvim_cmp_as_default = true;
             kind_icons = {
-              FittenCode = "";
+              Codeium = "";
             };
           };
           keymap = {
@@ -121,7 +121,6 @@
                 "spell"
                 #"treesitter"
                 # "zsh"
-                "fittencode"
               ]
               ++ lib.optionals config.plugins.codeium-nvim.enable [
                 "codeium"
@@ -135,11 +134,6 @@
               {
                 # BUILT-IN SOURCES
                 lsp.score_offset = 4;
-                fittencode = {
-                  name = "fittencode";
-                  module = "fittencode.sources.blink";
-                  score_offset = 200;
-                };
                 dictionary = {
                   name = "Dict";
                   module = "blink-cmp-dictionary";
