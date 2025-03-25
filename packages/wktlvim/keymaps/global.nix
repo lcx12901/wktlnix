@@ -45,6 +45,18 @@
                 expr = true;
               };
             };
+            "|" = {
+              action = "<Cmd>vsplit<CR>";
+              options = {
+                desc = "Vertical split";
+              };
+            };
+            "-" = {
+              action = "<Cmd>split<CR>";
+              options = {
+                desc = "Horizontal split";
+              };
+            };
           };
 
       visual =
