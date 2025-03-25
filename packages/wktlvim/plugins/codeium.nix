@@ -7,10 +7,10 @@
 {
   plugins = {
     codeium-nvim = {
-      enable = false;
+      enable = true;
 
       settings = {
-        enable_chat = true;
+        enable_chat = false;
 
         tools = {
           curl = lib.getExe pkgs.curl;

@@ -20,10 +20,10 @@ in
 
   config = mkIf cfg.enable {
     home = {
-      sessionVariables = {
-        EDITOR = "nvim";
-        DEEPSEEK_API_KEY = "$(cat ${config.sops.secrets.DEEPSEEK_API_KEY.path})";
-      };
+      # sessionVariables = {
+      #   EDITOR = "nvim";
+      #   DEEPSEEK_API_KEY = "$(cat ${config.sops.secrets.DEEPSEEK_API_KEY.path})";
+      # };
 
       packages = [
         (pkgs.${namespace}.wktlvim.extend {
@@ -47,10 +47,10 @@ in
 
     sops.secrets."codeium_key" = { };
 
-    sops.secrets."fittencode_key" = {
-      path = "${config.home.homeDirectory}/.local/share/nvim/fittencode/api_key.json";
-    };
+    # sops.secrets."fittencode_key" = {
+    #   path = "${config.home.homeDirectory}/.local/share/nvim/fittencode/api_key.json";
+    # };
 
-    sops.secrets."DEEPSEEK_API_KEY" = { };
+    # sops.secrets."DEEPSEEK_API_KEY" = { };
   };
 }
