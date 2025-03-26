@@ -20,10 +20,10 @@ in
 
   config = mkIf cfg.enable {
     home = {
-      # sessionVariables = {
-      #   EDITOR = "nvim";
-      #   DEEPSEEK_API_KEY = "$(cat ${config.sops.secrets.DEEPSEEK_API_KEY.path})";
-      # };
+      sessionVariables = {
+        EDITOR = "nvim";
+        # DEEPSEEK_API_KEY = "$(cat ${config.sops.secrets.DEEPSEEK_API_KEY.path})";
+      };
 
       packages = [
         (pkgs.${namespace}.wktlvim.extend {
