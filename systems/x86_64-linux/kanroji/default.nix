@@ -61,7 +61,6 @@ in
       dae = enabled;
       openssh = enabled;
       avahi = enabled;
-      tailscale = enabled;
     };
 
     security = {
