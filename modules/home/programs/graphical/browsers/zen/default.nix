@@ -126,7 +126,7 @@ let
     bitwarden
     ublock-origin
     auto-tab-discard
-    darkreader
+    # darkreader
     immersive-translate
     tampermonkey
     github-file-icons
