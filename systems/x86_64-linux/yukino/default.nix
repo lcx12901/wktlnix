@@ -49,6 +49,10 @@ in
     services = {
       dae = enabled;
       openssh = enabled;
+      frp = {
+        enable = true;
+        role = "client";
+      };
     };
 
     security = {
