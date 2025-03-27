@@ -26,5 +26,11 @@
     "typescript": "^5.8.2",
     "unocss": "66.1.0-beta.7",
     "vite-plugin-vue-tracer": "^0.1.2"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild"
+    ]
   }
 }
