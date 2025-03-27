@@ -4,6 +4,9 @@
     .titlebar-buttonbox-container {
       display: none !important;
     }
+    #PersonalToolbar {
+      display: none !important;
+    }
   }
 }
 
