@@ -46,6 +46,10 @@ in
         enable = true;
         configFile = config.sops.secrets."milet_sing".path;
       };
+      frp = {
+        enable = true;
+        role = "server";
+      };
     };
 
     security = {
