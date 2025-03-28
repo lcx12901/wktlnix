@@ -53,6 +53,17 @@ let
     "browser.newtabpage.activity-stream.default.sites" = "";
     "browser.newtabpage.activity-stream.showSponsored" = false;
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+    "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" = "duckduckgo";
+    "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" =
+      "duckduckgo";
+    "browser.newtabpage.pinned" = [
+      {
+        "url" = "https://duckduckgo.com";
+        "label" = "@duckduckgo";
+        "searchTopSite" = true;
+      }
+    ];
+    "browser.urlbar.placeholderName.private" = "DuckDuckGo";
     "browser.search.hiddenOneOffs" = "Google,Amazon.com,Bing,DuckDuckGo,eBay,Wikipedia (en)";
     "browser.sessionstore.warnOnQuit" = true;
     "browser.shell.checkDefaultBrowser" = false;
@@ -130,6 +141,7 @@ let
     immersive-translate
     tampermonkey
     github-file-icons
+    duckduckgo-privacy-essentials
   ];
 
   userChrome = ''
