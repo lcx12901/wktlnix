@@ -33,7 +33,6 @@ in
 
     programs.yazi = {
       enable = true;
-      package = pkgs.yazi;
 
       # NOTE: wrapper alias is yy
       enableBashIntegration = true;
