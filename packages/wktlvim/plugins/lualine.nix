@@ -74,7 +74,7 @@ in
             __unkeyed.__raw = ''
               function()
                 local buf_client_names = {}
-                for _, client in ipairs(vim.lsp.get_active_clients()) do
+                for _, client in ipairs(vim.lsp.get_clients()) do
                   local filetypes = client.config.filetypes
                   if filetypes and vim.fn.index(filetypes, vim.api.nvim_buf_get_option(0, 'filetype')) ~= -1 then
                     table.insert(buf_client_names, client.name)
