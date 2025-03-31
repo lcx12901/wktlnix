@@ -35,7 +35,7 @@
       ];
 
       homes.modules = with inputs; [
-        catppuccin.homeManagerModules.catppuccin
+        catppuccin.homeModules.catppuccin
         impermanence.nixosModules.home-manager.impermanence
         spicetify-nix.homeManagerModules.default
         sops-nix.homeManagerModules.sops
