@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -19,7 +20,6 @@
   colorschemes.catppuccin.enable = true;
 
   luaLoader.enable = true;
-  match.ExtraWhitespace = "\\s\\+$"; # Remove extra white spaces
 
   globals = {
     # Disable useless providers
@@ -33,6 +33,7 @@
     spell_enabled = true;
     colorizing_enabled = 1;
     first_buffer_opened = false;
+    whitespace_character_enabled = false;
 
     loaded_netrw = 1;
     loaded_netrwPlugin = 1;
@@ -43,6 +44,13 @@
   };
 
   opts = {
+    completeopt = lib.mkIf (!config.plugins.blink-cmp.enable) [
+      "fuzzy"
+      "menuone"
+      "noselect"
+      "popup"
+    ];
+
     updatetime = 100; # Faster completion
 
     # Line numbers
