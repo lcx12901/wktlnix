@@ -39,27 +39,27 @@
   };
   ouch-yazi = {
     pname = "ouch-yazi";
-    version = "ce6fb75431b9d0d88efc6ae92e8a8ebb9bc1864a";
+    version = "558188d2479d73cafb7ad8fb1bee12b2b59fb607";
     src = fetchFromGitHub {
       owner = "ndtoan96";
       repo = "ouch.yazi";
-      rev = "ce6fb75431b9d0d88efc6ae92e8a8ebb9bc1864a";
+      rev = "558188d2479d73cafb7ad8fb1bee12b2b59fb607";
       fetchSubmodules = false;
-      sha256 = "sha256-oUEUGgeVbljQICB43v9DeEM3XWMAKt3Ll11IcLCS/PA=";
+      sha256 = "sha256-7X8uAiJ8vBXYBXOgyKhVVikOnTBGrdCcXOJemjQNolI=";
     };
-    date = "2025-01-31";
+    date = "2025-03-30";
   };
   v2ray-rules-dat = {
     pname = "v2ray-rules-dat";
-    version = "36abb182759b748c803fb981df1c8a77f3dd609d";
+    version = "fe3a6c46f55f4c9f8390ce37f4993d2260100f73";
     src = fetchFromGitHub {
       owner = "Loyalsoldier";
       repo = "v2ray-rules-dat";
-      rev = "36abb182759b748c803fb981df1c8a77f3dd609d";
+      rev = "fe3a6c46f55f4c9f8390ce37f4993d2260100f73";
       fetchSubmodules = false;
-      sha256 = "sha256-bUj8U9Y3Kny8kUQbbcDxSmp4X1tlAyeqyKPDsg0so60=";
+      sha256 = "sha256-yvxPYgZYt4JgwBO2+5Oe4zfuVyP98veyZF3VZC2ITmM=";
     };
-    date = "2025-03-25";
+    date = "2025-04-04";
   };
   waydroid_script = {
     pname = "waydroid_script";
