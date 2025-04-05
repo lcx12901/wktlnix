@@ -302,7 +302,6 @@ in
         ConditionEnvironment = [
           "WAYLAND_DISPLAY"
         ];
-        After = "niri.service";
       };
     };
   };

@@ -72,6 +72,7 @@ let
     "browser.startup.page" = 3;
     "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
     "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+    "browser.translations.automaticallyPopup" = false;
 
     # Developer tools
     "devtools.chrome.enabled" = true;
