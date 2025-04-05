@@ -35,7 +35,7 @@ in
       git-lfs
       gitflow
       gitleaks
-      gitlint
+      # gitlint
     ];
 
     programs = {
