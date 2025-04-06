@@ -61,11 +61,13 @@ in
 
         defaultFonts = {
           serif = [
+            "Maple Mono NF CN"
             "Source Han Serif SC"
             "Source Han Serif TC"
             "Noto Color Emoji"
           ];
           sansSerif = [
+            "Maple Mono NF CN"
             "Source Han Sans SC"
             "Source Han Sans TC"
             "Noto Color Emoji"
@@ -73,6 +75,7 @@ in
           emoji = [ "Noto Color Emoji" ];
           monospace = [
             "Maple Mono NF CN"
+            "Noto Color Emoji"
           ];
         };
       };
