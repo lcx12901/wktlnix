@@ -1,6 +1,8 @@
 {
+  osConfig,
   config,
   lib,
+  pkgs,
   namespace,
   ...
 }:
@@ -9,6 +11,8 @@ let
   inherit (lib.${namespace}) mkBoolOpt enabled;
 
   cfg = config.${namespace}.scenes.music;
+
+  persist = osConfig.${namespace}.system.persist.enable;
 in
 {
   options.${namespace}.scenes.music = {
@@ -26,5 +30,14 @@ in
         };
       };
     };
+
+    home.packages = with pkgs; [ qqmusic ];
+
+    home.persistence = mkIf persist {
+      "/persist/home/${config.${namespace}.user.name}" = {
+        directories = [ ".config/qqmusic" ];
+      };
+    };
+
   };
 }
