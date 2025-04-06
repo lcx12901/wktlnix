@@ -53,9 +53,9 @@ let
     "browser.newtabpage.activity-stream.default.sites" = "";
     "browser.newtabpage.activity-stream.showSponsored" = false;
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-    "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" = "duckduckgo";
+    "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" = "DuckDuckGo";
     "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" =
-      "duckduckgo";
+      "DuckDuckGo";
     "browser.newtabpage.pinned" = [
       {
         "url" = "https://duckduckgo.com";
@@ -64,7 +64,7 @@ let
       }
     ];
     "browser.urlbar.placeholderName.private" = "DuckDuckGo";
-    "browser.search.hiddenOneOffs" = "Google,Amazon.com,Bing,DuckDuckGo,eBay,Wikipedia (en)";
+    "browser.search.hiddenOneOffs" = "Google,Amazon.com,Bing,DuckDuckGo,eBay,Wikipedia (en),Baidu";
     "browser.sessionstore.warnOnQuit" = true;
     "browser.shell.checkDefaultBrowser" = false;
     "browser.ssb.enabled" = true;
