@@ -58,8 +58,6 @@ in
     security = {
       sudo-rs = enabled;
     };
-
-    virtualisation.waydroid = enabled;
   };
 
   networking.firewall.allowedTCPPortRanges = [
