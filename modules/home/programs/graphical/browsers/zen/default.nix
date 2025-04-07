@@ -73,6 +73,7 @@ let
     "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
     "browser.urlbar.suggest.quicksuggest.sponsored" = false;
     "browser.translations.automaticallyPopup" = false;
+    "browser.tabs.allow_transparent_browser" = true;
 
     # Developer tools
     "devtools.chrome.enabled" = true;
@@ -129,6 +130,7 @@ let
     "zen.theme.accent-color" = "#f6b0ea";
     "zen.theme.color-prefs.use-workspace-colors" = true;
     "zen.welcome-screen.seen" = true;
+    "zen.view.grey-out-inactive-windows" = false; # Non-focused windows aren't transparent
   };
 
   extensionPath = "extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}";
