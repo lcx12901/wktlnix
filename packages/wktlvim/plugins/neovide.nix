@@ -11,7 +11,7 @@
       vim.g.neovide_cursor_animate_in_insert_mode = true
       vim.g.neovide_cursor_vfx_mode = "sonicboom"
 
-      vim.o.guifont = "Maple Mono NF CN:h15"
+      vim.o.guifont = "Maple Mono NF CN,Cascadia Mono NF:h15"
 
       -- copy_to_clipboard
       vim.keymap.set('v', '<C-S-c>', '"+y', { noremap = true, silent = true })

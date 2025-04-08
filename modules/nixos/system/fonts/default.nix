@@ -18,6 +18,12 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      font-manager
+      fontpreview
+      smile
+    ];
+
     environment.variables = {
       # Enable icons in tooling since we have nerdfonts.
       LOG_ICONS = "true";
@@ -30,6 +36,8 @@ in
       };
 
       packages = with pkgs; [
+        corefonts
+
         # icon fonts
         material-design-icons
         font-awesome
@@ -49,9 +57,8 @@ in
 
         # Nerd Fonts
         nerd-fonts.symbols-only # symbols icon only
-        nerd-fonts.monaspace
-        nerd-fonts.recursive-mono
-
+        nerd-fonts.iosevka
+        cascadia-code
         maple-mono.NF-CN
       ];
 
@@ -66,26 +73,25 @@ in
         defaultFonts =
           let
             common = [
-              "Maple Mono NF CN"
+              "Cascadia Mono NF"
               "Symbols Nerd Font"
               "Noto Color Emoji"
             ];
           in
           mapAttrs (_: fonts: fonts ++ common) {
             serif = [
+              # "Source Han Serif SC"
+              # "Source Han Serif TC"
               "Maple Mono NF CN"
-              "Source Han Serif SC"
-              "Source Han Serif TC"
             ];
             sansSerif = [
+              # "Source Han Sans SC"
+              # "Source Han Sans TC"
               "Maple Mono NF CN"
-              "Source Han Sans SC"
-              "Source Han Sans TC"
             ];
             emoji = [ "Noto Color Emoji" ];
             monospace = [
-              "Source Code Pro Medium"
-              "Source Han Mono"
+              "Maple Mono NF CN"
             ];
           };
       };
