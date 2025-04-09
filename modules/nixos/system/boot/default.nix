@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   namespace,
   ...
 }:
@@ -20,8 +21,13 @@ in
 
   config = mkIf cfg.enable {
     boot = {
+      initrd.systemd.network.wait-online.enable = false;
+
       kernelParams =
-        lib.optionals cfg.plymouth [ "quiet" ]
+        lib.optionals cfg.plymouth [
+          "quiet"
+          "splash"
+        ]
         ++ lib.optionals cfg.silentBoot [
           # tell the kernel to not be verbose
           "quiet"
@@ -72,6 +78,19 @@ in
         };
       };
 
+      plymouth = {
+        enable = cfg.plymouth;
+        theme = "sphere";
+        themePackages = [
+          (pkgs.adi1090x-plymouth-themes.override {
+            selected_themes = [
+              "pixels"
+              "sphere"
+            ];
+          })
+        ];
+      };
+
       supportedFilesystems = [
         "ext4"
         "btrfs"
@@ -86,33 +105,6 @@ in
     services.fwupd = {
       enable = true;
       daemonSettings.EspLocation = config.boot.loader.efi.efiSysMountPoint;
-    };
-
-    systemd = {
-      # given that our systems are headless, emergency mode is useless.
-      # we prefer the system to attempt to continue booting so
-      # that we can hopefully still access it remotely.
-      enableEmergencyMode = false;
-
-      # For more detail, see:
-      #   https://0pointer.de/blog/projects/watchdog.html
-      watchdog = {
-        # systemd will send a signal to the hardware watchdog at half
-        # the interval defined here, so every 10s.
-        # If the hardware watchdog does not get a signal for 20s,
-        # it will forcefully reboot the system.
-        runtimeTime = "20s";
-        # Forcefully reboot if the final stage of the reboot
-        # hangs without progress for more than 30s.
-        # For more info, see:
-        #   https://utcc.utoronto.ca/~cks/space/blog/linux/SystemdShutdownWatchdog
-        rebootTime = "30s";
-      };
-
-      sleep.extraConfig = ''
-        AllowSuspend=no
-        AllowHibernation=no
-      '';
     };
   };
 }
