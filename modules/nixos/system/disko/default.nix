@@ -10,7 +10,6 @@ let
 
   cfg = config.${namespace}.system.disko;
 
-  isGrub = config.${namespace}.system.boot.useGrub;
 in
 {
   options.${namespace}.system.disko = {
@@ -37,39 +36,16 @@ in
           content = {
             type = "gpt";
             partitions = {
-              boot = mkIf isGrub {
-                size = "1M";
-                type = "EF02";
-                priority = 0;
+              ESP = {
+                size = "512M";
+                type = "EF00";
+                content = {
+                  type = "filesystem";
+                  format = "vfat";
+                  mountpoint = "/boot";
+                  mountOptions = [ "umask=0077" ];
+                };
               };
-
-              # FIXME: when all devices are use Grub
-              ESP =
-                if isGrub then
-                  {
-                    priority = 1;
-                    name = "ESP";
-                    size = "1G";
-                    type = "EF00";
-                    content = {
-                      type = "filesystem";
-                      format = "vfat";
-                      mountpoint = "/boot";
-                    };
-                  }
-                else
-                  {
-                    priority = 1;
-                    name = "ESP";
-                    start = "1M";
-                    end = "512M";
-                    type = "EF00";
-                    content = {
-                      type = "filesystem";
-                      format = "vfat";
-                      mountpoint = "/boot";
-                    };
-                  };
               root = {
                 size = cfg.rootSize;
                 content = {

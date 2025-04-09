@@ -13,7 +13,6 @@ in
     system = {
       boot = {
         enable = true;
-        useGrub = true;
       };
       disko = {
         enable = true;
