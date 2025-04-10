@@ -16,7 +16,6 @@ in
     enable = mkBoolOpt false "Whether or not to enable booting.";
     plymouth = mkBoolOpt false "Whether or not to enable plymouth boot splash.";
     silentBoot = mkBoolOpt false "Whether or not to enable silent boot.";
-    useGrub = mkBoolOpt false "Whether or not to use grub instead of systemd-boot.";
   };
 
   config = mkIf cfg.enable {
@@ -57,20 +56,14 @@ in
 
       loader = {
         efi = {
-          canTouchEfiVariables = !cfg.useGrub;
+          canTouchEfiVariables = true;
           efiSysMountPoint = "/boot";
         };
 
         generationsDir.copyKernels = true;
 
-        systemd-boot = {
-          enable = !cfg.useGrub;
-          configurationLimit = 20;
-          editor = false;
-        };
-
         grub = {
-          enable = cfg.useGrub;
+          enable = true;
           default = "saved";
           devices = [ "nodev" ];
           efiSupport = true;

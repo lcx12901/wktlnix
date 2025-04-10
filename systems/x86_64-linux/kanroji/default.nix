@@ -11,10 +11,7 @@ in
 
   wktlnix = {
     system = {
-      boot = {
-        enable = true;
-        useGrub = true;
-      };
+      boot = enabled;
       disko = {
         enable = true;
         device = "/dev/nvme0n1";
@@ -61,10 +58,6 @@ in
       dae = enabled;
       openssh = enabled;
       avahi = enabled;
-      frp = {
-        enable = true;
-        role = "client";
-      };
     };
 
     security = {

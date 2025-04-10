@@ -37,16 +37,13 @@ in
           content = {
             type = "gpt";
             partitions = {
-              boot = mkIf isGrub {
+              boot = {
                 size = "1M";
                 type = "EF02";
                 priority = 0;
               };
 
-              # FIXME: when all devices are use Grub
-              ESP =
-                if isGrub then
-                  {
+              ESP =  {
                     priority = 1;
                     name = "ESP";
                     size = "1G";
@@ -56,20 +53,8 @@ in
                       format = "vfat";
                       mountpoint = "/boot";
                     };
-                  }
-                else
-                  {
-                    priority = 1;
-                    name = "ESP";
-                    start = "1M";
-                    end = "512M";
-                    type = "EF00";
-                    content = {
-                      type = "filesystem";
-                      format = "vfat";
-                      mountpoint = "/boot";
-                    };
                   };
+
               root = {
                 size = cfg.rootSize;
                 content = {
@@ -89,10 +74,6 @@ in
                         "compress-force=zstd:1"
                         "noatime"
                       ];
-                    };
-                    tmp = {
-                      mountpoint = "/tmp";
-                      mountOptions = [ "noatime" ];
                     };
                     swap = {
                       mountpoint = "/swap";
