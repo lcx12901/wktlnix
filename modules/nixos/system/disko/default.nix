@@ -9,8 +9,6 @@ let
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
 
   cfg = config.${namespace}.system.disko;
-
-  isGrub = config.${namespace}.system.boot.useGrub;
 in
 {
   options.${namespace}.system.disko = {
