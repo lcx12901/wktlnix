@@ -15,6 +15,7 @@ in
       disko = {
         enable = true;
         device = "/dev/nvme0n1";
+        rootSize = "1T";
       };
       fonts = enabled;
       locale = {
