@@ -56,7 +56,7 @@ in
 
       loader = {
         efi = {
-          canTouchEfiVariables = true;
+          canTouchEfiVariables = false;
           efiSysMountPoint = "/boot";
         };
 
