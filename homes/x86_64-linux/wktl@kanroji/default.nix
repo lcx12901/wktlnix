@@ -19,8 +19,7 @@ in
     programs = {
       graphical = {
         wms.niri = enabled;
-        editors.vscode = enabled;
-        apps.discord = enabled;
+        # apps.discord = enabled;
         video = enabled;
       };
     };
