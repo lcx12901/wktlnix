@@ -9,8 +9,6 @@ let
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
 
   cfg = config.${namespace}.system.disko;
-
-  isGrub = config.${namespace}.system.boot.useGrub;
 in
 {
   options.${namespace}.system.disko = {
@@ -43,7 +41,7 @@ in
                 priority = 0;
               };
 
-              ESP =  {
+              ESP = {
                 priority = 1;
                 name = "ESP";
                 size = "1G";

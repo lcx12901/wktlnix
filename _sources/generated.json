@@ -64,7 +64,7 @@
     },
     "ouch-yazi": {
         "cargoLocks": null,
-        "date": "2025-03-30",
+        "date": "2025-04-12",
         "extract": null,
         "name": "ouch-yazi",
         "passthru": null,
@@ -76,16 +76,16 @@
             "name": null,
             "owner": "ndtoan96",
             "repo": "ouch.yazi",
-            "rev": "558188d2479d73cafb7ad8fb1bee12b2b59fb607",
-            "sha256": "sha256-7X8uAiJ8vBXYBXOgyKhVVikOnTBGrdCcXOJemjQNolI=",
+            "rev": "2496cd9ac2d1fb52597b22ae84f3af06c826a86d",
+            "sha256": "sha256-OsNfR7rtnq+ceBTiFjbz+NFMSV/6cQ1THxEFzI4oPJk=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "558188d2479d73cafb7ad8fb1bee12b2b59fb607"
+        "version": "2496cd9ac2d1fb52597b22ae84f3af06c826a86d"
     },
     "v2ray-rules-dat": {
         "cargoLocks": null,
-        "date": "2025-04-04",
+        "date": "2025-04-11",
         "extract": null,
         "name": "v2ray-rules-dat",
         "passthru": null,
@@ -97,16 +97,16 @@
             "name": null,
             "owner": "Loyalsoldier",
             "repo": "v2ray-rules-dat",
-            "rev": "fe3a6c46f55f4c9f8390ce37f4993d2260100f73",
-            "sha256": "sha256-yvxPYgZYt4JgwBO2+5Oe4zfuVyP98veyZF3VZC2ITmM=",
+            "rev": "4c88081a23d324a89e33c38a7abaeaaa0675ca08",
+            "sha256": "sha256-nda2ojEMFctLyIlFFuZ2vGNgkK6JRX+kEEspICxySyQ=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "fe3a6c46f55f4c9f8390ce37f4993d2260100f73"
+        "version": "4c88081a23d324a89e33c38a7abaeaaa0675ca08"
     },
     "waydroid_script": {
         "cargoLocks": null,
-        "date": "2024-12-15",
+        "date": "2025-04-07",
         "extract": null,
         "name": "waydroid_script",
         "passthru": null,
@@ -118,11 +118,11 @@
             "name": null,
             "owner": "huakim",
             "repo": "waydroid_script",
-            "rev": "3cfa1e43e7da4b0c07a4c83d331e4776012e2acd",
-            "sha256": "sha256-O29v/lF2YCUhyCo+M7Sesoes0MObHsS2tutW88rOM/U=",
+            "rev": "767267ac1798c1a4530cad3bbafd1d8d9d6556e6",
+            "sha256": "sha256-lKXO6LOXegc3bWZEjjd91bC3QU3wf974cBOaFG2a3IQ=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "3cfa1e43e7da4b0c07a4c83d331e4776012e2acd"
+        "version": "767267ac1798c1a4530cad3bbafd1d8d9d6556e6"
     }
 }
