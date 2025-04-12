@@ -30,7 +30,7 @@ in
       };
     };
 
-    scenes.development = enabled;
+    # scenes.development = enabled;
   };
 
   home.stateVersion = "24.05";
