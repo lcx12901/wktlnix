@@ -13,11 +13,12 @@ in
     system = {
       boot = {
         enable = true;
-        useGrub = true;
+        useOSProber = true;
       };
       disko = {
         enable = true;
         device = "/dev/nvme0n1";
+        rootSize = "1T";
       };
       fonts = enabled;
       locale = {
@@ -61,10 +62,6 @@ in
       dae = enabled;
       openssh = enabled;
       avahi = enabled;
-      frp = {
-        enable = true;
-        role = "client";
-      };
     };
 
     security = {
