@@ -8,6 +8,8 @@
     codeium-nvim = {
       enable = true;
 
+      package = pkgs.vimPlugins.windsurf-nvim;
+
       settings = {
         enable_chat = false;
 
@@ -20,15 +22,4 @@
       };
     };
   };
-
-  # keymaps = lib.mkIf config.plugins.codeium-nvim.enable [
-  #   {
-  #     mode = "n";
-  #     key = "<leader>uc";
-  #     action = "<cmd>Codeium Chat<CR>";
-  #     options = {
-  #       desc = "Codeium Chat";
-  #     };
-  #   }
-  # ];
 }
