@@ -43,6 +43,8 @@ in
           support32Bit = {
             enable = true;
           };
+
+          supportExperimental.enable = true;
         };
         initrd.enable = true;
         opencl.enable = true;
