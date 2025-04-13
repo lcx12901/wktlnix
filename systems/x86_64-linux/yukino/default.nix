@@ -36,7 +36,6 @@ in
       graphical = {
         wms.niri = enabled;
         file-managers.nautilus = enabled;
-        browsers.zen = enabled;
       };
       terminal.tools.nix-ld = enabled;
     };

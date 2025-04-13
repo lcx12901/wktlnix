@@ -22,6 +22,7 @@ in
         editors.vscode = enabled;
         apps.discord = enabled;
         video = enabled;
+        browsers.zen = enabled;
         addons = {
           waybar.basicFontSize = "12";
         };

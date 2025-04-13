@@ -40,6 +40,7 @@
         spicetify-nix.homeManagerModules.default
         sops-nix.homeManagerModules.sops
         niri.homeModules.niri
+        zen-browser.homeModules.twilight
       ];
 
       # Add modules to all NixOS systems.

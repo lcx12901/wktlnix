@@ -21,6 +21,7 @@ in
         wms.niri = enabled;
         # apps.discord = enabled;
         video = enabled;
+        browsers.zen = enabled;
       };
     };
 
