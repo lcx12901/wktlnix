@@ -85,10 +85,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    yazi-plugins = {
-      url = "github:yazi-rs/plugins";
-      flake = false;
-    };
 
     # Applications
     niri = {
