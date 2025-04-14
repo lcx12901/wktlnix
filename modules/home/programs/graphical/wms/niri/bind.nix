@@ -29,7 +29,7 @@ in
 
           "Mod+Return".action.spawn = "ghostty";
           "Mod+N".action.spawn = "neovide";
-          "Mod+B".action.spawn = "zen-beta";
+          "Mod+B".action.spawn = "zen-twilight";
           "Mod+A".action.spawn = "ayugram-desktop";
           "Mod+T".action.spawn = "tsukimi";
           "Mod+W".action.spawn = [
