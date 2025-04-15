@@ -20,6 +20,7 @@ in
       graphical = {
         wms.niri = enabled;
         # apps.discord = enabled;
+        editors.zed = enabled;
         video = enabled;
         browsers.zen = enabled;
       };

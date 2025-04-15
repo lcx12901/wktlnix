@@ -32,6 +32,7 @@
       overlays = with inputs; [
         catppuccin-vsc.overlays.default
         niri.overlays.niri
+        nix-zed-extensions.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -41,6 +42,7 @@
         sops-nix.homeManagerModules.sops
         niri.homeModules.niri
         zen-browser.homeModules.twilight
+        nix-zed-extensions.homeManagerModules.default
       ];
 
       # Add modules to all NixOS systems.
@@ -85,6 +87,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
 
     # Applications
     niri = {

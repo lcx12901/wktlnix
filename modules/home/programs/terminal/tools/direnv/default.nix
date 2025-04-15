@@ -19,13 +19,17 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.sessionVariables = {
-      DIRENV_LOG_FORMAT = "";
-    };
-
     programs.direnv = {
       enable = true;
       nix-direnv = enabled;
+      silent = true;
+
+      config = {
+        global = {
+          log_format = "-";
+          log_filer = "^$";
+        };
+      };
     };
 
     home.persistence = mkIf persist {
