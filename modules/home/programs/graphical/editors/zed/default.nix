@@ -19,6 +19,13 @@ in
 
       extraPackages = with pkgs; [
         nil
+        vscode-langservers-extracted
+        vtsls
+        vue-language-server
+        jsonnet-language-server
+        tailwindcss-language-server
+
+        eslint_d
       ];
 
       userSettings = {
@@ -31,6 +38,27 @@ in
 
         auto_install_extensions = {
           html = false;
+        };
+
+        auto_update = false;
+
+        prettier = {
+          allowed = false;
+        };
+
+        languages = {
+          "Vue.js" = {
+            formatter = "eslint";
+            code_actions_on_format = {
+              "source.fixAll.eslint" = true;
+            };
+          };
+          TypeScript = {
+            formatter = "eslint";
+            code_actions_on_format = {
+              "source.fixAll.eslint" = true;
+            };
+          };
         };
       };
     };
