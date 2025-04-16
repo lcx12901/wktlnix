@@ -23,7 +23,6 @@ in
         vtsls
         vue-language-server
         jsonnet-language-server
-        tailwindcss-language-server
 
         eslint_d
       ];
@@ -33,8 +32,24 @@ in
         vim = {
           enable_vim_sneak = true;
         };
+
         theme = "Catppuccin Macchiato";
         icon_theme = "Catppuccin Macchiato";
+
+        font_family = "Maple Mono NF CN";
+        buffer_font_family = "Maple Mono NF CN";
+        ui_font_family = "Maple Mono NF CN";
+
+        relative_line_numbers = true;
+
+        indent_guides = {
+          enabled = true;
+          coloring = "indent_aware";
+        };
+
+        inlay_hints = {
+          enabled = true;
+        };
 
         auto_install_extensions = {
           html = false;
@@ -48,19 +63,55 @@ in
 
         languages = {
           "Vue.js" = {
-            formatter = "eslint";
+            prettier = {
+              allowed = false;
+            };
             code_actions_on_format = {
               "source.fixAll.eslint" = true;
             };
           };
           TypeScript = {
-            formatter = "eslint";
+            prettier = {
+              allowed = false;
+            };
             code_actions_on_format = {
               "source.fixAll.eslint" = true;
             };
           };
+          Nix = {
+            language_servers = [
+              "nil"
+              "!nixd"
+            ];
+          };
+        };
+
+        lsp = {
+          nil = {
+            initialization_options = {
+              formatting = {
+                command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+              };
+            };
+          };
+          vue = {
+            initialization_options = {
+              typescript = {
+                tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib";
+              };
+            };
+          };
         };
       };
+
+      userKeymaps = [
+        {
+          context = "Editor && (vim_mode == normal || vim_mode == visual)";
+          bindings = {
+            "space l f" = "editor::Format";
+          };
+        }
+      ];
     };
 
     programs.zed-editor-extensions = {
