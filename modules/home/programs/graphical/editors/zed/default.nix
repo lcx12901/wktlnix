@@ -6,6 +6,7 @@
   ...
 }:
 let
+
   cfg = config.${namespace}.programs.graphical.editors.zed;
 in
 {
@@ -23,6 +24,7 @@ in
         vtsls
         vue-language-server
         jsonnet-language-server
+        tailwindcss-language-server
 
         eslint_d
       ];
@@ -61,6 +63,9 @@ in
           allowed = false;
         };
 
+        ## tell zed to use direnv and direnv can use a flake.nix enviroment.
+        load_direnv = "shell_hook";
+
         languages = {
           "Vue.js" = {
             prettier = {
@@ -78,12 +83,6 @@ in
               "source.fixAll.eslint" = true;
             };
           };
-          Nix = {
-            language_servers = [
-              "nil"
-              "!nixd"
-            ];
-          };
         };
 
         lsp = {
@@ -91,6 +90,11 @@ in
             initialization_options = {
               formatting = {
                 command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+              };
+              nix = {
+                flake = {
+                  autoArchive = true;
+                };
               };
             };
           };
@@ -106,9 +110,11 @@ in
 
       userKeymaps = [
         {
-          context = "Editor && (vim_mode == normal || vim_mode == visual)";
+          context = "vim_mode == normal || vim_mode == visual";
           bindings = {
             "space l f" = "editor::Format";
+            "s" = "vim::PushSneak";
+            "shift-s" = "vim::PushSneakBackward";
           };
         }
       ];
