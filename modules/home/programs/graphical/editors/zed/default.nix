@@ -23,18 +23,12 @@ in
         vscode-langservers-extracted
         vtsls
         vue-language-server
-        jsonnet-language-server
         tailwindcss-language-server
 
         eslint_d
       ];
 
       userSettings = {
-        vim_mode = true;
-        vim = {
-          enable_vim_sneak = true;
-        };
-
         theme = "Catppuccin Macchiato";
         icon_theme = "Catppuccin Macchiato";
 
@@ -71,16 +65,20 @@ in
             prettier = {
               allowed = false;
             };
-            code_actions_on_format = {
-              "source.fixAll.eslint" = true;
+            formatter = {
+              "code_actions" = {
+                "source.fixAll.eslint" = true;
+              };
             };
           };
           TypeScript = {
             prettier = {
               allowed = false;
             };
-            code_actions_on_format = {
-              "source.fixAll.eslint" = true;
+            formatter = {
+              "code_actions" = {
+                "source.fixAll.eslint" = true;
+              };
             };
           };
         };
@@ -95,13 +93,6 @@ in
                 flake = {
                   autoArchive = true;
                 };
-              };
-            };
-          };
-          vue = {
-            initialization_options = {
-              typescript = {
-                tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib";
               };
             };
           };
