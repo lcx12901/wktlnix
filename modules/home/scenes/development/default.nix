@@ -63,7 +63,7 @@ in
             ripgrep = enabled;
             yazi = enabled;
           };
-          editors.neovim = enabled;
+          # editors.neovim = enabled;
         };
       };
     };
