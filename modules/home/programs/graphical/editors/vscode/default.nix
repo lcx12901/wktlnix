@@ -54,18 +54,18 @@ in
               ms-ceintl.vscode-language-pack-zh-hans
               vscode-icons-team.vscode-icons
               oderwat.indent-rainbow
-              wix.vscode-import-cost
+              # wix.vscode-import-cost
               streetsidesoftware.code-spell-checker
               usernamehw.errorlens
               editorconfig.editorconfig
               dbaeumer.vscode-eslint
               kamikillerto.vscode-colorize
-              kamadorueda.alejandra
-              jnoortheen.nix-ide
+              # kamadorueda.alejandra
+              # jnoortheen.nix-ide
               eamodio.gitlens
               philsinatra.nested-comments
               # mhutchie.git-graph
-              mkhl.direnv
+              # mkhl.direnv
               nrwl.angular-console
               fittentech.fitten-code
               gruntfuggly.todo-tree
@@ -74,12 +74,12 @@ in
               antfu.unocss
               # simonhe.common-intellisense
 
-              evils.uniapp-vscode
-              uni-helper.uni-helper-vscode
-              uni-helper.uni-app-schemas-vscode
-              uni-helper.uni-highlight-vscode
-              uni-helper.uni-ui-snippets-vscode
-              uni-helper.uni-app-snippets-vscode
+              # evils.uniapp-vscode
+              # uni-helper.uni-helper-vscode
+              # uni-helper.uni-app-schemas-vscode
+              # uni-helper.uni-highlight-vscode
+              # uni-helper.uni-ui-snippets-vscode
+              # uni-helper.uni-app-snippets-vscode
             ])
             ++ [
               (pkgs.catppuccin-vsc.override {
