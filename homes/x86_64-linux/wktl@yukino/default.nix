@@ -19,7 +19,10 @@ in
     programs = {
       graphical = {
         wms.niri = enabled;
-        editors.vscode = enabled;
+        editors = {
+          vscode = enabled;
+          zed = enabled;
+        };
         apps.discord = enabled;
         video = enabled;
         browsers.zen = enabled;
