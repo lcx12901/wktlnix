@@ -1,28 +1,7 @@
 {
-    "logger-nvim": {
-        "cargoLocks": null,
-        "date": "2025-03-09",
-        "extract": null,
-        "name": "logger-nvim",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "rmagatti",
-            "repo": "logger.nvim",
-            "rev": "63dd10c9b9a159fd6cfe08435d9606384ff103c5",
-            "sha256": "sha256-4xQFk7+3NWEx1XUZApy4Ldi2xdsna+HdkOmq9vWP3B0=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "63dd10c9b9a159fd6cfe08435d9606384ff103c5"
-    },
     "v2ray-rules-dat": {
         "cargoLocks": null,
-        "date": "2025-04-14",
+        "date": "2025-04-18",
         "extract": null,
         "name": "v2ray-rules-dat",
         "passthru": null,
@@ -34,12 +13,12 @@
             "name": null,
             "owner": "Loyalsoldier",
             "repo": "v2ray-rules-dat",
-            "rev": "f7a316e48676600a64491649180d9adc323efe9c",
-            "sha256": "sha256-I3vNFCgJSyLbkc1soUvqhZEoutw1CPSZM/ly/+pPd/E=",
+            "rev": "330bbfd43b43bdc2f01cbbab35323e0dafe7de9b",
+            "sha256": "sha256-yMlUZQao0uwglxKbB6vvr7kjxMcnnHr3+HBhXODq73k=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "f7a316e48676600a64491649180d9adc323efe9c"
+        "version": "330bbfd43b43bdc2f01cbbab35323e0dafe7de9b"
     },
     "waydroid_script": {
         "cargoLocks": null,

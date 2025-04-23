@@ -132,13 +132,6 @@
       flake = false;
     };
 
-    nixvim.url = "github:nix-community/nixvim";
-    blink-cmp = {
-      url = "github:saghen/blink.cmp";
-    };
-    snacks-nvim = {
-      url = "github:folke/snacks.nvim";
-      flake = false;
-    };
+    wktlvim.url = "github:lcx12901/nixvim-part";
   };
 }
