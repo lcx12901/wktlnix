@@ -1,6 +1,8 @@
 {
+  inputs,
   osConfig,
   config,
+  system,
   lib,
   pkgs,
   namespace,
@@ -8,6 +10,19 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
+
+  wktlvimCfg = inputs.wktlvim.nixvimConfigurations.${system}.wktlvim;
+  # wktlvimCfg = inputs.wktlvim.nixvimConfigurations.${system}.wktlvim.extendModules {
+  #   modules = [
+  #     {
+  #       config = {
+  #         plugins.windsurf-nvim.settings.config_path = "${config.sops.secrets."codeium_key".path}";
+  #       };
+  #     }
+  #   ];
+  # };
+
+  wktlvim = wktlvimCfg.config.build.package;
 
   cfg = config.${namespace}.programs.terminal.editors.neovim;
 
@@ -26,14 +41,7 @@ in
       };
 
       packages = [
-        (pkgs.${namespace}.wktlvim.extend {
-          plugins = {
-            codeium-nvim.settings = {
-              config_path = "${config.sops.secrets."codeium_key".path}";
-            };
-          };
-        })
-
+        wktlvim
         pkgs.neovide
       ];
 

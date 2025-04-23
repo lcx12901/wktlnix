@@ -6,7 +6,3 @@ fetch.github = "huakim/waydroid_script"
 src.git = "https://github.com/Loyalsoldier/v2ray-rules-dat"
 src.branch = "release"
 fetch.github = "Loyalsoldier/v2ray-rules-dat"
-
-[logger-nvim]
-src.git = "https://github.com/rmagatti/logger.nvim"
-fetch.github = "rmagatti/logger.nvim"

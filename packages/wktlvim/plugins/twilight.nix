@@ -1,7 +1,0 @@
-{
-  plugins = {
-    twilight = {
-      enable = true;
-    };
-  };
-}
