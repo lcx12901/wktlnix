@@ -29,7 +29,7 @@ in
       enableZshIntegration = true;
 
       settings = {
-        adw-toolbar-style = "raised";
+        adw-toolbar-style = "flat";
 
         clipboard-trim-trailing-spaces = true;
         copy-on-select = "clipboard";

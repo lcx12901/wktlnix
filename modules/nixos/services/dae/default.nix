@@ -78,16 +78,13 @@ in
         domain(geosite: category-ads) -> block
 
         domain(suffix: ota.waydro.id, suffix: sourceforge.net) -> proxy
-
-        domain(geosite:cn) -> direct
-
-        dip(geoip:cn, geoip:private) -> direct
-
+        domain(suffix:duckduckgo.com) -> proxy
         domain(suffix: steamcommunity.com, suffix: steampowered.com, suffix: fastly.steamstatic.com) -> proxy
         domain(suffix: warframe.com) -> proxy
 
+        dip(geoip:cn, geoip:private) -> direct
+        domain(geosite:cn) -> direct
         domain(geosite: steam) -> direct
-
 
         fallback: proxy
       }
