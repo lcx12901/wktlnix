@@ -7,14 +7,14 @@
 buildNpmPackage rec {
   pname = "unocss-language-server";
 
-  version = "0.1.5";
+  version = "0.1.7";
 
   src = fetchurl {
     url = "https://registry.npmjs.org/unocss-language-server/-/unocss-language-server-${version}.tgz";
-    sha256 = "sha256-kreygtkQG7Dhd0MPs2Ee2rr60++yCxHcSNcpEFcQ8ng=";
+    sha256 = "sha256-r3pxqhbe2BxGNQCjbC65uhM8EVq9aB+9tOgiEvz52T4=";
   };
 
-  npmDepsHash = "sha256-GqZqVUcNHP5+4t7p5vc4sUGa7XqJbePSpQxfKcWu4Lo=";
+  npmDepsHash = "sha256-Jalcf+qc6okhGNQHWojqLof4rEimUKTShU9xIn1LNZk=";
 
   postPatch = ''
     ln -s ${./package-lock.json} package-lock.json
