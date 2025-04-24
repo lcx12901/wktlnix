@@ -112,5 +112,9 @@ in
         };
       };
     };
+
+    sops.secrets."github_copilot_token" = {
+      path = "/home/${config.${namespace}.user.name}/.config/github-copilot/apps.json";
+    };
   };
 }
