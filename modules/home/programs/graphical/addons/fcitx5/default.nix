@@ -13,12 +13,13 @@ let
 in
 {
   options.${namespace}.programs.graphical.addons.fcitx5 = {
-    enable = mkBoolOpt false "Whether to enable fcitx5 in Hyprland.";
+    enable = mkBoolOpt false "Whether to enable fcitx5.";
   };
 
   config = mkIf cfg.enable {
     i18n.inputMethod = {
-      enabled = "fcitx5";
+      enable = true;
+      type = "fcitx5";
       fcitx5 = {
         addons = with pkgs; [
           fcitx5-chinese-addons
