@@ -11,16 +11,16 @@
 let
   inherit (lib) mkEnableOption mkIf;
 
-  wktlvimCfg = inputs.wktlvim.nixvimConfigurations.${system}.wktlvim;
-  # wktlvimCfg = inputs.wktlvim.nixvimConfigurations.${system}.wktlvim.extendModules {
-  #   modules = [
-  #     {
-  #       config = {
-  #         plugins.windsurf-nvim.settings.config_path = "${config.sops.secrets."codeium_key".path}";
-  #       };
-  #     }
-  #   ];
-  # };
+  wktlvimCfg = inputs.wktlvim.nixvimConfigurations.${system}.wktlvim.extendModules {
+    modules = [
+      {
+        config = {
+          # plugins.windsurf-nvim.settings.config_path = "${config.sops.secrets."codeium_key".path}";
+          plugins.lsp.servers.unocss.package = pkgs.${namespace}.unocss-language-server;
+        };
+      }
+    ];
+  };
 
   wktlvim = wktlvimCfg.config.build.package;
 
