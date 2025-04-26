@@ -2,24 +2,18 @@
   config,
   lib,
   pkgs,
-  inputs,
   namespace,
   ...
 }:
 let
   inherit (lib) mkMerge mkIf types;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
-  inherit (inputs) waybar;
 
   cfg = config.${namespace}.programs.graphical.addons.waybar;
 
   default-modules = import ./modules/default-modules.nix { inherit config lib pkgs; };
   group-modules = import ./modules/group-modules.nix;
   hyprland-modules = import ./modules/hyprland-modules.nix { inherit config lib; };
-
-  style = builtins.readFile ./styles/style.css;
-  workspacesStyle = builtins.readFile ./styles/workspaces.css;
-  stats = builtins.readFile ./styles/stats.css;
 
   commonAttributes = {
     layer = "top";
@@ -57,9 +51,6 @@ in
   config = mkIf cfg.enable {
     programs.waybar = {
       enable = true;
-      # FIXME:tray module not showing icons, wait for upstream fix
-      # package = waybar.packages.${system}.waybar;
-      systemd.enable = true;
 
       settings.mainBar = mkMerge [
         commonAttributes
@@ -73,9 +64,9 @@ in
           font-size: ${cfg.basicFontSize}px;
         }
 
-        ${style}
-        ${workspacesStyle}
-        ${stats}
+        ${builtins.readFile ./styles/style.css}
+        ${builtins.readFile ./styles/workspaces.css}
+        ${builtins.readFile ./styles/stats.css}
       '';
     };
   };

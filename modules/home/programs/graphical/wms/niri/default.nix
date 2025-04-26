@@ -69,15 +69,14 @@ in
             ":1"
           ];
         }
+        { command = [ "waybar" ]; }
         {
           command = [
             "fcitx5"
             "-dr"
           ];
         }
-        {
-          command = [ "${pkgs.swww}/bin/swww-daemon" ];
-        }
+        { command = [ "${pkgs.swww}/bin/swww-daemon" ]; }
         {
           command = [
             "swww"
@@ -112,7 +111,6 @@ in
             "both"
           ];
         }
-        { command = [ "flameshot" ]; }
       ];
 
       layout = {
