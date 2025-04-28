@@ -38,7 +38,7 @@
       homes.modules = with inputs; [
         catppuccin.homeModules.catppuccin
         impermanence.nixosModules.home-manager.impermanence
-        spicetify-nix.homeManagerModules.default
+        # spicetify-nix.homeManagerModules.default
         sops-nix.homeManagerModules.sops
         niri.homeModules.niri
         zen-browser.homeModules.twilight
@@ -132,6 +132,10 @@
       flake = false;
     };
 
-    wktlvim.url = "github:lcx12901/nixvim-part";
+    # wktlvim.url = "github:lcx12901/nixvim-part";
+    wktlvim = {
+      url = "git+file:/home/wktl/Coding/nixvim-part";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

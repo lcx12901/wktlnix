@@ -24,7 +24,7 @@ in
       programs = {
         terminal = {
           media = {
-            spicetify = enabled;
+            # spicetify = enabled;
             go-musicfox = enabled;
           };
         };
