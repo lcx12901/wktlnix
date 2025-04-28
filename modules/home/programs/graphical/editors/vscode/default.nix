@@ -38,14 +38,15 @@ in
 
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode.override {
-        commandLineArgs = [
-          "--ozone-platform-hint=auto"
-          "--ozone-platform=wayland"
-          "--gtk-version=4"
-          "--enable-wayland-ime"
-        ];
-      };
+      package = pkgs.vscode;
+      # package = pkgs.vscode.override {
+      #   commandLineArgs = [
+      #     "--ozone-platform-hint=auto"
+      #     "--ozone-platform=wayland"
+      #     "--gtk-version=4"
+      #     "--enable-wayland-ime"
+      #   ];
+      # };
 
       profiles =
         let
@@ -54,24 +55,23 @@ in
               ms-ceintl.vscode-language-pack-zh-hans
               vscode-icons-team.vscode-icons
               oderwat.indent-rainbow
-              # wix.vscode-import-cost
+              wix.vscode-import-cost
               streetsidesoftware.code-spell-checker
               usernamehw.errorlens
               editorconfig.editorconfig
               dbaeumer.vscode-eslint
               kamikillerto.vscode-colorize
-              # kamadorueda.alejandra
-              # jnoortheen.nix-ide
               eamodio.gitlens
               philsinatra.nested-comments
               # mhutchie.git-graph
-              # mkhl.direnv
               nrwl.angular-console
-              fittentech.fitten-code
               gruntfuggly.todo-tree
 
               vue.volar
               antfu.unocss
+
+              github.copilot
+              github.copilot-chat
               # simonhe.common-intellisense
 
               # evils.uniapp-vscode
@@ -177,26 +177,20 @@ in
             "window.nativeTabs" = true;
             "window.restoreWindows" = "all";
             "window.titleBarStyle" = "custom";
-            "window.zoomLevel" = cfg.zoomLevel;
-
-            "scm.experimental.showHistoryGraph" = true;
 
             # update
             "update.mode" = "none";
             "extensions.autoUpdate" = false;
 
-            "nix.enableLanguageServer" = true;
-            "nix.serverPath" = "nixd";
-
-            "[nix]" = {
-              "editor.defaultFormatter" = "kamadorueda.alejandra";
-              "editor.formatOnPaste" = true;
-              "editor.formatOnSave" = true;
-              "editor.formatOnType" = false;
-            };
-            "alejandra.program" = "alejandra";
-
             "vue.server.hybridMode" = "auto";
+            "vue.codeLens.enabled" = true;
+            "vue.autoInsert.dotValue" = true;
+            "vue.autoInsert.bracketSpacing" = true;
+            "vue.inlayHints.destructuredProps" = true;
+            "vue.inlayHints.missingProps" = true;
+            "vue.inlayHints.inlineHandlerLeading" = true;
+            "vue.inlayHints.optionsWrapper" = true;
+            "vue.inlayHints.vBindShorthand" = true;
             "eslint.format.enable" = true;
             "eslint.useFlatConfig" = true;
             "[vue]" = {
@@ -224,8 +218,7 @@ in
               "nix" = false;
             };
 
-            "fittencode.languagePreference.displayPreference" = "zh-cn";
-            "fittencode.languagePreference.commentPreference" = "zh-cn";
+            "github.copilot.nextEditSuggestions.enabled" = true;
           };
         in
         {
