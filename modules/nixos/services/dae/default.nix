@@ -79,7 +79,7 @@ in
 
         domain(suffix: ota.waydro.id, suffix: sourceforge.net) -> proxy
         domain(suffix:duckduckgo.com) -> proxy
-        domain(suffix: steamcommunity.com, suffix: steampowered.com, suffix: fastly.steamstatic.com) -> proxy
+        domain(suffix: steamcommunity.com, suffix: steampowered.com, suffix: fastly.steamstatic.com, suffix: client-update.steamstatic.com) -> proxy
         domain(suffix: warframe.com) -> proxy
 
         dip(geoip:cn, geoip:private) -> direct
