@@ -193,11 +193,18 @@ in
         }
         {
           matches = [
+            { title = "^yysls\.exe$"; }
+          ];
+          open-fullscreen = true;
+        }
+        {
+          matches = [
             { app-id = "^com\.mitchellh\.ghostty$"; }
             { app-id = "neovide"; }
             { app-id = "^org\.telegram\.desktop$"; }
             { app-id = "Bytedance-feishu"; }
             { app-id = "wechat"; }
+            { app-id = "^dev\.zed\.Zed$"; }
           ];
           opacity = 0.9;
         }
