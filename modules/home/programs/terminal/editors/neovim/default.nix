@@ -15,8 +15,7 @@ let
     modules = [
       {
         config = {
-          # plugins.windsurf-nvim.settings.config_path = "${config.sops.secrets."codeium_key".path}";
-          plugins.lsp.servers.unocss.package = pkgs.${namespace}.unocss-language-server;
+          lsp.servers.unocss.package = pkgs.${namespace}.unocss-language-server;
         };
       }
     ];
@@ -37,7 +36,7 @@ in
     home = {
       sessionVariables = {
         EDITOR = "nvim";
-        DEEPSEEK_API_KEY = "$(cat ${config.sops.secrets.DEEPSEEK_API_KEY.path})";
+        # DEEPSEEK_API_KEY = "$(cat ${config.sops.secrets.DEEPSEEK_API_KEY.path})";
       };
 
       packages = [
@@ -53,7 +52,6 @@ in
       };
     };
 
-    sops.secrets."codeium_key" = { };
-    sops.secrets."DEEPSEEK_API_KEY" = { };
+    # sops.secrets."DEEPSEEK_API_KEY" = { };
   };
 }
