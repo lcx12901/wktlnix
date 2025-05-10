@@ -205,6 +205,7 @@ in
             { app-id = "Bytedance-feishu"; }
             { app-id = "wechat"; }
             { app-id = "^dev\.zed\.Zed$"; }
+            { app-id = "code"; }
           ];
           opacity = 0.9;
         }
