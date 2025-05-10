@@ -38,15 +38,16 @@ in
 
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode;
-      # package = pkgs.vscode.override {
-      #   commandLineArgs = [
-      #     "--ozone-platform-hint=auto"
-      #     "--ozone-platform=wayland"
-      #     "--gtk-version=4"
-      #     "--enable-wayland-ime"
-      #   ];
-      # };
+      # package = pkgs.vscode;
+      package = pkgs.vscode.override {
+        commandLineArgs = [
+          "--ozone-platform-hint=auto"
+          "--ozone-platform=wayland"
+          "--gtk-version=4"
+          "--enable-wayland-ime"
+          "--wayland-text-input-version=3"
+        ];
+      };
 
       profiles =
         let
@@ -70,8 +71,8 @@ in
               vue.volar
               antfu.unocss
 
-              github.copilot
-              github.copilot-chat
+              # github.copilot
+              # github.copilot-chat
               # simonhe.common-intellisense
 
               # evils.uniapp-vscode
