@@ -22,7 +22,7 @@ in
       (leaf "open-floating" true)
     ])
     (window-rule [
-      (match { app-id = "^yysls\.exe$"; })
+      (match { title = "^yysls\.exe$"; })
       (leaf "open-fullscreen" true)
     ])
     (window-rule [
@@ -39,10 +39,6 @@ in
       (leaf "opacity" 0.85)
     ])
     (window-rule [
-      (match {
-        app-id = "^org\\.telegram\\.desktop$";
-        title = "媒体查看器";
-      })
       (match {
         app-id = "^Bytedance-feishu$";
         title = "图片";
