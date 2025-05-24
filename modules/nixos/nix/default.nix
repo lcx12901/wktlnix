@@ -42,8 +42,7 @@ in
         "nix/flake-channels/nixpkgs".source = nixpkgs;
         "nix/flake-channels/home-manager".source = home-manager;
 
-        # preserve current flake in /etc
-        "nixos/flake".source = self;
+        "nixos".source = self;
       };
 
       systemPackages = [ pkgs.gitMinimal ];
@@ -150,11 +149,12 @@ in
           # external builders can also pick up those substituters
           builders-use-substitutes = true;
 
+          download-buffer-size = 500000000;
+
           # substituters to use
           substituters = [
             "https://cache.garnix.io" # garnix binary cache, hosts prismlauncher
             "https://cache.nixos.org" # funny binary cache
-            "https://nixpkgs-wayland.cachix.org" # automated builds of *some* wayland packages
             "https://nix-community.cachix.org" # nix-community cache
             "https://nixpkgs-unfree.cachix.org" # unfree-package cache
             "https://numtide.cachix.org" # another unfree package cache
@@ -162,7 +162,6 @@ in
 
           trusted-public-keys = [
             "cache.ngi0.nixos.org-1:KqH5CBLNSyX184S9BKZJo1LxrxJ9ltnY2uAs5c/f1MA="
-            "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
             "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
             "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
