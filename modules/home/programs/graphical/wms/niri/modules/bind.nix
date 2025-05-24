@@ -16,7 +16,6 @@ let
 
   sh = getExe' config.programs.bash.package "sh";
   flameshot = getExe pkgs.flameshot;
-  telegram = getExe pkgs.telegram-desktop;
   rofi = getExe config.programs.rofi.package;
   hyprlock = getExe config.programs.hyprlock.package;
   wpctl = getExe' pkgs.wireplumber "wpctl";
