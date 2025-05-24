@@ -40,7 +40,6 @@
         impermanence.nixosModules.home-manager.impermanence
         # spicetify-nix.homeManagerModules.default
         sops-nix.homeManagerModules.sops
-        niri.homeModules.niri
         zen-browser.homeModules.twilight
         nix-zed-extensions.homeManagerModules.default
       ];
@@ -49,6 +48,7 @@
       systems.modules.nixos = with inputs; [
         disko.nixosModules.disko
         sops-nix.nixosModules.sops
+        niri.nixosModules.niri
         impermanence.nixosModules.impermanence
         daeuniverse.nixosModules.dae
       ];
@@ -100,10 +100,6 @@
     };
     ags = {
       url = "github:Aylur/ags/v3";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixpkgs-wayland = {
-      url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-gaming = {

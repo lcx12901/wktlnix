@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   namespace,
@@ -18,7 +19,21 @@ in
 
     programs = {
       graphical = {
-        wms.niri = enabled;
+        wms.niri = {
+          enable = true;
+          extraConfig =
+            let
+              inherit (inputs.niri.lib.kdl) node leaf flag;
+              output = node "output";
+            in
+            [
+              (output "eDP-1" [
+                (leaf "mode" "2560x1440@164.998")
+                (leaf "scale" 1.0)
+                (flag "variable-refresh-rate")
+              ])
+            ];
+        };
         # apps.discord = enabled;
         editors.zed = enabled;
         video = enabled;

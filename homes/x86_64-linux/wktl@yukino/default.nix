@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   namespace,
@@ -18,7 +19,20 @@ in
 
     programs = {
       graphical = {
-        wms.niri = enabled;
+        wms.niri = {
+          enable = true;
+          extraConfig =
+            let
+              inherit (inputs.niri.lib.kdl) node leaf;
+              output = node "output";
+            in
+            [
+              (output "HDMI-A-1" [
+                (leaf "mode" "1920x1080@100.000")
+                (leaf "scale" 1.0)
+              ])
+            ];
+        };
         editors = {
           vscode = enabled;
           zed = enabled;
