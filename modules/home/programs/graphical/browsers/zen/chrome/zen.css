@@ -99,3 +99,8 @@ tabpanels .browserStack browser {
   height: 100%;
   background-color: var(--zen-primary-color);
 }
+
+/** */
+#zen-appcontent-navbar-wrapper[zen-has-hover="true"] {
+  height: calc(var(--zen-element-separation) + 0.1px) !important;
+}
