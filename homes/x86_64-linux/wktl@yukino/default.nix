@@ -35,7 +35,7 @@ in
         };
         editors = {
           vscode = enabled;
-          zed = enabled;
+          # zed = enabled;
         };
         apps.discord = enabled;
         video = enabled;
