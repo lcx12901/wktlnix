@@ -26,13 +26,13 @@ let
     modules-left = [
       "custom/launcher"
       "pulseaudio"
-      "mpd"
+      # "mpd"
     ];
 
     modules-center = [
-      # "cava#left"
+      "cava#left"
       "niri/workspaces"
-      # "cava#right"
+      "cava#right"
     ];
 
     modules-right = [
