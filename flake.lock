@@ -1178,11 +1178,11 @@
     "wallpapers": {
       "flake": false,
       "locked": {
-        "lastModified": 1742609675,
-        "narHash": "sha256-SUHfNaXjZ10wX8j4qzwo7rvk6WKqunjBHksqLeZw45E=",
+        "lastModified": 1748183458,
+        "narHash": "sha256-GchnhaUn9zra8GhItWFtIoDb+UyenAMj4x4U+KX7uSY=",
         "owner": "lcx12901",
         "repo": "wallpapers",
-        "rev": "5545b4c582033cdac8962448bcaedd6e5f6506ba",
+        "rev": "559edea789aa23edc5143c5ab687ed0e69176778",
         "type": "github"
       },
       "original": {
