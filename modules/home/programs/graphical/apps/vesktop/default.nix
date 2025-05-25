@@ -1,4 +1,5 @@
 {
+  osConfig,
   config,
   lib,
   namespace,
@@ -6,6 +7,8 @@
 }:
 let
   cfg = config.${namespace}.programs.graphical.apps.vesktop;
+
+  persist = osConfig.${namespace}.system.persist.enable;
 in
 {
   options.${namespace}.programs.graphical.apps.vesktop = {
@@ -116,6 +119,13 @@ in
             logLimit = 50;
           };
         };
+      };
+    };
+
+    home.persistence = lib.mkIf persist {
+      "/persist/home/${config.${namespace}.user.name}" = {
+        allowOther = true;
+        directories = [ ".config/vesktop" ];
       };
     };
   };
