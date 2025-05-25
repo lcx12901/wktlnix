@@ -35,8 +35,7 @@ in
             ];
         };
         # apps.discord = enabled;
-        editors.zed = enabled;
-        video = enabled;
+        # editors.zed = enabled;
         browsers.zen = enabled;
       };
     };
