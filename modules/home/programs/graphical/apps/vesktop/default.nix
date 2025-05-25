@@ -105,6 +105,9 @@ in
               enabled = true;
               settingsLocation = "aboveNitro";
             };
+            Translate = {
+              enabled = true;
+            };
           };
           notifications = {
             timeout = 5000;

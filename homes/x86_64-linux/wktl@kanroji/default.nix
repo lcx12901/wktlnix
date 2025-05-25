@@ -34,7 +34,7 @@ in
               ])
             ];
         };
-        # apps.discord = enabled;
+        apps.vesktop = enabled;
         # editors.zed = enabled;
         browsers.zen = enabled;
       };
