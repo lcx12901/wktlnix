@@ -16,6 +16,7 @@ let
 
   sh = getExe' config.programs.bash.package "sh";
   flameshot = getExe pkgs.flameshot;
+  neovide = getExe pkgs.neovide;
   telegram = getExe pkgs.telegram-desktop;
   rofi = getExe config.programs.rofi.package;
   hyprlock = getExe config.programs.hyprlock.package;
@@ -53,6 +54,12 @@ in
       ])
       (plain "Mod+Return" [
         (spawn [ ghostty ])
+      ])
+      (plain "Mod+N" [
+        (spawn [ neovide ])
+      ])
+      (plain "Mod+T" [
+        (spawn [ telegram ])
       ])
       (plain "Mod+B" [
         (spawn [ "zen-twilight" ])

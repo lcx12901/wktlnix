@@ -18,10 +18,10 @@ let
   sh = getExe' config.programs.bash.package "sh";
   sleep = getExe' pkgs.coreutils "sleep";
   waybar = getExe config.programs.waybar.package;
-  # fcitx5 = getExe' osConfig.i18n.inputMethod.package "fcitx5";
   xwayland-satellite = getExe pkgs.xwayland-satellite;
   swww = getExe pkgs.swww;
   swww-daemon = getExe' pkgs.swww "swww-daemon";
+  swaybg = getExe pkgs.swaybg;
   wl-paste = getExe' pkgs.wl-clipboard "wl-paste";
   cliphist = getExe' pkgs.cliphist "cliphist";
 in
@@ -53,19 +53,24 @@ in
       "${inputs.wallpapers}/kobeni_by_lxlbanner.png"
     ])
     (spawn-at-startup [
+      swaybg
+      "-i"
+      "${inputs.wallpapers}/kobeni_by_lxlbanner-blur.png"
+    ])
+    (spawn-at-startup [
       sh
       "-c"
       "${sleep} 10; fcitx5 --replace"
     ])
     (plain "layout" [
       (plain "border" [
-        (leaf "width" 4)
+        (leaf "width" 3)
         (leaf "active-color" "#ca9ee6")
         (leaf "inactive-color" "#babbf1")
       ])
       (plain "focus-ring" [
         (flag "off")
-        (leaf "width" 4)
+        (leaf "width" 3)
         (leaf "active-color" "#ca9ee6")
         (leaf "inactive-color" "#babbf1")
       ])
@@ -111,6 +116,18 @@ in
       (leaf "QT_WAYLAND_DISABLE_WINDOWDECORATION" "1")
       (leaf "XDG_CURRENT_DESKTOP" "niri")
       (leaf "XDG_SESSION_TYPE" "wayland")
+    ])
+  ]
+)
+++ (
+  let
+    layer-rule = plain "layer-rule";
+    match = leaf "match";
+  in
+  [
+    (layer-rule [
+      (match { namespace = "^wallpaper$"; })
+      (leaf "place-within-backdrop" true)
     ])
   ]
 )
