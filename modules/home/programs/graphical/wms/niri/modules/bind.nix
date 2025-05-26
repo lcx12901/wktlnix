@@ -371,15 +371,19 @@ in
       ])
       (plain "Print" [
         (spawn [
-          flameshot
-          "gui"
+          sh
+          "-c"
+          "${flameshot} gui"
         ])
       ])
+      (plain "Shift+Print" [
+        (leaf "screenshot" { show-pointer = false; })
+      ])
       (plain "Ctrl+Print" [
-        (flag "screenshot-screen")
+        (leaf "screenshot-screen" { write-to-disk = false; })
       ])
       (plain "Alt+Print" [
-        (flag "screenshot-window")
+        (leaf "screenshot-window" { write-to-disk = false; })
       ])
       (plain "Mod+Shift+Q" [
         (flag "quit")

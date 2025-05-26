@@ -22,6 +22,7 @@ let
   swww = getExe pkgs.swww;
   swww-daemon = getExe' pkgs.swww "swww-daemon";
   swaybg = getExe pkgs.swaybg;
+  flameshot = getExe pkgs.flameshot;
   wl-paste = getExe' pkgs.wl-clipboard "wl-paste";
   cliphist = getExe' pkgs.cliphist "cliphist";
 in
@@ -62,6 +63,7 @@ in
       "-c"
       "${sleep} 10; fcitx5 --replace"
     ])
+    (spawn-at-startup [ flameshot ])
     (plain "layout" [
       (plain "border" [
         (leaf "width" 3)
