@@ -1221,11 +1221,11 @@
         "resession-nvim": "resession-nvim"
       },
       "locked": {
-        "lastModified": 1748270377,
-        "narHash": "sha256-kEJ3YukHOj2IY8qq+rSCgLfsAZeSZpHwGq33afmkpLI=",
+        "lastModified": 1748272011,
+        "narHash": "sha256-h73Bh0i/4FEjqStJaL0f9OQC49xjO424hOdqk1YM5C8=",
         "owner": "lcx12901",
         "repo": "nixvim-part",
-        "rev": "d100b8ebe389030928e7c6d7b6f97b83b63589b8",
+        "rev": "35f90245d0e13a2cc8c1360cbc8b19aa87d38768",
         "type": "github"
       },
       "original": {
