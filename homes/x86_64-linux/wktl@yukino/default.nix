@@ -37,7 +37,7 @@ in
           vscode = enabled;
           # zed = enabled;
         };
-        apps.discord = enabled;
+        apps.vesktop = enabled;
         video = enabled;
         browsers.zen = enabled;
         addons = {
