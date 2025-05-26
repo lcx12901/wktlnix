@@ -5,9 +5,11 @@
 :root[zen-single-toolbar='true'] {
   & #zen-appcontent-navbar-container {
     --zen-toolbar-height: 6px !important;
+
     .titlebar-buttonbox-container {
       display: none !important;
     }
+
     #PersonalToolbar {
       display: none !important;
     }
@@ -15,7 +17,7 @@
 }
 
 .browserContainer {
-    clip-path: inset(0 round var(--zen-native-inner-radius));
+  clip-path: inset(0 round var(--zen-native-inner-radius));
 }
 
 /* Animations */
@@ -32,12 +34,13 @@
 }
 
 #urlbar[open][zen-floating-urlbar="true"] #urlbar-background {
-    border-radius: 1em !important;
+  border-radius: 1em !important;
 }
 
 /* Loading tab animation */
 tab[busy] {
   scale: 0.95 !important;
+
   .tab-background {
     opacity: 0.3 !important;
   }
@@ -51,15 +54,13 @@ tabpanels .browserStack browser {
 /*  transparent url bar  */
 #urlbar[open][zen-floating-urlbar="true"] {
   #urlbar-background {
-    background-color: light-dark(
-      color-mix(in srgb, #fdfdfd 75%, transparent),
-      color-mix(in srgb, #0e0e0e 75%, transparent)
-    ) !important;
+    background-color: light-dark(color-mix(in srgb, #fdfdfd 75%, transparent),
+        color-mix(in srgb, #0e0e0e 75%, transparent)) !important;
   }
 }
 
 /* url search item color */
-.urlbarView-row:is([type="search"],[type="autofill_origin"],[type="url"]) {
+.urlbarView-row:is([type="search"], [type="autofill_origin"], [type="url"]) {
   color: white !important;
 }
 
@@ -81,10 +82,8 @@ tabpanels .browserStack browser {
 }
 
 /* Only Close On Hover */
-#tabbrowser-tabs
-  .tabbrowser-tab:not([pinned]):is([visuallyselected]):not(:hover)
-  .tab-close-button {
-    display: none !important;
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([visuallyselected]):not(:hover) .tab-close-button {
+  display: none !important;
 }
 
 /* Better Active Tab Indicator */
