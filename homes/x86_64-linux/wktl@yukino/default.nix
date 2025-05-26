@@ -38,7 +38,6 @@ in
           # zed = enabled;
         };
         apps.vesktop = enabled;
-        video = enabled;
         browsers.zen = enabled;
         addons = {
           waybar.basicFontSize = "12";

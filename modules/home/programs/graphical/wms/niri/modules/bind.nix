@@ -16,6 +16,7 @@ let
 
   sh = getExe' config.programs.bash.package "sh";
   flameshot = getExe pkgs.flameshot;
+  vlc = getExe pkgs.vlc;
   neovide = getExe pkgs.neovide;
   telegram = getExe pkgs.telegram-desktop;
   rofi = getExe config.programs.rofi.package;
@@ -60,6 +61,9 @@ in
       ])
       (plain "Mod+T" [
         (spawn [ telegram ])
+      ])
+      (plain "Mod+V" [
+        (spawn [ vlc ])
       ])
       (plain "Mod+B" [
         (spawn [ "zen-twilight" ])
