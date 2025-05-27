@@ -1,8 +1,0 @@
-[waydroid_script]
-src.git = "https://github.com/huakim/waydroid_script"
-fetch.github = "huakim/waydroid_script"
-
-[v2ray-rules-dat]
-src.git = "https://github.com/Loyalsoldier/v2ray-rules-dat"
-src.branch = "release"
-fetch.github = "Loyalsoldier/v2ray-rules-dat"

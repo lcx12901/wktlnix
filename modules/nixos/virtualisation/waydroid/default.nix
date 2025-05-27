@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   namespace,
   ...
 }:
@@ -25,10 +24,6 @@ in
   # persist.waydroid.dpi=280
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [
-      pkgs.${namespace}.waydroid-script
-    ];
-
     environment.persistence."/persist" = {
       hideMounts = true;
 

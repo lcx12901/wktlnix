@@ -1221,17 +1221,17 @@
         "resession-nvim": "resession-nvim"
       },
       "locked": {
-        "lastModified": 1748362880,
+        "lastModified": 1748363770,
         "narHash": "sha256-rgnmJMzlk76x1j5TEAIu3rPHTOwCuBvaSilfX9xw95A=",
-        "ref": "refs/heads/main",
-        "rev": "6e5f7094aaea13345258fc592ed1aed681b4254f",
-        "revCount": 52,
-        "type": "git",
-        "url": "file:/home/wktl/Coding/nixvim-part"
+        "owner": "lcx12901",
+        "repo": "nixvim-part",
+        "rev": "d68805175a31643a8b7479d2ff2ab33044e17653",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:/home/wktl/Coding/nixvim-part"
+        "owner": "lcx12901",
+        "repo": "nixvim-part",
+        "type": "github"
       }
     },
     "xwayland-satellite-stable": {
