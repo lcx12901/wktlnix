@@ -129,9 +129,6 @@
     };
 
     wktlvim.url = "github:lcx12901/nixvim-part";
-    # wktlvim = {
-    #   url = "git+file:/home/wktl/Coding/nixvim-part";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    # wktlvim.url = "git+file:/home/wktl/Coding/nixvim-part";
   };
 }
