@@ -27,7 +27,7 @@ in
               output = node "output";
             in
             [
-              (output "eDP-1" [
+              (output "DP-1" [
                 (leaf "mode" "2560x1440@164.998")
                 (leaf "scale" 1.0)
                 (flag "variable-refresh-rate")
