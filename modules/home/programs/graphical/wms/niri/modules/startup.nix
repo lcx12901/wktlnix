@@ -110,7 +110,6 @@ in
     ])
     (plain "environment" [
       (leaf "DISPLAY" DISPLAY)
-      (leaf "GDK_BACKEND" "wayland,x11")
       (leaf "GSK_RENDERER" "gl")
       (leaf "NIXOS_OZONE_WL" "1")
       (leaf "MOZ_ENABLE_WAYLAND" "1")
