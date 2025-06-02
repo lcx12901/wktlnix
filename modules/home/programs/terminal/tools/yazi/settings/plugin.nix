@@ -7,64 +7,33 @@ let
 in
 {
   plugin = {
-    prepend_fetchers =
-      lib.optionals (lib.hasAttr "git" enabledPlugins) [
-        {
-          id = "git";
-          name = "*";
-          run = "git";
-        }
-        {
-          id = "git";
-          name = "*/";
-          run = "git";
-        }
-      ]
-      ++ lib.optional (lib.hasAttr "mime-ext" enabledPlugins) {
-        id = "mime";
+    prepend_fetchers = lib.optionals (lib.hasAttr "git" enabledPlugins) [
+      {
+        id = "git";
         name = "*";
-        run = "mime-ext";
-        prio = "high";
-      };
+        run = "git";
+      }
+      {
+        id = "git";
+        name = "*/";
+        run = "git";
+      }
+    ];
 
-    prepend_preloaders =
-      [
-        {
-          name = "/mnt/austinserver/**";
-          run = "noop";
-        }
-        {
-          name = "/mnt/disk/**";
-          run = "noop";
-        }
-        {
-          name = "/mnt/dropbox/**";
-          run = "noop";
-        }
-      ]
-      ++ lib.optionals (lib.hasAttr "duckdb" enabledPlugins) (
-        let
-          multiFileTypes = [
-            "csv"
-            "tsv"
-            "json"
-            "parquet"
-          ];
-          regularFileTypes = [
-            "db"
-            "duckdb"
-          ];
-        in
-        (map (ext: {
-          name = "*.${ext}";
-          run = "duckdb";
-          multi = false;
-        }) multiFileTypes)
-        ++ (map (ext: {
-          name = "*.${ext}";
-          run = "duckdb";
-        }) regularFileTypes)
-      );
+    prepend_preloaders = [
+      {
+        name = "/mnt/austinserver/**";
+        run = "noop";
+      }
+      {
+        name = "/mnt/disk/**";
+        run = "noop";
+      }
+      {
+        name = "/mnt/dropbox/**";
+        run = "noop";
+      }
+    ];
 
     preloaders = [
       # Image
@@ -89,21 +58,7 @@ in
     ];
 
     prepend_previewers =
-      lib.optionals (lib.hasAttr "duckdb" enabledPlugins) (
-        let
-          fileTypes = [
-            "csv"
-            "tsv"
-            "json"
-            "parquet"
-          ];
-        in
-        map (ext: {
-          name = "*.${ext}";
-          run = "duckdb";
-        }) fileTypes
-      )
-      ++ lib.optional (lib.hasAttr "glow" enabledPlugins) {
+      lib.optional (lib.hasAttr "glow" enabledPlugins) {
         name = "*.md";
         run = "glow";
       }

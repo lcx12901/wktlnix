@@ -25,7 +25,6 @@ in
       in
       optionalPluginPackage "ouch" pkgs.ouch
       ++ optionalPluginPackage "glow" pkgs.glow
-      ++ optionalPluginPackage "duckdb" pkgs.duckdb
       ++ [
         pkgs.xdragon
       ];
@@ -50,11 +49,10 @@ in
         inherit (pkgs.yaziPlugins)
           chmod
           diff
-          duckdb
           full-border
+          git
           glow
           jump-to-char
-          mime-ext
           mount
           ouch
           restore
@@ -75,7 +73,7 @@ in
             enabled = false;
           };
 
-          manager = {
+          mgr = {
             ratio = [
               1
               3
