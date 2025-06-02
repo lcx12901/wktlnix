@@ -17,10 +17,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    # enable amdgpu kernel module
-    boot = {
-      kernelModules = [ "amdgpu" ];
-    };
 
     environment.systemPackages = with pkgs; [
       amdgpu_top
@@ -66,7 +62,6 @@ in
 
     services.xserver.videoDrivers = lib.mkDefault [
       "modesetting"
-      "amdgpu"
     ];
   };
 }
