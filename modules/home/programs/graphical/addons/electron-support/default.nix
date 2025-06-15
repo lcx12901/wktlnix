@@ -15,9 +15,16 @@ in
     enable = mkBoolOpt false "Whether to enable wayland electron support in the desktop environment.";
   };
 
-  # TODO: electron unsupport `NIXOS_OZONE_WL = "1"`， and fcitx5 in electron
-
   config = mkIf cfg.enable {
-    xdg.configFile."electron-flags.conf".source = ./electron-flags.conf;
+    home.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+    };
+
+    xdg.configFile."electron-flags.conf".text = ''
+      --enable-features=UseOzonePlatform,WaylandWindowDecorations
+      --ozone-platform=wayland
+      --ozone-platform-hint=wayland
+    '';
   };
 }
