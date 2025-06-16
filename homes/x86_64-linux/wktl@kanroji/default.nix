@@ -36,7 +36,10 @@ in
         };
         apps.vesktop = enabled;
         # editors.zed = enabled;
-        browsers.zen = enabled;
+        browsers = {
+          # zen = enabled;
+          firefox = enabled;
+        };
       };
     };
 

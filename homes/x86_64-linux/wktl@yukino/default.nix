@@ -37,8 +37,11 @@ in
           vscode = enabled;
           # zed = enabled;
         };
-        apps.vesktop = enabled;
-        browsers.zen = enabled;
+        # apps.vesktop = enabled;
+        browsers = {
+          # zen = enabled;
+          firefox = enabled;
+        };
         addons = {
           waybar.basicFontSize = "12";
         };
