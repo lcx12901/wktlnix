@@ -51,6 +51,7 @@
         niri.nixosModules.niri
         impermanence.nixosModules.impermanence
         daeuniverse.nixosModules.dae
+        stylix.nixosModules.stylix
       ];
     };
 
@@ -113,6 +114,15 @@
     impermanence.url = "github:nix-community/impermanence";
     #FIXME: updated to include accents, https://github.com/catppuccin/nix/pull/343
     catppuccin.url = "github:catppuccin/nix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        # Optional inputs removed
+        flake-compat.follows = "";
+      };
+    };
     catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";

@@ -30,6 +30,7 @@ in
       services = {
         dbus = enabled;
       };
+      theme.stylix = enabled;
     };
 
     services.xserver = enabled;
