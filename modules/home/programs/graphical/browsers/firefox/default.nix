@@ -121,7 +121,9 @@ in
             "gfx.font_rendering.cleartype_params.force_gdi_classic_for_families" = "";
             "gfx.font_rendering.directwrite.bold_simulation" = 2;
 
-            "intl.locale.requested" = "zh-CN,en-US";
+            "intl.accept_languages" = "zh-CN,zh,en-US,en";
+            "intl.locale.requested" = "zh-CN";
+            "general.useragent.locale" = "zh-CN";
             "media.eme.enabled" = true;
             "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
 
@@ -143,6 +145,8 @@ in
             "browser.download.start_downloads_in_tmp_dir" = true;
             "browser.download.useDownloadDir" = true;
             "browser.download.dir" = "~/Downloads";
+
+            "browser.translations.automaticallyPopup" = false;
 
             "media.block-autoplay-until-in-foreground" = true;
             "media.block-play-until-document-interaction" = true;
