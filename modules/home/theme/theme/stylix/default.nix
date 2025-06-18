@@ -118,6 +118,7 @@ in
         zathura.enable = !config.${namespace}.theme.catppuccin.enable;
         zellij.enable = !config.${namespace}.theme.catppuccin.enable;
         gnome.enable = !config.${namespace}.theme.catppuccin.enable;
+        vscode.enable = false;
         gtk.enable = false;
         hyprlock.useWallpaper = false;
         hyprlock.enable = false;
