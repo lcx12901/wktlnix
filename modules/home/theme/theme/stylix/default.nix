@@ -51,7 +51,7 @@ in
         sizes = {
           desktop = 11;
           applications = 12;
-          terminal = 13;
+          terminal = 14;
           popups = 12;
         };
 
@@ -77,7 +77,6 @@ in
         enable = true;
         inherit (cfg.icon) package;
         dark = cfg.icon.name;
-        # TODO: support custom light
         light = cfg.icon.name;
       };
 
@@ -108,7 +107,6 @@ in
         gitui.enable = !config.${namespace}.theme.catppuccin.enable;
         helix.enable = !config.${namespace}.theme.catppuccin.enable;
         k9s.enable = !config.${namespace}.theme.catppuccin.enable;
-        kitty.enable = !config.${namespace}.theme.catppuccin.enable;
         lazygit.enable = !config.${namespace}.theme.catppuccin.enable;
         ncspot.enable = !config.${namespace}.theme.catppuccin.enable;
         neovim.enable = !config.${namespace}.theme.catppuccin.enable;

@@ -47,7 +47,7 @@ in
       programs = {
         terminal = {
           emulators = {
-            ghostty = enabled;
+            # ghostty = enabled;
             kitty = enabled;
           };
           tools.cava = enabled;

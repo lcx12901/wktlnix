@@ -23,7 +23,7 @@ let
   rofi = getExe config.programs.rofi.package;
   hyprlock = getExe config.programs.hyprlock.package;
   wpctl = getExe' pkgs.wireplumber "wpctl";
-  ghostty = getExe config.programs.ghostty.package;
+  kitty = getExe config.programs.kitty.package;
   wl-copy = getExe' pkgs.wl-clipboard "wl-copy";
   cliphist = getExe' pkgs.cliphist "cliphist";
 in
@@ -55,7 +55,7 @@ in
         (flag "show-hotkey-overlay")
       ])
       (plain "Mod+Return" [
-        (spawn [ ghostty ])
+        (spawn [ kitty ])
       ])
       (plain "Mod+N" [
         (spawn [ neovide ])

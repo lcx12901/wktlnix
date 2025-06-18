@@ -36,6 +36,7 @@ in
     ])
     (window-rule [
       (match { app-id = "neovide"; })
+      (match { app-id = "kitty"; })
       (leaf "opacity" 0.85)
     ])
     (window-rule [

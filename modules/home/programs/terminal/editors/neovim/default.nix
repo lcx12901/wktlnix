@@ -36,13 +36,9 @@ in
     home = {
       sessionVariables = {
         EDITOR = "nvim";
-        # DEEPSEEK_API_KEY = "$(cat ${config.sops.secrets.DEEPSEEK_API_KEY.path})";
       };
 
-      packages = [
-        wktlvim
-        pkgs.neovide
-      ];
+      packages = [ wktlvim ];
 
       persistence = mkIf persist {
         "/persist/home/${config.${namespace}.user.name}" = {
@@ -51,7 +47,5 @@ in
         };
       };
     };
-
-    # sops.secrets."DEEPSEEK_API_KEY" = { };
   };
 }
