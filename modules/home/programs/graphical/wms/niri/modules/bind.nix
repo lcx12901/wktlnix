@@ -14,6 +14,12 @@ let
     plain
     ;
 
+  node' =
+    name: arg: children:
+    node name [ arg ] children;
+
+  leaf' = name: arg: leaf name [ arg ];
+
   sh = getExe' config.programs.bash.package "sh";
   flameshot = getExe pkgs.flameshot;
   vlc = getExe pkgs.vlc;
@@ -72,7 +78,7 @@ in
       (plain "Mod+Space" [
         (flag "toggle-column-tabbed-display")
       ])
-      (node "XF86AudioRaiseVolume" { allow-when-locked = true; } [
+      (node' "XF86AudioRaiseVolume" { allow-when-locked = true; } [
         (spawn [
           wpctl
           "set-volume"
@@ -80,7 +86,7 @@ in
           "0.1+"
         ])
       ])
-      (node "XF86AudioLowerVolume" { allow-when-locked = true; } [
+      (node' "XF86AudioLowerVolume" { allow-when-locked = true; } [
         (spawn [
           wpctl
           "set-volume"
@@ -88,7 +94,7 @@ in
           "0.1-"
         ])
       ])
-      (node "XF86AudioMute" { allow-when-locked = true; } [
+      (node' "XF86AudioMute" { allow-when-locked = true; } [
         (spawn [
           wpctl
           "set-volume"
@@ -96,7 +102,7 @@ in
           "toggle"
         ])
       ])
-      (node "XF86AudioMicMute" { allow-when-locked = true; } [
+      (node' "XF86AudioMicMute" { allow-when-locked = true; } [
         (spawn [
           wpctl
           "set-volume"
@@ -107,7 +113,7 @@ in
       (plain "Mod+Q" [
         (flag "close-window")
       ])
-      (node "Mod+O" { repeat = false; } [
+      (node' "Mod+O" { repeat = false; } [
         (flag "toggle-overview")
       ])
       (plain "Mod+Left" [
@@ -254,10 +260,10 @@ in
       (plain "Mod+Ctrl+I" [
         (flag "move-workspace-up")
       ])
-      (node "Mod+Shift+WheelScrollDown" { cooldown-ms = 150; } [
+      (node' "Mod+Shift+WheelScrollDown" { cooldown-ms = 150; } [
         (flag "focus-workspace-down")
       ])
-      (node "Mod+Shift+WheelScrollUp" { cooldown-ms = 150; } [
+      (node' "Mod+Shift+WheelScrollUp" { cooldown-ms = 150; } [
         (flag "focus-workspace-up")
       ])
       (plain "Mod+WheelScrollDown" [
@@ -267,58 +273,58 @@ in
         (flag "focus-column-left")
       ])
       (plain "Mod+1" [
-        (leaf "focus-workspace" 1)
+        (leaf' "focus-workspace" 1)
       ])
       (plain "Mod+2" [
-        (leaf "focus-workspace" 2)
+        (leaf' "focus-workspace" 2)
       ])
       (plain "Mod+3" [
-        (leaf "focus-workspace" 3)
+        (leaf' "focus-workspace" 3)
       ])
       (plain "Mod+4" [
-        (leaf "focus-workspace" 4)
+        (leaf' "focus-workspace" 4)
       ])
       (plain "Mod+5" [
-        (leaf "focus-workspace" 5)
+        (leaf' "focus-workspace" 5)
       ])
       (plain "Mod+6" [
-        (leaf "focus-workspace" 6)
+        (leaf' "focus-workspace" 6)
       ])
       (plain "Mod+7" [
-        (leaf "focus-workspace" 7)
+        (leaf' "focus-workspace" 7)
       ])
       (plain "Mod+8" [
-        (leaf "focus-workspace" 8)
+        (leaf' "focus-workspace" 8)
       ])
       (plain "Mod+9" [
-        (leaf "focus-workspace" 9)
+        (leaf' "focus-workspace" 9)
       ])
       (plain "Mod+Shift+1" [
-        (leaf "move-column-to-workspace" 1)
+        (leaf' "move-column-to-workspace" 1)
       ])
       (plain "Mod+Shift+2" [
-        (leaf "move-column-to-workspace" 2)
+        (leaf' "move-column-to-workspace" 2)
       ])
       (plain "Mod+Shift+3" [
-        (leaf "move-column-to-workspace" 3)
+        (leaf' "move-column-to-workspace" 3)
       ])
       (plain "Mod+Shift+4" [
-        (leaf "move-column-to-workspace" 4)
+        (leaf' "move-column-to-workspace" 4)
       ])
       (plain "Mod+Shift+5" [
-        (leaf "move-column-to-workspace" 5)
+        (leaf' "move-column-to-workspace" 5)
       ])
       (plain "Mod+Shift+6" [
-        (leaf "move-column-to-workspace" 6)
+        (leaf' "move-column-to-workspace" 6)
       ])
       (plain "Mod+Shift+7" [
-        (leaf "move-column-to-workspace" 7)
+        (leaf' "move-column-to-workspace" 7)
       ])
       (plain "Mod+Shift+8" [
-        (leaf "move-column-to-workspace" 8)
+        (leaf' "move-column-to-workspace" 8)
       ])
       (plain "Mod+Shift+9" [
-        (leaf "move-column-to-workspace" 9)
+        (leaf' "move-column-to-workspace" 9)
       ])
       (plain "Mod+F" [
         (flag "toggle-window-floating")
@@ -344,35 +350,35 @@ in
       (plain "Mod+Period" [
         (flag "expel-window-from-column")
       ])
-      (node "Mod+R" { repeat = false; } [
+      (node' "Mod+R" { repeat = false; } [
         (flag "switch-preset-column-width")
       ])
-      (node "Mod+Shift+R" { repeat = false; } [
+      (node' "Mod+Shift+R" { repeat = false; } [
         (flag "switch-preset-window-height")
       ])
       (plain "Mod+Ctrl+R" [
         (flag "reset-window-height")
       ])
-      (node "Mod+M" { repeat = false; } [
+      (node' "Mod+M" { repeat = false; } [
         (flag "maximize-column")
       ])
-      (node "Mod+Shift+M" { repeat = false; } [
+      (node' "Mod+Shift+M" { repeat = false; } [
         (flag "fullscreen-window")
       ])
       (plain "Mod+Z" [
         (flag "center-column")
       ])
-      (node "Mod+Minus" { repeat = false; } [
-        (leaf "set-column-width" "-10%")
+      (node' "Mod+Minus" { repeat = false; } [
+        (leaf' "set-column-width" "-10%")
       ])
-      (node "Mod+Equal" { repeat = false; } [
-        (leaf "set-column-width" "+10%")
+      (node' "Mod+Equal" { repeat = false; } [
+        (leaf' "set-column-width" "+10%")
       ])
-      (node "Mod+Shift+Minus" { repeat = false; } [
-        (leaf "set-window-height" "-10%")
+      (node' "Mod+Shift+Minus" { repeat = false; } [
+        (leaf' "set-window-height" "-10%")
       ])
-      (node "Mod+Shift+Equal" { repeat = false; } [
-        (leaf "set-window-height" "+10%")
+      (node' "Mod+Shift+Equal" { repeat = false; } [
+        (leaf' "set-window-height" "+10%")
       ])
       (plain "Print" [
         (spawn [
@@ -382,13 +388,13 @@ in
         ])
       ])
       (plain "Shift+Print" [
-        (leaf "screenshot" { show-pointer = false; })
+        (leaf' "screenshot" { show-pointer = false; })
       ])
       (plain "Ctrl+Print" [
-        (leaf "screenshot-screen" { write-to-disk = false; })
+        (leaf' "screenshot-screen" { write-to-disk = false; })
       ])
       (plain "Alt+Print" [
-        (leaf "screenshot-window" { write-to-disk = false; })
+        (leaf' "screenshot-window" { write-to-disk = false; })
       ])
       (plain "Mod+Shift+Q" [
         (flag "quit")

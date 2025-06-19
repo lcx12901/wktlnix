@@ -24,12 +24,13 @@ in
           extraConfig =
             let
               inherit (inputs.niri.lib.kdl) node leaf flag;
-              output = node "output";
+              output = arg: node "output" [ arg ];
+              leaf' = name: arg: leaf name [ arg ];
             in
             [
               (output "DP-1" [
-                (leaf "mode" "2560x1440@164.998")
-                (leaf "scale" 1.0)
+                (leaf' "mode" "2560x1440@164.998")
+                (leaf' "scale" 1.0)
                 (flag "variable-refresh-rate")
               ])
             ];
