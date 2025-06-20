@@ -8,7 +8,7 @@
 }:
 let
   inherit (lib) types mkIf;
-  inherit (lib.${namespace}) mkOpt;
+  inherit (lib.${namespace}) mkOpt enabled;
 
   cfg = config.${namespace}.programs.graphical.browsers.firefox;
 
@@ -57,14 +57,28 @@ in
       };
     };
 
+    home.file.".tridactylrc".text = ''
+      set newtab https://start.duckduckgo.com
+
+      " " Binds
+    '';
+
     programs.firefox = {
       enable = true;
-      package = pkgs.firefox-devedition;
+
+      betterfox = enabled;
+
+      languagePacks = [
+        "zh-CN"
+        "en-US"
+      ];
+
+      nativeMessagingHosts = [ pkgs.tridactyl-native ];
 
       inherit (cfg) policies;
 
       profiles = {
-        "dev-edition-default" = {
+        "default" = {
           id = 0;
           path = "${config.${namespace}.user.name}";
         };
@@ -74,131 +88,54 @@ in
 
           id = 1;
 
+          betterfox = {
+            enable = true;
+            enableAllSections = true;
+          };
+
           settings = {
-            "accessibility.typeaheadfind.enablesound" = false;
-            "accessibility.typeaheadfind.flashBar" = 0;
+            "sidebar.verticalTabs" = true;
+            "sidebar.visibility" = "expand-on-hover";
+            "sidebar.main.tools" = "history,bookmarks,aichat";
+            "sidebar.animation.expand-on-hover.duration-ms" = 150;
+            "sidebar.revamp" = true;
+            "browser.tabs.closeTabByDblclick" = true;
 
-            "browser.aboutConfig.showWarning" = false;
-            "browser.aboutwelcome.enabled" = false;
-            "browser.bookmarks.autoExportHTML" = true;
-            "browser.bookmarks.showMobileBookmarks" = true;
-            "browser.meta_refresh_when_inactive.disabled" = true;
-            "browser.newtabpage.activity-stream.default.sites" = "";
-            "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
-            "browser.newtabpage.activity-stream.showSponsored" = false;
-            "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-            "browser.search.suggest.enabled" = false;
-            "browser.sessionstore.warnOnQuit" = true;
-            "browser.shell.checkDefaultBrowser" = false;
-            "browser.ssb.enabled" = true;
-            "browser.startup.homepage.abouthome_cache.enabled" = true;
-            "browser.startup.page" = 3;
-            "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
-            "browser.urlbar.suggest.quicksuggest.sponsored" = false;
-
-            "devtools.chrome.enabled" = true;
-            "devtools.debugger.remote-enabled" = true;
-            "dom.forms.autocomplete.formautofill" = true;
-            "dom.storage.next_gen" = true;
-            "extensions.formautofill.addresses.enabled" = false;
-            "extensions.formautofill.creditCards.enabled" = false;
-            "extensions.htmlaboutaddons.recommendations.enabled" = false;
             "extensions.autoDisableScopes" = 0;
-            "extensions.enabledScopes" = 15;
-
-            "font.name.monospace.x-western" = "Maple Mono NF CN";
-            "font.name.sans-serif.x-western" = "Maple Mono NF CN";
-            "font.name.serif.x-western" = "Maple Mono NF CN";
-
-            "general.autoScroll" = false;
-            "general.smoothScroll.msdPhysics.enabled" = true;
-            "geo.enabled" = false;
-            "geo.provider.use_corelocation" = false;
-            "geo.provider.use_geoclue" = false;
-            "geo.provider.use_gpsd" = false;
-
-            "gfx.font_rendering.cleartype_params.enhanced_contrast" = 25;
-            "gfx.font_rendering.cleartype_params.force_gdi_classic_for_families" = "";
-            "gfx.font_rendering.directwrite.bold_simulation" = 2;
+            "extensions.enabledScopes" = lib.mkForce 15;
 
             "intl.accept_languages" = "zh-CN,zh,en-US,en";
             "intl.locale.requested" = "zh-CN";
             "general.useragent.locale" = "zh-CN";
-            "media.eme.enabled" = true;
+
+            "accessibility.typeaheadfind.enablesound" = false;
+            "accessibility.typeaheadfind.flashBar" = 0;
+
+            "browser.startup.page" = 3;
+            "browser.bookmarks.showMobileBookmarks" = false;
+            "browser.meta_refresh_when_inactive.disabled" = true;
+            "browser.sessionstore.warnOnQuit" = true;
+            "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
+
+            "devtools.chrome.enabled" = true;
+            "devtools.debugger.remote-enabled" = true;
+            "devtools.toolbox.host" = "window";
+
+            "dom.storage.next_gen" = true;
             "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
-
-            "signon.autofillForms" = false;
-            "signon.firefoxRelay.feature" = "disabled";
-            "signon.generation.enabled" = false;
-            "signon.management.page.breach-alerts.enabled" = false;
-            "signon.rememberSignons" = false;
-
-            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-            "xpinstall.signatures.required" = false;
-
             "browser.startup.homepage" = "about:blank";
-            "browser.newtab.url" = "about:blank";
             "browser.ctrlTab.sortByRecentlyUsed" = false;
-            "browser.tabs.closeWindowWithLastTab" = true;
-            "browser.tabs.tabmanager.enabled" = true;
-
-            "browser.download.start_downloads_in_tmp_dir" = true;
-            "browser.download.useDownloadDir" = true;
-            "browser.download.dir" = "~/Downloads";
-
             "browser.translations.automaticallyPopup" = false;
 
-            "media.block-autoplay-until-in-foreground" = true;
-            "media.block-play-until-document-interaction" = true;
-            "media.block-play-until-visible" = true;
-
-            "privacy.clearOnShutdown.history" = false;
             "privacy.donottrackheader.enabled" = true;
-            "privacy.trackingprotection.enabled" = true;
-            "privacy.trackingprotection.socialtracking.enabled" = true;
-            "device.sensors.enabled" = false;
-            # Bluetooth location tracking
-            "beacon.enabled" = false;
 
-            "browser.send_pings" = false;
-            "toolkit.telemetry.archive.enabled" = false;
-            "toolkit.telemetry.enabled" = false;
-            "toolkit.telemetry.server" = "";
-            "toolkit.telemetry.unified" = false;
-            "extensions.webcompat-reporter.enabled" = false;
-            "datareporting.policy.dataSubmissionEnabled" = false;
-            "datareporting.healthreport.uploadEnabled" = false;
-            "browser.ping-centre.telemetry" = false;
-            "browser.urlbar.eventTelemetry.enabled" = false;
-            "browser.tabs.crashReporting.sendReport" = false;
-
-            "app.normandy.enabled" = false;
-            "app.shield.optoutstudies.enabled" = false;
-
-            "extensions.pocket.enabled" = false;
-            "browser.vpn_promo.enabled" = false;
-            "extensions.abuseReport.enabled" = false;
-
-            # Firefox password manager
-            "browser.contentblocking.report.lockwise.enabled" = false;
-            "browser.uitour.enabled" = false;
-
-            "dom.push.enabled" = false;
-            "dom.push.connection.enabled" = false;
-            "dom.battery.enabled" = false;
-            "dom.private-attribution.submission.enabled" = false;
-
-            "sidebar.revamp" = true;
-            "sidebar.verticalTabs" = true;
-            "sidebar.visibility" = "expand-on-hover";
-
-            # gpuAcceleration
+            # # gpuAcceleration
             "dom.webgpu.enabled" = true;
             "gfx.webrender.all" = true;
             "layers.gpu-process.enabled" = true;
             "layers.mlgpu.enabled" = true;
 
-            # hardwareDecoding
+            # # hardwareDecoding
             "media.ffmpeg.vaapi.enabled" = true;
             "media.gpu-process-decoder" = true;
             "media.hardware-video-decoding.enabled" = true;

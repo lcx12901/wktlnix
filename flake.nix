@@ -42,6 +42,7 @@
         sops-nix.homeManagerModules.sops
         zen-browser.homeModules.twilight
         nix-zed-extensions.homeManagerModules.default
+        betterfox-nix.homeManagerModules.betterfox
       ];
 
       # Add modules to all NixOS systems.
@@ -87,6 +88,10 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    betterfox-nix = {
+      url = "github:HeitorAugustoLN/betterfox-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
 
@@ -112,6 +117,15 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     impermanence.url = "github:nix-community/impermanence";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    daeuniverse.url = "github:daeuniverse/flake.nix";
+    ghostty.url = "github:ghostty-org/ghostty";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+    # Theme
     #FIXME: updated to include accents, https://github.com/catppuccin/nix/pull/343
     catppuccin.url = "github:catppuccin/nix";
     stylix = {
@@ -124,13 +138,6 @@
       };
     };
     catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    daeuniverse.url = "github:daeuniverse/flake.nix";
-    ghostty.url = "github:ghostty-org/ghostty";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     # my wallpapers
     wallpapers = {
