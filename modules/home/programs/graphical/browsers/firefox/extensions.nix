@@ -22,7 +22,7 @@ in
         immersive-translate
         tampermonkey
         github-file-icons
-        duckduckgo-privacy-essentials
+        tridactyl
       ]) "Extensions to install";
 
       settings = mkOpt (with lib.types; attrsOf anything) {
