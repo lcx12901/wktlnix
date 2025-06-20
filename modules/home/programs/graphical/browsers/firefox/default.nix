@@ -100,6 +100,7 @@ in
             "sidebar.animation.expand-on-hover.duration-ms" = 150;
             "sidebar.revamp" = true;
             "browser.tabs.closeTabByDblclick" = true;
+            "browser.ml.chat.shortcuts" = false;
 
             "extensions.autoDisableScopes" = 0;
             "extensions.enabledScopes" = lib.mkForce 15;
