@@ -114,9 +114,11 @@ in
 
             "browser.startup.page" = 3;
             "browser.bookmarks.showMobileBookmarks" = false;
+            "browser.toolbars.bookmarks.visibility" = "never";
             "browser.meta_refresh_when_inactive.disabled" = true;
             "browser.sessionstore.warnOnQuit" = true;
             "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
+            "browser.newtabpage.pinned" = [ ];
 
             "devtools.chrome.enabled" = true;
             "devtools.debugger.remote-enabled" = true;

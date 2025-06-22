@@ -10,7 +10,7 @@ let
 
   cfg = config.${namespace}.system.xdg;
 
-  browser = [ "firefox-devedition.desktop" ];
+  browser = [ "firefox.desktop" ];
   terminal = [ "kitty.desktop" ];
   video = [ "vlc.desktop" ];
 

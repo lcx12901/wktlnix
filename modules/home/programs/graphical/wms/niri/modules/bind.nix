@@ -23,7 +23,6 @@ let
   sh = getExe' config.programs.bash.package "sh";
   flameshot = getExe pkgs.flameshot;
   vlc = getExe pkgs.vlc;
-  firefox = getExe config.programs.firefox.package;
   neovide = getExe pkgs.neovide;
   telegram = getExe pkgs.telegram-desktop;
   rofi = getExe config.programs.rofi.package;
@@ -73,7 +72,7 @@ in
         (spawn [ vlc ])
       ])
       (plain "Mod+B" [
-        (spawn [ firefox ])
+        (spawn [ "firefox" ])
       ])
       (plain "Mod+Space" [
         (flag "toggle-column-tabbed-display")
