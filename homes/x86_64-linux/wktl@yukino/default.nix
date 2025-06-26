@@ -40,7 +40,6 @@ in
         };
         # apps.vesktop = enabled;
         browsers = {
-          # zen = enabled;
           firefox = enabled;
         };
         addons = {
@@ -60,7 +59,6 @@ in
 
     scenes = {
       daily = enabled;
-      business = enabled;
       development = {
         enable = true;
         nodejsEnable = true;
