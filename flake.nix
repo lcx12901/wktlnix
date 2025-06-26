@@ -49,6 +49,7 @@
       systems.modules.nixos = with inputs; [
         disko.nixosModules.disko
         sops-nix.nixosModules.sops
+        nix-flatpak.nixosModules.nix-flatpak
         niri.nixosModules.niri
         impermanence.nixosModules.impermanence
         daeuniverse.nixosModules.dae
@@ -116,6 +117,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
     impermanence.url = "github:nix-community/impermanence";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
