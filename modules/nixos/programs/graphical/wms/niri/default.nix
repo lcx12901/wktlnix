@@ -29,6 +29,15 @@ in
 
       services = {
         dbus = enabled;
+        flatpak = {
+          enable = true;
+          extraPackages = [
+            {
+              appId = "cn.feishu.Feishu";
+              origin = "flathub";
+            }
+          ];
+        };
       };
       theme.stylix = enabled;
     };
