@@ -40,7 +40,6 @@
         impermanence.nixosModules.home-manager.impermanence
         # spicetify-nix.homeManagerModules.default
         sops-nix.homeManagerModules.sops
-        zen-browser.homeModules.twilight
         nix-zed-extensions.homeManagerModules.default
         betterfox-nix.homeManagerModules.betterfox
       ];
@@ -125,7 +124,6 @@
     };
     daeuniverse.url = "github:daeuniverse/flake.nix";
     ghostty.url = "github:ghostty-org/ghostty";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     # Theme
     #FIXME: updated to include accents, https://github.com/catppuccin/nix/pull/343
