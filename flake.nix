@@ -30,8 +30,8 @@
       };
 
       overlays = with inputs; [
-        catppuccin-vsc.overlays.default
         niri.overlays.niri
+        nix-vscode-extensions.overlays.default
         nix-zed-extensions.overlays.default
       ];
 
@@ -137,7 +137,6 @@
         flake-compat.follows = "";
       };
     };
-    catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
 
     # my wallpapers
     wallpapers = {

@@ -40,12 +40,13 @@ in
   config = mkIf cfg.enable {
     stylix = {
       enable = true;
+      autoEnable = false;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/${cfg.theme}.yaml";
 
-      targets = {
-        qt.enable = true;
-        grub.enable = false;
-      };
+      # targets = {
+      #   qt.enable = true;
+      #   grub.enable = false;
+      # };
     };
   };
 }

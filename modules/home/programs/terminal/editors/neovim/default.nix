@@ -18,6 +18,7 @@ let
           lsp.servers.unocss.package = pkgs.${namespace}.unocss-language-server;
         };
       }
+      config.lib.stylix.nixvim.config
     ];
   };
 

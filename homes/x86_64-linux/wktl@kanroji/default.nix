@@ -36,17 +36,20 @@ in
             ];
         };
         apps.vesktop = enabled;
-        # editors.zed = enabled;
         browsers = {
-          # zen = enabled;
           firefox = enabled;
+        };
+      };
+      terminal = {
+        emulators.kitty = {
+          fontSize = 16;
         };
       };
     };
 
     scenes = {
       daily = enabled;
-      business = enabled;
+      # business = enabled;
       development = {
         enable = true;
         nodejsEnable = true;

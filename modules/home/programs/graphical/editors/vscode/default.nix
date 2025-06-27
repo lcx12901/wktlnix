@@ -2,29 +2,24 @@
   config,
   osConfig,
   lib,
-  inputs,
   pkgs,
   namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.types) number;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib.${namespace}) mkOpt;
 
   cfg = config.${namespace}.programs.graphical.editors.vscode;
 
   persist = osConfig.${namespace}.system.persist.enable;
-
-  extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
 in
 {
-  options.${namespace}.programs.graphical.editors.vscode = {
-    enable = mkBoolOpt false "Whether or not to enable vscode.";
+  options.${namespace}.programs.graphical.editors.vscode = with lib.types; {
+    enable = lib.mkEnableOption "Whether or not to enable vscode.";
     zoomLevel = mkOpt number 0 "set vscode window zoom level.";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.file = {
       ".vscode/argv.json" = {
         text = builtins.toJSON {
@@ -38,7 +33,7 @@ in
 
     programs.vscode = {
       enable = true;
-      # package = pkgs.vscode;
+
       package = pkgs.vscode.override {
         commandLineArgs = [
           "--ozone-platform-hint=auto"
@@ -51,71 +46,42 @@ in
 
       profiles =
         let
-          commonExtensions =
-            (with extensions.vscode-marketplace; [
-              ms-ceintl.vscode-language-pack-zh-hans
-              vscode-icons-team.vscode-icons
-              oderwat.indent-rainbow
-              wix.vscode-import-cost
-              streetsidesoftware.code-spell-checker
-              usernamehw.errorlens
-              editorconfig.editorconfig
-              dbaeumer.vscode-eslint
-              kamikillerto.vscode-colorize
-              eamodio.gitlens
-              philsinatra.nested-comments
-              # mhutchie.git-graph
-              nrwl.angular-console
-              gruntfuggly.todo-tree
-
-              vue.volar
-              antfu.unocss
-
-              # github.copilot
-              # github.copilot-chat
-              # simonhe.common-intellisense
-
-              # evils.uniapp-vscode
-              # uni-helper.uni-helper-vscode
-              # uni-helper.uni-app-schemas-vscode
-              # uni-helper.uni-highlight-vscode
-              # uni-helper.uni-ui-snippets-vscode
-              # uni-helper.uni-app-snippets-vscode
-            ])
-            ++ [
-              (pkgs.catppuccin-vsc.override {
-                accent = "lavender";
-                boldKeywords = true;
-                italicComments = true;
-                italicKeywords = true;
-                extraBordersEnabled = false;
-                workbenchMode = "default";
-                bracketMode = "rainbow";
-                colorOverrides = { };
-                customUIColors = { };
-              })
-            ];
+          commonExtensions = with pkgs.vscode-marketplace; [
+            ms-ceintl.vscode-language-pack-zh-hans
+            # catppuccin.catppuccin-vsc
+            # catppuccin.catppuccin-vsc-icons
+            christian-kohler.path-intellisense
+            streetsidesoftware.code-spell-checker
+            usernamehw.errorlens
+            eamodio.gitlens
+            gruntfuggly.todo-tree
+            formulahendry.auto-close-tag
+            formulahendry.auto-rename-tag
+            shardulm94.trailing-spaces
+            github.copilot
+            github.copilot-chat
+          ];
 
           commonSettings = {
-            # Color theme
-            "workbench.colorTheme" = "Catppuccin Mocha";
+            # "workbench.colorTheme" = lib.mkDefault "Catppuccin Mocha";
+            # "catppuccin.accentColor" = lib.mkDefault "mauve";
             "workbench.iconTheme" = "vscode-icons";
 
             # Font family
-            "editor.fontFamily" = "Maple Mono NF CN";
-            "editor.codeLensFontFamily" = "Maple Mono NF CN";
-            "editor.inlayHints.fontFamily" = "Maple Mono NF CN";
-            "debug.console.fontFamily" = "Maple Mono NF CN";
-            "scm.inputFontFamily" = "Maple Mono NF CN";
-            "notebook.output.fontFamily" = "Maple Mono NF CN";
-            "chat.editor.fontFamily" = "Maple Mono NF CN";
-            "markdown.preview.fontFamily" =
-              "Maple Mono NF CN; -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif";
-            "terminal.integrated.fontFamily" = "Maple Mono NF CN";
+            # "editor.fontFamily" = "Maple Mono NF CN";
+            # "editor.codeLensFontFamily" = "Maple Mono NF CN";
+            # "editor.inlayHints.fontFamily" = "Maple Mono NF CN";
+            # "debug.console.fontFamily" = "Maple Mono NF CN";
+            # "scm.inputFontFamily" = "Maple Mono NF CN";
+            # "notebook.output.fontFamily" = "Maple Mono NF CN";
+            # "chat.editor.fontFamily" = "Maple Mono NF CN";
+            # "markdown.preview.fontFamily" = "Maple Mono NF CN";
+            # "terminal.integrated.fontFamily" = "Maple Mono NF CN";
 
             # Git settings
             "git.allowForcePush" = true;
             "git.autofetch" = true;
+            "git.blame.editorDecoration.enabled" = true;
             "git.confirmSync" = false;
             "git.enableSmartCommit" = true;
             "git.openRepositoryInParentFolders" = "always";
@@ -129,7 +95,7 @@ in
             # Editor
             "editor.bracketPairColorization.enabled" = true;
             "editor.fontLigatures" = true;
-            "editor.fontSize" = 16;
+            # "editor.fontSize" = 16;
             "editor.formatOnPaste" = true;
             "editor.formatOnSave" = true;
             "editor.formatOnType" = false;
@@ -140,30 +106,20 @@ in
             "editor.minimap.renderCharacters" = false;
             "editor.overviewRulerBorder" = false;
             "editor.renderLineHighlight" = "all";
-            "editor.cursorBlinking" = "smooth";
-            "editor.cursorSmoothCaretAnimation" = "on";
-            "editor.cursorSurroundingLinesStyle" = "all";
-            "editor.tabSize" = 2;
-            "editor.lineNumbers" = "relative";
             "editor.smoothScrolling" = true;
             "editor.suggestSelection" = "first";
 
             # Terminal
-            "terminal.integrated.automationShell.linux" = "nix-shell";
-            "accessibility.signals.terminalBell" = {
-              "sound" = "off";
-            };
+            "terminal.integrated.cursorBlinking" = true;
             "terminal.integrated.defaultProfile.linux" = "fish";
+            "terminal.integrated.enableVisualBell" = false;
             "terminal.integrated.gpuAcceleration" = "on";
-            "terminal.integrated.smoothScrolling" = true;
 
             # Workbench
             "workbench.editor.tabCloseButton" = "left";
-            "workbench.editor.tabActionLocation" = "left";
-            "workbench.fontAliasing" = "antialiased";
             "workbench.list.smoothScrolling" = true;
-            "workbench.panel.defaultLocation" = "right";
             "workbench.startupEditor" = "none";
+            "workbench.editor.tabActionLocation" = "left";
 
             # Miscellaneous
             "breadcrumbs.enabled" = true;
@@ -179,46 +135,6 @@ in
             "window.restoreWindows" = "all";
             "window.titleBarStyle" = "custom";
 
-            # update
-            "update.mode" = "none";
-            "extensions.autoUpdate" = false;
-
-            "vue.server.hybridMode" = "auto";
-            "vue.codeLens.enabled" = true;
-            "vue.autoInsert.dotValue" = true;
-            "vue.autoInsert.bracketSpacing" = true;
-            "vue.inlayHints.destructuredProps" = true;
-            "vue.inlayHints.missingProps" = true;
-            "vue.inlayHints.inlineHandlerLeading" = true;
-            "vue.inlayHints.optionsWrapper" = true;
-            "vue.inlayHints.vBindShorthand" = true;
-            "eslint.format.enable" = true;
-            "eslint.useFlatConfig" = true;
-            "[vue]" = {
-              "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
-            };
-            "[javascript]" = {
-              "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
-            };
-            "[typescript]" = {
-              "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
-            };
-
-            "npm.exclude" = [
-              "**/.direnv/**"
-              "**/.nx/**"
-            ];
-
-            "cSpell.words" = [
-              "demi"
-              "pinia"
-              "vueuse"
-              "tiptap"
-            ];
-            "cSpell.enabledFileTypes" = {
-              "nix" = false;
-            };
-
             "github.copilot.nextEditSuggestions.enabled" = true;
           };
         in
@@ -229,14 +145,45 @@ in
             enableExtensionUpdateCheck = false;
             userSettings = commonSettings;
           };
+          Vue = {
+            extensions =
+              with pkgs.vscode-marketplace;
+              commonExtensions
+              ++ [
+                vue.volar
+                antfu.unocss
+                wix.vscode-import-cost
+              ];
+            userSettings = commonSettings // {
+              "vue.codeLens.enabled" = true;
+              "vue.autoInsert.dotValue" = true;
+              "vue.autoInsert.bracketSpacing" = true;
+              "vue.inlayHints.destructuredProps" = true;
+              "vue.inlayHints.missingProps" = true;
+              "vue.inlayHints.inlineHandlerLeading" = true;
+              "vue.inlayHints.optionsWrapper" = true;
+              "vue.inlayHints.vBindShorthand" = true;
+              "eslint.format.enable" = true;
+              "eslint.useFlatConfig" = true;
+              "[vue]" = {
+                "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
+              };
+              "[javascript]" = {
+                "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
+              };
+              "[typescript]" = {
+                "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
+              };
+            };
+          };
         };
     };
 
-    home.persistence = mkIf persist {
-      "/persist/home/${config.${namespace}.user.name}" = {
-        allowOther = true;
-        directories = [ ".config/Code" ];
-      };
-    };
+    # home.persistence = mkIf persist {
+    #   "/persist/home/${config.${namespace}.user.name}" = {
+    #     allowOther = true;
+    #     directories = [ ".config/Code" ];
+    #   };
+    # };
   };
 }

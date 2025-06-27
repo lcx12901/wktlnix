@@ -35,12 +35,8 @@ in
       (match { app-id = "wechat"; })
       (match { app-id = "^dev\.zed\.Zed$"; })
       (match { app-id = "code"; })
-      (leaf' "opacity" 0.9)
-    ])
-    (window-rule [
-      (match { app-id = "neovide"; })
       (match { app-id = "kitty"; })
-      (leaf' "opacity" 0.85)
+      (leaf' "opacity" 0.9)
     ])
     (window-rule [
       (match {
