@@ -27,11 +27,17 @@ let
   flameshot = getExe pkgs.flameshot;
   wl-paste = getExe' pkgs.wl-clipboard "wl-paste";
   cliphist = getExe' pkgs.cliphist "cliphist";
+
+  wallpaper = config.stylix.image;
+  blur-wallpaper = pkgs.runCommand "wallpaper-blur.jpg" { } ''
+    ${pkgs.imagemagick}/bin/magick ${wallpaper} -blur 0x30 $out
+  '';
 in
 (
   let
     spawn-at-startup = leaf "spawn-at-startup";
   in
+  with config.lib.stylix.colors.withHashtag;
   [
     (leaf' "screenshot-path" "${config.xdg.userDirs.pictures}/screenshots/%Y-%m-%d_%H:%M:%S.png")
     (plain "hotkey-overlay" [
@@ -53,12 +59,12 @@ in
     (spawn-at-startup [
       swww
       "img"
-      "${inputs.wallpapers}/kobeni_by_lxlbanner.png"
+      "${wallpaper}"
     ])
     (spawn-at-startup [
       swaybg
       "-i"
-      "${inputs.wallpapers}/kobeni_by_lxlbanner-blur.png"
+      "${blur-wallpaper}"
     ])
     (spawn-at-startup [
       sh
@@ -66,18 +72,24 @@ in
       "${sleep} 10; fcitx5 --replace"
     ])
     (spawn-at-startup [ flameshot ])
+    (plain "cursor" [
+      (leaf' "xcursor-theme" config.stylix.cursor.name)
+      (leaf' "xcursor-size" config.stylix.cursor.size)
+    ])
+    (plain "input" [
+      (plain "keyboard" [ (flag "numlock") ])
+    ])
     (plain "layout" [
       (plain "border" [
         (leaf' "width" 3)
-        (leaf' "active-color" "#ca9ee6")
-        (leaf' "inactive-color" "#babbf1")
+        (leaf' "active-gradient" {
+          from = base07;
+          to = base0E;
+          angle = 45;
+        })
+        (leaf' "inactive-color" base02)
       ])
-      (plain "focus-ring" [
-        (flag "off")
-        (leaf' "width" 3)
-        (leaf' "active-color" "#ca9ee6")
-        (leaf' "inactive-color" "#babbf1")
-      ])
+      (plain "focus-ring" [ (flag "off") ])
       (plain "tab-indicator" [
         (flag "hide-when-single-tab")
       ])

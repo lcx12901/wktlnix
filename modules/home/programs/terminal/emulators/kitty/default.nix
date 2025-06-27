@@ -5,12 +5,13 @@
   ...
 }:
 let
-
+  inherit (lib.${namespace}) mkOpt;
   cfg = config.${namespace}.programs.terminal.emulators.kitty;
 in
 {
   options.${namespace}.programs.terminal.emulators.kitty = {
     enable = lib.mkEnableOption "Kitty";
+    fontSize = mkOpt lib.types.int 14 "Font size for Kitty terminal emulator";
   };
 
   config = lib.mkIf cfg.enable {
@@ -18,15 +19,17 @@ in
       # Shared clipboard that works over ssh
       clipboard = "kitten clipboard";
       # Pretty diff
-      diff = "kitten diff";
+      diff = "kitty +kitten diff";
       # QOL alias for copying terminfo
       ssh = "kitty +kitten ssh";
       # cat for images
-      icat = "kitten icat";
+      icat = "kitty +kitten icat";
     };
 
     programs.kitty = {
       enable = true;
+
+      font.size = lib.mkForce cfg.fontSize;
 
       enableGitIntegration = true;
 
@@ -80,6 +83,10 @@ in
       };
 
       settings = {
+        italic_font = "auto";
+        bold_font = "auto";
+        bold_italic_font = "auto";
+
         adjust_line_height = 0;
         adjust_column_width = 0;
         box_drawing_scale = "0.001, 1, 1.5, 2";

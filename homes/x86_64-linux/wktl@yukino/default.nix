@@ -42,9 +42,6 @@ in
         browsers = {
           firefox = enabled;
         };
-        addons = {
-          waybar.basicFontSize = "12";
-        };
       };
       terminal = {
         emulators.ghostty.fontSize = 15;

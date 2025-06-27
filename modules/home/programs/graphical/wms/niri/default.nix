@@ -72,8 +72,6 @@ in
       };
 
       theme = {
-        gtk = enabled;
-        catppuccin = enabled;
         stylix = enabled;
       };
     };
