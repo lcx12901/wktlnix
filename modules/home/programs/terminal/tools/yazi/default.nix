@@ -6,10 +6,6 @@
   ...
 }:
 let
-  completion = import ./keymap/completion.nix { };
-  help = import ./keymap/help.nix { };
-  manager = import ./keymap/manager.nix { };
-
   cfg = config.${namespace}.programs.terminal.tools.yazi;
 in
 {
@@ -40,9 +36,9 @@ in
       inherit (import ./init.nix { inherit config lib; }) initLua;
 
       keymap = lib.mkMerge [
-        completion
-        help
-        manager
+        (import ./keymap/completion.nix)
+        (import ./keymap/help.nix)
+        (import ./keymap/manager.nix)
       ];
 
       plugins = {
@@ -51,7 +47,7 @@ in
           diff
           full-border
           git
-          glow
+          # glow
           jump-to-char
           mount
           ouch
@@ -61,6 +57,14 @@ in
           sudo
           toggle-pane
           ;
+        glow = pkgs.yaziPlugins.glow.overrideAttrs {
+          patches = [
+            (pkgs.fetchpatch {
+              url = "https://github.com/Reledia/glow.yazi/pull/28.patch";
+              hash = "sha256-wNAqaCMucfw8BZvUi1vqARoraXWGIzZN6YoWcFAelTw=";
+            })
+          ];
+        };
       };
 
       settings = lib.mkMerge [
