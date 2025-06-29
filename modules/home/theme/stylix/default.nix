@@ -56,7 +56,7 @@ in
         cursor = {
           package = pkgs.graphite-cursors;
           name = "graphite-dark";
-          size = 32;
+          size = 22;
         };
 
         fonts = {
@@ -101,6 +101,7 @@ in
           };
           fcitx5 = enabled;
           fish = enabled;
+          fzf = enabled;
           kitty = {
             enable = true;
             variant256Colors = true;
@@ -115,6 +116,7 @@ in
             ];
           };
           yazi = enabled;
+          zed = enabled;
           gnome = enabled;
           gtk = enabled;
           qt = enabled;

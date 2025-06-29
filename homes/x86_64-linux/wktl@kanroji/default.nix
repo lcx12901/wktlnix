@@ -36,6 +36,7 @@ in
             ];
         };
         apps.vesktop = enabled;
+        editors.zed = enabled;
         browsers = {
           firefox = enabled;
         };
