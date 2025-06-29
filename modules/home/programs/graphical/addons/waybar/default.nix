@@ -16,6 +16,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      tty-clock
+    ];
+
     programs.waybar = with colors; {
       enable = true;
 
