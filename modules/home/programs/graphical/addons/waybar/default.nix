@@ -31,6 +31,7 @@ in
             "clock"
           ];
           modules-right = [
+            "tray"
             "network"
             "memory"
             "pulseaudio"
@@ -44,12 +45,16 @@ in
           };
           memory = {
             interval = 30;
-            format = "<span foreground='#${base0E}'>󰍛  </span>  {used:0.1f}G/{total:0.1f}G";
+            format = "<span foreground='#${base0E}'>󰍛 </span> {used:0.1f}G/{total:0.1f}G";
             on-click = "kitty --class=htop,htop -e htop";
+          };
+          tray = {
+            icon-size = 16;
+            spacing = 10;
           };
           clock = {
             interval = 1;
-            format = "<span foreground='#${base0E}'>  </span>  {:%a %d %H:%M:%S}";
+            format = "<span foreground='#${base0E}'> </span> {:%a %d %H:%M:%S}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
             on-click = "kitty --class=clock,clock --title=clock -o remember_window_size=no -o initial_window_width=600 -o initial_window_height=200 -e tty-clock -s -c -C 5";
           };
@@ -70,7 +75,7 @@ in
               on-click = "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle";
               on-scroll-up = "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 0.01+";
               on-scroll-down = "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 0.01-";
-              format = "<span size='13000' foreground='#${base0A}'>{icon}  </span>{volume}%";
+              format = "<span size='13000' foreground='#${base0A}'>{icon} </span>{volume}%";
               format-muted = "<span size='13000' foreground='#${base0A}'>  </span>Muted";
               format-icons = {
                 headphone = "󱡏";
@@ -127,6 +132,7 @@ in
         #clock,
         #pulseaudio,
         #memory,
+        #tray,
         #window {
           padding: 4px 10px;
           background: shade(alpha(@base00, 0.9), 1);
@@ -138,6 +144,14 @@ in
           margin-right: 5px;
           box-shadow: 1px 2px 2px #101010;
           border-radius: 10px;
+        }
+
+        #tray > .passive {
+          -gtk-icon-effect: dim;
+        }
+
+        #tray > .needs-attention {
+          -gtk-icon-effect: highlight;
         }
 
         #window {
