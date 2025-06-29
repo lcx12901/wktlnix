@@ -21,25 +21,19 @@ in
       extraPackages = with pkgs; [
         nil
         vscode-langservers-extracted
-        typescript-language-server
+        vtsls
         vue-language-server
         tailwindcss-language-server
       ];
 
       userSettings = {
-        theme = "Catppuccin Macchiato";
         icon_theme = "Catppuccin Macchiato";
 
-        font_family = "Maple Mono NF CN";
-        buffer_font_family = "Maple Mono NF CN";
-        ui_font_family = "Maple Mono NF CN";
-
-        buffer_font_size = 16;
-        ui_font_size = 17;
+        buffer_font_size = lib.mkForce 16;
+        ui_font_size = lib.mkForce 17;
 
         terminal = {
-          font_family = "Maple Mono NF CN";
-          font_size = 15;
+          font_size = lib.mkForce 15;
         };
 
         relative_line_numbers = true;
@@ -72,31 +66,25 @@ in
 
         languages =
           let
-            ts = {
-              language_servers = [
-                "typescript-language-server"
-                "!vtsls"
-                "..."
-              ];
-              prettier = {
-                allowed = false;
-              };
-              formatter = {
-                "code_actions" = {
-                  "source.fixAll.eslint" = true;
-                };
+            formatter = {
+              "code_actions" = {
+                "source.fixAll.eslint" = true;
               };
             };
           in
           {
             "Vue.js" = {
-              inherit (ts) prettier formatter;
+              inherit formatter;
+              language_servers = [
+                "vtsls"
+                "..."
+              ];
             };
             TypeScript = {
-              inherit (ts) language_servers prettier formatter;
+              inherit formatter;
             };
             TSX = {
-              inherit (ts) language_servers prettier formatter;
+              inherit formatter;
             };
           };
 
@@ -110,6 +98,13 @@ in
                 flake = {
                   autoArchive = true;
                 };
+              };
+            };
+          };
+          vue-language-server = {
+            initialization_options = {
+              vue = {
+                hybridMode = true;
               };
             };
           };
@@ -132,6 +127,7 @@ in
       enable = true;
       packages = with pkgs.zed-extensions; [
         # lsp
+        html
         nix
         vue
         unocss
@@ -139,7 +135,6 @@ in
         git-firefly
 
         # theme
-        catppuccin
         catppuccin-icons
       ];
     };
