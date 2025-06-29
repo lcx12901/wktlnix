@@ -1,4 +1,4 @@
-_: {
+{
   mgr = {
     prepend_keymap = [
       {
