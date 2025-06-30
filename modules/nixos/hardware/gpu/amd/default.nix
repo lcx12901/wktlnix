@@ -7,13 +7,13 @@
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.hardware.gpu.amd;
 in
 {
   options.${namespace}.hardware.gpu.amd = {
-    enable = mkBoolOpt false "Whether or not to enable support for amdgpu.";
+    enable = lib.mkEnableOption "Whether or not to enable support for amdgpu.";
+    enableRocmSupport = lib.mkEnableOption "support for rocm";
   };
 
   config = mkIf cfg.enable {
@@ -34,7 +34,7 @@ in
     hardware = {
       amdgpu = {
         amdvlk = {
-          enable = true;
+          enable = false;
 
           support32Bit = {
             enable = true;
@@ -46,6 +46,8 @@ in
         opencl.enable = true;
       };
       graphics = {
+        enable = true;
+
         extraPackages = with pkgs; [
           # mesa
           mesa
@@ -58,7 +60,7 @@ in
       };
     };
 
-    nixpkgs.config.rocmSupport = true;
+    nixpkgs.config.rocmSupport = cfg.enableRocmSupport;
 
     services.xserver.videoDrivers = lib.mkDefault [
       "modesetting"
