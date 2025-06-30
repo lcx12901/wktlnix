@@ -64,6 +64,10 @@ in
       from = 8033;
       to = 8039;
     }
+    {
+      from = 9000;
+      to = 9001;
+    }
   ];
 
   networking.extraHosts = ''
