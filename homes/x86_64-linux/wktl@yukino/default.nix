@@ -25,7 +25,6 @@ in
             let
               inherit (inputs.niri.lib.kdl) node leaf flag;
               output = arg: node "output" [ arg ];
-              workspaces = arg: node "workspace" [ arg ];
               leaf' = name: arg: leaf name [ arg ];
             in
             [
