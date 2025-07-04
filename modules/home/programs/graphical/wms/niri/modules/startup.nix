@@ -79,6 +79,9 @@ in
     (plain "input" [
       (plain "keyboard" [ (flag "numlock") ])
     ])
+    (plain "xwayland-satellite" [
+      (leaf' "path" "${lib.getExe pkgs.xwayland-satellite}")
+    ])
     (plain "layout" [
       (plain "border" [
         (leaf' "width" 3)
