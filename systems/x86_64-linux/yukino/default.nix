@@ -29,6 +29,7 @@ in
       audio = enabled;
       graphics = enabled;
       cpu.intel = enabled;
+      gpu.amd = enabled;
       btrfs = enabled;
     };
 
