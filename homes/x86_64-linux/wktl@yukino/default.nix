@@ -23,15 +23,22 @@ in
           enable = true;
           extraConfig =
             let
-              inherit (inputs.niri.lib.kdl) node leaf;
+              inherit (inputs.niri.lib.kdl) node leaf flag;
               output = arg: node "output" [ arg ];
+              workspaces = arg: node "workspace" [ arg ];
               leaf' = name: arg: leaf name [ arg ];
             in
             [
+              (output "DP-2" [
+                (flag "focus-at-startup")
+                (leaf' "mode" "1920x1080@100.000")
+                (leaf' "scale" 1.0)
+              ])
               (output "HDMI-A-1" [
                 (leaf' "mode" "1920x1080@100.000")
                 (leaf' "scale" 1.0)
               ])
+
             ];
         };
         editors = {
