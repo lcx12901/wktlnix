@@ -160,7 +160,7 @@ in
 
         #window {
           color: @base00;
-          background: radial-gradient(circle, @base05 0%, @base07 100%);
+          background: radial-gradient(circle, @base05 0%, @base08 100%);
           background-size: 400% 400%;
           animation: gradient_f 40s ease-in-out infinite;
           transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
