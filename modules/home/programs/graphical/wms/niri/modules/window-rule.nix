@@ -29,14 +29,21 @@ in
       (leaf' "open-fullscreen" true)
     ])
     (window-rule [
+      (match { app-id = "firefox"; })
+      (leaf' "opacity" 0.95)
+    ])
+    (window-rule [
       (match { app-id = "^com\.mitchellh\.ghostty$"; })
       (match { app-id = "^org\.telegram\.desktop$"; })
       (match { app-id = "Bytedance-feishu"; })
       (match { app-id = "wechat"; })
       (match { app-id = "^dev\.zed\.Zed$"; })
       (match { app-id = "code"; })
-      (match { app-id = "kitty"; })
       (leaf' "opacity" 0.9)
+    ])
+    (window-rule [
+      (match { app-id = "kitty"; })
+      (leaf' "opacity" 0.85)
     ])
     (window-rule [
       (match {

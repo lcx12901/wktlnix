@@ -20,7 +20,7 @@ let
   sh = getExe' config.programs.bash.package "sh";
   sleep = getExe' pkgs.coreutils "sleep";
   waybar = getExe config.programs.waybar.package;
-  xwayland-satellite = getExe pkgs.xwayland-satellite;
+  xwayland-satellite-unstable = getExe pkgs.xwayland-satellite-unstable;
   swww = getExe pkgs.swww;
   swww-daemon = getExe' pkgs.swww "swww-daemon";
   swaybg = getExe pkgs.swaybg;
@@ -51,10 +51,7 @@ in
       cliphist
       "store"
     ])
-    (spawn-at-startup [
-      xwayland-satellite
-      "${DISPLAY}"
-    ])
+    (spawn-at-startup [ xwayland-satellite-unstable ])
     (spawn-at-startup [ swww-daemon ])
     (spawn-at-startup [
       swww
@@ -80,7 +77,7 @@ in
       (plain "keyboard" [ (flag "numlock") ])
     ])
     (plain "xwayland-satellite" [
-      (leaf' "path" "${lib.getExe pkgs.xwayland-satellite}")
+      (leaf' "path" "${xwayland-satellite-unstable}")
     ])
     (plain "layout" [
       (plain "border" [
