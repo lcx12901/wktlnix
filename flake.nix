@@ -1,6 +1,6 @@
 {
   # example by https://github.com/khaneliman/khanelinix
-  # https://github.com/Misterio77/nix-config
+  # https://github.com/EdenQwQ/nixos
   # part disk example by https://github.com/Anomalocaridid/dotfiles
   # may be should read guide from https://nix.dev/
   description = "wktlNix";
