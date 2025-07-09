@@ -26,23 +26,38 @@ in
       (with pkgs; [
         pulsemixer
         pavucontrol
-        helvum
       ])
       ++ cfg.extra-packages;
-
-    services.pulseaudio.enable = mkForce false;
 
     wktlnix = {
       user.extraGroups = [ "audio" ];
     };
 
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      audio.enable = true;
-      jack.enable = true;
-      pulse.enable = true;
-      wireplumber.enable = true;
+    security.rtkit.enable = true;
+
+    services = {
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        audio.enable = true;
+        jack.enable = true;
+        pulse.enable = true;
+        wireplumber.enable = true;
+        extraConfig.pipewire."99-low-latency" = {
+          context.properties = {
+            default = {
+              clock = {
+                rate = 48000;
+                quantum = 512;
+                min-quantum = 256;
+                max-quantum = 8192;
+              };
+            };
+          };
+        };
+      };
+
+      pulseaudio.enable = mkForce false;
     };
   };
 }
