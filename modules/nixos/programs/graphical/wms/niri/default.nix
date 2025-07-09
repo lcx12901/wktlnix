@@ -30,7 +30,7 @@ in
       services = {
         dbus = enabled;
         flatpak = {
-          enable = true;
+          enable = false;
           extraPackages = [
             {
               appId = "cn.feishu.Feishu";
