@@ -50,7 +50,7 @@ in
 
     scenes = {
       daily = enabled;
-      # business = enabled;
+      business = enabled;
       development = {
         enable = true;
         nodejsEnable = true;
