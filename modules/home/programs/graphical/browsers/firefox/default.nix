@@ -61,6 +61,13 @@ in
       set newtab https://start.duckduckgo.com
 
       " " Binds
+      bind / fillcmdline find
+      bind ? fillcmdline find --reverse
+      bind n findnext --search-from-view
+      bind N findnext --search-from-view --reverse
+      bind gn findselect
+      bind gN composite findnext --search-from-view --reverse; findselect
+      bind ,<Space> nohlsearch
     '';
 
     programs.firefox = {
