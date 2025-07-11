@@ -19,6 +19,18 @@ let
         };
       }
       config.lib.stylix.nixvim.config
+      {
+        highlightOverride = with config.lib.stylix.colors.withHashtag; {
+          CursorLineNr = {
+            bg = base01;
+            fg = base06;
+          };
+          Comment.fg = base03;
+          Boolean.fg = base0E;
+          String.fg = base0B;
+          StatusLine.bg = base00;
+        };
+      }
     ];
   };
 
