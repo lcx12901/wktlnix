@@ -55,7 +55,6 @@ in
         graphical = {
           screenlockers.hyprlock = enabled;
           addons = {
-            electron-support = enabled;
             fcitx5 = enabled;
             mako = enabled;
             waybar = enabled;
