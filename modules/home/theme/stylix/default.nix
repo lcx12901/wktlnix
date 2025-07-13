@@ -34,7 +34,7 @@ in
   config = mkIf cfg.enable {
     stylix =
       let
-        image = "${inputs.wallpapers}/castorice-purple.jpg";
+        image = "${inputs.wallpapers}/white-hair.png";
 
         matugenToBase16 =
           name:
@@ -42,9 +42,8 @@ in
             # bash --type scheme-expressive scheme-fruit-salad
             ''
               ${pkgs.python3}/bin/python ${./matu2base16.py} ${image} \
-                    --name ${name} --polarity ${config.stylix.polarity}  --output $out
+                    --name ${name} --polarity ${config.stylix.polarity} --type scheme-expressive --output $out
             '';
-
       in
       {
         enable = true;
@@ -52,7 +51,7 @@ in
 
         inherit image;
 
-        base16Scheme = "${matugenToBase16 "castorice-purple"}";
+        base16Scheme = "${matugenToBase16 "white-hair"}";
 
         cursor = {
           package = pkgs.graphite-cursors;
@@ -108,7 +107,7 @@ in
             variant256Colors = true;
           };
           lazygit = enabled;
-          nixvim = enabled;
+          nvf = enabled;
           vscode = {
             enable = true;
             profileNames = [
