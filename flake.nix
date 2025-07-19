@@ -42,6 +42,7 @@
         sops-nix.homeManagerModules.sops
         nix-zed-extensions.homeManagerModules.default
         betterfox-nix.homeManagerModules.betterfox
+        nvf.homeManagerModules.default
       ];
 
       # Add modules to all NixOS systems.
@@ -84,6 +85,8 @@
     };
 
     # Addons
+    nvf.url = "github:notashelf/nvf";
+
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -140,8 +143,5 @@
       url = "github:lcx12901/wallpapers";
       flake = false;
     };
-
-    wktlvim.url = "github:lcx12901/nixvim-part";
-    # wktlvim.url = "git+file:/home/wktl/Coding/nixvim-part";
   };
 }
