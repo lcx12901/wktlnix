@@ -8,7 +8,7 @@
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.scenes.music;
 
@@ -25,7 +25,7 @@ in
         terminal = {
           media = {
             # spicetify = enabled;
-            go-musicfox = enabled;
+            # go-musicfox = enabled;
           };
         };
       };
