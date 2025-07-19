@@ -48,8 +48,6 @@ in
         let
           commonExtensions = with pkgs.vscode-marketplace; [
             ms-ceintl.vscode-language-pack-zh-hans
-            # catppuccin.catppuccin-vsc
-            # catppuccin.catppuccin-vsc-icons
             christian-kohler.path-intellisense
             streetsidesoftware.code-spell-checker
             usernamehw.errorlens
@@ -58,25 +56,10 @@ in
             formulahendry.auto-close-tag
             formulahendry.auto-rename-tag
             shardulm94.trailing-spaces
-            github.copilot
-            github.copilot-chat
           ];
 
           commonSettings = {
-            # "workbench.colorTheme" = lib.mkDefault "Catppuccin Mocha";
-            # "catppuccin.accentColor" = lib.mkDefault "mauve";
             "workbench.iconTheme" = "vscode-icons";
-
-            # Font family
-            # "editor.fontFamily" = "Maple Mono NF CN";
-            # "editor.codeLensFontFamily" = "Maple Mono NF CN";
-            # "editor.inlayHints.fontFamily" = "Maple Mono NF CN";
-            # "debug.console.fontFamily" = "Maple Mono NF CN";
-            # "scm.inputFontFamily" = "Maple Mono NF CN";
-            # "notebook.output.fontFamily" = "Maple Mono NF CN";
-            # "chat.editor.fontFamily" = "Maple Mono NF CN";
-            # "markdown.preview.fontFamily" = "Maple Mono NF CN";
-            # "terminal.integrated.fontFamily" = "Maple Mono NF CN";
 
             # Git settings
             "git.allowForcePush" = true;

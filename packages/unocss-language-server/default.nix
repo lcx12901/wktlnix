@@ -27,7 +27,6 @@ buildNpmPackage rec {
     homepage = "https://github.com/xna00/unocss-language-server#readme";
     changelog = "https://github.com/vuejs/language-tools/releases/tag/v${version}";
     license = lib.licenses.mit;
-    maintainers = with lib.maintainers; [ lcx12901 ];
     mainProgram = "unocss-language-server";
   };
 }
