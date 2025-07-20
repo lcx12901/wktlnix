@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   namespace,
@@ -6,47 +7,61 @@
   ...
 }:
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    types
-    ;
-
-  inherit (lib.${namespace}) mkOpt;
-
   cfg = config.${namespace}.theme.stylix;
 in
 {
   options.${namespace}.theme.stylix = {
-    enable = mkEnableOption "stylix theme for applications";
-    theme = mkOpt types.str "catppuccin-macchiato" "base16 theme file name";
-
-    cursor = {
-      name = mkOpt types.str "catppuccin-macchiato-blue-cursors" "The name of the cursor theme to apply.";
-      package = mkOpt types.package (pkgs.catppuccin-cursors.macchiatoLavender
-      ) "The package to use for the cursor theme.";
-      size = mkOpt types.int 22 "The size of the cursor.";
-    };
-
-    icon = {
-      name = mkOpt types.str "Papirus-Dark" "The name of the icon theme to apply.";
-      package = mkOpt types.package (pkgs.catppuccin-papirus-folders.override {
-        accent = "lavender";
-        flavor = "macchiato";
-      }) "The package to use for the icon theme.";
-    };
+    enable = lib.mkEnableOption "stylix theme for applications";
   };
 
-  config = mkIf cfg.enable {
-    stylix = {
-      enable = true;
-      autoEnable = false;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/${cfg.theme}.yaml";
+  config = lib.mkIf cfg.enable {
+    stylix =
+      let
+        image = "${inputs.wallpapers}/white-hair.png";
 
-      # targets = {
-      #   qt.enable = true;
-      #   grub.enable = false;
-      # };
-    };
+        matugenToBase16 =
+          name:
+          pkgs.runCommand "${name}.yaml" { buildInputs = [ pkgs.matugen ]; }
+            # bash --type scheme-expressive scheme-fruit-salad
+            ''
+              ${pkgs.python3}/bin/python ${./matu2base16.py} ${image} \
+                    --name ${name} --polarity ${config.stylix.polarity} --output $out
+            '';
+      in
+      {
+        enable = true;
+        autoEnable = false;
+
+        inherit image;
+
+        base16Scheme = "${matugenToBase16 "white-hair"}";
+
+        cursor = {
+          package = pkgs.graphite-cursors;
+          name = "graphite-dark";
+          size = 22;
+        };
+
+        fonts = {
+          serif = {
+            package = pkgs.maple-mono.NF-CN;
+            name = "Maple Mono NF CN";
+          };
+          sansSerif = {
+            package = pkgs.maple-mono.NF-CN;
+            name = "Maple Mono NF CN";
+          };
+          monospace = {
+            package = pkgs.maple-mono.NF-CN;
+            name = "Maple Mono NF CN";
+          };
+          emoji = {
+            package = pkgs.noto-fonts-color-emoji;
+            name = "Noto Color Emoji";
+          };
+        };
+
+        polarity = "dark";
+      };
   };
 }
