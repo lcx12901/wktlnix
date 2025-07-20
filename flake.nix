@@ -129,7 +129,6 @@
     ghostty.url = "github:ghostty-org/ghostty";
 
     # Theme
-    #FIXME: updated to include accents, https://github.com/catppuccin/nix/pull/343
     catppuccin.url = "github:catppuccin/nix";
     stylix = {
       url = "github:danth/stylix";
