@@ -24,6 +24,21 @@ in
         set fish_greeting # Disable greeting
         ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       '';
+
+      plugins = [
+        {
+          name = "autopair";
+          inherit (pkgs.fishPlugins.autopair) src;
+        }
+        {
+          name = "fzf-fish";
+          inherit (pkgs.fishPlugins.fzf-fish) src;
+        }
+        {
+          name = "z";
+          inherit (pkgs.fishPlugins.z) src;
+        }
+      ];
     };
   };
 }
