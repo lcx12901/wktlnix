@@ -69,10 +69,6 @@ in
           systemdTargets = [ "niri.service" ];
         };
       };
-
-      theme = {
-        stylix = enabled;
-      };
     };
 
     systemd.user.services.cliphist = {
