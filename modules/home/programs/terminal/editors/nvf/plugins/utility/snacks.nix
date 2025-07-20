@@ -19,6 +19,7 @@ in
         scroll.enabled = true;
         lazygit.enabled = true;
         bufdelete.enabled = true;
+        zen.enabled = true;
 
         statuscolumn = {
           enabled = true;
@@ -75,14 +76,17 @@ in
     };
 
     vim.keymaps = [
+      # bufdelete
       (mkKeymap "n" "<C-w>" "<cmd>lua Snacks.bufdelete.delete()<cr>" { desc = "Close buffer"; })
       (mkKeymap "n" "<leader>bc" "<cmd>lua Snacks.bufdelete.other()<cr>" {
         desc = "Close all buffers but current";
       })
       (mkKeymap "n" "<leader>bC" "<cmd>lua Snacks.bufdelete.all()<cr>" { desc = "Close all buffers"; })
 
+      # lazygit
       (mkKeymap "n" "<leader>tl" "<cmd>lua Snacks.lazygit()<CR>" { desc = "Open lazygit"; })
 
+      # picker
       (mkKeymap "n" "<leader><space>" "<cmd>lua Snacks.picker.smart()<cr>" { desc = "Smart Find Files"; })
       (mkKeymap "n" "<leader>:" "<cmd>lua Snacks.picker.command_history()<cr>" {
         desc = "Command History";
@@ -129,6 +133,9 @@ in
       (mkKeymap "n" "<leader>fd" "<cmd>lua Snacks.picker.diagnostics_buffer()<cr>" {
         desc = "Find buffer diagnostics";
       })
+
+      # zen mode
+      (mkKeymap "n" "<leader>uz" "<cmd>lua Snacks.zen()<cr>" { desc = "Toggle Zen Mode"; })
     ];
   };
 }

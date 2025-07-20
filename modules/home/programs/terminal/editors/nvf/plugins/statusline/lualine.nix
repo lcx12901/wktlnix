@@ -1,3 +1,4 @@
+{ lib, config, ... }:
 {
   programs.nvf.settings = {
     vim.statusline.lualine = {
@@ -95,11 +96,7 @@
               },
             }
           ''
-          # (lib.optionalString config.plugins.copilot-lua.enable ''
-          #   {
-          #     "copilot"
-          #   }
-          # '')
+          (lib.optionalString config.programs.nvf.settings.vim.assistant.copilot.enable ''{ "copilot" }'')
         ];
 
         y = [
