@@ -60,6 +60,7 @@ in
             lazygit = enabled;
             eza = enabled;
             direnv = enabled;
+            jq = enabled;
             ripgrep = enabled;
             yazi = enabled;
           };
