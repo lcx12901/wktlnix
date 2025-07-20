@@ -18,6 +18,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.sessionVariables = {
+      EDITOR = "nvim";
+    };
+
     programs.nvf = {
       enable = true;
 
@@ -39,6 +43,12 @@ in
               highlight_grey = "LineNr";
             };
           };
+
+          treesitter.context.enable = true;
+
+          notes.todo-comments.enable = true;
+
+          utility.vim-wakatime.enable = true;
         };
       };
     };
@@ -47,6 +57,12 @@ in
       "/persist/home/${config.${namespace}.user.name}" = {
         allowOther = true;
         directories = [ ".local/share/nvf" ];
+      };
+    };
+
+    sops.secrets = {
+      wakatime = {
+        path = "${config.home.homeDirectory}/.wakatime.cfg";
       };
     };
   };

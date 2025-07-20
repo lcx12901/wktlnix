@@ -120,7 +120,35 @@ in
                   (mkLuaInline ''{ "kind_icon", "kind", gap = 1 }'')
                   (mkLuaInline ''{ "source_name" }'')
                 ];
+                components = {
+                  kind_icon = {
+                    ellipsis = false;
+                    text = mkLuaInline ''
+                      function(ctx)
+                        local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                        -- Check for both nil and the default fallback icon
+                        if not kind_icon or kind_icon == '󰞋' then
+                          -- Use our configured kind_icons
+                          return require('blink.cmp.config').appearance.kind_icons[ctx.kind] or ""
+                        end
+                        return kind_icon
+                      end,
+                      -- Optionally, you may also use the highlights from mini.icons
+                      highlight = function(ctx)
+                        local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                        return hl
+                      end
+                    '';
+                  };
+                };
               };
+            };
+          };
+
+          appearance = {
+            use_nvim_cmp_as_default = true;
+            kind_icons = {
+              Copilot = "";
             };
           };
 

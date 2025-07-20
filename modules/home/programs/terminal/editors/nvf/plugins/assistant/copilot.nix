@@ -14,10 +14,24 @@ in
         enable = true;
 
         setupOpts = {
-          panel.enabled = true;
+          panel.enabled = false;
           suggestion.enabled = false;
           lsp_binary = lib.getExe pkgs.copilot-language-server;
         };
+      };
+
+      lazy.plugins."CopilotChat.nvim" = {
+        package = pkgs.vimPlugins.CopilotChat-nvim;
+        setupModule = "CopilotChat";
+        cmd = [
+          "CopilotChat"
+          "CopilotChatAgents"
+          "CopilotChatLoad"
+          "CopilotChatModels"
+          "CopilotChatOpen"
+          "CopilotChatPrompts"
+          "CopilotChatToggle"
+        ];
       };
 
       binds.whichKey.register = {
