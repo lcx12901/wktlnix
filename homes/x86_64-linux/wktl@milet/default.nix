@@ -20,12 +20,8 @@ in
           btop = enabled;
           bat = enabled;
           colorls = enabled;
-          git = enabled;
-          lazygit = enabled;
           eza = enabled;
-          direnv = enabled;
           ripgrep = enabled;
-          yazi = enabled;
         };
       };
     };
