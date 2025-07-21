@@ -25,7 +25,7 @@ in
             # bash --type scheme-expressive scheme-fruit-salad
             ''
               ${pkgs.python3}/bin/python ${./matu2base16.py} ${image} \
-                    --name ${name} --polarity ${config.stylix.polarity} --output $out
+                    --name ${name} --polarity ${config.stylix.polarity} --type scheme-expressive --output $out
             '';
       in
       {
