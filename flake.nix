@@ -39,6 +39,7 @@
         catppuccin.homeModules.catppuccin
         impermanence.nixosModules.home-manager.impermanence
         # spicetify-nix.homeManagerModules.default
+        stylix.homeModules.stylix
         sops-nix.homeManagerModules.sops
         nix-zed-extensions.homeManagerModules.default
         betterfox-nix.homeManagerModules.betterfox

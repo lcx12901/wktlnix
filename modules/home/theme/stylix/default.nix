@@ -36,26 +36,30 @@ in
       };
 
       targets = {
-        firefox = {
-          enable = true;
-          profileNames = [ config.${namespace}.user.name ];
-          firefoxGnomeTheme = enabled;
-        };
-        btop = enabled;
         bat = enabled;
+        btop = enabled;
         cava = {
           enable = true;
           rainbow = enabled;
         };
         fcitx5 = enabled;
+        firefox = {
+          enable = true;
+          profileNames = [ config.${namespace}.user.name ];
+          firefoxGnomeTheme = enabled;
+        };
         fish = enabled;
         fzf = enabled;
+        gnome = enabled;
+        gtk = enabled;
         kitty = {
           enable = true;
           variant256Colors = true;
         };
         lazygit = enabled;
         nvf = enabled;
+        qt = enabled;
+        vesktop = enabled;
         vscode = {
           enable = true;
           profileNames = [
@@ -65,9 +69,6 @@ in
         };
         yazi = enabled;
         zed = enabled;
-        gnome = enabled;
-        gtk = enabled;
-        qt = enabled;
       };
     };
   };

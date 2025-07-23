@@ -29,7 +29,6 @@ in
             '';
       in
       {
-        enable = true;
         autoEnable = false;
 
         inherit image;
