@@ -56,6 +56,8 @@
         daeuniverse.nixosModules.dae
         stylix.nixosModules.stylix
       ];
+
+      outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt; };
     };
 
   inputs = {
