@@ -5,32 +5,44 @@
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+
+  accent = "#${config.lib.stylix.colors.base0D}";
+  muted = "#${config.lib.stylix.colors.base03}";
 
   cfg = config.${namespace}.programs.terminal.tools.lazygit;
 in
 {
   options.${namespace}.programs.terminal.tools.lazygit = {
-    enable = mkBoolOpt false "Whether or not to enable lazygit.";
+    enable = lib.mkEnableOption "Whether or not to enable lazygit.";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.lazygit = {
       enable = true;
 
-      settings = {
+      settings = lib.mkForce {
+        disableStartupPopups = true;
+        notARepository = "skip";
+        promptToReturnFromSubprocess = false;
+        update.method = "never";
+
+        git = {
+          commit.signOff = true;
+          parseEmoji = true;
+        };
+
         gui = {
-          authorColors = {
-            "lcx12901" = "#c6a0f6";
-            "linchengxu" = "#c6a0f6";
-            "dependabot[bot]" = "#eed49f";
+          theme = {
+            activeBorderColor = [
+              accent
+              "bold"
+            ];
+            inactiveBorderColor = [ muted ];
           };
-          branchColors = {
-            main = "#ed8796";
-            master = "#ed8796";
-            dev = "#8bd5ca";
-          };
+          showListFooter = false;
+          showRandomTip = false;
+          showCommandLog = false;
+          nerdFontsVersion = "3";
         };
       };
     };
