@@ -1,14 +1,22 @@
 {
+  inputs,
   lib,
   pkgs,
   ...
 }:
 let
   inherit (lib.generators) mkLuaInline;
+  inherit (inputs.nvf.lib.nvim.dag) entryAnywhere;
 in
 {
   programs.nvf.settings = {
     vim = {
+      startPlugins = [ "nvim-ts-autotag" ];
+
+      pluginRC.html-autotag = entryAnywhere ''
+        require('nvim-ts-autotag').setup()
+      '';
+
       treesitter = {
         enable = true;
         grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [

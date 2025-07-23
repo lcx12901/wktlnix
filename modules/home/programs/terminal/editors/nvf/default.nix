@@ -47,8 +47,10 @@ in
           treesitter.context.enable = true;
 
           notes.todo-comments.enable = true;
-
-          utility.vim-wakatime.enable = true;
+          utility = {
+            nix-develop.enable = true;
+            vim-wakatime.enable = true;
+          };
         };
       };
     };
