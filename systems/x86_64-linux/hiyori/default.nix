@@ -11,14 +11,11 @@ in
 
   wktlnix = {
     system = {
-      boot = {
-        enable = true;
-        useOSProber = true;
-      };
+      boot = enabled;
+
       disko = {
         enable = true;
         device = "/dev/nvme0n1";
-        rootSize = "500G";
       };
       fonts = enabled;
       locale = {
@@ -46,6 +43,7 @@ in
     services = {
       dae = enabled;
       openssh = enabled;
+      avahi = enabled;
     };
 
     security = {

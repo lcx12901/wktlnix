@@ -17,20 +17,10 @@ in
     programs = {
       terminal = {
         tools = {
-          btop = enabled;
-          bat = enabled;
-          colorls = enabled;
-          git = enabled;
-          lazygit = enabled;
           eza = enabled;
-          direnv = enabled;
-          ripgrep = enabled;
-          yazi = enabled;
         };
       };
     };
-
-    scenes.development = enabled;
   };
 
   home.stateVersion = "24.05";

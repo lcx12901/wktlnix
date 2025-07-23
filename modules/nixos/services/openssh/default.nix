@@ -89,12 +89,12 @@ in
           };
         })
 
-        {
+        (mkIf (host == "kanroji") {
           hiyori = {
             hostNames = [ "hiyori.local" ];
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZAyn741cbW5FmNFKplhY2nMGYDDpx2aC0ZQFzNIkMB";
           };
-        }
+        })
       ];
     };
   };
