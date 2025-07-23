@@ -40,7 +40,7 @@ in
           ];
         };
         formatters = {
-          nixfmt.command = lib.getExe pkgs.nixfmt-rfc-style;
+          nixfmt.command = lib.getExe pkgs.nixfmt;
           eslint_d = {
             command = lib.getExe pkgs.eslint_d;
             cwd = mkLuaInline ''
