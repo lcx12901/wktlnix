@@ -25,6 +25,8 @@ in
       settings = {
         border-size = 4;
         border-radius = 8;
+        default-timeout = 5000;
+        ignore-timeout = false;
       };
     };
   };
