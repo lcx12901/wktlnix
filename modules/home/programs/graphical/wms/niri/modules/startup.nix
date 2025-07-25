@@ -26,7 +26,7 @@ let
   swww = getExe pkgs.swww;
   swww-daemon = getExe' pkgs.swww "swww-daemon";
   swaybg = getExe pkgs.swaybg;
-  flameshot = getExe pkgs.flameshot;
+  flameshot = getExe (pkgs.flameshot.override { enableWlrSupport = true; });
   wl-paste = getExe' pkgs.wl-clipboard "wl-paste";
   cliphist = getExe' pkgs.cliphist "cliphist";
 
