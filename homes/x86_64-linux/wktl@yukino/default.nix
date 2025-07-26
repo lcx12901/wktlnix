@@ -41,7 +41,7 @@ in
             ];
         };
         editors = {
-          zed = enabled;
+          vscode = enabled;
         };
         # apps.vesktop = enabled;
         browsers = {
