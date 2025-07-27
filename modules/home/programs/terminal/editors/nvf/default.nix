@@ -2,6 +2,7 @@
   osConfig,
   config,
   lib,
+  pkgs,
   namespace,
   ...
 }:
@@ -50,6 +51,10 @@ in
           utility = {
             nix-develop.enable = true;
             vim-wakatime.enable = true;
+          };
+
+          pluginOverrides = {
+            inherit (pkgs.vimPlugins) nvim-lspconfig;
           };
         };
       };
