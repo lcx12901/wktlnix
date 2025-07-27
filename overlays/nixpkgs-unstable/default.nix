@@ -1,1 +1,3 @@
-{ channels, ... }: _final: _prev: { inherit (channels.nixpkgs-unstable) swww; }
+# { channels, ... }:
+_: _final: _prev:
+{ }
