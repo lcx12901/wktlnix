@@ -17,7 +17,7 @@ in
   config = lib.mkIf cfg.enable {
     stylix =
       let
-        image = "${inputs.wallpapers}/white-hair.png";
+        image = "${inputs.wallpapers}/Raiden_shogun.png";
 
         matugenToBase16 =
           name:
@@ -25,7 +25,7 @@ in
             # bash --type scheme-expressive scheme-fruit-salad
             ''
               ${pkgs.python3}/bin/python ${./matu2base16.py} ${image} \
-                    --name ${name} --polarity ${config.stylix.polarity} --type scheme-expressive --output $out
+                    --name ${name} --polarity ${config.stylix.polarity} --output $out
             '';
       in
       {
@@ -33,7 +33,7 @@ in
 
         inherit image;
 
-        base16Scheme = "${matugenToBase16 "white-hair"}";
+        base16Scheme = "${matugenToBase16 "Raiden_shogun"}";
 
         cursor = {
           package = pkgs.graphite-cursors;
