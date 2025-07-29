@@ -54,7 +54,6 @@ in
 
     suites = {
       common = enabled;
-      wlroots = enabled;
     };
 
     services = {

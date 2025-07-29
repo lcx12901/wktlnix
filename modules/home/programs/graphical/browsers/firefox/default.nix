@@ -108,6 +108,7 @@ in
             "sidebar.revamp" = true;
             "browser.tabs.closeTabByDblclick" = true;
             "browser.ml.chat.shortcuts" = false;
+            "widget.wayland.fractional-scale.enabled" = true;
 
             "extensions.autoDisableScopes" = 0;
             "extensions.enabledScopes" = lib.mkForce 15;
