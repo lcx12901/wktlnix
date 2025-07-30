@@ -36,7 +36,6 @@
       ];
 
       homes.modules = with inputs; [
-        catppuccin.homeModules.catppuccin
         impermanence.nixosModules.home-manager.impermanence
         # spicetify-nix.homeManagerModules.default
         stylix.homeModules.stylix
@@ -133,7 +132,6 @@
     ghostty.url = "github:ghostty-org/ghostty";
 
     # Theme
-    catppuccin.url = "github:catppuccin/nix";
     stylix = {
       url = "github:danth/stylix";
       inputs = {
