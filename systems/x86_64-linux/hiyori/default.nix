@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   namespace,
   ...
@@ -44,11 +45,20 @@ in
       dae = enabled;
       openssh = enabled;
       avahi = enabled;
+      inadyn = {
+        enable = true;
+        configFile = config.sops.secrets."cf-hiyori-inadyn".path;
+      };
     };
 
     security = {
       sudo-rs = enabled;
     };
+  };
+
+  sops.secrets."cf-hiyori-inadyn" = {
+    inherit (config.services.inadyn) group;
+    owner = config.services.inadyn.user;
   };
 
   # This value determines the NixOS release from which the default
