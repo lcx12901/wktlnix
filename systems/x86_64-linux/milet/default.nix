@@ -57,6 +57,9 @@ in
   networking.firewall.allowedTCPPorts = [
     15631
     15632
+
+    # hiyori_sing
+    10527
   ];
 
   networking.firewall.allowedUDPPorts = [
