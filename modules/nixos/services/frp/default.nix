@@ -10,7 +10,7 @@ let
 
   cfg = config.${namespace}.services.frp;
 
-  isClient = (cfg.role == "client");
+  isClient = cfg.role == "client";
   executableFile = if isClient then "frpc" else "frps";
 
   configName = "frp_${config.networking.hostName}";
