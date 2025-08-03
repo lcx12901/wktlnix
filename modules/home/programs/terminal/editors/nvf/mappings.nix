@@ -45,6 +45,8 @@ in
       (mkKeymap "n" "<C-L>" "<C-w>l" { desc = "Move to right split"; })
       (mkKeymap "n" "<C-L>" "<C-w>l" { desc = "Move to right split"; })
       (mkKeymap "n" "<C-L>" "<C-w>l" { desc = "Move to right split"; })
+      (mkKeymap "n" "<leader>p" "<Cmd>put<CR>" { desc = "Paste to next line"; })
+      (mkKeymap "n" "<leader>P" "<Cmd>put!<CR>" { desc = "Paste to prev line"; })
 
       (mkKeymap "v" "<BS>" "x" { desc = "Backspace delete in visual"; })
       (mkKeymap "v" "<S-TAB>" "<gv" { desc = "Unindent line"; })

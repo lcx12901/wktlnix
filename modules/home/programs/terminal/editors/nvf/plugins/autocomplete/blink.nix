@@ -149,6 +149,13 @@ in
             use_nvim_cmp_as_default = true;
             kind_icons = {
               Copilot = "";
+              Text = "";
+              Field = "";
+              Variable = "";
+              Class = "";
+              Interface = "";
+              TypeParameter = "";
+              RipgrepRipgrep = "󰛢";
             };
           };
 
