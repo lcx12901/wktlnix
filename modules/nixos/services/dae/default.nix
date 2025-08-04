@@ -7,7 +7,7 @@
   ...
 }:
 let
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.services.dae;
 in
@@ -15,6 +15,9 @@ in
 
   options.${namespace}.services.dae = {
     enable = mkBoolOpt false "Whether or not to enable dae.";
+    extraNodes = mkOpt lib.types.str "" "extra nodes to add to the dae configuration.";
+    extraGroups = mkOpt lib.types.str "" "extra groups to add to the dae configuration.";
+    extraRules = mkOpt lib.types.str "" "extra routing rules to add to the dae configuration.";
   };
 
   config = lib.mkIf cfg.enable {
@@ -45,12 +48,16 @@ in
 
       node {
         ${config.sops.placeholder.dae_nodes}
+        ${cfg.extraNodes}
       }
 
       group {
         proxy {
           policy: random
+          filter: name(akeno, milet)
         }
+
+        ${cfg.extraGroups}
       }
 
       dns {
@@ -74,6 +81,8 @@ in
       routing {
         pname(NetworkManager) -> direct
         dip(224.0.0.0/3, 'ff00::/8') -> direct
+
+        ${cfg.extraRules}
 
         domain(geosite: category-ads) -> block
 

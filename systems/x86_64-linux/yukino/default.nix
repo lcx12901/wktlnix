@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   namespace,
   ...
@@ -46,7 +47,18 @@ in
     };
 
     services = {
-      dae = enabled;
+      dae = {
+        enable = true;
+        extraNodes = config.sops.placeholder."hiyori_dae_node";
+        extraGroups = ''
+          home {
+            filter: name(hiyori)
+          }
+        '';
+        extraRules = ''
+          dip(192.168.31.0/24) -> home
+        '';
+      };
       openssh = enabled;
       frp = {
         enable = true;
@@ -73,6 +85,8 @@ in
   networking.extraHosts = ''
     127.0.0.1 t3.z9soft.cn
   '';
+
+  sops.secrets.hiyori_dae_node = { };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
