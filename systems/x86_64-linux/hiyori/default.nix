@@ -49,10 +49,6 @@ in
         enable = true;
         configFile = config.sops.secrets."cf-hiyori-inadyn".path;
       };
-      sing-box = {
-        enable = true;
-        configFile = config.sops.secrets."hiyori_sing".path;
-      };
       frp = {
         enable = true;
         role = "client";
@@ -68,8 +64,6 @@ in
     inherit (config.services.inadyn) group;
     owner = config.services.inadyn.user;
   };
-
-  sops.secrets."hiyori_sing" = { };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

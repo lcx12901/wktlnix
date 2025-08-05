@@ -47,19 +47,12 @@ in
     };
 
     services = {
-      dae = {
-        enable = true;
-        extraNodes = config.sops.placeholder."hiyori_dae_node";
-        extraGroups = ''
-          home {
-            filter: name(hiyori)
-          }
-        '';
-        extraRules = ''
-          dip(192.168.31.0/24) -> home
-        '';
-      };
+      dae = enabled;
       openssh = enabled;
+      sing-box = {
+        enable = true;
+        configFile = config.sops.secrets."yukino_sing".path;
+      };
       frp = {
         enable = true;
         role = "client";
@@ -70,23 +63,26 @@ in
       sudo-rs = enabled;
     };
   };
+  networking = {
+    firewall = {
+      allowedTCPPortRanges = [
+        {
+          from = 8033;
+          to = 8039;
+        }
+        {
+          from = 9000;
+          to = 9001;
+        }
+      ];
+    };
 
-  networking.firewall.allowedTCPPortRanges = [
-    {
-      from = 8033;
-      to = 8039;
-    }
-    {
-      from = 9000;
-      to = 9001;
-    }
-  ];
+    extraHosts = ''
+      127.0.0.1 t3.z9soft.cn
+    '';
+  };
 
-  networking.extraHosts = ''
-    127.0.0.1 t3.z9soft.cn
-  '';
-
-  sops.secrets.hiyori_dae_node = { };
+  sops.secrets."yukino_sing" = { };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

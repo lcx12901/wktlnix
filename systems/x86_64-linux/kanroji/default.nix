@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   namespace,
   ...
@@ -57,7 +58,19 @@ in
     };
 
     services = {
-      dae = enabled;
+      dae = {
+        enable = true;
+        extraNodes = config.sops.placeholder."yukino_dae_node";
+        extraGroups = ''
+          home {
+            policy: random
+            filter: name(yukino)
+          }
+        '';
+        extraRules = ''
+          dip(192.168.0.0/24) -> home
+        '';
+      };
       openssh = enabled;
       avahi = enabled;
       frp = {
@@ -70,6 +83,8 @@ in
       sudo-rs = enabled;
     };
   };
+
+  sops.secrets."yukino_dae_node" = { };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
