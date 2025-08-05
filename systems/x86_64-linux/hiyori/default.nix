@@ -49,10 +49,6 @@ in
         enable = true;
         configFile = config.sops.secrets."cf-hiyori-inadyn".path;
       };
-      frp = {
-        enable = true;
-        role = "client";
-      };
     };
 
     security = {

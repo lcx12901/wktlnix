@@ -62,13 +62,13 @@ in
         enable = true;
         extraNodes = config.sops.placeholder."yukino_dae_node";
         extraGroups = ''
-          home {
+          z9yun {
             policy: random
             filter: name(yukino)
           }
         '';
         extraRules = ''
-          dip(192.168.0.0/24) -> home
+          dip(192.168.0.0/24) -> z9yun
         '';
       };
       openssh = enabled;
