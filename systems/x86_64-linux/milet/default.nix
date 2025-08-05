@@ -58,13 +58,16 @@ in
     15631
     15632
 
-    # hiyori_sing
-    10527
+    # yukino_sing
+    11473
   ];
 
   networking.firewall.allowedUDPPorts = [
     15631
     15632
+
+    # yukino_sing
+    11473
   ];
 
   sops.secrets = {

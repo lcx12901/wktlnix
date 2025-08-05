@@ -79,7 +79,7 @@ in
       }
 
       routing {
-        pname(NetworkManager) -> direct
+        pname(NetworkManager, frpc) -> direct
         dip(224.0.0.0/3, 'ff00::/8') -> direct
 
         ${cfg.extraRules}
