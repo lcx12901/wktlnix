@@ -33,7 +33,15 @@ in
         enable = true;
 
         capabilities = mkLuaInline "capabilities";
-        on_attach = mkLuaInline "default_on_attach";
+        on_attach = mkLuaInline ''
+          function(client)
+            if vim.bo.filetype == 'vue' then
+              client.server_capabilities.semanticTokensProvider.full = false
+            else
+              client.server_capabilities.semanticTokensProvider.full = true
+            end
+          end
+        '';
 
         filetypes = [
           "typescript"
@@ -73,7 +81,6 @@ in
             };
           };
           vtsls = {
-            autoUseWorkspaceTsdk = true;
             enableMoveToFileCodeAction = true;
             experimental.completion.enableServerSideFuzzyMatch = true;
 
@@ -81,10 +88,9 @@ in
               globalPlugins = [
                 {
                   name = "@vue/typescript-plugin";
-                  location = "${lib.getBin pkgs.vue-language-server}/lib/node_modules/@vue/language-server";
+                  location = "${lib.getBin pkgs.vue-language-server}/lib/language-tools/packages/language-server";
                   languages = [ "vue" ];
                   configNamespace = "typescript";
-                  enableForWorkspaceTypeScriptVersions = true;
                 }
               ];
             };
