@@ -73,10 +73,6 @@ in
       };
       openssh = enabled;
       avahi = enabled;
-      frp = {
-        enable = true;
-        role = "client";
-      };
     };
 
     security = {
