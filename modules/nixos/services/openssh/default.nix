@@ -78,7 +78,7 @@ in
             publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZgmbR1xNbPCmUfIMCTI0+QwYKP0d5YrkbFEPNaWErW";
           };
         })
-        (mkIf (host == "yukino") {
+        (mkIf (host == "yukino" || host == "kanroji") {
           z9yun-gitlab-nistp256 = {
             hostNames = [ "[192.168.0.216]:8221" ];
             publicKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJ4DwUbrGvjrVD1+xg5B9KsEwdjxeE2SdvtWOz5fVKBHxCyo0k5nY/nNFB8s8+KUIqpUqTFxOBdz6ILdj3F9KCU=";
