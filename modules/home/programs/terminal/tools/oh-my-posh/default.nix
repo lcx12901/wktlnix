@@ -77,7 +77,7 @@ in
               {
                 style = "plain";
                 foreground = "#${base05}";
-                template = "~~>";
+                template = "~>";
                 type = "text";
               }
             ];
