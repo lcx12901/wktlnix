@@ -39,13 +39,10 @@ in
       ];
     };
 
-    environment.systemPackages = with pkgs; [ virt-manager ];
+    programs.virt-manager = enabled;
 
     # trust bridge network interface(s)
-    networking.firewall.trustedInterfaces = [
-      "virbr0"
-      "br0"
-    ];
+    networking.firewall.trustedInterfaces = [ "virbr0" ];
 
     virtualisation = {
       libvirtd = {
@@ -66,6 +63,8 @@ in
             namespaces = []
             user = "+${builtins.toString config.users.users.${user.name}.uid}"
           '';
+
+          vhostUserPackages = [ pkgs.virtiofsd ];
         };
       };
 
@@ -82,6 +81,12 @@ in
           "qemu-libvirtd"
         ];
       };
+    };
+
+    environment.persistence."/persist" = {
+      hideMounts = true;
+
+      directories = [ "/var/lib/libvirt" ];
     };
   };
 }
