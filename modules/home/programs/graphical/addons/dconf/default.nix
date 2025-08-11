@@ -1,9 +1,14 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 let
-  cfg = config.home.programs.graphical.addons.dconf;
+  cfg = config.${namespace}.programs.graphical.addons.dconf;
 in
 {
-  options.home.programs.graphical.addons.dconf = {
+  options.${namespace}.programs.graphical.addons.dconf = {
     enable = lib.mkEnableOption "dconf settings";
   };
 
