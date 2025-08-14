@@ -2,7 +2,6 @@
   osConfig,
   config,
   lib,
-  pkgs,
   namespace,
   ...
 }:
@@ -48,10 +47,13 @@ in
           treesitter.context.enable = true;
 
           notes.todo-comments.enable = true;
+
           utility = {
             nix-develop.enable = true;
             vim-wakatime.enable = true;
           };
+
+          visuals.rainbow-delimiters.enable = true;
         };
       };
     };
