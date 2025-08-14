@@ -12,14 +12,16 @@ in
 
         severity_sort = true;
 
-        virtual_text = {
-          severity.min = "warn";
-          source = "if_many";
-        };
+        virtual_text = false;
+        # virtual_text = {
+        #   severity.min = "warn";
+        #   source = "if_many";
+        # };
 
-        virtual_lines = {
-          current_line = true;
-        };
+        virtual_lines = false;
+        # virtual_lines = {
+        #   current_line = true;
+        # };
 
         float = {
           border = "rounded";
