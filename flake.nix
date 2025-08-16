@@ -129,7 +129,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     daeuniverse.url = "github:daeuniverse/flake.nix";
-    ghostty.url = "github:ghostty-org/ghostty";
 
     # Theme
     stylix = {
