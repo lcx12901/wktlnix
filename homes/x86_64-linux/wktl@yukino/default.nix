@@ -49,7 +49,6 @@ in
         };
       };
       terminal = {
-        emulators.ghostty.fontSize = 15;
         tools = {
           git = {
             userName = "linchengxu";

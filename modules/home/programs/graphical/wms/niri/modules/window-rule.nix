@@ -30,7 +30,6 @@ in
     (leaf' "opacity" 0.95)
   ])
   (window-rule [
-    (match { app-id = "^com\.mitchellh\.ghostty$"; })
     (match { app-id = "^org\.telegram\.desktop$"; })
     (match { app-id = "Bytedance-feishu"; })
     (match { app-id = "wechat"; })
