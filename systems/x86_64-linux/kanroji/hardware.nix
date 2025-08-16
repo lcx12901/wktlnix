@@ -21,6 +21,10 @@
         "sd_mod"
         "sr_mod"
       ];
+
+      # Enable ntsync - helps Windows games work properly on Linux by fixing
+      # communication issues between different parts of the game
+      kernelModules = [ "ntsync" ];
     };
   };
 

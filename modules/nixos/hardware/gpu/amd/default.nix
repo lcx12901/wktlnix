@@ -22,6 +22,7 @@ in
       amdgpu_top
       nvtopPackages.amd
     ];
+
     # enables AMDVLK & OpenCL support
     hardware = {
       amdgpu = {
@@ -37,10 +38,14 @@ in
         initrd.enable = true;
         opencl.enable = true;
       };
+
       graphics = {
         enable = true;
-
-        extraPackages = with pkgs; [ vulkan-tools ];
+        enable32Bit = true;
+        extraPackages = with pkgs; [
+          vulkan-tools
+          rocmPackages.clr.icd
+        ];
       };
     };
 
