@@ -44,7 +44,12 @@ in
             };
           };
 
-          treesitter.context.enable = true;
+          treesitter = {
+            enable = true;
+            autotagHtml = true;
+            context.enable = true;
+            textobjects.enable = true;
+          };
 
           notes.todo-comments.enable = true;
 

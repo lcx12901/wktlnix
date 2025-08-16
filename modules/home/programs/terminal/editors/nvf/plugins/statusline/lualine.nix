@@ -48,7 +48,7 @@
           ''
             {
               "branch",
-              icon = ' ',
+              icon = '',
               separator = { left = '', right = '' }
             }
           ''
