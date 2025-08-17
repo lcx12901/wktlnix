@@ -23,5 +23,7 @@ in
     };
   };
 
+  stylix.overlays.enable = false;
+
   home.stateVersion = "24.05";
 }
