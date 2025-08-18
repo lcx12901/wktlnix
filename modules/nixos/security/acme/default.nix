@@ -22,11 +22,19 @@ in
       acceptTerms = true;
       defaults.email = "wktl1991504424@gmail.com";
       certs.${domain} = {
+        extraDomainNames = [ "*.${domain}" ];
         group = mkIf config.services.nginx.enable "nginx";
         dnsProvider = "cloudflare";
-        dnsResolver = "1.1.1.1:53";
-        # credentialsFile = null;
+        environmentFile = config.sops.secrets."cloudflare-cert-api".path;
       };
     };
+
+    environment.persistence."/persist" = {
+      hideMounts = true;
+
+      directories = [ "/var/lib/acme" ];
+    };
+
+    sops.secrets."cloudflare-cert-api" = { };
   };
 }
