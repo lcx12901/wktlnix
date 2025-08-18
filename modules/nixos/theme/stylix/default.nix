@@ -7,17 +7,19 @@
   ...
 }:
 let
+  inherit (lib.${namespace}) mkOpt;
   cfg = config.${namespace}.theme.stylix;
 in
 {
   options.${namespace}.theme.stylix = {
     enable = lib.mkEnableOption "stylix theme for applications";
+    image = mkOpt lib.types.str "white-hair2.png" "wallpaper name";
   };
 
   config = lib.mkIf cfg.enable {
     stylix =
       let
-        image = "${inputs.wallpapers}/white-hair2.png";
+        image = "${inputs.wallpapers}/${cfg.image}";
 
         matugenToBase16 =
           name:
@@ -33,7 +35,7 @@ in
 
         inherit image;
 
-        base16Scheme = "${matugenToBase16 "white-hair2"}";
+        base16Scheme = "${matugenToBase16 "theme"}";
 
         cursor = {
           package = pkgs.graphite-cursors;
