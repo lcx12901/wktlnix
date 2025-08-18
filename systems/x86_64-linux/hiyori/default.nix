@@ -53,6 +53,7 @@ in
 
     security = {
       sudo-rs = enabled;
+      acme = enabled;
     };
   };
 
