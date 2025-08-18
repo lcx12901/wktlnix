@@ -57,6 +57,8 @@ in
       common = enabled;
     };
 
+    theme.stylix.image = "girls.jpg";
+
     services = {
       dae = {
         enable = true;
