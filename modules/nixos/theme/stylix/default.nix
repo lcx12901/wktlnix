@@ -13,7 +13,7 @@ in
 {
   options.${namespace}.theme.stylix = {
     enable = lib.mkEnableOption "stylix theme for applications";
-    image = mkOpt lib.types.str "white-hair2.png" "wallpaper name";
+    image = mkOpt lib.types.str "window-error.jpg" "wallpaper name";
   };
 
   config = lib.mkIf cfg.enable {
