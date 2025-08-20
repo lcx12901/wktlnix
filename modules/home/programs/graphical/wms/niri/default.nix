@@ -3,6 +3,7 @@
   osConfig,
   config,
   lib,
+  pkgs,
   namespace,
   ...
 }@args:
@@ -77,5 +78,13 @@ in
         ];
       };
     };
+
+    home.file.".config/flameshot/flameshot.ini".text = ''
+      [General]
+      contrastOpacity=188
+      useGrimAdapter=true
+    '';
+
+    home.packages = [ pkgs.grim ];
   };
 }
