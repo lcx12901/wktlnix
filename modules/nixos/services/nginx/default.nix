@@ -6,14 +6,31 @@
   ...
 }:
 let
-  inherit (config.networking) hostName;
+  inherit (lib) types mkOption mkDefault;
 
   cfg = config.${namespace}.services.nginx;
 
-  hasMyContainer =
-    containerName: lib.hasAttr containerName config.virtualisation.oci-containers.containers;
+  domain = "${config.networking.hostName}.lincx.top";
 in
 {
+  options.services.nginx.virtualHosts = mkOption {
+    type = types.attrsOf (
+      types.submodule (
+        { config, ... }:
+        {
+          freeformType = types.attrsOf types.anything;
+
+          config = {
+            quic = mkDefault true;
+            forceSSL = mkDefault true;
+            enableACME = mkDefault false;
+            useACMEHost = mkDefault domain;
+          };
+        }
+      )
+    );
+  };
+
   options.${namespace}.services.nginx = {
     enable = lib.${namespace}.mkBoolOpt false "Whether or not to enable nginx.";
   };
@@ -26,48 +43,29 @@ in
 
       package = pkgs.nginxQuic.override { withKTLS = true; };
 
-      defaultHTTPListenPort = 404;
-      defaultSSLListenPort = 302;
+      defaultSSLListenPort = 12901;
 
-      # Use recommended settings
+      commonHttpConfig = ''
+        add_header 'Referrer-Policy' 'origin-when-cross-origin';
+        add_header X-Frame-Options "SAMEORIGIN" always;
+        add_header X-Content-Type-Options nosniff;
+      '';
+
       recommendedTlsSettings = true;
       recommendedBrotliSettings = true;
       recommendedOptimisation = true;
       recommendedGzipSettings = true;
       recommendedProxySettings = true;
-      recommendedZstdSettings = true;
 
-      clientMaxBodySize = lib.mkDefault "512m";
-      serverNamesHashBucketSize = 1024;
+      experimentalZstdSettings = true;
 
-      appendHttpConfig = ''
-        # set the maximum size of the headers hash tables to 1024 bytes
-        # this applies to the total size of all headers in a client request
-        # or a server response.
-        proxy_headers_hash_max_size 1024;
-        # set the bucket size for the headers hash tables to 256 bytes
-        #  bucket size determines how many entries can be stored in
-        # each hash table bucket
-        proxy_headers_hash_bucket_size 256;
-      '';
-      virtualHosts = {
-        "${hostName}.lincx.top" = {
-          forceSSL = true;
-          sslCertificate = "/var/lib/acme/${hostName}.lincx.top/cert.pem";
-          sslCertificateKey = "/var/lib/acme/${hostName}.lincx.top/key.pem";
-
-          locations = lib.mkMerge [
-            (lib.mkIf config.services.aria2.enable {
-              "/aria2/".proxyPass = "http://127.0.0.1:6800/";
-            })
-            (lib.mkIf (hasMyContainer "ariang") {
-              "/ariang/".proxyPass = "http://127.0.0.1:6880/";
-            })
-          ];
-        };
-      };
+      sslCiphers = "EECDH+aRSA+AESGCM:EDH+aRSA:EECDH+aRSA:+AES256:+AES128:+SHA1:!CAMELLIA:!SEED:!3DES:!DES:!RC4:!eNULL";
+      sslProtocols = "TLSv1.3 TLSv1.2";
     };
 
-    networking.firewall.allowedTCPPorts = [ 302 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      12901
+    ];
   };
 }

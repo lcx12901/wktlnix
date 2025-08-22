@@ -49,6 +49,9 @@ in
         enable = true;
         configFile = config.sops.secrets."cf-hiyori-inadyn".path;
       };
+      nginx = enabled;
+      redis = enabled;
+      nextcloud = enabled;
     };
 
     security = {
