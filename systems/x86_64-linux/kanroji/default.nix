@@ -47,6 +47,7 @@ in
         games = {
           steam = enabled;
           gamemode = enabled;
+          gamescope = enabled;
         };
         file-managers.nautilus = enabled;
       };

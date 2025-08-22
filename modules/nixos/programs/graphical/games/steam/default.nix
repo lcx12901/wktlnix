@@ -37,9 +37,6 @@ in
     programs.steam = {
       enable = true;
 
-      # https://github.com/ValveSoftware/gamescope
-      gamescopeSession.enable = true;
-
       # fix gamescope inside steam
       package = pkgs.steam.override {
         extraPkgs =
