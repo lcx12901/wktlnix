@@ -27,6 +27,10 @@
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
+
+        permittedInsecurePackages = [
+          "immersive-translate-1.18.1"
+        ];
       };
 
       overlays = with inputs; [
