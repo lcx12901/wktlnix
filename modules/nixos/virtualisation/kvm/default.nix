@@ -39,10 +39,19 @@ in
       ];
     };
 
-    programs.virt-manager = enabled;
+    wktlnix = {
+      user = {
+        extraGroups = [
+          "disk"
+          "input"
+          "kvm"
+          "libvirtd"
+          "qemu-libvirtd"
+        ];
+      };
+    };
 
-    # trust bridge network interface(s)
-    networking.firewall.trustedInterfaces = [ "virbr0" ];
+    programs.virt-manager = enabled;
 
     virtualisation = {
       libvirtd = {
@@ -71,16 +80,54 @@ in
       spiceUSBRedirection.enable = true;
     };
 
-    wktlnix = {
-      user = {
-        extraGroups = [
-          "disk"
-          "input"
-          "kvm"
-          "libvirtd"
-          "qemu-libvirtd"
-        ];
+    # trust bridge network interface(s)
+    networking.firewall.trustedInterfaces = [ "virbr0" ];
+
+    systemd.services.libvirt-default-network = {
+      description = "Start libvirt default network";
+      after = [ "libvirtd.service" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStart = "${pkgs.libvirt}/bin/virsh net-start default";
+        ExecStop = "${pkgs.libvirt}/bin/virsh net-destroy default";
+        User = "root";
       };
+    };
+
+    programs.dconf = {
+      enable = true;
+
+      profiles.user.databases = [
+        {
+          lockAll = true;
+          settings = with lib.gvariant; {
+            "org/virt-manager/virt-manager/connections" = {
+              autoconnect = [ "qemu:///system" ];
+              uris = [ "qemu:///system" ];
+            };
+            "org/virt-manager/virt-manager" = {
+              xmleditor-enabled = true;
+            };
+            "org/virt-manager/virt-manager/console" = {
+              resize-guest = mkInt32 1;
+              scaling = mkInt32 0;
+            };
+            "org/virt-manager/virt-manager/stats" = {
+              enable-memory-poll = true;
+              enable-disk-poll = true;
+              enable-net-poll = true;
+            };
+            "org/virt-manager/virt-manager/vmlist-fields" = {
+              host-cpu-usage = true;
+              memory-usage = true;
+              disk-usage = true;
+              network-traffic = true;
+            };
+          };
+        }
+      ];
     };
 
     environment.persistence."/persist" = {
