@@ -57,29 +57,29 @@ in
         ];
 
         settings = {
-          typescript = {
-            updateImportsOnFileMove.enabled = "always";
-            inlayHints = {
-              parameterNames.enabled = "all";
-              parameterTypes.enabled = true;
-              variableTypes.enabled = true;
-              propertyDeclarationTypes.enabled = true;
-              functionLikeReturnTypes.enabled = true;
-              enumMemberValues.enabled = true;
-            };
-            tsserver.maxTsServerMemory = 8192;
-          };
-          javascript = {
-            updateImportsOnFileMove.enabled = "always";
-            inlayHints = {
-              parameterNames = "literals";
-              parameterTypes.enabled = true;
-              variableTypes.enabled = true;
-              propertyDeclarationTypes.enabled = true;
-              functionLikeReturnTypes.enabled = true;
-              enumMemberValues.enabled = true;
-            };
-          };
+          # typescript = {
+          #   updateImportsOnFileMove.enabled = "always";
+          #   inlayHints = {
+          #     parameterNames.enabled = "all";
+          #     parameterTypes.enabled = true;
+          #     variableTypes.enabled = true;
+          #     propertyDeclarationTypes.enabled = true;
+          #     functionLikeReturnTypes.enabled = true;
+          #     enumMemberValues.enabled = true;
+          #   };
+          #   tsserver.maxTsServerMemory = 8192;
+          # };
+          # javascript = {
+          #   updateImportsOnFileMove.enabled = "always";
+          #   inlayHints = {
+          #     parameterNames = "literals";
+          #     parameterTypes.enabled = true;
+          #     variableTypes.enabled = true;
+          #     propertyDeclarationTypes.enabled = true;
+          #     functionLikeReturnTypes.enabled = true;
+          #     enumMemberValues.enabled = true;
+          #   };
+          # };
           vtsls = {
             enableMoveToFileCodeAction = true;
             experimental.completion.enableServerSideFuzzyMatch = true;
