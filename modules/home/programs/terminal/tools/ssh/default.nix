@@ -10,8 +10,8 @@ let
 
   cfg = config.${namespace}.programs.terminal.tools.ssh;
 
-  mkSSHBlock = hostname: identityFile: {
-    inherit hostname identityFile;
+  mkSSHBlock = identityFile: {
+    inherit identityFile;
     identitiesOnly = true;
   };
 in
@@ -23,6 +23,13 @@ in
   config = mkIf cfg.enable {
     programs.ssh = {
       enable = true;
+
+      extraOptionOverrides = {
+        HostKeyAlgorithms = "ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256";
+        KexAlgorithms = "curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256";
+        MACs = "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com";
+        Ciphers = "chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr";
+      };
 
       enableDefaultConfig = false;
 
@@ -40,9 +47,9 @@ in
           controlPersist = lib.mkDefault "no";
         };
 
-        "akeno.lincx.top" = mkSSHBlock "akeno.lincx.top" "${config.sops.secrets."akeno_rsa".path}";
-        "github.com" = mkSSHBlock "github.com" "${config.sops.secrets."github_rsa".path}";
-        "z9yun.gitlab" = (mkSSHBlock "192.168.0.216" "${config.sops.secrets."github_rsa".path}") // {
+        "akeno.lincx.top" = mkSSHBlock "${config.sops.secrets."akeno_rsa".path}";
+        "github.com" = mkSSHBlock "${config.sops.secrets."github_rsa".path}";
+        "192.168.0.216" = (mkSSHBlock "${config.sops.secrets."github_rsa".path}") // {
           port = 8221;
         };
       };
