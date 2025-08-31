@@ -73,8 +73,6 @@ in
     programs.firefox = {
       enable = true;
 
-      betterfox = enabled;
-
       languagePacks = [
         "zh-CN"
         "en-US"
@@ -94,11 +92,6 @@ in
           inherit (config.${namespace}.user) name;
 
           id = 1;
-
-          betterfox = {
-            enable = true;
-            enableAllSections = true;
-          };
 
           settings = {
             "sidebar.verticalTabs" = true;

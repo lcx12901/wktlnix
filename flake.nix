@@ -45,7 +45,6 @@
         stylix.homeModules.stylix
         sops-nix.homeManagerModules.sops
         nix-zed-extensions.homeManagerModules.default
-        betterfox-nix.homeManagerModules.betterfox
         nvf.homeManagerModules.default
       ];
 
@@ -96,10 +95,6 @@
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    betterfox-nix = {
-      url = "github:HeitorAugustoLN/betterfox-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
