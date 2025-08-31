@@ -29,7 +29,7 @@
         allowUnfree = true;
 
         permittedInsecurePackages = [
-          "immersive-translate-1.18.1"
+          "immersive-translate-1.20.8"
         ];
       };
 
@@ -145,6 +145,12 @@
     # my wallpapers
     wallpapers = {
       url = "github:lcx12901/wallpapers";
+      flake = false;
+    };
+
+    # bt-tracker
+    bt-tracker = {
+      url = "github:XIU2/TrackersListCollection";
       flake = false;
     };
   };
