@@ -9,6 +9,11 @@ let
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.tools.ssh;
+
+  mkSSHBlock = hostname: identityFile: {
+    inherit hostname identityFile;
+    identitiesOnly = true;
+  };
 in
 {
   options.${namespace}.programs.terminal.tools.ssh = {
@@ -18,24 +23,29 @@ in
   config = mkIf cfg.enable {
     programs.ssh = {
       enable = true;
-      extraConfig = ''
-        ServerAliveInterval 60
-        ServerAliveCountMax 120
 
+      enableDefaultConfig = false;
 
-        Host akeno.lincx.top
-          IdentityFile ${config.sops.secrets."akeno_rsa".path}
-          IdentitiesOnly yes
+      matchBlocks = {
+        "*" = {
+          forwardAgent = lib.mkDefault false;
+          addKeysToAgent = lib.mkDefault "no";
+          compression = lib.mkDefault false;
+          serverAliveInterval = lib.mkDefault 60;
+          serverAliveCountMax = lib.mkDefault 120;
+          hashKnownHosts = lib.mkDefault false;
+          userKnownHostsFile = lib.mkDefault "~/.ssh/known_hosts";
+          controlMaster = lib.mkDefault "no";
+          controlPath = lib.mkDefault "~/.ssh/master-%r@%n:%p";
+          controlPersist = lib.mkDefault "no";
+        };
 
-        Host github.com
-          IdentityFile ${config.sops.secrets."github_rsa".path}
-          IdentitiesOnly yes
-
-        Host 192.168.0.216
-          port 8221
-          IdentityFile ${config.sops.secrets."github_rsa".path}
-          IdentitiesOnly yes
-      '';
+        "akeno.lincx.top" = mkSSHBlock "akeno.lincx.top" "${config.sops.secrets."akeno_rsa".path}";
+        "github.com" = mkSSHBlock "github.com" "${config.sops.secrets."github_rsa".path}";
+        "z9yun.gitlab" = (mkSSHBlock "192.168.0.216" "${config.sops.secrets."github_rsa".path}") // {
+          port = 8221;
+        };
+      };
     };
 
     sops.secrets =
