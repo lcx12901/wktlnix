@@ -103,12 +103,14 @@ in
           settings = {
             "sidebar.verticalTabs" = true;
             "sidebar.visibility" = "expand-on-hover";
-            "sidebar.main.tools" = "history,bookmarks,aichat";
+            "sidebar.main.tools" = "{446900e4-71c2-419f-a6a7-df9c091e268b}";
             "sidebar.animation.expand-on-hover.duration-ms" = 150;
             "sidebar.revamp" = true;
             "browser.tabs.closeTabByDblclick" = true;
-            "browser.ml.chat.shortcuts" = false;
             "widget.wayland.fractional-scale.enabled" = true;
+
+            "browser.ml.chat.enabled" = lib.mkForce true;
+            "browser.ml.chat.shortcuts" = false;
 
             "extensions.autoDisableScopes" = 0;
             "extensions.enabledScopes" = lib.mkForce 15;
