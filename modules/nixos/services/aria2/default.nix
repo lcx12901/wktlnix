@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -17,7 +18,7 @@ in
     services.aria2 = {
       enable = true;
       openPorts = true;
-      rpcSecretFile = config.sops.secrets."aria2/rpc_token".path;
+      rpcSecretFile = config.sops.secrets."aria2_rpc_token".path;
       settings = {
         # file setting
         disk-cache = "64M";
@@ -30,7 +31,6 @@ in
 
         # speed setting
         input-file = "/var/lib/aria2/aria2.session";
-        save-session = "/var/lib/aria2/aria2.session";
         save-session-interval = 1;
         auto-save-interval = 20;
         force-save = false;
@@ -67,29 +67,7 @@ in
         bt-force-encryption = true;
         bt-detach-seed-only = true;
         user-agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36 Edg/93.0.961.47";
-
-        bt-tracker = lib.strings.concatStringsSep "," [
-          "udp://tracker.opentrackr.org:1337/announce"
-          "udp://open.demonii.com:1337/announce"
-          "udp://open.stealth.si:80/announce"
-          "udp://tracker.torrent.eu.org:451/announce"
-          "udp://tracker-udp.gbitt.info:80/announce"
-          "udp://explodie.org:6969/announce"
-          "udp://exodus.desync.com:6969/announce"
-          "udp://tracker.dump.cl:6969/announce"
-          "udp://tracker.ccp.ovh:6969/announce"
-          "udp://tracker.bittor.pw:1337/announce"
-          "udp://tracker.0x7c0.com:6969/announce"
-          "udp://run.publictracker.xyz:6969/announce"
-          "udp://retracker01-msk-virt.corbina.net:80/announce"
-          "udp://opentracker.io:6969/announce"
-          "udp://open.free-tracker.ga:6969/announce"
-          "udp://new-line.net:6969/announce"
-          "udp://leet-tracker.moe:1337/announce"
-          "udp://isk.richardsw.club:6969/announce"
-          "https://tracker.tamersunion.org:443/announce"
-          "http://tracker1.bt.moack.co.kr:80/announce"
-        ];
+        bt-tracker = builtins.readFile "${inputs.bt-tracker}/all_aria2.txt";
       };
     };
 
@@ -99,7 +77,7 @@ in
     ];
 
     sops.secrets = {
-      "aria/rpc_token" = { };
+      "aria2_rpc_token" = { };
     };
   };
 }
