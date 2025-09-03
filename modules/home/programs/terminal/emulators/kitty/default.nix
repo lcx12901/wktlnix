@@ -92,10 +92,10 @@ in
         box_drawing_scale = "0.001, 1, 1.5, 2";
 
         # Cursor
-        cursor_trail = 20;
+        cursor_trail = 100;
+        cursor_trail_decay = "0.1 0.4";
         cursor_shape = "block";
-        cursor_blink_interval = 0.6;
-        cursor_blink_timeout = 0;
+        cursor_blink_interval = -1;
         cursor_stop_blinking_after = "15.0";
 
         # Scrollback
