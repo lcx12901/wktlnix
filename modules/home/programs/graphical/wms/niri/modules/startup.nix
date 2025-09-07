@@ -1,6 +1,5 @@
 {
   inputs,
-  # osConfig,
   config,
   lib,
   pkgs,
@@ -26,7 +25,6 @@ let
   swww = getExe pkgs.swww;
   swww-daemon = getExe' pkgs.swww "swww-daemon";
   swaybg = getExe pkgs.swaybg;
-  flameshot = getExe (pkgs.flameshot.override { enableWlrSupport = true; });
   wl-paste = getExe' pkgs.wl-clipboard "wl-paste";
   cliphist = getExe' pkgs.cliphist "cliphist";
 
@@ -65,7 +63,6 @@ in
     "-c"
     "${sleep} 10; fcitx5 --replace"
   ])
-  (spawn-at-startup [ flameshot ])
   (plain "cursor" [
     (leaf' "xcursor-theme" config.stylix.cursor.name)
     (leaf' "xcursor-size" config.stylix.cursor.size)
