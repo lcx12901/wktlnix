@@ -81,6 +81,8 @@ in
     security = {
       sudo-rs = enabled;
     };
+
+    virtualisation.kvm = enabled;
   };
 
   sops.secrets."yukino_dae_node" = { };
