@@ -6,8 +6,6 @@
   ...
 }:
 let
-  inherit (lib.${namespace}) enabled;
-
   cfg = config.${namespace}.display-managers.sddm;
 in
 {
@@ -29,7 +27,6 @@ in
           package = pkgs.kdePackages.sddm;
           extraPackages = with pkgs.kdePackages; [ qtmultimedia ];
           theme = "sddm-astronaut-theme";
-          # wayland = enabled;
         };
       };
     };
