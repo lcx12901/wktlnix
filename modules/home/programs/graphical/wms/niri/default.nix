@@ -3,7 +3,6 @@
   osConfig,
   config,
   lib,
-  pkgs,
   namespace,
   ...
 }@args:
@@ -68,6 +67,7 @@ in
           enable = true;
           systemdTargets = [ "niri.service" ];
         };
+        flameshot = enabled;
       };
     };
 
@@ -78,13 +78,5 @@ in
         ];
       };
     };
-
-    home.file.".config/flameshot/flameshot.ini".text = ''
-      [General]
-      contrastOpacity=188
-      useGrimAdapter=true
-    '';
-
-    home.packages = [ pkgs.grim ];
   };
 }

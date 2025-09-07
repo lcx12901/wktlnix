@@ -23,7 +23,7 @@ let
   spawn = leaf "spawn";
 
   sh = getExe' config.programs.bash.package "sh";
-  flameshot = getExe (pkgs.flameshot.override { enableWlrSupport = true; });
+  flameshot = getExe config.services.flameshot.package;
   vlc = getExe pkgs.vlc;
   telegram = getExe pkgs.telegram-desktop;
   rofi = getExe config.programs.rofi.package;
