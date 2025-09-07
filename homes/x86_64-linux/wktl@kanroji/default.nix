@@ -2,6 +2,7 @@
   inputs,
   config,
   lib,
+  pkgs,
   namespace,
   ...
 }:
@@ -9,6 +10,8 @@ let
   inherit (lib.${namespace}) enabled;
 in
 {
+  home.packages = [ pkgs.tsukimi ];
+
   wktlnix = {
     user = {
       enable = true;
