@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   lib,
   pkgs,
@@ -7,35 +6,30 @@
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib.${namespace}) enabled;
 
   cfg = config.${namespace}.display-managers.sddm;
 in
 {
   options.${namespace}.display-managers.sddm = {
-    enable = mkBoolOpt false "Whether or not to enable sddm.";
+    enable = lib.mkEnableOption "Whether or not to enable sddm.";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      (catppuccin-sddm.override {
-        flavor = "macchiato";
-        font = "Maple Mono NF CN";
-        fontSize = "9";
-        background = "${inputs.wallpapers}/wallhaven-x6em53.png";
-        loginBackground = true;
+      (sddm-astronaut.override {
+        embeddedTheme = "hyprland_kath";
       })
-
-      kdePackages.sddm
     ];
 
     services = {
       displayManager = {
         sddm = {
           inherit (cfg) enable;
-          theme = "catppuccin-macchiato";
-          wayland = enabled;
+          package = pkgs.kdePackages.sddm;
+          extraPackages = with pkgs.kdePackages; [ qtmultimedia ];
+          theme = "sddm-astronaut-theme";
+          # wayland = enabled;
         };
       };
     };
