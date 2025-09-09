@@ -13,7 +13,7 @@ in
 {
   options.${namespace}.theme.stylix = {
     enable = lib.mkEnableOption "stylix theme for applications";
-    image = mkOpt lib.types.str "window-error.jpg" "wallpaper name";
+    image = mkOpt lib.types.str "artoria.jpg" "wallpaper name";
   };
 
   config = lib.mkIf cfg.enable {
@@ -21,21 +21,21 @@ in
       let
         image = "${inputs.wallpapers}/${cfg.image}";
 
-        matugenToBase16 =
-          name:
-          pkgs.runCommand "${name}.yaml" { buildInputs = [ pkgs.matugen ]; }
-            # bash --type scheme-expressive scheme-fruit-salad
-            ''
-              ${pkgs.python3}/bin/python ${./matu2base16.py} ${image} \
-                    --name ${name} --polarity ${config.stylix.polarity} --type scheme-expressive --output $out
-            '';
+        # matugenToBase16 =
+        #   name:
+        #   pkgs.runCommand "${name}.yaml" { buildInputs = [ pkgs.matugen ]; }
+        #     # bash --type scheme-expressive scheme-fruit-salad
+        #     ''
+        #       ${pkgs.python3}/bin/python ${./matu2base16.py} ${image} \
+        #             --name ${name} --polarity ${config.stylix.polarity} --type scheme-expressive --output $out
+        #     '';
       in
       {
         autoEnable = false;
 
         inherit image;
 
-        base16Scheme = "${matugenToBase16 "theme"}";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
 
         cursor = {
           package = pkgs.graphite-cursors;
