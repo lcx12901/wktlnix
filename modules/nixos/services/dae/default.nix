@@ -7,14 +7,15 @@
   ...
 }:
 let
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib.${namespace}) mkOpt;
 
   cfg = config.${namespace}.services.dae;
 in
 {
 
   options.${namespace}.services.dae = {
-    enable = mkBoolOpt false "Whether or not to enable dae.";
+    enable = lib.mkEnableOption "Whether or not to enable dae.";
+    openFirewall = lib.mkEnableOption "Whether or not to open the dae port in the firewall.";
     extraNodes = mkOpt lib.types.str "" "extra nodes to add to the dae configuration.";
     extraGroups = mkOpt lib.types.str "" "extra groups to add to the dae configuration.";
     extraRules = mkOpt lib.types.str "" "extra routing rules to add to the dae configuration.";
@@ -25,7 +26,7 @@ in
       enable = true;
 
       openFirewall = {
-        enable = true;
+        enable = cfg.openFirewall;
         port = 12345;
       };
 
