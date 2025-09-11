@@ -26,7 +26,7 @@ in
 
     home.persistence = mkIf persist {
       "/persist/home/${config.${namespace}.user.name}" = {
-        directories = [ ".config/go-musicfox" ];
+        directories = [ ".local/share/go-musicfox" ];
       };
     };
 
