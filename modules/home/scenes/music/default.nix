@@ -8,7 +8,7 @@
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.scenes.music;
 
@@ -20,17 +20,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    wktlnix = {
-      programs = {
-        terminal = {
-          media = {
-            # spicetify = enabled;
-            go-musicfox = enabled;
-          };
-        };
-      };
-    };
-
     home.packages = with pkgs; [ qqmusic ];
 
     home.persistence = mkIf persist {
