@@ -9,11 +9,6 @@ let
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.tools.ssh;
-
-  mkSSHBlock = identityFile: {
-    inherit identityFile;
-    identitiesOnly = true;
-  };
 in
 {
   options.${namespace}.programs.terminal.tools.ssh = {
@@ -47,9 +42,17 @@ in
           controlPersist = lib.mkDefault "no";
         };
 
-        "akeno.lincx.top" = mkSSHBlock "${config.sops.secrets."akeno_rsa".path}";
-        "github.com" = mkSSHBlock "${config.sops.secrets."github_rsa".path}";
-        "192.168.0.216" = (mkSSHBlock "${config.sops.secrets."github_rsa".path}") // {
+        "akeno.lincx.top" = {
+          identityFile = config.sops.secrets."akeno_rsa".path;
+          identitiesOnly = true;
+        };
+        "github.com" = {
+          identityFile = config.sops.secrets."github_rsa".path;
+          identitiesOnly = true;
+        };
+        "192.168.0.216" = {
+          identityFile = config.sops.secrets."github_rsa".path;
+          identitiesOnly = true;
           port = 8221;
         };
       };
@@ -60,7 +63,6 @@ in
         sopsFile = lib.snowfall.fs.get-file "secrets/ssh.yaml";
       in
       {
-        akame_rsa = { inherit sopsFile; };
         akeno_rsa = { inherit sopsFile; };
         github_rsa = { inherit sopsFile; };
       };
