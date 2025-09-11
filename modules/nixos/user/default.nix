@@ -28,39 +28,43 @@ in
 
     programs.fish.enable = true;
 
-    users.mutableUsers = false;
+    users = {
+      mutableUsers = false;
 
-    users.users.${cfg.name} = {
-      inherit (cfg) name;
+      users.${cfg.name} = {
+        inherit (cfg) name;
 
-      extraGroups = [
-        "wheel"
-        "systemd-journal"
-        "mpd"
-        "audio"
-        "video"
-        "input"
-        "plugdev"
-        "lp"
-        "tss"
-        "power"
-        "nix"
-      ] ++ cfg.extraGroups;
+        extraGroups = [
+          "wheel"
+          "systemd-journal"
+          "mpd"
+          "audio"
+          "video"
+          "input"
+          "plugdev"
+          "lp"
+          "tss"
+          "power"
+          "nix"
+        ]
+        ++ cfg.extraGroups;
 
-      group = "users";
-      home = "/home/${cfg.name}";
-      createHome = true;
-      isNormalUser = true;
-      shell = pkgs.fish;
-      uid = 1000;
+        group = "users";
+        home = "/home/${cfg.name}";
+        createHome = true;
+        isNormalUser = true;
+        shell = pkgs.fish;
+        uid = 1000;
 
-      hashedPassword = "$6$XXUp9uRF41kC5YHm$lsOLgDuECYb9CbDHBRpsPashoBzB794KoLWI2NCpOl5cB9puDosikhJwGXNxuLf/mW6nJ0SdYkasIAIHfd99/0";
+        hashedPassword = "$6$XXUp9uRF41kC5YHm$lsOLgDuECYb9CbDHBRpsPashoBzB794KoLWI2NCpOl5cB9puDosikhJwGXNxuLf/mW6nJ0SdYkasIAIHfd99/0";
 
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsBzgtsv5xRzqRmPer4JoLMuLb0wCQHGwMRwTyBDua4"
-      ];
-    } // cfg.extraOptions;
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsBzgtsv5xRzqRmPer4JoLMuLb0wCQHGwMRwTyBDua4"
+        ];
+      }
+      // cfg.extraOptions;
 
-    users.users.root.hashedPassword = "*"; # lock root account
+      users.root.hashedPassword = "*";
+    }; # lock root account
   };
 }
