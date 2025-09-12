@@ -8,7 +8,7 @@
 }:
 let
   inherit (lib) types mkIf;
-  inherit (lib.${namespace}) mkOpt enabled;
+  inherit (lib.${namespace}) mkOpt;
 
   cfg = config.${namespace}.programs.graphical.browsers.firefox;
 
