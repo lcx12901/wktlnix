@@ -93,10 +93,8 @@
     # Addons
     nvf.url = "github:notashelf/nvf";
 
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
 
