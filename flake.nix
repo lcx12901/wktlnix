@@ -41,7 +41,6 @@
 
       homes.modules = with inputs; [
         impermanence.nixosModules.home-manager.impermanence
-        # spicetify-nix.homeManagerModules.default
         stylix.homeModules.stylix
         sops-nix.homeManagerModules.sops
         nix-zed-extensions.homeManagerModules.default
@@ -121,10 +120,6 @@
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
     impermanence.url = "github:nix-community/impermanence";
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     daeuniverse.url = "github:daeuniverse/flake.nix";
 
     # Theme
