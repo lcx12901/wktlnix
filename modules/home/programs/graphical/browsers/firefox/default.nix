@@ -8,7 +8,7 @@
 }:
 let
   inherit (lib) types mkIf;
-  inherit (lib.${namespace}) mkOpt enabled;
+  inherit (lib.${namespace}) mkOpt;
 
   cfg = config.${namespace}.programs.graphical.browsers.firefox;
 
@@ -33,10 +33,13 @@ in
         Snippets = false;
       };
       PasswordManagerEnabled = false;
-      # PromptForDownloadLocation = true;
       UserMessaging = {
         ExtensionRecommendations = false;
         SkipOnboarding = true;
+      };
+      EncryptedMediaExtensions = {
+        Enabled = true;
+        Locked = true;
       };
       ExtensionSettings = {
         "ebay@search.mozilla.org".installation_mode = "blocked";
@@ -96,7 +99,7 @@ in
           settings = {
             "sidebar.verticalTabs" = true;
             "sidebar.visibility" = "expand-on-hover";
-            "sidebar.main.tools" = "{446900e4-71c2-419f-a6a7-df9c091e268b}";
+            "sidebar.main.tools" = "aichat,{446900e4-71c2-419f-a6a7-df9c091e268b}";
             "sidebar.animation.expand-on-hover.duration-ms" = 150;
             "sidebar.revamp" = true;
             "browser.tabs.closeTabByDblclick" = true;
