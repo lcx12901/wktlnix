@@ -40,9 +40,9 @@ in
 
             ];
         };
-        editors = {
-          vscode = enabled;
-        };
+        # editors = {
+        #   vscode = enabled;
+        # };
         # apps.vesktop = enabled;
         browsers = {
           firefox = enabled;
