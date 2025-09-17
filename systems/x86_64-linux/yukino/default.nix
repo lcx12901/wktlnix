@@ -62,7 +62,10 @@ in
     security = {
       sudo-rs = enabled;
     };
+
+    virtualisation.kvm = enabled;
   };
+
   networking = {
     firewall = {
       allowedTCPPortRanges = [
@@ -80,6 +83,7 @@ in
     extraHosts = ''
       127.0.0.1 t3.z9soft.cn
     '';
+
   };
 
   sops.secrets."yukino_sing" = { };
