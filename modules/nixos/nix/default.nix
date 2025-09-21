@@ -130,6 +130,7 @@ in
             "cgroups" # allow nix to execute builds inside cgroups
             # "git-hashing" # allow store objects which are hashed via Git's hashing algorithm
             # "verified-fetches" # enable verification of git commit signatures for fetchGit
+            "pipe-operators"
           ];
 
           # don't warn me that my git tree is dirty, I know
