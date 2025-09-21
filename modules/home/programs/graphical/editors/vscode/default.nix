@@ -10,8 +10,6 @@ let
   inherit (lib.${namespace}) mkOpt;
 
   cfg = config.${namespace}.programs.graphical.editors.vscode;
-
-  persist = osConfig.${namespace}.system.persist.enable;
 in
 {
   options.${namespace}.programs.graphical.editors.vscode = with lib.types; {

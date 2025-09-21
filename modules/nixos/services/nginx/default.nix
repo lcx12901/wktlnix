@@ -16,7 +16,7 @@ in
   options.services.nginx.virtualHosts = mkOption {
     type = types.attrsOf (
       types.submodule (
-        { config, ... }:
+        { ... }:
         {
           freeformType = types.attrsOf types.anything;
 
