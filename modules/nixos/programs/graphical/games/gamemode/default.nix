@@ -3,26 +3,24 @@
   inputs,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption getExe';
 
-  cfg = config.${namespace}.programs.graphical.games.gamemode;
+  cfg = config.wktlnix.programs.graphical.games.gamemode;
 
   defaultStartScript = ''
-    ${lib.getExe' pkgs.libnotify "notify-send"} 'GameMode started'
+    ${getExe' pkgs.libnotify "notify-send"} 'GameMode started'
   '';
 
   defaultEndScript = ''
-    ${lib.getExe' pkgs.libnotify "notify-send"} 'GameMode ended'
+    ${getExe' pkgs.libnotify "notify-send"} 'GameMode ended'
   '';
 in
 {
-  options.${namespace}.programs.graphical.games.gamemode = {
-    enable = mkBoolOpt false "Whether or not to enable gamemode.";
+  options.wktlnix.programs.graphical.games.gamemode = {
+    enable = mkEnableOption "Whether or not to enable gamemode.";
   };
 
   imports = with inputs.nix-gaming.nixosModules; [

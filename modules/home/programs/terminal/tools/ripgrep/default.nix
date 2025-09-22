@@ -2,18 +2,21 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) getExe mkForce mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    getExe
+    mkForce
+    ;
 
-  cfg = config.${namespace}.programs.terminal.tools.ripgrep;
+  cfg = config.wktlnix.programs.terminal.tools.ripgrep;
 in
 {
-  options.${namespace}.programs.terminal.tools.ripgrep = {
-    enable = mkBoolOpt false "Whether or not to enable ripgrep.";
+  options.wktlnix.programs.terminal.tools.ripgrep = {
+    enable = mkEnableOption "Whether or not to enable ripgrep.";
   };
 
   config = mkIf cfg.enable {

@@ -3,15 +3,14 @@
   lib,
   options,
   pkgs,
-  namespace,
   ...
 }:
 let
   inherit (lib) types mkAliasDefinitions;
-  inherit (lib.${namespace}) mkOpt;
+  inherit (lib.wktlnix) mkOpt;
 in
 {
-  options.${namespace}.home = with types; {
+  options.wktlnix.home = with types; {
     configFile =
       mkOpt attrs { }
         "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
@@ -22,10 +21,10 @@ in
   config = {
     environment.systemPackages = [ pkgs.home-manager ];
 
-    ${namespace}.home.extraOptions = {
-      home.file = mkAliasDefinitions options.${namespace}.home.file;
+    wktlnix.home.extraOptions = {
+      home.file = mkAliasDefinitions options.wktlnix.home.file;
       home.stateVersion = config.system.stateVersion;
-      xdg.configFile = mkAliasDefinitions options.${namespace}.home.configFile;
+      xdg.configFile = mkAliasDefinitions options.wktlnix.home.configFile;
       xdg.enable = true;
     };
 
@@ -36,7 +35,7 @@ in
       useGlobalPkgs = true;
       useUserPackages = true;
 
-      users.${config.${namespace}.user.name} = mkAliasDefinitions options.${namespace}.home.extraOptions;
+      users.${config.wktlnix.user.name} = mkAliasDefinitions options.wktlnix.home.extraOptions;
 
       verbose = true;
     };

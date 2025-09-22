@@ -1,20 +1,17 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib.${namespace}) mkOpt;
-  cfg = config.${namespace}.programs.terminal.emulators.kitty;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.wktlnix) mkOpt;
+
+  cfg = config.wktlnix.programs.terminal.emulators.kitty;
 in
 {
-  options.${namespace}.programs.terminal.emulators.kitty = {
-    enable = lib.mkEnableOption "Kitty";
+  options.wktlnix.programs.terminal.emulators.kitty = {
+    enable = mkEnableOption "Kitty";
     fontSize = mkOpt lib.types.int 14 "Font size for Kitty terminal emulator";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.shellAliases = {
       # Shared clipboard that works over ssh
       clipboard = "kitten clipboard";

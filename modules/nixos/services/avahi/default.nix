@@ -1,16 +1,15 @@
 {
   config,
   lib,
-  namespace,
   ...
 }:
 let
-  cfg = config.${namespace}.services.avahi;
+  cfg = config.wktlnix.services.avahi;
 
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkIf mkEnableOption;
 in
 {
-  options.${namespace}.services.avahi = {
+  options.wktlnix.services.avahi = {
     enable = mkEnableOption "Avahi";
   };
 

@@ -3,20 +3,19 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.wktlnix) enabled;
 
-  persist = osConfig.${namespace}.system.persist.enable;
+  persist = osConfig.wktlnix.system.persist.enable;
 
-  cfg = config.${namespace}.programs.terminal.media.go-musicfox;
+  cfg = config.wktlnix.programs.terminal.media.go-musicfox;
 in
 {
-  options.${namespace}.programs.terminal.media.go-musicfox = {
-    enable = mkBoolOpt false "Whether or not to enable support for go-musicfox.";
+  options.wktlnix.programs.terminal.media.go-musicfox = {
+    enable = mkEnableOption "Whether or not to enable support for go-musicfox.";
   };
 
   config = mkIf cfg.enable {
@@ -25,7 +24,7 @@ in
     ];
 
     home.persistence = mkIf persist {
-      "/persist/home/${config.${namespace}.user.name}" = {
+      "/persist/home/${config.wktlnix.user.name}" = {
         directories = [ ".local/share/go-musicfox" ];
       };
     };

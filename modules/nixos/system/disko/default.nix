@@ -1,18 +1,13 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf types;
-  inherit (lib.${namespace}) mkOpt mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption types;
+  inherit (lib.wktlnix) mkOpt;
 
-  cfg = config.${namespace}.system.disko;
+  cfg = config.wktlnix.system.disko;
 in
 {
-  options.${namespace}.system.disko = {
-    enable = mkBoolOpt false "Whether or not to enable declarative disk partitioning.";
+  options.wktlnix.system.disko = {
+    enable = mkEnableOption "Whether or not to enable declarative disk partitioning.";
     device = mkOpt types.str "/dev/nvme0n1" "this is a disk path.";
     rootSize = mkOpt types.str "100%" "this is a root partition size.";
   };
@@ -30,8 +25,9 @@ in
       };
       disk = {
         main = {
+          inherit (cfg) device;
+
           type = "disk";
-          device = cfg.device;
           content = {
             type = "gpt";
             partitions = {

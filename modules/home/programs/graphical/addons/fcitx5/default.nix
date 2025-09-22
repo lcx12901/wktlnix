@@ -2,18 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.graphical.addons.fcitx5;
+  cfg = config.wktlnix.programs.graphical.addons.fcitx5;
 in
 {
-  options.${namespace}.programs.graphical.addons.fcitx5 = {
-    enable = mkBoolOpt false "Whether to enable fcitx5.";
+  options.wktlnix.programs.graphical.addons.fcitx5 = {
+    enable = mkEnableOption "Whether to enable fcitx5.";
   };
 
   config = mkIf cfg.enable {
@@ -22,7 +20,7 @@ in
       type = "fcitx5";
       fcitx5 = {
         addons = with pkgs; [
-          fcitx5-chinese-addons
+          kdePackages.fcitx5-chinese-addons
           fcitx5-gtk
           libsForQt5.fcitx5-qt
           fcitx5-lua

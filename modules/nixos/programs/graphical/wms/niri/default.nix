@@ -2,18 +2,17 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.wktlnix) enabled;
 
-  cfg = config.${namespace}.programs.graphical.wms.niri;
+  cfg = config.wktlnix.programs.graphical.wms.niri;
 in
 {
-  options.${namespace}.programs.graphical.wms.niri = {
-    enable = mkBoolOpt false "Whether or not to enable niri.";
+  options.wktlnix.programs.graphical.wms.niri = {
+    enable = mkEnableOption "Whether or not to enable niri.";
   };
 
   config = mkIf cfg.enable {

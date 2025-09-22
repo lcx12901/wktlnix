@@ -3,22 +3,24 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) types mkIf;
-  inherit (lib.${namespace}) mkOpt;
+  inherit (lib) types mkIf mkEnableOption;
+  inherit (lib.wktlnix) mkOpt;
 
-  cfg = config.${namespace}.programs.graphical.browsers.firefox;
+  cfg = config.wktlnix.programs.graphical.browsers.firefox;
 
-  persist = osConfig.${namespace}.system.persist.enable;
+  persist = osConfig.wktlnix.system.persist.enable;
 in
 {
-  imports = lib.snowfall.fs.get-non-default-nix-files ./.;
+  imports = [
+    ./extensions.nix
+    ./search.nix
+  ];
 
-  options.${namespace}.programs.graphical.browsers.firefox = with types; {
-    enable = lib.mkEnableOption "Firefox";
+  options.wktlnix.programs.graphical.browsers.firefox = with types; {
+    enable = mkEnableOption "Firefox";
 
     policies = mkOpt attrs {
       CaptivePortal = false;
@@ -54,9 +56,9 @@ in
 
   config = mkIf cfg.enable {
     home.persistence = lib.mkIf persist {
-      "/persist/home/${config.${namespace}.user.name}" = {
+      "/persist/home/${config.wktlnix.user.name}" = {
         allowOther = true;
-        directories = [ ".mozilla/firefox/${config.${namespace}.user.name}" ];
+        directories = [ ".mozilla/firefox/${config.wktlnix.user.name}" ];
       };
     };
 
@@ -88,11 +90,11 @@ in
       profiles = {
         "default" = {
           id = 0;
-          path = "${config.${namespace}.user.name}";
+          path = "${config.wktlnix.user.name}";
         };
 
-        ${config.${namespace}.user.name} = {
-          inherit (config.${namespace}.user) name;
+        ${config.wktlnix.user.name} = {
+          inherit (config.wktlnix.user) name;
 
           id = 1;
 

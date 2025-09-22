@@ -3,20 +3,18 @@
   osConfig,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  persist = osConfig.${namespace}.system.persist.enable;
+  persist = osConfig.wktlnix.system.persist.enable;
 
-  cfg = config.${namespace}.scenes.business;
+  cfg = config.wktlnix.scenes.business;
 in
 {
-  options.${namespace}.scenes.business = {
-    enable = mkBoolOpt false "Whether or not to enable business configuration.";
+  options.wktlnix.scenes.business = {
+    enable = mkEnableOption "Whether or not to enable business configuration.";
   };
 
   config = mkIf cfg.enable {
@@ -25,7 +23,7 @@ in
     ];
 
     home.persistence = mkIf persist {
-      "/persist/home/${config.${namespace}.user.name}" = {
+      "/persist/home/${config.wktlnix.user.name}" = {
         directories = [ ".config/LarkShell" ];
       };
     };

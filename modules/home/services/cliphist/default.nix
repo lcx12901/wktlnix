@@ -1,16 +1,11 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.services.cliphist;
+  cfg = config.wktlnix.services.cliphist;
 in
 {
-  options.${namespace}.services.cliphist = {
+  options.wktlnix.services.cliphist = {
     enable = mkEnableOption "cliphist";
 
     systemdTargets = lib.mkOption {

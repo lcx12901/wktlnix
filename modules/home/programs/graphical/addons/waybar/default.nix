@@ -1,21 +1,21 @@
 {
   config,
   lib,
-  namespace,
   pkgs,
   ...
 }:
 let
-  cfg = config.${namespace}.programs.graphical.addons.waybar;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (config.lib.stylix) colors;
 
-  colors = config.lib.stylix.colors;
+  cfg = config.wktlnix.programs.graphical.addons.waybar;
 in
 {
-  options.${namespace}.programs.graphical.addons.waybar = {
-    enable = lib.mkEnableOption " waybar";
+  options.wktlnix.programs.graphical.addons.waybar = {
+    enable = mkEnableOption " waybar";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [
       tty-clock
     ];

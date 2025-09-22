@@ -1,18 +1,12 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.graphical.addons.electron-support;
+  cfg = config.wktlnix.programs.graphical.addons.electron-support;
 in
 {
-  options.${namespace}.programs.graphical.addons.electron-support = {
-    enable = mkBoolOpt false "Whether to enable wayland electron support in the desktop environment.";
+  options.wktlnix.programs.graphical.addons.electron-support = {
+    enable = mkEnableOption "Whether to enable wayland electron support in the desktop environment.";
   };
 
   config = mkIf cfg.enable {

@@ -2,34 +2,34 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf optionals;
+  inherit (lib) mkIf mkEnableOption optionals;
   inherit (lib.types) attrs;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib.wktlnix) mkOpt;
 
-  cfg = config.${namespace}.system.networking;
+  cfg = config.wktlnix.system.networking;
 in
 {
-  options.${namespace}.system.networking = {
-    enable = mkBoolOpt false "Whether or not to enable networking support";
+  options.wktlnix.system.networking = {
+    enable = mkEnableOption "Whether or not to enable networking support";
     hosts = mkOpt attrs { } "An attribute set to merge with <option>networking.hosts</option>";
-    optimizeTcp = mkBoolOpt true "Optimize TCP connections";
-    wireless = mkBoolOpt false "Whether or not to enable WIFI";
+    optimizeTcp = mkEnableOption "Optimize TCP connections";
+    wireless = mkEnableOption "Whether or not to enable WIFI";
   };
 
   config = mkIf cfg.enable {
     boot = {
       extraModprobeConfig = "options bonding max_bonds=0";
 
-      kernelModules =
-        [ "af_packet" ]
-        ++ optionals cfg.optimizeTcp [
-          "tls"
-          "tcp_bbr"
-        ];
+      kernelModules = [
+        "af_packet"
+      ]
+      ++ optionals cfg.optimizeTcp [
+        "tls"
+        "tcp_bbr"
+      ];
 
       kernel.sysctl = {
         # TCP hardening
@@ -91,7 +91,8 @@ in
     networking = {
       hosts = {
         "127.0.0.1" = cfg.hosts."127.0.0.1" or [ ];
-      } // cfg.hosts;
+      }
+      // cfg.hosts;
 
       nameservers = [
         "1.1.1.1"

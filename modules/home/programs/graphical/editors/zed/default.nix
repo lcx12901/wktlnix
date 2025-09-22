@@ -2,19 +2,19 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.graphical.editors.zed;
+  cfg = config.wktlnix.programs.graphical.editors.zed;
 in
 {
-  options.${namespace}.programs.graphical.editors.zed = {
-    enable = lib.mkEnableOption "Whether or not to enable zed.";
+  options.wktlnix.programs.graphical.editors.zed = {
+    enable = mkEnableOption "Whether or not to enable zed.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs.zed-editor = {
       enable = true;
 

@@ -2,25 +2,25 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) types;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.types) package path;
+  inherit (lib.wktlnix) mkOpt;
 
-  cfg = config.${namespace}.services.sing-box;
+  cfg = config.wktlnix.services.sing-box;
 in
 {
   disabledModules = [ "services/networking/sing-box.nix" ];
 
-  options.${namespace}.services.sing-box = {
-    enable = mkBoolOpt false "Whether or not to enable sing-box.";
-    package = mkOpt types.package pkgs.sing-box "default package";
-    configFile = mkOpt types.path "" "path to singularity config";
+  options.wktlnix.services.sing-box = {
+    enable = mkEnableOption "Whether or not to enable sing-box.";
+    package = mkOpt package pkgs.sing-box "default package";
+    configFile = mkOpt path "" "path to singularity config";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     systemd.services.sing-box = {
       wantedBy = [ "multi-user.target" ];
       after = [ "network-online.target" ];

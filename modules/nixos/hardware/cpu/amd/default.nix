@@ -2,18 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.hardware.cpu.amd;
+  cfg = config.wktlnix.hardware.cpu.amd;
 in
 {
-  options.${namespace}.hardware.cpu.amd = {
-    enable = mkBoolOpt false "Whether or not to enable support for amd cpu.";
+  options.wktlnix.hardware.cpu.amd = {
+    enable = mkEnableOption "Whether or not to enable support for amd cpu.";
   };
 
   config = mkIf cfg.enable {

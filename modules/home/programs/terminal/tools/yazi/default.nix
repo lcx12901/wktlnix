@@ -2,28 +2,25 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  cfg = config.${namespace}.programs.terminal.tools.yazi;
+  inherit (lib) mkIf mkEnableOption;
+
+  cfg = config.wktlnix.programs.terminal.tools.yazi;
 in
 {
-  options.${namespace}.programs.terminal.tools.yazi = {
-    enable = lib.mkEnableOption "Whether or not to enable yazi.";
+  options.wktlnix.programs.terminal.tools.yazi = {
+    enable = mkEnableOption "Whether or not to enable yazi.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.packages =
       let
         optionalPluginPackage =
           plugin: package: lib.optional (builtins.hasAttr plugin config.programs.yazi.plugins) package;
       in
-      optionalPluginPackage "ouch" pkgs.ouch
-      ++ optionalPluginPackage "glow" pkgs.glow
-      ++ [
-        pkgs.xdragon
-      ];
+      optionalPluginPackage "ouch" pkgs.ouch ++ optionalPluginPackage "glow" pkgs.glow;
 
     programs.yazi = {
       enable = true;

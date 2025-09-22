@@ -2,17 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib.wktlnix) mkBoolOpt;
 
-  cfg = config.${namespace}.programs.terminal.shell.fish;
+  cfg = config.wktlnix.programs.terminal.shell.fish;
 in
 {
-  options.${namespace}.programs.terminal.shell.fish = {
+  options.wktlnix.programs.terminal.shell.fish = {
     enable = mkBoolOpt true "Whether or not to enable fish shell.";
   };
 

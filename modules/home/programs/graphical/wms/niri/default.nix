@@ -1,34 +1,27 @@
 {
-  inputs,
   osConfig,
   config,
   lib,
-  namespace,
   ...
-}@args:
+}:
 let
-  inherit (lib.${namespace}) mkBoolOpt mkOpt enabled;
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkEnableOption kdl;
+  inherit (lib.wktlnix) mkOpt enabled;
 
   niri = osConfig.programs.niri.package;
 
-  cfg = config.${namespace}.programs.graphical.wms.niri;
-
-  bind = import ./modules/bind.nix args;
-  startup = import ./modules/startup.nix (
-    args
-    // {
-      inherit (cfg) DISPLAY;
-    }
-  );
-  window-rule = import ./modules/window-rule.nix { inherit inputs; };
+  cfg = config.wktlnix.programs.graphical.wms.niri;
 in
 {
-  options.${namespace}.programs.graphical.wms.niri = {
-    enable = mkBoolOpt false "Whether or not to enable niri.";
-    extraConfig =
-      mkOpt inputs.niri.lib.kdl.types.kdl-document [ ]
-        "extra configuration for niri, in KDL format.";
+  imports = [
+    ./modules/bind.nix
+    ./modules/startup.nix
+    ./modules/window-rule.nix
+  ];
+
+  options.wktlnix.programs.graphical.wms.niri = {
+    enable = mkEnableOption "Whether or not to enable niri.";
+    extraConfig = mkOpt kdl.types.kdl-document [ ] "extra configuration for niri, in KDL format.";
     DISPLAY = mkOpt lib.types.str ":1" "the display to use for niri.";
   };
 
@@ -36,11 +29,7 @@ in
     programs.niri = {
       package = niri;
 
-      config =
-        (lib.toList bind)
-        ++ (lib.toList startup)
-        ++ (lib.toList window-rule)
-        ++ (lib.toList cfg.extraConfig);
+      config = cfg.extraConfig;
     };
 
     wktlnix = {

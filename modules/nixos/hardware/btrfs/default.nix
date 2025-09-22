@@ -2,19 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.hardware.btrfs;
+  cfg = config.wktlnix.hardware.btrfs;
 in
 {
-  options.${namespace}.hardware.btrfs = {
-    enable = mkBoolOpt false "Whether or not to enable support for btrfs devices.";
-    autoScrub = mkBoolOpt true "Whether to enable btrfs autoScrub;";
+  options.wktlnix.hardware.btrfs = {
+    enable = mkEnableOption "Whether or not to enable support for btrfs devices.";
   };
 
   config = mkIf cfg.enable {
@@ -28,7 +25,7 @@ in
 
     services = {
       btrfs = {
-        autoScrub = mkIf cfg.autoScrub {
+        autoScrub = {
           enable = true;
           fileSystems = [ "/" ];
           interval = "weekly";

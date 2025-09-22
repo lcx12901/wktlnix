@@ -2,40 +2,42 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) types mkOption mkDefault;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    mkDefault
+    ;
+  inherit (lib.types) submodule attrsOf anything;
 
-  cfg = config.${namespace}.services.nginx;
+  cfg = config.wktlnix.services.nginx;
 
   domain = "${config.networking.hostName}.lincx.top";
 in
 {
   options.services.nginx.virtualHosts = mkOption {
-    type = types.attrsOf (
-      types.submodule (
-        { config, ... }:
-        {
-          freeformType = types.attrsOf types.anything;
+    type = attrsOf (
+      submodule (_: {
+        freeformType = attrsOf anything;
 
-          config = {
-            quic = mkDefault true;
-            forceSSL = mkDefault true;
-            enableACME = mkDefault false;
-            useACMEHost = mkDefault domain;
-          };
-        }
-      )
+        config = {
+          quic = mkDefault true;
+          forceSSL = mkDefault true;
+          enableACME = mkDefault false;
+          useACMEHost = mkDefault domain;
+        };
+      })
     );
   };
 
-  options.${namespace}.services.nginx = {
-    enable = lib.${namespace}.mkBoolOpt false "Whether or not to enable nginx.";
+  options.wktlnix.services.nginx = {
+    enable = mkEnableOption "Whether or not to enable nginx.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     users.users.nginx.extraGroups = [ "acme" ];
 
     services.nginx = {

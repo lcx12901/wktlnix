@@ -3,7 +3,6 @@
   inputs,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
@@ -17,12 +16,12 @@ let
     pipe
     types
     ;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib.wktlnix) mkBoolOpt mkOpt;
 
-  cfg = config.${namespace}.nix;
+  cfg = config.wktlnix.nix;
 in
 {
-  options.${namespace}.nix = {
+  options.wktlnix.nix = {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
     package = mkOpt types.package pkgs.nixVersions.latest "Which nix package to use.";
   };
@@ -59,7 +58,7 @@ in
         users = [
           "root"
           "@wheel"
-          config.${namespace}.user.name
+          config.wktlnix.user.name
         ];
       in
       {

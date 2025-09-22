@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.wktlnix) enabled;
 in
 {
   imports = [ ./hardware.nix ];

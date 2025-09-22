@@ -2,22 +2,21 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.wktlnix) enabled;
 
-  persist = config.${namespace}.system.persist.enable;
+  persist = config.wktlnix.system.persist.enable;
 
-  username = config.${namespace}.user.name;
+  username = config.wktlnix.user.name;
 
-  cfg = config.${namespace}.programs.graphical.games.steam;
+  cfg = config.wktlnix.programs.graphical.games.steam;
 in
 {
-  options.${namespace}.programs.graphical.games.steam = {
-    enable = mkBoolOpt false "Whether or not to enable support for Steam.";
+  options.wktlnix.programs.graphical.games.steam = {
+    enable = mkEnableOption "Whether or not to enable support for Steam.";
   };
 
   config = mkIf cfg.enable {

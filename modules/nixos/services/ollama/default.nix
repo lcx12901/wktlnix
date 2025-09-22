@@ -1,21 +1,16 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.services.ollama;
+  cfg = config.wktlnix.services.ollama;
 in
 {
-  options.${namespace}.services.ollama = {
-    enable = mkBoolOpt false "Whether to enable ollama.";
-    enableDebug = lib.mkEnableOption "debug";
+  options.wktlnix.services.ollama = {
+    enable = mkEnableOption "Whether to enable ollama.";
+    enableDebug = mkEnableOption "debug";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services.ollama = {
       enable = true;
 

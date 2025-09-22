@@ -2,18 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.hardware.graphics;
+  cfg = config.wktlnix.hardware.graphics;
 in
 {
-  options.${namespace}.hardware.graphics = {
-    enable = mkBoolOpt false "Whether or not to enable support for graphics.";
+  options.wktlnix.hardware.graphics = {
+    enable = mkEnableOption "Whether or not to enable support for graphics.";
   };
 
   config = mkIf cfg.enable {
@@ -26,7 +24,7 @@ in
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
         libva
         libvdpau

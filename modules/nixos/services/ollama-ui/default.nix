@@ -1,20 +1,15 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.services.ollama-ui;
+  cfg = config.wktlnix.services.ollama-ui;
 in
 {
-  options.${namespace}.services.ollama-ui = {
-    enable = mkBoolOpt false "Whether to enable ollama ui.";
+  options.wktlnix.services.ollama-ui = {
+    enable = mkEnableOption "Whether to enable ollama ui.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services.nextjs-ollama-llm-ui = {
       enable = true;
       port = 3001;

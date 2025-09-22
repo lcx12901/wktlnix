@@ -2,20 +2,19 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption getExe;
 
-  cfg = config.${namespace}.programs.terminal.tools.eza;
+  cfg = config.wktlnix.programs.terminal.tools.eza;
 in
 {
-  options.${namespace}.programs.terminal.tools.eza = {
-    enable = mkBoolOpt false "Whether or not to enable eza.";
+  options.wktlnix.programs.terminal.tools.eza = {
+    enable = mkEnableOption "Whether or not to enable eza.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs.eza = {
       enable = true;
       package = pkgs.eza;
@@ -34,9 +33,13 @@ in
       icons = "auto";
     };
 
-    home.shellAliases = {
-      la = lib.mkForce "${lib.getExe config.programs.eza.package} -lah --tree";
-      tree = lib.mkForce "${lib.getExe config.programs.eza.package} --tree --icons=always";
-    };
+    home.shellAliases =
+      let
+        eza = config.programs.eza.package;
+      in
+      {
+        la = lib.mkForce "${getExe eza} -lah --tree";
+        tree = lib.mkForce "${getExe eza} --tree --icons=always";
+      };
   };
 }

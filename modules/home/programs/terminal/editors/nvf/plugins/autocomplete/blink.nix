@@ -1,12 +1,11 @@
 {
-  inputs,
   lib,
   pkgs,
   ...
 }:
 let
   inherit (lib.generators) mkLuaInline;
-  inherit (inputs.nvf.lib.nvim.dag) entryBefore;
+  inherit (lib.nvim.dag) entryBefore;
 
   has_words_before = # lua
     ''

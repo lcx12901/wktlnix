@@ -2,18 +2,17 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.wktlnix) enabled;
 
-  cfg = config.${namespace}.programs.terminal.media.mpd;
+  cfg = config.wktlnix.programs.terminal.media.mpd;
 in
 {
-  options.${namespace}.programs.terminal.media.mpd = {
-    enable = mkBoolOpt false "Whether or not to enable support for mpd.";
+  options.wktlnix.programs.terminal.media.mpd = {
+    enable = mkEnableOption "Whether or not to enable support for mpd.";
   };
 
   config = mkIf cfg.enable {
@@ -29,7 +28,7 @@ in
 
       mpd = {
         enable = true;
-        musicDirectory = "${config.${namespace}.user.home}/Music";
+        musicDirectory = "${config.wkltnix.user.home}/Music";
         network = {
           startWhenNeeded = true;
           listenAddress = "127.0.0.1";

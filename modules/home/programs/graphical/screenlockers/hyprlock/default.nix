@@ -3,19 +3,17 @@
   inputs,
   lib,
   osConfig,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
   inherit (inputs) wallpapers;
 
-  cfg = config.${namespace}.programs.graphical.screenlockers.hyprlock;
+  cfg = config.wktlnix.programs.graphical.screenlockers.hyprlock;
 in
 {
-  options.${namespace}.programs.graphical.screenlockers.hyprlock = {
-    enable = mkBoolOpt false "Whether to enable hyprlock in the desktop environment.";
+  options.wktlnix.programs.graphical.screenlockers.hyprlock = {
+    enable = mkEnableOption "Whether to enable hyprlock in the desktop environment.";
   };
 
   config = mkIf cfg.enable {
@@ -65,7 +63,7 @@ in
             text = "<span font_weight=\"ultrabold\">$TIME</span>";
             color = "rgba(0, 0, 0, 0.5)";
             font_size = 120;
-            font_family = osConfig.${namespace}.system.fonts.default;
+            font_family = osConfig.wktlnix.system.fonts.default;
             position = "0, -300";
             halign = "center";
             valign = "top";
@@ -75,7 +73,7 @@ in
             text = "<span font_weight=\"bold\">Hi, $USER</span>";
             color = "rgba(0, 0, 0, 0.5)";
             font_size = 25;
-            font_family = osConfig.${namespace}.system.fonts.default;
+            font_family = osConfig.wktlnix.system.fonts.default;
             position = "0, -40";
             halign = "center";
             valign = "center";

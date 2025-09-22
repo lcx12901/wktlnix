@@ -1,18 +1,12 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.system.time;
+  cfg = config.wktlnix.system.time;
 in
 {
-  options.${namespace}.system.time = {
-    enable = mkBoolOpt false "Whether or not to configure time related settings.";
+  options.wktlnix.system.time = {
+    enable = mkEnableOption "Whether or not to configure time related settings.";
   };
 
   config = mkIf cfg.enable {

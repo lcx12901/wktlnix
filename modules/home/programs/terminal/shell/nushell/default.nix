@@ -1,20 +1,19 @@
 {
   config,
   lib,
-  namespace,
   ...
 }:
 let
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.terminal.shell.nushell;
+  cfg = config.wktlnix.programs.terminal.shell.nushell;
 in
 {
-  options.${namespace}.programs.terminal.shell.nushell = {
-    enable = mkBoolOpt true "Whether or not to enable nushell.";
+  options.wktlnix.programs.terminal.shell.nushell = {
+    enable = mkEnableOption "Whether or not to enable nushell.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs = {
       nushell = {
         enable = true;

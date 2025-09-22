@@ -1,14 +1,8 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.system.xdg;
+  cfg = config.wktlnix.system.xdg;
 
   browser = [ "firefox.desktop" ];
   terminal = [ "kitty.desktop" ];
@@ -45,8 +39,8 @@ let
   };
 in
 {
-  options.${namespace}.system.xdg = {
-    enable = mkBoolOpt false "xdg";
+  options.wktlnix.system.xdg = {
+    enable = mkEnableOption "xdg";
   };
 
   config = mkIf cfg.enable {

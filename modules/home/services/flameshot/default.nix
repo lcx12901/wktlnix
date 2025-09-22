@@ -2,18 +2,19 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  cfg = config.${namespace}.services.flameshot;
+  inherit (lib) mkIf mkEnableOption;
+
+  cfg = config.wktlnix.services.flameshot;
 in
 {
-  options.${namespace}.services.flameshot = {
-    enable = lib.mkEnableOption "cliphist";
+  options.wktlnix.services.flameshot = {
+    enable = mkEnableOption "cliphist";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services.flameshot = {
       enable = true;
 

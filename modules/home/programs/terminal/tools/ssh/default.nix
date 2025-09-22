@@ -1,17 +1,16 @@
 {
   config,
   lib,
-  namespace,
   ...
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib.wktlnix) mkBoolOpt;
 
-  cfg = config.${namespace}.programs.terminal.tools.ssh;
+  cfg = config.wktlnix.programs.terminal.tools.ssh;
 in
 {
-  options.${namespace}.programs.terminal.tools.ssh = {
+  options.wktlnix.programs.terminal.tools.ssh = {
     enable = mkBoolOpt true "Whether or not to enable ssh.";
   };
 
@@ -60,7 +59,7 @@ in
 
     sops.secrets =
       let
-        sopsFile = lib.snowfall.fs.get-file "secrets/ssh.yaml";
+        sopsFile = lib.file.get-file "secrets/ssh.yaml";
       in
       {
         akeno_rsa = { inherit sopsFile; };

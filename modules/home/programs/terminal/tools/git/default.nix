@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
@@ -12,15 +11,15 @@ let
     mkIf
     mkForce
     ;
-  inherit (lib.${namespace}) mkOpt enabled;
-  inherit (config.${namespace}) user;
+  inherit (lib.wktlnix) mkOpt enabled;
+  inherit (config.wktlnix) user;
 
-  cfg = config.${namespace}.programs.terminal.tools.git;
+  cfg = config.wktlnix.programs.terminal.tools.git;
 
   ignores = import ./ignores.nix;
 in
 {
-  options.${namespace}.programs.terminal.tools.git = {
+  options.wktlnix.programs.terminal.tools.git = {
     enable = mkEnableOption "Git";
     includes = mkOpt (types.listOf types.attrs) [ ] "Git includeIf paths and conditions.";
     userName = mkOpt types.str "lcx12901" "The name to configure git with.";
@@ -91,10 +90,12 @@ in
           diff.guitool = "nvimdiff";
           merge.tool = "nvimdiff";
           merge.conflictstyle = "diff3";
-          mergetool.keepBackup = false;
-          mergetool.prompt = false;
-          mergetool."vimdiff" = {
-            layout = "LOCAL,MERGED,REMOTE";
+          mergetool = {
+            keepBackup = false;
+            prompt = false;
+            "vimdiff" = {
+              layout = "LOCAL,MERGED,REMOTE";
+            };
           };
 
           http.postBuffer = 157286400;
@@ -114,7 +115,7 @@ in
     };
 
     sops.secrets."github_copilot_token" = {
-      path = "/home/${config.${namespace}.user.name}/.config/github-copilot/apps.json";
+      path = "/home/${config.wktlnix.user.name}/.config/github-copilot/apps.json";
     };
   };
 }

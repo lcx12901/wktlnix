@@ -1,11 +1,6 @@
-{
-  inputs,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }:
 let
-  inherit (inputs.nvf.lib.nvim.binds) mkKeymap;
+  inherit (lib.nvim.binds) mkKeymap;
 in
 {
   programs.nvf.settings = {

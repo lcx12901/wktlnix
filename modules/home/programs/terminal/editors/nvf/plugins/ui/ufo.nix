@@ -1,7 +1,7 @@
-{ inputs, lib, ... }:
+{ lib, ... }:
 let
   inherit (lib.generators) mkLuaInline;
-  inherit (inputs.nvf.lib.nvim.binds) mkKeymap;
+  inherit (lib.nvim.binds) mkKeymap;
 in
 {
   programs.nvf.settings = {

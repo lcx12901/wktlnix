@@ -2,20 +2,19 @@
   osConfig,
   config,
   lib,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.wktlnix) enabled;
 
-  cfg = config.${namespace}.programs.terminal.tools.direnv;
+  cfg = config.wktlnix.programs.terminal.tools.direnv;
 
-  persist = osConfig.${namespace}.system.persist.enable;
+  persist = osConfig.wktlnix.system.persist.enable;
 in
 {
-  options.${namespace}.programs.terminal.tools.direnv = {
-    enable = mkBoolOpt false "Whether or not to enable direnv.";
+  options.wktlnix.programs.terminal.tools.direnv = {
+    enable = mkEnableOption "Whether or not to enable direnv.";
   };
 
   config = mkIf cfg.enable {
@@ -33,7 +32,7 @@ in
     };
 
     home.persistence = mkIf persist {
-      "/persist/home/${config.${namespace}.user.name}" = {
+      "/persist/home/${config.wktlnix.user.name}" = {
         allowOther = true;
         directories = [ ".local/share/direnv" ];
       };

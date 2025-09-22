@@ -1,17 +1,16 @@
 {
   config,
   lib,
-  namespace,
   ...
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib.wktlnix) mkBoolOpt;
 
-  cfg = config.${namespace}.programs.terminal.tools.fastfetch;
+  cfg = config.wktlnix.programs.terminal.tools.fastfetch;
 in
 {
-  options.${namespace}.programs.terminal.tools.fastfetch = {
+  options.wktlnix.programs.terminal.tools.fastfetch = {
     enable = mkBoolOpt true "Whether or not to enable fastfetch.";
   };
 

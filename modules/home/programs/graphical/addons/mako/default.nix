@@ -2,18 +2,19 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  cfg = config.${namespace}.programs.graphical.addons.mako;
+  inherit (lib) mkIf mkEnableOption;
+
+  cfg = config.wktlnix.programs.graphical.addons.mako;
 in
 {
-  options.${namespace}.programs.graphical.addons.mako = {
-    enable = lib.mkEnableOption "Whether to enable Mako in Wayland.";
+  options.wktlnix.programs.graphical.addons.mako = {
+    enable = mkEnableOption "Whether to enable Mako in Wayland.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     stylix.targets.mako.enable = true;
 
     home.packages = with pkgs; [

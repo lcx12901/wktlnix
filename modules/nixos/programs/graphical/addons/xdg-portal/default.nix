@@ -2,18 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.graphical.addons.xdg-portal;
+  cfg = config.wktlnix.programs.graphical.addons.xdg-portal;
 in
 {
-  options.${namespace}.programs.graphical.addons.xdg-portal = {
-    enable = mkBoolOpt false "Whether or not to add support for xdg portal.";
+  options.wktlnix.programs.graphical.addons.xdg-portal = {
+    enable = mkEnableOption "Whether or not to add support for xdg portal.";
   };
 
   config = mkIf cfg.enable {
@@ -22,7 +20,7 @@ in
         enable = true;
 
         config = {
-          niri = mkIf config.${namespace}.programs.graphical.wms.niri.enable {
+          niri = mkIf config.wktlnix.programs.graphical.wms.niri.enable {
             default = [
               "gtk"
               "gnome"
@@ -49,7 +47,7 @@ in
             xdg-desktop-portal-gtk
             xdg-desktop-portal-wlr
           ]
-          ++ (lib.optional config.${namespace}.programs.graphical.wms.niri.enable xdg-desktop-portal-gnome);
+          ++ (lib.optional config.wktlnix.programs.graphical.wms.niri.enable xdg-desktop-portal-gnome);
       };
     };
   };

@@ -2,17 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
   inherit (lib.types) str listOf attrs;
-  inherit (lib.${namespace}) mkOpt;
+  inherit (lib.wktlnix) mkOpt;
 
-  cfg = config.${namespace}.user;
+  cfg = config.wktlnix.user;
 in
 {
-  options.${namespace}.user = {
+  options.wktlnix.user = {
     email = mkOpt str "wktl1991504424@gmail.com" "The email of the user.";
     extraGroups = mkOpt (listOf str) [ ] "Groups for the user to be assigned.";
     extraOptions = mkOpt attrs { } "Extra options passed to <option>users.users.<name></option>.";

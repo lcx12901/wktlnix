@@ -2,21 +2,22 @@
   inputs,
   config,
   lib,
-  namespace,
   pkgs,
   ...
 }:
 let
-  inherit (lib.${namespace}) mkOpt;
-  cfg = config.${namespace}.theme.stylix;
+  inherit (lib) mkIf mkEnableOption types;
+  inherit (lib.wktlnix) mkOpt;
+
+  cfg = config.wktlnix.theme.stylix;
 in
 {
-  options.${namespace}.theme.stylix = {
-    enable = lib.mkEnableOption "stylix theme for applications";
-    image = mkOpt lib.types.str "artoria.jpg" "wallpaper name";
+  options.wktlnix.theme.stylix = {
+    enable = mkEnableOption "stylix theme for applications";
+    image = mkOpt types.str "artoria.jpg" "wallpaper name";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     stylix =
       let
         image = "${inputs.wallpapers}/${cfg.image}";

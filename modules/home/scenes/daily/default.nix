@@ -3,20 +3,18 @@
   osConfig,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  persist = osConfig.${namespace}.system.persist.enable;
+  persist = osConfig.wktlnix.system.persist.enable;
 
-  cfg = config.${namespace}.scenes.daily;
+  cfg = config.wktlnix.scenes.daily;
 in
 {
-  options.${namespace}.scenes.daily = {
-    enable = mkBoolOpt false "Whether or not to enable daily configuration.";
+  options.wktlnix.scenes.daily = {
+    enable = mkEnableOption "Whether or not to enable daily configuration.";
   };
 
   config = mkIf cfg.enable {
@@ -26,7 +24,7 @@ in
     ];
 
     home.persistence = mkIf persist {
-      "/persist/home/${config.${namespace}.user.name}" = {
+      "/persist/home/${config.wktlnix.user.name}" = {
         directories = [ ".local/share/TelegramDesktop" ];
       };
     };

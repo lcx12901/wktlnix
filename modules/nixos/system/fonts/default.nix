@@ -2,18 +2,22 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) types mkIf mapAttrs;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib)
+    types
+    mkIf
+    mkEnableOption
+    mapAttrs
+    ;
+  inherit (lib.wktlnix) mkOpt;
 
-  cfg = config.${namespace}.system.fonts;
+  cfg = config.wktlnix.system.fonts;
 in
 {
-  options.${namespace}.system.fonts = with types; {
-    enable = mkBoolOpt false "Whether or not to manage fonts.";
+  options.wktlnix.system.fonts = with types; {
+    enable = mkEnableOption "Whether or not to manage fonts.";
     default = mkOpt str "Maple Mono NF CN" "Default font name";
   };
 

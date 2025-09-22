@@ -2,25 +2,19 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.terminal.tools.cava;
+  cfg = config.wktlnix.programs.terminal.tools.cava;
 in
 {
-  options.${namespace}.programs.terminal.tools.cava = {
-    enable = mkBoolOpt false "Whether or not to enable cava.";
+  options.wktlnix.programs.terminal.tools.cava = {
+    enable = mkEnableOption "Whether or not to enable cava.";
   };
 
   config = mkIf cfg.enable {
-    # home.shellAliases = {
-    #   cava = "TERM=st-256color cava";
-    # };
-
     programs.cava = {
       enable = true;
       package = pkgs.cava;

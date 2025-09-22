@@ -1,21 +1,16 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib) mkIf mkEnableOption;
   inherit (lib.types) port;
+  inherit (lib.wktlnix) mkOpt;
 
-  hasOptinPersistence = config.${namespace}.system.persist.enable;
+  hasOptinPersistence = config.wktlnix.system.persist.enable;
 
-  cfg = config.${namespace}.services.openssh;
+  cfg = config.wktlnix.services.openssh;
 in
 {
-  options.${namespace}.services.openssh = {
-    enable = mkBoolOpt false "Whether or not to configure OpenSSH support.";
+  options.wktlnix.services.openssh = {
+    enable = mkEnableOption "Whether or not to configure OpenSSH support.";
     port = mkOpt port 2233 "The port to listen on (in addition to 22).";
   };
 

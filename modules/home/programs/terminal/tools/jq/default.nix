@@ -2,17 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.terminal.tools.jq;
+  cfg = config.wktlnix.programs.terminal.tools.jq;
 in
 {
-  options.${namespace}.programs.terminal.tools.jq = {
-    enable = lib.mkEnableOption "jq";
+  options.wktlnix.programs.terminal.tools.jq = {
+    enable = mkEnableOption "jq";
   };
 
   config = mkIf cfg.enable {

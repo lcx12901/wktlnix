@@ -1,20 +1,15 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkEnableOption mkOption;
 
-  persist = config.${namespace}.system.persist.enable;
+  persist = config.wktlnix.system.persist.enable;
 
-  cfg = config.${namespace}.services.flatpak;
+  cfg = config.wktlnix.services.flatpak;
 in
 {
-  options.${namespace}.services.flatpak = {
-    enable = lib.mkEnableOption "flatpak support";
-    extraRepos = lib.mkOption {
+  options.wktlnix.services.flatpak = {
+    enable = mkEnableOption "flatpak support";
+    extraRepos = mkOption {
       default = [
         {
           name = "flathub";

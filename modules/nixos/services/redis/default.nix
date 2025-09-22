@@ -2,18 +2,19 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  cfg = config.${namespace}.services;
+  inherit (lib) mkIf mkEnableOption;
+
+  cfg = config.wktlnix.services;
 in
 {
-  options.${namespace}.services.redis = {
-    enable = lib.mkEnableOption "Whether or not to enable Redis.";
+  options.wktlnix.services.redis = {
+    enable = mkEnableOption "Whether or not to enable Redis.";
   };
 
-  config = lib.mkIf cfg.redis.enable {
+  config = mkIf cfg.redis.enable {
     services.redis = {
       package = pkgs.valkey;
     };

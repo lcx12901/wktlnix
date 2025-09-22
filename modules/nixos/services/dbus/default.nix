@@ -1,18 +1,12 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.services.dbus;
+  cfg = config.wktlnix.services.dbus;
 in
 {
-  options.${namespace}.services.dbus = {
-    enable = mkBoolOpt false "Whether or not to enable dbus service.";
+  options.wktlnix.services.dbus = {
+    enable = mkEnableOption "Whether or not to enable dbus service.";
   };
 
   config = mkIf cfg.enable {

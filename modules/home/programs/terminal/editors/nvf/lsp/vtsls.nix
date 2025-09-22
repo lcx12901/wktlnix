@@ -1,12 +1,7 @@
-{
-  inputs,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }:
 let
   inherit (lib.generators) mkLuaInline;
-  inherit (inputs.nvf.lib.nvim.dag) entryAnywhere;
+  inherit (lib.nvim.dag) entryAnywhere;
 in
 {
   programs.nvf.settings = {

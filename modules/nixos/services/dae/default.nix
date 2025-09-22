@@ -2,26 +2,26 @@
   inputs,
   config,
   lib,
-  system,
-  namespace,
+  pkgs,
   ...
 }:
 let
-  inherit (lib.${namespace}) mkOpt;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.wktlnix) mkOpt;
 
-  cfg = config.${namespace}.services.dae;
+  cfg = config.wktlnix.services.dae;
 in
 {
 
-  options.${namespace}.services.dae = {
-    enable = lib.mkEnableOption "Whether or not to enable dae.";
-    openFirewall = lib.mkEnableOption "Whether or not to open the dae port in the firewall.";
+  options.wktlnix.services.dae = {
+    enable = mkEnableOption "Whether or not to enable dae.";
+    openFirewall = mkEnableOption "Whether or not to open the dae port in the firewall.";
     extraNodes = mkOpt lib.types.str "" "extra nodes to add to the dae configuration.";
     extraGroups = mkOpt lib.types.str "" "extra groups to add to the dae configuration.";
     extraRules = mkOpt lib.types.str "" "extra routing rules to add to the dae configuration.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services.dae = {
       enable = true;
 
@@ -32,7 +32,7 @@ in
 
       configFile = config.sops.templates."config.dae".path;
 
-      package = inputs.daeuniverse.packages.${system}.dae-unstable;
+      package = inputs.daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.dae-unstable;
     };
 
     sops.secrets.dae_nodes = { };

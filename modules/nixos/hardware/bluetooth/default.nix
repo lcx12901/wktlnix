@@ -2,18 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.hardware.bluetooth;
+  cfg = config.wktlnix.hardware.bluetooth;
 in
 {
-  options.${namespace}.hardware.bluetooth = {
-    enable = mkBoolOpt false "Whether or not to enable support for extra bluetooth devices.";
+  options.wktlnix.hardware.bluetooth = {
+    enable = mkEnableOption "Whether or not to enable support for extra bluetooth devices.";
   };
 
   config = mkIf cfg.enable {
