@@ -2,18 +2,17 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.hardware.gpu.amd;
+  cfg = config.wktlnix.hardware.gpu.amd;
 in
 {
-  options.${namespace}.hardware.gpu.amd = {
-    enable = lib.mkEnableOption "Whether or not to enable support for amdgpu.";
-    enableRocmSupport = lib.mkEnableOption "support for rocm";
+  options.wktlnix.hardware.gpu.amd = {
+    enable = mkEnableOption "Whether or not to enable support for amdgpu.";
+    enableRocmSupport = mkEnableOption "support for rocm";
   };
 
   config = mkIf cfg.enable {

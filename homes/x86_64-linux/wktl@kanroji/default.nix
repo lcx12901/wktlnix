@@ -1,22 +1,12 @@
-{
-  inputs,
-  config,
-  lib,
-  pkgs,
-  namespace,
-  ...
-}:
+{ lib, pkgs, ... }:
 let
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.wktlnix) enabled;
 in
 {
   home.packages = [ pkgs.tsukimi ];
 
   wktlnix = {
-    user = {
-      enable = true;
-      inherit (config.snowfallorg.user) name;
-    };
+    user = enabled;
 
     system.xdg = enabled;
 
@@ -26,7 +16,7 @@ in
           enable = true;
           extraConfig =
             let
-              inherit (inputs.niri.lib.kdl) node leaf flag;
+              inherit (lib.kdl) node leaf flag;
               output = arg: node "output" [ arg ];
               leaf' = name: arg: leaf name [ arg ];
             in

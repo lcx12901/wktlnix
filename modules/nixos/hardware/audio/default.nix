@@ -2,19 +2,18 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf mkForce;
+  inherit (lib) mkIf mkEnableOption mkForce;
   inherit (lib.types) listOf package;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib.wktlnix) mkOpt;
 
-  cfg = config.${namespace}.hardware.audio;
+  cfg = config.wktlnix.hardware.audio;
 in
 {
-  options.${namespace}.hardware.audio = {
-    enable = mkBoolOpt false "Whether or not to enable audio support.";
+  options.wktlnix.hardware.audio = {
+    enable = mkEnableOption "Whether or not to enable audio support.";
     extra-packages = mkOpt (listOf package) [
       pkgs.qjackctl
       pkgs.easyeffects

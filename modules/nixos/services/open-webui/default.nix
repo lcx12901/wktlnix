@@ -1,20 +1,15 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.services.open-webui;
+  cfg = config.wktlnix.services.open-webui;
 in
 {
-  options.${namespace}.services.open-webui = {
-    enable = mkBoolOpt false "Whether to enable ollama ui.";
+  options.wktlnix.services.open-webui = {
+    enable = mkEnableOption "Whether to enable ollama ui.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services.open-webui = {
       enable = true;
       openFirewall = true;

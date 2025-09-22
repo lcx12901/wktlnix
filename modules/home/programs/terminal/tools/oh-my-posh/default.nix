@@ -1,20 +1,21 @@
 {
   config,
   lib,
-  namespace,
   ...
 }:
 let
+  inherit (lib) mkIf mkEnableOption;
+
   inherit (config.lib.stylix) colors;
 
-  cfg = config.${namespace}.programs.terminal.tools.oh-my-posh;
+  cfg = config.wktlnix.programs.terminal.tools.oh-my-posh;
 in
 {
-  options.${namespace}.programs.terminal.tools.oh-my-posh = {
-    enable = lib.mkEnableOption "Whether or not to enable oh-my-posh.";
+  options.wktlnix.programs.terminal.tools.oh-my-posh = {
+    enable = mkEnableOption "Whether or not to enable oh-my-posh.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs.oh-my-posh = {
       enable = true;
 

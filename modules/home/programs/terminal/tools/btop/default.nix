@@ -2,20 +2,19 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.terminal.tools.btop;
+  cfg = config.wktlnix.programs.terminal.tools.btop;
 in
 {
-  options.${namespace}.programs.terminal.tools.btop = {
-    enable = mkBoolOpt false "Whether or not to enable btop.";
+  options.wktlnix.programs.terminal.tools.btop = {
+    enable = mkEnableOption "Whether or not to enable btop.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs.btop = {
       enable = true;
       package = pkgs.btop;

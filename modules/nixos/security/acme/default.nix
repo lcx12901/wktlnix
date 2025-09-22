@@ -1,20 +1,14 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.security.acme;
+  cfg = config.wktlnix.security.acme;
 
   domain = "${config.networking.hostName}.lincx.top";
 in
 {
-  options.${namespace}.security.acme = {
-    enable = mkBoolOpt false "default ACME configuration";
+  options.wktlnix.security.acme = {
+    enable = mkEnableOption "default ACME configuration";
   };
 
   config = mkIf cfg.enable {

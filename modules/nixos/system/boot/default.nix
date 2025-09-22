@@ -1,20 +1,14 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.system.boot;
+  cfg = config.wktlnix.system.boot;
 in
 {
-  options.${namespace}.system.boot = {
-    enable = mkBoolOpt false "Whether or not to enable booting.";
-    silentBoot = mkBoolOpt false "Whether or not to enable silent boot.";
-    useOSProber = mkBoolOpt false "Whether or not to append entries for other OSs detected by os-prober.";
+  options.wktlnix.system.boot = {
+    enable = mkEnableOption "Whether or not to enable booting.";
+    silentBoot = mkEnableOption "Whether or not to enable silent boot.";
+    useOSProber = mkEnableOption "Whether or not to append entries for other OSs detected by os-prober.";
   };
 
   config = mkIf cfg.enable {

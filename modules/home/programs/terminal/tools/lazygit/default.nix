@@ -1,25 +1,26 @@
 {
   config,
   lib,
-  namespace,
   ...
 }:
 let
+  inherit (lib) mkIf mkEnableOption mkForce;
+
   accent = "#${config.lib.stylix.colors.base0D}";
   muted = "#${config.lib.stylix.colors.base03}";
 
-  cfg = config.${namespace}.programs.terminal.tools.lazygit;
+  cfg = config.wktlnix.programs.terminal.tools.lazygit;
 in
 {
-  options.${namespace}.programs.terminal.tools.lazygit = {
-    enable = lib.mkEnableOption "Whether or not to enable lazygit.";
+  options.wktlnix.programs.terminal.tools.lazygit = {
+    enable = mkEnableOption "Whether or not to enable lazygit.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs.lazygit = {
       enable = true;
 
-      settings = lib.mkForce {
+      settings = mkForce {
         disableStartupPopups = true;
         notARepository = "skip";
         promptToReturnFromSubprocess = false;

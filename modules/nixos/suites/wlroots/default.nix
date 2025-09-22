@@ -1,18 +1,12 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.suites.wlroots;
+  cfg = config.wktlnix.suites.wlroots;
 in
 {
-  options.${namespace}.suites.wlroots = {
-    enable = mkBoolOpt false "Whether or not to enable common wlroots configuration.";
+  options.wktlnix.suites.wlroots = {
+    enable = mkEnableOption "Whether or not to enable common wlroots configuration.";
   };
 
   config = mkIf cfg.enable {

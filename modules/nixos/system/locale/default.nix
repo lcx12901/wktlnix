@@ -1,18 +1,12 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf mkDefault;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption mkDefault;
 
-  cfg = config.${namespace}.system.locale;
+  cfg = config.wktlnix.system.locale;
 in
 {
-  options.${namespace}.system.locale = {
-    enable = mkBoolOpt false "Whether or not to manage locale settings.";
+  options.wktlnix.system.locale = {
+    enable = mkEnableOption "Whether or not to manage locale settings.";
   };
 
   config = mkIf cfg.enable {

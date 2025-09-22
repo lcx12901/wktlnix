@@ -1,20 +1,19 @@
 {
   config,
   lib,
-  namespace,
   pkgs,
   ...
 }:
 let
   inherit (lib) mkIf types;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+  inherit (lib.wktlnix) mkBoolOpt mkOpt;
 
-  cfg = config.${namespace}.services.sops;
+  cfg = config.wktlnix.services.sops;
 in
 {
-  options.${namespace}.services.sops = with types; {
+  options.wktlnix.services.sops = with types; {
     enable = mkBoolOpt true "Whether to enable sops.";
-    defaultSopsFile = mkOpt path (lib.snowfall.fs.get-file "secrets/default.yaml") "Default sops file.";
+    defaultSopsFile = mkOpt path (lib.file.get-file "secrets/default.yaml") "Default sops file.";
     sshKeyPaths = mkOpt (listOf path) [ ] "SSH Key paths to use.";
   };
 

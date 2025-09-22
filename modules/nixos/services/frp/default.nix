@@ -1,14 +1,10 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) types;
-  inherit (lib.${namespace}) mkOpt;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.types) enum;
+  inherit (lib.wktlnix) mkOpt;
 
-  cfg = config.${namespace}.services.frp;
+  cfg = config.wktlnix.services.frp;
 
   isClient = cfg.role == "client";
   executableFile = if isClient then "frpc" else "frps";
@@ -16,15 +12,15 @@ let
   configName = "frp_${config.networking.hostName}";
 in
 {
-  options.${namespace}.services.frp = {
-    enable = lib.mkEnableOption "frp";
-    role = mkOpt (types.enum [
+  options.wktlnix.services.frp = {
+    enable = mkEnableOption "frp";
+    role = mkOpt (enum [
       "server"
       "client"
     ]) "server" "The frp consists of `client` and `server`";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services.frp = {
       inherit (cfg) enable role;
     };
@@ -39,7 +35,7 @@ in
     };
 
     sops.secrets."${configName}" = {
-      sopsFile = lib.snowfall.fs.get-file "secrets/frp.yaml";
+      sopsFile = lib.file.get-file "secrets/frp.yaml";
     };
   };
 }

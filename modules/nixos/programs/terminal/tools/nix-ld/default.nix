@@ -2,18 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.terminal.tools.nix-ld;
+  cfg = config.wktlnix.programs.terminal.tools.nix-ld;
 in
 {
-  options.${namespace}.programs.terminal.tools.nix-ld = {
-    enable = mkBoolOpt false "Whether or not to enable nix-ld.";
+  options.wktlnix.programs.terminal.tools.nix-ld = {
+    enable = mkEnableOption "Whether or not to enable nix-ld.";
   };
 
   config = mkIf cfg.enable {

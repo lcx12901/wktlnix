@@ -2,18 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.suites.common;
+  cfg = config.wktlnix.suites.common;
 in
 {
-  options.${namespace}.suites.common = {
-    enable = mkBoolOpt false "Whether or not to enable common configuration.";
+  options.wktlnix.suites.common = {
+    enable = mkEnableOption "Whether or not to enable common configuration.";
   };
 
   config = mkIf cfg.enable {

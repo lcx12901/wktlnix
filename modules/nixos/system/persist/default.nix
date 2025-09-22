@@ -1,20 +1,14 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.system.persist;
+  cfg = config.wktlnix.system.persist;
 
-  username = config.${namespace}.user.name;
+  username = config.wktlnix.user.name;
 in
 {
-  options.${namespace}.system.persist = {
-    enable = mkBoolOpt false "Whether or not to enable impermanence.";
+  options.wktlnix.system.persist = {
+    enable = mkEnableOption "Whether or not to enable impermanence.";
   };
 
   config = mkIf cfg.enable {

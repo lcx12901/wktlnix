@@ -2,18 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf getExe;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption getExe;
 
-  cfg = config.${namespace}.programs.terminal.tools.fzf;
+  cfg = config.wktlnix.programs.terminal.tools.fzf;
 in
 {
-  options.${namespace}.programs.terminal.tools.fzf = {
-    enable = mkBoolOpt false "Whether or not to enable fzf.";
+  options.wktlnix.programs.terminal.tools.fzf = {
+    enable = mkEnableOption "Whether or not to enable fzf.";
   };
 
   config = mkIf cfg.enable {

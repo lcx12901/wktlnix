@@ -2,21 +2,20 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkEnableOption;
   inherit (lib.types) enum;
-  inherit (lib.${namespace}) mkBoolOpt mkOpt enabled;
+  inherit (lib.wktlnix) mkOpt enabled;
 
-  inherit (config.${namespace}) user;
+  inherit (config.wktlnix) user;
 
-  cfg = config.${namespace}.virtualisation.kvm;
+  cfg = config.wktlnix.virtualisation.kvm;
 in
 {
-  options.${namespace}.virtualisation.kvm = {
-    enable = mkBoolOpt false "Whether or not to enable KVM virtualisation.";
+  options.wktlnix.virtualisation.kvm = {
+    enable = mkEnableOption "Whether or not to enable KVM virtualisation.";
     platform = mkOpt (enum [
       "amd"
       "intel"

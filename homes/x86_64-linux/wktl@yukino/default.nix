@@ -1,19 +1,10 @@
-{
-  inputs,
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ inputs, lib, ... }:
 let
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.wktlnix) enabled;
 in
 {
   wktlnix = {
-    user = {
-      enable = true;
-      inherit (config.snowfallorg.user) name;
-    };
+    user = enabled;
 
     system.xdg = enabled;
 

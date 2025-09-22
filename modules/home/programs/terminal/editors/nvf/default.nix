@@ -2,18 +2,17 @@
   osConfig,
   config,
   lib,
-  namespace,
   ...
 }:
 let
-  cfg = config.${namespace}.programs.terminal.editors.nvf;
+  cfg = config.wktlnix.programs.terminal.editors.nvf;
 
-  persist = osConfig.${namespace}.system.persist.enable;
+  persist = osConfig.wktlnix.system.persist.enable;
 in
 {
-  imports = lib.snowfall.fs.get-non-default-nix-files-recursive ./.;
+  imports = lib.file.get-non-default-nix-files-recursive ./.;
 
-  options.${namespace}.programs.terminal.editors.nvf = {
+  options.wktlnix.programs.terminal.editors.nvf = {
     enable = lib.mkEnableOption "nvf";
   };
 
@@ -64,7 +63,7 @@ in
     };
 
     home.persistence = lib.mkIf persist {
-      "/persist/home/${config.${namespace}.user.name}" = {
+      "/persist/home/${config.wktlnix.user.name}" = {
         allowOther = true;
         directories = [ ".local/share/nvf" ];
       };

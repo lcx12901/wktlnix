@@ -3,23 +3,22 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.wktlnix) enabled;
 
-  homeDirectory = config.${namespace}.user.home;
+  homeDirectory = config.wktlnix.user.home;
 
-  persist = osConfig.${namespace}.system.persist.enable;
+  persist = osConfig.wktlnix.system.persist.enable;
 
-  cfg = config.${namespace}.scenes.development;
+  cfg = config.wktlnix.scenes.development;
 in
 {
-  options.${namespace}.scenes.development = {
-    enable = mkBoolOpt false "Whether or not to enable development configuration.";
-    nodejsEnable = mkBoolOpt false "Whether or not to enable nodejs development configuration.";
+  options.wktlnix.scenes.development = {
+    enable = mkEnableOption "Whether or not to enable development configuration.";
+    nodejsEnable = mkEnableOption "Whether or not to enable nodejs development configuration.";
   };
 
   config = mkIf cfg.enable {
@@ -33,7 +32,7 @@ in
         ];
 
       persistence = mkIf (persist && cfg.nodejsEnable) {
-        "/persist/home/${config.${namespace}.user.name}" = {
+        "/persist/home/${config.wktlnix.user.name}" = {
           allowOther = true;
           directories = [ ".bun" ];
         };

@@ -2,20 +2,21 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  cfg = config.${namespace}.services.nextcloud;
+  inherit (lib) mkIf mkEnableOption;
+
+  cfg = config.wktlnix.services.nextcloud;
 
   domain = "${config.networking.hostName}.lincx.top";
 in
 {
-  options.${namespace}.services.nextcloud = {
-    enable = lib.mkEnableOption "Whether or not to enable Nextcloud.";
+  options.wktlnix.services.nextcloud = {
+    enable = mkEnableOption "Whether or not to enable Nextcloud.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ ffmpeg ];
 
     services.nextcloud = {

@@ -3,31 +3,32 @@
   config,
   lib,
   pkgs,
-  namespace,
+  username ? null,
   ...
 }:
 let
   inherit (lib)
     types
     mkIf
+    mkEnableOption
     mkMerge
     mkDefault
     getExe
     getExe'
     ;
-  inherit (lib.${namespace}) mkOpt enabled;
+  inherit (lib.wktlnix) mkOpt enabled;
 
-  cfg = config.${namespace}.user;
+  cfg = config.wktlnix.user;
 
   home-directory = if cfg.name == null then null else "/home/${cfg.name}";
 in
 {
-  options.${namespace}.user = {
-    enable = mkOpt types.bool false "Whether to configure the user account.";
+  options.wktlnix.user = {
+    enable = mkEnableOption "Whether to configure the user account.";
     email = mkOpt types.str "wktl1991504424@gmail.com" "The email of the user.";
     fullName = mkOpt types.str "Chengxu Lin" "The full name of the user.";
     home = mkOpt (types.nullOr types.str) home-directory "The user's home directory.";
-    name = mkOpt (types.nullOr types.str) config.snowfallorg.user.name "The user account.";
+    name = mkOpt (types.nullOr types.str) username "The user account.";
   };
 
   config = mkIf cfg.enable (mkMerge [

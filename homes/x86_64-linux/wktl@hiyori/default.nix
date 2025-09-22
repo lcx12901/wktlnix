@@ -1,18 +1,10 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ lib, ... }:
 let
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.wktlnix) enabled;
 in
 {
   wktlnix = {
-    user = {
-      enable = true;
-      inherit (config.snowfallorg.user) name;
-    };
+    user = enabled;
 
     programs = {
       terminal = {

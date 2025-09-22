@@ -2,18 +2,17 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.wktlnix) enabled;
 
-  cfg = config.${namespace}.virtualisation.podman;
+  cfg = config.wktlnix.virtualisation.podman;
 in
 {
-  options.${namespace}.virtualisation.podman = {
-    enable = mkBoolOpt false "Whether or not to enable Podman.";
+  options.wktlnix.virtualisation.podman = {
+    enable = mkEnableOption "Whether or not to enable Podman.";
   };
 
   config = mkIf cfg.enable {

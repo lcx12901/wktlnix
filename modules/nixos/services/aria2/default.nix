@@ -3,20 +3,21 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  cfg = config.${namespace}.services.aria2;
+  inherit (lib) mkIf mkEnableOption;
+
+  cfg = config.wktlnix.services.aria2;
 
   # domain = "${config.networking.hostName}.lincx.top";
 in
 {
-  options.${namespace}.services.aria2 = {
-    enable = lib.${namespace}.mkBoolOpt false "Whether or not to configure aria2.";
+  options.wktlnix.services.aria2 = {
+    enable = mkEnableOption "Whether or not to configure aria2.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     environment.systemPackages = [ pkgs.ariang ];
     services = {
       aria2 = {

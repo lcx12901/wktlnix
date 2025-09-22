@@ -1,25 +1,25 @@
 {
   config,
-  osConfig,
+  # osConfig,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib.${namespace}) mkOpt;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.wktlnix) mkOpt;
 
-  cfg = config.${namespace}.programs.graphical.editors.vscode;
+  cfg = config.wktlnix.programs.graphical.editors.vscode;
 
-  persist = osConfig.${namespace}.system.persist.enable;
+  # persist = osConfig.wktlnix.system.persist.enable;
 in
 {
-  options.${namespace}.programs.graphical.editors.vscode = with lib.types; {
-    enable = lib.mkEnableOption "Whether or not to enable vscode.";
+  options.wktlnix.programs.graphical.editors.vscode = with lib.types; {
+    enable = mkEnableOption "Whether or not to enable vscode.";
     zoomLevel = mkOpt number 0 "set vscode window zoom level.";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.file = {
       ".vscode/argv.json" = {
         text = builtins.toJSON {

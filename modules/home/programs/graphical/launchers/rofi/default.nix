@@ -2,18 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.graphical.launchers.rofi;
+  cfg = config.wktlnix.programs.graphical.launchers.rofi;
 in
 {
-  options.${namespace}.programs.graphical.launchers.rofi = {
-    enable = mkBoolOpt false "Whether to enable Rofi in the desktop environment.";
+  options.wktlnix.programs.graphical.launchers.rofi = {
+    enable = mkEnableOption "Whether to enable Rofi in the desktop environment.";
   };
 
   config = mkIf cfg.enable {

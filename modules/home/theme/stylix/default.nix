@@ -3,12 +3,12 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib.${namespace}) enabled;
-  osCfg = osConfig.${namespace}.theme.stylix;
+  inherit (lib.wktlnix) enabled;
+
+  osCfg = osConfig.wktlnix.theme.stylix;
   osStylix = osConfig.stylix;
 in
 {
@@ -45,7 +45,7 @@ in
         fcitx5 = enabled;
         firefox = {
           enable = true;
-          profileNames = [ config.${namespace}.user.name ];
+          profileNames = [ config.wktlnix.user.name ];
           firefoxGnomeTheme = enabled;
         };
         fish = enabled;

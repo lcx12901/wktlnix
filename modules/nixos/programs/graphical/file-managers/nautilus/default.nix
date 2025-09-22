@@ -2,18 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.graphical.file-managers.nautilus;
+  cfg = config.wktlnix.programs.graphical.file-managers.nautilus;
 in
 {
-  options.${namespace}.programs.graphical.file-managers.nautilus = {
-    enable = mkBoolOpt false "Whether to enable the gnome file manager.";
+  options.wktlnix.programs.graphical.file-managers.nautilus = {
+    enable = mkEnableOption "Whether to enable the gnome file manager.";
   };
 
   config = mkIf cfg.enable {

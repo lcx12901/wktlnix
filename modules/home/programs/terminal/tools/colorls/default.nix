@@ -2,18 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.terminal.tools.colorls;
+  cfg = config.wktlnix.programs.terminal.tools.colorls;
 in
 {
-  options.${namespace}.programs.terminal.tools.colorls = {
-    enable = mkBoolOpt false "Whether or not to enable colorls.";
+  options.wktlnix.programs.terminal.tools.colorls = {
+    enable = mkEnableOption "Whether or not to enable colorls.";
   };
 
   config = mkIf cfg.enable {

@@ -2,20 +2,21 @@
   osConfig,
   config,
   lib,
-  namespace,
   ...
 }:
 let
-  cfg = config.${namespace}.programs.graphical.apps.vesktop;
+  inherit (lib) mkIf mkEnableOption;
 
-  persist = osConfig.${namespace}.system.persist.enable;
+  cfg = config.wktlnix.programs.graphical.apps.vesktop;
+
+  persist = osConfig.wktlnix.system.persist.enable;
 in
 {
-  options.${namespace}.programs.graphical.apps.vesktop = {
-    enable = lib.mkEnableOption "Vesktop";
+  options.wktlnix.programs.graphical.apps.vesktop = {
+    enable = mkEnableOption "Vesktop";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs.vesktop = {
       enable = true;
 
@@ -123,7 +124,7 @@ in
     };
 
     home.persistence = lib.mkIf persist {
-      "/persist/home/${config.${namespace}.user.name}" = {
+      "/persist/home/${config.wktlnix.user.name}" = {
         allowOther = true;
         directories = [ ".config/vesktop" ];
       };

@@ -1,20 +1,15 @@
-{
-  config,
-  lib,
-  namespace,
-  ...
-}:
+{ config, lib, ... }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.wktlnix) enabled;
 
-  cfg = config.${namespace}.virtualisation.waydroid;
+  cfg = config.wktlnix.virtualisation.waydroid;
 
-  username = config.${namespace}.user.name;
+  username = config.wktlnix.user.name;
 in
 {
-  options.${namespace}.virtualisation.waydroid = {
-    enable = mkBoolOpt false "Whether or not to enable Waydroid.";
+  options.wktlnix.virtualisation.waydroid = {
+    enable = mkEnableOption "Whether or not to enable Waydroid.";
   };
 
   ### /var/lib/waydroid/waydroid_base.prop

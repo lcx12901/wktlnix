@@ -2,18 +2,16 @@
   config,
   lib,
   pkgs,
-  namespace,
   ...
 }:
 let
-  inherit (lib) getExe mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) getExe mkIf mkEnableOption;
 
-  cfg = config.${namespace}.programs.terminal.tools.bat;
+  cfg = config.wktlnix.programs.terminal.tools.bat;
 in
 {
-  options.${namespace}.programs.terminal.tools.bat = {
-    enable = mkBoolOpt false "Whether or not to enable bat.";
+  options.wktlnix.programs.terminal.tools.bat = {
+    enable = mkEnableOption "Whether or not to enable bat.";
   };
 
   config = mkIf cfg.enable {
