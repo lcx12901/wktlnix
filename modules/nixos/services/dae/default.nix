@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   lib,
   pkgs,
@@ -32,7 +31,7 @@ in
 
       configFile = config.sops.templates."config.dae".path;
 
-      package = inputs.daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.dae-unstable;
+      package = pkgs.dae;
     };
 
     sops.secrets.dae_nodes = { };
