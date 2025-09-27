@@ -7,7 +7,7 @@
 
   inputs = {
     # Core
-    nixpkgs.url = "github:nixos/nixpkgs/5cd02e9e7ac2b004dc60ed70fa3a9392ee71dc20";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
@@ -57,10 +57,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
-
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    nix-zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
 
     # my wallpapers
     wallpapers = {
