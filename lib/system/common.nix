@@ -57,7 +57,6 @@ in
             inputs.impermanence.nixosModules.home-manager.impermanence
             inputs.stylix.homeModules.stylix
             inputs.sops-nix.homeManagerModules.sops
-            inputs.nix-zed-extensions.homeManagerModules.default
             inputs.nvf.homeManagerModules.default
           ]
           ++ (extendedLib.file.get-default-nix-files-recursive ../../modules/home);

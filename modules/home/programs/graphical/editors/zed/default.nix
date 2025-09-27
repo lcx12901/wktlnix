@@ -123,20 +123,20 @@ in
       ];
     };
 
-    programs.zed-editor-extensions = {
-      enable = true;
-      packages = with pkgs.zed-extensions; [
-        # lsp
-        html
-        nix
-        vue
-        unocss
-
-        git-firefly
-
-        # theme
-        catppuccin-icons
-      ];
-    };
+    # programs.zed-editor-extensions = {
+    #   enable = true;
+    #   packages = with pkgs.zed-extensions; [
+    #     # lsp
+    #     html
+    #     nix
+    #     vue
+    #     unocss
+    #
+    #     git-firefly
+    #
+    #     # theme
+    #     catppuccin-icons
+    #   ];
+    # };
   };
 }
