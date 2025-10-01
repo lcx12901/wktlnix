@@ -76,16 +76,16 @@ in
 
     firewall = {
       allowedTCPPorts = [
+        15032
         15631
-        15632
 
         # yukino_sing
         11473
       ];
 
       allowedUDPPorts = [
+        15032
         15631
-        15632
 
         # yukino_sing
         11473
