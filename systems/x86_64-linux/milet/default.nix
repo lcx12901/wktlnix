@@ -48,22 +48,50 @@ in
       sudo-rs = enabled;
     };
   };
+  networking = {
+    # 6in4
+    interfaces.ipv6net = {
+      ipv4.addresses = [
+        {
+          address = "144.34.237.105";
+          prefixLength = 22;
+        }
+      ];
+      ipv6.addresses = [
+        {
+          address = "2607:8700:5500:b580::2";
+          prefixLength = 64;
+        }
+      ];
+    };
+    sits.ipv6net = {
+      local = "144.34.237.105";
+      remote = "45.32.66.87";
+      ttl = 255;
+    };
+    defaultGateway6 = {
+      address = "2607:8700:5500:b580::1";
+      interface = "ipv6net";
+    };
 
-  networking.firewall.allowedTCPPorts = [
-    15631
-    15632
+    firewall = {
+      allowedTCPPorts = [
+        15631
+        15632
 
-    # yukino_sing
-    11473
-  ];
+        # yukino_sing
+        11473
+      ];
 
-  networking.firewall.allowedUDPPorts = [
-    15631
-    15632
+      allowedUDPPorts = [
+        15631
+        15632
 
-    # yukino_sing
-    11473
-  ];
+        # yukino_sing
+        11473
+      ];
+    };
+  };
 
   sops.secrets = {
     "milet_sing" = { };
