@@ -25,6 +25,7 @@ let
   flameshot = getExe config.services.flameshot.package;
   vlc = getExe pkgs.vlc;
   telegram = getExe pkgs.telegram-desktop;
+  neovide = getExe pkgs.neovide;
   rofi = getExe config.programs.rofi.package;
   hyprlock = getExe config.programs.hyprlock.package;
   wpctl = getExe' pkgs.wireplumber "wpctl";
@@ -63,6 +64,9 @@ in
           ])
           (plain "Mod+T" [
             (spawn [ telegram ])
+          ])
+          (plain "Mod+N" [
+            (spawn [ neovide ])
           ])
           (plain "Mod+V" [
             (spawn [ vlc ])

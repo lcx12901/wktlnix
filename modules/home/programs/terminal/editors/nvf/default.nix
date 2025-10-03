@@ -14,6 +14,7 @@ in
 
   options.wktlnix.programs.terminal.editors.nvf = {
     enable = lib.mkEnableOption "nvf";
+    neovideRefreshRate = lib.wktlnix.mkOpt lib.types.str "60" "The refresh rate of neovide";
   };
 
   config = lib.mkIf cfg.enable {

@@ -32,7 +32,7 @@
     };
 
     # Applications & packages
-    nvf.url = "github:notashelf/nvf";
+    nvf.url = "github:notashelf/nvf/v0.8";
     daeuniverse.url = "github:daeuniverse/flake.nix";
     niri = {
       url = "github:sodiboo/niri-flake";
