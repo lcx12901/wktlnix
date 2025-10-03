@@ -15,7 +15,7 @@ in
       setupOpts = {
         image.enabled = true;
         indent.enabled = true;
-        scroll.enabled = true;
+        # scroll.enabled = true;
         lazygit.enabled = true;
         bufdelete.enabled = true;
         zen.enabled = true;

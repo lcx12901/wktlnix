@@ -36,6 +36,7 @@ in
           (match { app-id = "wechat"; })
           (match { app-id = "^dev\.zed\.Zed$"; })
           (match { app-id = "code"; })
+          (match { app-id = "neovide"; })
           (leaf' "opacity" 0.9)
         ])
         (window-rule [
