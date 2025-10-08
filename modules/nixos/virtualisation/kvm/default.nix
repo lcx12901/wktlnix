@@ -64,7 +64,6 @@ in
 
         qemu = {
           package = pkgs.qemu_kvm;
-          ovmf = enabled;
           swtpm.enable = true;
 
           verbatimConfig = ''
