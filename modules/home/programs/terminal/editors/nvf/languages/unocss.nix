@@ -14,7 +14,7 @@
         enable = true;
 
         cmd = [
-          "${lib.getExe pkgs.wktlnix.unocss-language-server}"
+          (lib.getExe pkgs.wktlnix.unocss-language-server)
           "--stdio"
         ];
       };
