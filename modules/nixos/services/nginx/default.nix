@@ -11,7 +11,13 @@ let
     mkOption
     mkDefault
     ;
-  inherit (lib.types) submodule attrsOf anything;
+  inherit (lib.wktlnix) mkOpt;
+  inherit (lib.types)
+    submodule
+    attrsOf
+    int
+    anything
+    ;
 
   cfg = config.wktlnix.services.nginx;
 
@@ -35,17 +41,19 @@ in
 
   options.wktlnix.services.nginx = {
     enable = mkEnableOption "Whether or not to enable nginx.";
+    defaultSSLListenPort = mkOpt int 443 "The default port for SSL connections.";
   };
 
   config = mkIf cfg.enable {
     users.users.nginx.extraGroups = [ "acme" ];
 
     services.nginx = {
+
       enable = true;
 
       package = pkgs.nginxQuic.override { withKTLS = true; };
 
-      defaultSSLListenPort = 12901;
+      inherit (cfg) defaultSSLListenPort;
 
       commonHttpConfig = ''
         add_header 'Referrer-Policy' 'origin-when-cross-origin';
@@ -67,7 +75,7 @@ in
 
     networking.firewall.allowedTCPPorts = [
       80
-      12901
+      cfg.defaultSSLListenPort
     ];
   };
 }

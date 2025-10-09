@@ -10,7 +10,7 @@ let
 
   cfg = config.wktlnix.services.aria2;
 
-  # domain = "${config.networking.hostName}.lincx.top";
+  domain = "${config.networking.hostName}.lincx.top";
 in
 {
   options.wktlnix.services.aria2 = {
@@ -18,7 +18,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.ariang ];
+    wktlnix.user.extraGroups = [ "aria2" ];
+
     services = {
       aria2 = {
         enable = true;
@@ -61,11 +62,13 @@ in
           dht-entry-point = "dht.transmissionbt.com:6881";
           dht-entry-point6 = "dht.transmissionbt.com:6881";
           bt-enable-lpd = true;
+          enable-peer-exchange = true;
           bt-max-peers = 128;
           bt-request-peer-speed-limit = "10M";
-          seed-time = 0;
+          seed-time = 30;
           bt-tracker-connect-timeout = 10;
           bt-tracker-timeout = 10;
+          bt-prioritize-piece = "head=32M,tail=32M";
           bt-save-metadata = true;
           bt-load-saved-metadata = true;
           bt-remove-unselected-file = true;
@@ -76,13 +79,37 @@ in
         };
       };
 
-      # nginx.virtualHosts."ariang.${domain}" = { };
+      nginx.virtualHosts."ariang.${domain}" = {
+        root = "${pkgs.ariang}/share/ariang";
+
+        locations."/jsonrpc" = {
+          proxyPass = "http://localhost:${builtins.toString config.services.aria2.settings.rpc-listen-port}";
+        };
+      };
     };
 
-    systemd.services.aria2.serviceConfig.ExecStartPre = [
-      "${pkgs.coreutils}/bin/touch /var/lib/aria2/dht.dat"
-      "${pkgs.coreutils}/bin/touch /var/lib/aria2/dht6.dat"
-    ];
+    networking.firewall = {
+      allowedTCPPortRanges = [
+        {
+          from = 6881;
+          to = 6999;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 6881;
+          to = 6999;
+        }
+      ];
+    };
+
+    environment.persistence."/persist" = {
+      hideMounts = true;
+
+      directories = [
+        "/var/lib/aria2"
+      ];
+    };
 
     sops.secrets = {
       "aria2_rpc_token" = { };
