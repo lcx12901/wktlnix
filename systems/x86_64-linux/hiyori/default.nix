@@ -44,7 +44,10 @@ in
         enable = true;
         configFile = config.sops.secrets."cf-hiyori-inadyn".path;
       };
-      nginx = enabled;
+      nginx = {
+        enable = true;
+        defaultSSLListenPort = 12901;
+      };
       redis = enabled;
       nextcloud = enabled;
     };

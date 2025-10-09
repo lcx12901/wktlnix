@@ -79,7 +79,7 @@ in
       }
 
       routing {
-        pname(NetworkManager, frpc, sing-box, inadyn) -> direct
+        pname(NetworkManager, aria2c, frpc, sing-box, inadyn) -> direct
         dip(224.0.0.0/3, 'ff00::/8') -> direct
 
         domain(ifconfig.me) -> direct
