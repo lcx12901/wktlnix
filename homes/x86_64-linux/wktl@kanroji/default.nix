@@ -38,6 +38,7 @@ in
         emulators.kitty = {
           fontSize = 16;
         };
+        tools.nh = enabled;
       };
     };
 
