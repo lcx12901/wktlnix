@@ -45,6 +45,7 @@ in
             userName = "linchengxu";
             userEmail = "linchengxu@z9yun.com";
           };
+          nh = enabled;
         };
       };
     };
