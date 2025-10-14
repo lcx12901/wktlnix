@@ -37,7 +37,7 @@ in
         NH_SEARCH_PLATFORM = 1;
       };
       shellAliases = {
-        nixre = "nh ${if pkgs.stdenv.hostPlatform.isLinux then "os" else "darwin"} switch";
+        nos = "nh os switch";
       };
     };
   };
