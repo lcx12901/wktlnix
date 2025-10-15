@@ -1,10 +1,4 @@
-{
-  osConfig,
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 let
   inherit (lib) mkIf mkEnableOption;
 
@@ -25,11 +19,6 @@ in
       };
 
       flake = "${config.home.homeDirectory}/Coding/wktlnix";
-    };
-
-    launchd.agents.nh-clean.config = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
-      StandardErrorPath = osConfig.khanelinix.programs.terminal.tools.nh.logPaths.stderr;
-      StandardOutPath = osConfig.khanelinix.programs.terminal.tools.nh.logPaths.stdout;
     };
 
     home = {
