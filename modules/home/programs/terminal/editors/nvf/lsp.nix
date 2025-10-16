@@ -1,30 +1,42 @@
 {
   programs.nvf.settings = {
-    vim.lsp = {
-      enable = true;
+    vim = {
+      lsp = {
+        enable = true;
 
-      formatOnSave = true;
-      inlayHints.enable = true;
+        formatOnSave = true;
+        inlayHints.enable = true;
 
-      servers = {
-        "*" = {
-          root_markers = [
-            ".git"
-          ];
+        servers = {
+          "*" = {
+            root_markers = [
+              ".git"
+            ];
 
-          capabilities = {
-            textDocument = {
-              foldingRange = {
-                dynamicRegistration = false;
-                lineFoldingOnly = true;
-              };
+            capabilities = {
+              textDocument = {
+                foldingRange = {
+                  dynamicRegistration = false;
+                  lineFoldingOnly = true;
+                };
 
-              semanticTokens = {
-                multilineTokenSupport = true;
+                semanticTokens = {
+                  multilineTokenSupport = true;
+                };
               };
             };
           };
         };
+      };
+
+      languages = {
+        enableFormat = true;
+        enableTreesitter = true;
+        enableExtraDiagnostics = true;
+
+        bash.enable = true;
+        json.enable = true;
+        markdown.enable = true;
       };
     };
   };
