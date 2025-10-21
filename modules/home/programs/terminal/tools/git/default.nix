@@ -38,26 +38,29 @@ in
     ];
 
     programs = {
+      delta = {
+        enable = true;
+        enableGitIntegration = true;
+
+        options = {
+          dark = true;
+          features = mkForce "decorations side-by-side navigate";
+          line-numbers = true;
+          navigate = true;
+          side-by-side = true;
+        };
+      };
+
       git = {
         enable = true;
         package = pkgs.gitFull;
-        inherit (cfg) includes userName userEmail;
+
+        inherit (cfg) includes;
         inherit (ignores) ignores;
 
-        delta = {
-          enable = true;
+        settings = {
+          branch.sort = "-committerdate";
 
-          options = {
-            dark = true;
-            features = mkForce "decorations side-by-side navigate";
-            line-numbers = true;
-            navigate = true;
-            side-by-side = true;
-            true-color = "always";
-          };
-        };
-
-        extraConfig = {
           fetch = {
             prune = true;
           };
@@ -68,24 +71,11 @@ in
 
           lfs = enabled;
 
-          # pull = {
-          #   rebase = true;
-          # };
-
           push = {
             autoSetupRemote = true;
             default = "current";
           };
 
-          # rebase = {
-          #   autoStash = true;
-          # };
-
-          # safe = {
-          #   directory = [
-          #     "~/$Coding/"
-          #   ];
-          # };
           diff.tool = "nvimdiff";
           diff.guitool = "nvimdiff";
           merge.tool = "nvimdiff";
@@ -99,17 +89,23 @@ in
           };
 
           http.postBuffer = 157286400;
-        };
-        aliases = {
-          # common aliases
-          br = "branch";
-          co = "checkout";
-          st = "status";
-          ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
-          ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
-          cm = "commit -m"; # commit via `git cm <message>`
-          ca = "commit -am"; # commit all changes via `git ca <message>`
-          dc = "diff --cached";
+
+          alias = {
+            # common aliases
+            br = "branch";
+            co = "checkout";
+            st = "status";
+            ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
+            ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
+            cm = "commit -m"; # commit via `git cm <message>`
+            ca = "commit -am"; # commit all changes via `git ca <message>`
+            dc = "diff --cached";
+          };
+
+          user = {
+            name = cfg.userName;
+            email = cfg.userEmail;
+          };
         };
       };
     };
