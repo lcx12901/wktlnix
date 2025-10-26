@@ -24,7 +24,8 @@ in
 
       extraPackages = with pkgs.bat-extras; [
         batdiff
-        batgrep
+        # FIXME: when fix this issue, re-enable
+        # batgrep
         batman
         batpipe
         batwatch
