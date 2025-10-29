@@ -20,20 +20,22 @@ in
 
       extraPackages = with pkgs; [
         nil
+        lua-language-server
         vscode-langservers-extracted
-        vtsls
-        vue-language-server
-        tailwindcss-language-server
+        stylua
       ];
 
       userSettings = {
         icon_theme = "Catppuccin Macchiato";
 
-        buffer_font_size = lib.mkForce 16;
-        ui_font_size = lib.mkForce 17;
-
-        terminal = {
-          font_size = lib.mkForce 15;
+        buffer_font_size = lib.mkForce 20;
+        ui_font_size = lib.mkForce 20;
+        terminal.font_size = lib.mkForce 18;
+        buffer_font_features = {
+          "calt" = true;
+          "zero" = true;
+          "cv03" = true;
+          "ss08" = true;
         };
 
         relative_line_numbers = true;
@@ -64,29 +66,23 @@ in
           edit_prediction_provider = "copilot";
         };
 
-        languages =
-          let
+        languages = {
+          Lua = {
+            format_on_save = "on";
             formatter = {
-              "code_actions" = {
-                "source.fixAll.eslint" = true;
+              external = {
+                command = "stylua";
+                arguments = [
+                  "--syntax=Lua54"
+                  "--respect-ignores"
+                  "--stdin-filepath"
+                  "{buffer_path}"
+                  "-"
+                ];
               };
             };
-          in
-          {
-            "Vue.js" = {
-              inherit formatter;
-              language_servers = [
-                "vtsls"
-                "..."
-              ];
-            };
-            TypeScript = {
-              inherit formatter;
-            };
-            TSX = {
-              inherit formatter;
-            };
           };
+        };
 
         lsp = {
           nil = {
@@ -98,13 +94,6 @@ in
                 flake = {
                   autoArchive = true;
                 };
-              };
-            };
-          };
-          vue-language-server = {
-            initialization_options = {
-              vue = {
-                hybridMode = true;
               };
             };
           };
@@ -123,20 +112,15 @@ in
       ];
     };
 
-    # programs.zed-editor-extensions = {
-    #   enable = true;
-    #   packages = with pkgs.zed-extensions; [
-    #     # lsp
-    #     html
-    #     nix
-    #     vue
-    #     unocss
-    #
-    #     git-firefly
-    #
-    #     # theme
-    #     catppuccin-icons
-    #   ];
-    # };
+    programs.zed-editor-extensions = {
+      enable = true;
+      packages = with pkgs.zed-extensions; [
+        nix
+        lua
+        git-firefly
+        # theme
+        catppuccin-icons
+      ];
+    };
   };
 }

@@ -28,13 +28,13 @@ in
         ])
         (window-rule [
           (match { app-id = "firefox"; })
+          (match { app-id = "^dev\.zed\.Zed$"; })
           (leaf' "opacity" 0.95)
         ])
         (window-rule [
           (match { app-id = "^org\.telegram\.desktop$"; })
           (match { app-id = "Bytedance-feishu"; })
           (match { app-id = "wechat"; })
-          (match { app-id = "^dev\.zed\.Zed$"; })
           (match { app-id = "code"; })
           (match { app-id = "neovide"; })
           (leaf' "opacity" 0.9)
