@@ -38,13 +38,16 @@ stdenv.mkDerivation (finalAttrs: {
   '';
 
   preInstall = ''
-    rm -rf node_modules/
+    CI=true pnpm prune --prod
+
+    # remove non-deterministic files
+    rm node_modules/.modules.yaml node_modules/.pnpm-workspace-state-v1.json
   '';
 
   installPhase = ''
     runHook preInstall
     mkdir -p $out/{bin,lib/unocss-language-server}
-    cp -r {bin,out} $out/lib/unocss-language-server/
+    cp -r {bin,out,node_modules} $out/lib/unocss-language-server/
     makeWrapper ${lib.getExe nodejs} $out/bin/unocss-language-server \
           --inherit-argv0 \
           --add-flags $out/lib/unocss-language-server/bin/index.js
