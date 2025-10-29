@@ -33,6 +33,17 @@
 
     # Applications & packages
     nvf.url = "github:notashelf/nvf/v0.8";
+    nix4nvchad = {
+      url = "github:nix-community/nix4nvchad";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nvchad-starter.follows = "nvchad-config";
+    };
+    nvchad-config = {
+      # url = "git+file:/home/wktl/Coding/nvchad-config";
+      url = "github:lcx12901/nvchad-config";
+      flake = false;
+    };
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     daeuniverse.url = "github:daeuniverse/flake.nix";
     niri = {
       url = "github:sodiboo/niri-flake";
@@ -58,6 +69,7 @@
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
 
     # my wallpapers
     wallpapers = {

@@ -17,8 +17,6 @@ in
       clipboard = "kitten clipboard";
       # Pretty diff
       diff = "kitty +kitten diff";
-      # QOL alias for copying terminfo
-      ssh = "kitty +kitten ssh";
       # cat for images
       icat = "kitty +kitten icat";
     };

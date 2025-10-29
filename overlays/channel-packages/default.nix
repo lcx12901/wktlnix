@@ -1,7 +1,11 @@
 { inputs }:
 final: _prev:
 let
-  dae = inputs.daeuniverse.packages."${final.stdenv.hostPlatform.system}".dae-unstable;
+  inherit (final.stdenv.hostPlatform) system;
+
+  dae = inputs.daeuniverse.packages."${system}".dae-unstable;
+
+  neovim-nightly = inputs.neovim-nightly.packages.${system}.neovim;
 
   master = import inputs.nixpkgs-master {
     inherit (final.stdenv.hostPlatform) system;
@@ -13,7 +17,7 @@ let
   # };
 in
 {
-  inherit dae;
+  inherit dae neovim-nightly;
 
   # From nixpkgs-master (fast updating / want latest always)
   inherit (master) btrfs-assistant;
