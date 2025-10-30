@@ -41,7 +41,10 @@ in
     home.persistence = lib.mkIf persist {
       "/persist/home/${config.wktlnix.user.name}" = {
         allowOther = true;
-        directories = [ ".local/share/nvim" ];
+        directories = [
+          ".local/share/nvim"
+          ".local/state/nvim"
+        ];
       };
     };
   };
