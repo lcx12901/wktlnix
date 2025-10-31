@@ -32,6 +32,9 @@ in
         nixfmt
         stylua
         eslint_d
+
+        # blink-cmp-dictionary
+        wordnet
       ];
       neovim = pkgs.neovim-nightly;
       hm-activation = true;
