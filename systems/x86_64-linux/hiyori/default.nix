@@ -50,6 +50,7 @@ in
       };
       redis = enabled;
       nextcloud = enabled;
+      jellyfin = enabled;
     };
 
     security = {
