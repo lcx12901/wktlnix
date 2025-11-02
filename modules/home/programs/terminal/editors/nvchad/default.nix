@@ -6,6 +6,8 @@
   ...
 }:
 let
+  inherit (lib.wktlnix) enabled;
+
   cfg = config.wktlnix.programs.terminal.editors.nvchad;
 
   persist = osConfig.wktlnix.system.persist.enable;
@@ -16,10 +18,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    wktlnix.programs.terminal.tools.fzf = enabled;
+
     programs.nvchad = {
       enable = true;
       extraPackages = with pkgs; [
         wl-clipboard
+        wakatime-cli
 
         # lsp servers
         nixd
@@ -33,8 +38,8 @@ in
         stylua
         eslint_d
 
-        # blink-cmp-dictionary
-        wordnet
+        # need by avante.nvim
+        gnumake
       ];
       neovim = pkgs.neovim-nightly;
       hm-activation = true;
@@ -48,6 +53,12 @@ in
           ".local/share/nvim"
           ".local/state/nvim"
         ];
+      };
+    };
+
+    sops.secrets = {
+      wakatime = {
+        path = "${config.home.homeDirectory}/.wakatime.cfg";
       };
     };
   };
