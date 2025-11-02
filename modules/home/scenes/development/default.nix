@@ -64,7 +64,6 @@ in
             ripgrep = enabled;
             yazi = enabled;
           };
-          # editors.nvf = enabled;
         };
       };
     };
