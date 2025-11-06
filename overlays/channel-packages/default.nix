@@ -7,10 +7,10 @@ let
 
   neovim-nightly = inputs.neovim-nightly.packages.${system}.neovim;
 
-  master = import inputs.nixpkgs-master {
-    inherit (final.stdenv.hostPlatform) system;
-    inherit (final) config;
-  };
+  # master = import inputs.nixpkgs-master {
+  #   inherit (final.stdenv.hostPlatform) system;
+  #   inherit (final) config;
+  # };
   # unstable = import inputs.nixpkgs-unstable {
   #   inherit (final.stdenv.hostPlatform) system;
   #   inherit (final) config;
@@ -20,5 +20,4 @@ in
   inherit dae neovim-nightly;
 
   # From nixpkgs-master (fast updating / want latest always)
-  inherit (master) btrfs-assistant;
 }
