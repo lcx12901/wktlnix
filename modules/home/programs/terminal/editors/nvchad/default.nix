@@ -28,6 +28,8 @@ in
 
         # lsp servers
         nixd
+        bash-language-server
+        yaml-language-server
         typescript-language-server
         vue-language-server
         emmet-language-server
@@ -36,6 +38,10 @@ in
         # formatters
         nixfmt
         stylua
+
+        # linters
+        statix
+        deadnix
         eslint_d
 
         # need by avante.nvim
