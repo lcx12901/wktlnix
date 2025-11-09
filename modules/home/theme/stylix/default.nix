@@ -56,7 +56,6 @@ in
           enable = true;
           variant256Colors = true;
         };
-        lazygit = enabled;
         qt = enabled;
         vesktop = enabled;
         vscode = {
