@@ -46,10 +46,15 @@ in
 
         # need by avante.nvim
         gnumake
+        imagemagick
       ];
       neovim = pkgs.neovim-nightly;
       hm-activation = true;
       backup = false;
+
+      extraConfig = ''
+        vim.g.sqlite_clib_path = "${pkgs.sqlite.out}/lib/libsqlite3${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}"
+      '';
     };
 
     home.persistence = lib.mkIf persist {
