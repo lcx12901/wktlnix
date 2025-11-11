@@ -38,7 +38,7 @@ in
 
     sops.templates."config.dae".content = ''
       global {
-        lan_interface: waydroid0, virbr0
+        lan_interface: waydroid0, virbr0, eno1, enp5s0
         wan_interface: auto
 
         log_level: info
