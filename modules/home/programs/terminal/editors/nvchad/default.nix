@@ -18,6 +18,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.sessionVariables = {
+      EDITOR = "nvim";
+    };
+
     wktlnix.programs.terminal.tools.fzf = enabled;
 
     programs.nvchad = {
