@@ -9,6 +9,11 @@ in
 {
   options.wktlnix.system.persist = {
     enable = mkEnableOption "Whether or not to enable impermanence.";
+    userDirs = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
+      description = "List of user directories to persist.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -26,13 +31,7 @@ in
       ];
 
       users."${username}" = {
-        directories = [
-          "Coding"
-          "Downloads"
-          "Documents"
-          "Music"
-          "Pictures"
-        ];
+        directories = cfg.userDirs;
 
         files = [ ".ssh/id_ed25519" ];
       };

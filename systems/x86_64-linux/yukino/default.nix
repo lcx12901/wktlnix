@@ -6,6 +6,8 @@ in
   imports = [ ./hardware.nix ];
 
   wktlnix = {
+    archetypes.personal = enabled;
+
     system = {
       boot = enabled;
       disko = {
