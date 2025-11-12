@@ -42,7 +42,10 @@ in
     };
 
     services = {
-      dae = enabled;
+      dae = {
+        enable = true;
+        openFirewall = true;
+      };
       openssh = enabled;
       sing-box = {
         enable = true;
