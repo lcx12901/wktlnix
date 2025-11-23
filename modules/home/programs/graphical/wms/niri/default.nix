@@ -47,7 +47,7 @@ in
             mako = enabled;
             waybar = enabled;
           };
-          launchers.rofi = enabled;
+          launchers.vicinae = enabled;
         };
       };
 

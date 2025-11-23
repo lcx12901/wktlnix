@@ -38,6 +38,7 @@ in
         vue-language-server
         emmet-language-server
         wktlnix.unocss-language-server
+        vscode-langservers-extracted
 
         # formatters
         nixfmt
