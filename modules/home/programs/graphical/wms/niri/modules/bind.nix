@@ -26,31 +26,26 @@ let
   vlc = getExe pkgs.vlc;
   telegram = getExe pkgs.telegram-desktop;
   neovide = getExe pkgs.neovide;
-  rofi = getExe config.programs.rofi.package;
+  vicinae = getExe config.programs.vicinae.package;
   hyprlock = getExe config.programs.hyprlock.package;
   wpctl = getExe' pkgs.wireplumber "wpctl";
   kitty = getExe config.programs.kitty.package;
-  wl-copy = getExe' pkgs.wl-clipboard "wl-copy";
-  cliphist = getExe' pkgs.cliphist "cliphist";
 in
 {
   config = mkIf config.wktlnix.programs.graphical.wms.niri.enable {
     programs.niri = {
       config = [
         (plain "binds" [
-          (plain "Mod+X" [
-            (spawn [
-              sh
-              "-c"
-              "${cliphist} list | ${rofi} -dmenu | ${cliphist} decode | ${wl-copy}"
-            ])
-          ])
           (plain "Mod+W" [
             (spawn [
-              rofi
-              "-show"
-              "drun"
-              "-n"
+              vicinae
+              "open"
+            ])
+          ])
+          (node' "Mod+X" { repeat = false; } [
+            (spawn [
+              vicinae
+              "vicinae://extensions/vicinae/clipboard/history"
             ])
           ])
           (plain "Mod+Shift+P" [
