@@ -17,8 +17,6 @@ let
 
   spawn-at-startup = leaf "spawn-at-startup";
 
-  sh = getExe' config.programs.bash.package "sh";
-  sleep = getExe' pkgs.coreutils "sleep";
   waybar = getExe config.programs.waybar.package;
   xwayland-satellite-unstable = getExe pkgs.xwayland-satellite-unstable;
   swww = getExe pkgs.swww;
@@ -60,11 +58,6 @@ in
             swaybg
             "-i"
             "${blur-wallpaper}"
-          ])
-          (spawn-at-startup [
-            sh
-            "-c"
-            "${sleep} 10; fcitx5 --replace"
           ])
           (plain "cursor" [
             (leaf' "xcursor-theme" config.stylix.cursor.name)
