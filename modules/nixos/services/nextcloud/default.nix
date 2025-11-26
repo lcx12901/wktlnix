@@ -36,6 +36,10 @@ in
       database.createLocally = true;
       configureRedis = true;
 
+      extraApps = {
+        inherit (pkgs.nextcloud31Packages.apps) previewgenerator;
+      };
+
       settings = {
         enable_previews = true;
         enabledPreviewProviders = [
@@ -52,6 +56,15 @@ in
           "OC\\Preview\\HEIC"
           "OC\\Preview\\Movie"
         ];
+        preview_max_x = null;
+        preview_max_y = null;
+        preview_max_filesize_image = -1;
+        preview_max_memory = -1;
+      };
+
+      phpOptions = {
+        "opcache.interned_strings_buffer" = 16;
+        "opcache.memory_consumption" = 256;
       };
     };
 
