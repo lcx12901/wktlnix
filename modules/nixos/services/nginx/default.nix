@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 let
   inherit (lib)
     mkIf
@@ -50,8 +45,6 @@ in
     services.nginx = {
 
       enable = true;
-
-      package = pkgs.nginxQuic.override { withKTLS = true; };
 
       inherit (cfg) defaultSSLListenPort;
 
