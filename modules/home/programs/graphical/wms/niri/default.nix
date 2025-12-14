@@ -22,7 +22,6 @@ in
   options.wktlnix.programs.graphical.wms.niri = {
     enable = mkEnableOption "Whether or not to enable niri.";
     extraConfig = mkOpt kdl.types.kdl-document [ ] "extra configuration for niri, in KDL format.";
-    DISPLAY = mkOpt lib.types.str ":1" "the display to use for niri.";
   };
 
   config = mkIf cfg.enable {

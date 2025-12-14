@@ -5,7 +5,6 @@
   ...
 }:
 let
-  inherit (config.wktlnix.programs.graphical.wms) niri;
   inherit (lib) mkIf getExe getExe';
   inherit (lib.kdl)
     leaf
@@ -113,7 +112,6 @@ in
             ])
           ])
           (plain "environment" [
-            (leaf' "DISPLAY" niri.DISPLAY)
             (leaf' "GSK_RENDERER" "gl")
             (leaf' "NIXOS_OZONE_WL" "1")
             (leaf' "MOZ_ENABLE_WAYLAND" "1")
