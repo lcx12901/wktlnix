@@ -38,7 +38,7 @@ in
         emulators.kitty = {
           fontSize = 16;
         };
-        editors.nvchad = enabled;
+        editors.neovim = enabled;
         tools.nh = enabled;
       };
     };

@@ -20,8 +20,8 @@ in
 
       extraPackages = with pkgs; [
         nil
+        nixd
         lua-language-server
-        vscode-langservers-extracted
         stylua
       ];
 

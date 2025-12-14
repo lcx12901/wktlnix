@@ -57,9 +57,7 @@ in
             inputs.impermanence.nixosModules.home-manager.impermanence
             inputs.stylix.homeModules.stylix
             inputs.sops-nix.homeManagerModules.sops
-            inputs.nvf.homeManagerModules.default
             inputs.zed-extensions.homeManagerModules.default
-            inputs.nix4nvchad.homeManagerModule
           ]
           ++ (extendedLib.file.get-default-nix-files-recursive ../../modules/home);
           users = mapAttrs' (_name: homeConfig: {
