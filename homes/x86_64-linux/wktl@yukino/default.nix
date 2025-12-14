@@ -40,7 +40,7 @@ in
         };
       };
       terminal = {
-        editors.nvchad = enabled;
+        editors.neovim = enabled;
         tools = {
           git = {
             userName = "linchengxu";

@@ -55,8 +55,6 @@ in
       common = enabled;
     };
 
-    # theme.stylix.image = "rearview-mirror.jpg";
-
     services = {
       dae = {
         enable = true;
