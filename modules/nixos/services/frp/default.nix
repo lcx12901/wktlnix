@@ -21,7 +21,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.frp = {
+    services.frp.instances."" = {
       inherit (cfg) enable role;
     };
 
