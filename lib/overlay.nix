@@ -18,7 +18,4 @@ in
 
   # Add niri lib functions
   inherit (inputs.niri.lib) kdl;
-
-  # Add nvf lib functions
-  inherit (inputs.nvf.lib) nvim;
 }
