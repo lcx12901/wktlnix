@@ -58,6 +58,7 @@ in
             inputs.stylix.homeModules.stylix
             inputs.sops-nix.homeManagerModules.sops
             inputs.zed-extensions.homeManagerModules.default
+            inputs.zen-browser.homeModules.twilight
           ]
           ++ (extendedLib.file.get-default-nix-files-recursive ../../modules/home);
           users = mapAttrs' (_name: homeConfig: {

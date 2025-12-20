@@ -67,7 +67,7 @@ in
             (spawn [ vlc ])
           ])
           (plain "Mod+B" [
-            (spawn [ "firefox" ])
+            (spawn [ "zen-twilight" ])
           ])
           (plain "Mod+Space" [
             (flag "toggle-column-tabbed-display")

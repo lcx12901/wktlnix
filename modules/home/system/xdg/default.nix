@@ -4,38 +4,24 @@ let
 
   cfg = config.wktlnix.system.xdg;
 
-  browser = [ "firefox.desktop" ];
   terminal = [ "kitty.desktop" ];
   video = [ "vlc.desktop" ];
 
   # XDG MIME types
   associations = {
-    "application/x-extension-htm" = browser;
-    "application/x-extension-html" = browser;
     "application/x-extension-m4a" = video;
     "application/x-extension-mp4" = video;
-    "application/x-extension-shtml" = browser;
-    "application/x-extension-xht" = browser;
-    "application/x-extension-xhtml" = browser;
     "application/x-flac" = video;
     "application/x-matroska" = video;
     "application/x-netshow-channel" = video;
     "application/x-quicktime-media-link" = video;
     "application/x-quicktimeplayer" = video;
     "application/x-smil" = video;
-    "application/xhtml+xml" = browser;
     "audio/*" = video;
     "video/*" = video;
-    "x-scheme-handler/about" = browser;
-    "x-scheme-handler/chrome" = browser;
-    "x-scheme-handler/ftp" = browser;
-    "x-scheme-handler/http" = browser;
-    "x-scheme-handler/https" = browser;
     "x-scheme-handler/spotify" = [ "spotify.desktop" ];
     "x-scheme-handler/terminal" = terminal;
     "x-scheme-handler/tg" = [ "org.telegram.desktop" ];
-    "x-scheme-handler/unknown" = browser;
-    "x-www-browser" = browser;
   };
 in
 {
