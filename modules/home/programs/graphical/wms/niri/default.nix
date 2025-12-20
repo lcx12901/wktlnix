@@ -40,13 +40,15 @@ in
           tools.cava = enabled;
         };
         graphical = {
+          launchers.vicinae = enabled;
           screenlockers.hyprlock = enabled;
+          browsers.zen = enabled;
+
           addons = {
             fcitx5 = enabled;
             mako = enabled;
             waybar = enabled;
           };
-          launchers.vicinae = enabled;
         };
       };
 

@@ -35,9 +35,6 @@ in
         #   vscode = enabled;
         # };
         # apps.vesktop = enabled;
-        browsers = {
-          firefox = enabled;
-        };
       };
       terminal = {
         editors.neovim = enabled;

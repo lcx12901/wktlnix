@@ -58,7 +58,6 @@ inputs.nixpkgs.lib.nixosSystem {
     inputs.stylix.nixosModules.stylix
     inputs.niri.nixosModules.niri
     inputs.daeuniverse.nixosModules.dae
-    inputs.nix-flatpak.nixosModules.nix-flatpak
 
     # Auto-inject home configurations for this system+hostname
     homeManagerConfig

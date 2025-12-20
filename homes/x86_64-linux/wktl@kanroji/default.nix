@@ -1,10 +1,8 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 let
   inherit (lib.wktlnix) enabled;
 in
 {
-  home.packages = [ pkgs.tsukimi ];
-
   wktlnix = {
     user = enabled;
 
@@ -29,10 +27,6 @@ in
             ];
         };
         apps.vesktop = enabled;
-        # editors.zed = enabled;
-        browsers = {
-          firefox = enabled;
-        };
       };
       terminal = {
         emulators.kitty = {

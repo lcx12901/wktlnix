@@ -1,6 +1,5 @@
 {
   osConfig,
-  config,
   lib,
   pkgs,
   ...
@@ -43,11 +42,6 @@ in
           rainbow = enabled;
         };
         fcitx5 = enabled;
-        firefox = {
-          enable = true;
-          profileNames = [ config.wktlnix.user.name ];
-          firefoxGnomeTheme = enabled;
-        };
         fish = enabled;
         fzf = enabled;
         gnome = enabled;
