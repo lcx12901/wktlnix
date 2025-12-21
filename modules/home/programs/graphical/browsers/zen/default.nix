@@ -181,10 +181,9 @@ in
           "intl.locale.requested" = "zh-CN";
           "general.useragent.locale" = "zh-CN";
 
-          # # gpuAcceleration
-          "dom.webgpu.enabled" = true;
-          "layers.gpu-process.enabled" = true;
-          "layers.mlgpu.enabled" = true;
+          "webgl.disabled" = false;
+          "webgl.force-enabled" = true;
+          "webgl.enable-webgl2" = true;
 
           # # hardwareDecoding
           "media.ffmpeg.vaapi.enabled" = true;
