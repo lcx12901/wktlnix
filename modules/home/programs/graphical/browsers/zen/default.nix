@@ -216,16 +216,6 @@ in
           ];
         };
 
-        pinsForce = true;
-        pins = {
-          "Reddit" = {
-            id = "48e8a119-5a14-4826-9545-91c8e8dd3bf6";
-            url = "https://www.reddit.com";
-            position = 101;
-            isEssential = false;
-          };
-        };
-
         spacesForce = true;
         spaces = {
           "Mikasa" = {
