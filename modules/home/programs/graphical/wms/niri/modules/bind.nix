@@ -30,6 +30,7 @@ let
   hyprlock = getExe config.programs.hyprlock.package;
   wpctl = getExe' pkgs.wireplumber "wpctl";
   kitty = getExe config.programs.kitty.package;
+  zen-browser = getExe' config.programs.zen-browser.package "zen";
 in
 {
   config = mkIf config.wktlnix.programs.graphical.wms.niri.enable {
@@ -67,7 +68,7 @@ in
             (spawn [ vlc ])
           ])
           (plain "Mod+B" [
-            (spawn [ "zen-twilight" ])
+            (spawn [ zen-browser ])
           ])
           (plain "Mod+Space" [
             (flag "toggle-column-tabbed-display")
