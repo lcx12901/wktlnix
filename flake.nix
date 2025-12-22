@@ -33,7 +33,8 @@
 
     # Applications & packages
     wktlvim = {
-      url = "git+file:/home/wktl/Coding/nixvim-part";
+      # url = "git+file:/home/wktl/Coding/nixvim-part";
+      url = "github:lcx12901/nixvim-part";
     };
     daeuniverse.url = "github:daeuniverse/flake.nix";
     niri = {
