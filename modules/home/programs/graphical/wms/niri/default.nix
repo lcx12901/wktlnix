@@ -37,7 +37,6 @@ in
           emulators = {
             kitty = enabled;
           };
-          tools.cava = enabled;
         };
         graphical = {
           launchers.vicinae = enabled;
