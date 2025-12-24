@@ -72,6 +72,17 @@ in
           rev = "4d417c2dfd86a5b2bea202d4a7b48d8eb3dbaeb1";
           sha256 = "sha256-G7il8T1L+P/2mXWJsb68n4BCbVKcrrtK8GnBNxzt73Q=";
         })
+        # FIXME: these extensions currently fail to build
+        # (config.lib.vicinae.mkRayCastExtension {
+        #   name = "google-translate";
+        #   rev = "88a7fa92927e89ae1c8fa712813b7986243dc174";
+        #   sha256 = "sha256-834z8jVAPkEWV7A9IAt4Zyi9w+x7j5ooaFZA0JTxQwg=";
+        # })
+        # (config.lib.vicinae.mkRayCastExtension {
+        #   name = "json-format";
+        #   rev = "72e03a000b092ab3fb772afe659bd3a18394371e";
+        #   sha256 = "sha256-N3fx5oBusKDpzisJIwykbzd2IQSPbkk4XADZ9z5UORE=";
+        # })
       ];
     };
   };
