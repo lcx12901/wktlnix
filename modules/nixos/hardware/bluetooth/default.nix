@@ -20,13 +20,18 @@ in
 
       package = pkgs.bluez-experimental;
 
-      powerOnBoot = true;
+      powerOnBoot = false;
 
       settings = {
         General = {
           Experimental = true;
           JustWorksRepairing = "always";
           MultiProfile = "multiple";
+        };
+        Policy = {
+          AutoEnable = true;
+          ReconnectAttempts = 7;
+          ReconnectIntervals = "1,2,4,8,16,32,64";
         };
       };
     };
