@@ -35,6 +35,7 @@ in
       graphics = enabled;
       cpu.intel = enabled;
       gpu.amd = enabled;
+      bluetooth = enabled;
       btrfs = enabled;
     };
 
