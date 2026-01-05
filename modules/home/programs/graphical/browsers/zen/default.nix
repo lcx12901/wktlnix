@@ -125,6 +125,8 @@ in
 
             "network.http.http3.enabled" = true;
             "network.socket.ip_addr_any.disabled" = true; # disallow bind to 0.0.0.0
+
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           };
       };
       profiles.default = {
@@ -190,6 +192,10 @@ in
           "media.gpu-process-decoder" = true;
           "media.gpu-process-encoder" = true;
           "media.hardware-video-decoding.enabled" = true;
+
+          # enable the Browser Developer Tools
+          "devtools.debugger.remote-enabled" = true;
+          "devtools.chrome.enabled" = true;
         };
 
         bookmarks = {
