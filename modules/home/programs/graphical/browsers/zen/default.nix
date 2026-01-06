@@ -95,30 +95,9 @@ in
             # Disable swipe gestures (Browser:BackOrBackDuplicate, Browser:ForwardOrForwardDuplicate)
             "browser.gesture.swipe.left" = "";
             "browser.gesture.swipe.right" = "";
-            "browser.tabs.hoverPreview.enabled" = true;
             "browser.newtabpage.activity-stream.feeds.topsites" = false;
-            "browser.newtabpage.pinned" = [ ];
+            "browser.tabs.hoverPreview.enabled" = true;
             "browser.topsites.contile.enabled" = false;
-
-            "network.cookie.cookieBehavior" = 5;
-            "dom.battery.enabled" = false;
-
-            # gpuAcceleration
-            "dom.webgpu.enabled" = true;
-            "gfx.webrender.all" = true;
-            "layers.gpu-process.enabled" = true;
-            "layers.mlgpu.enabled" = true;
-
-            # hardwareDecoding
-            "media.ffmpeg.vaapi.enabled" = true;
-            "media.gpu-process-decoder" = true;
-            "media.gpu-process-encoder" = true;
-            "media.hardware-video-decoding.enabled" = true;
-
-            "network.http.http3.enabled" = true;
-            "network.socket.ip_addr_any.disabled" = true; # disallow bind to 0.0.0.0
-
-            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           };
       };
       profiles.default = {
@@ -167,6 +146,8 @@ in
           "zen.welcome-screen.seen" = true;
           "zen.urlbar.behavior" = "float";
 
+          "browser.newtabpage.pinned" = [ ];
+
           "privacy.resistFingerprinting" = true;
           "privacy.resistFingerprinting.randomization.canvas.use_siphash" = true;
           "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
@@ -184,19 +165,32 @@ in
           "intl.locale.requested" = "zh-CN";
           "general.useragent.locale" = "zh-CN";
 
-          "webgl.disabled" = false;
-          "webgl.force-enabled" = true;
           "webgl.enable-webgl2" = true;
 
-          # # hardwareDecoding
+          # gpuAcceleration
+          "dom.webgpu.enabled" = true;
+          "gfx.webrender.all" = true;
+          "layers.gpu-process.enabled" = true;
+          "layers.mlgpu.enabled" = true;
+
+          "webgl.disabled" = false;
+          "webgl.force-enabled" = true;
+
+          # hardwareDecoding
           "media.ffmpeg.vaapi.enabled" = true;
           "media.gpu-process-decoder" = true;
           "media.gpu-process-encoder" = true;
           "media.hardware-video-decoding.enabled" = true;
+          "media.autoplay.default" = 0;
 
           # enable the Browser Developer Tools
           "devtools.debugger.remote-enabled" = true;
           "devtools.chrome.enabled" = true;
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+          "network.cookie.cookieBehavior" = 5;
+          "network.http.http3.enabled" = true;
+          "network.socket.ip_addr_any.disabled" = true; # disallow bind to 0.0.0.0
         };
 
         bookmarks = {
@@ -381,8 +375,8 @@ in
 
         userChrome = # SCSS
           ''
-            :root {
-              #zen-appcontent-navbar-wrapper {
+            :root[zen-single-toolbar="true"]:not([customizing]) {
+              & #zen-appcontent-navbar-wrapper {
                 &[zen-has-hover="true"] {
                   height: var(--zen-element-separation) !important;
                   min-height: var(--zen-element-separation) !important;
