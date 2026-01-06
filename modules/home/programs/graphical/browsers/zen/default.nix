@@ -97,17 +97,9 @@ in
             "browser.gesture.swipe.right" = "";
             "browser.tabs.hoverPreview.enabled" = true;
             "browser.newtabpage.activity-stream.feeds.topsites" = false;
+            "browser.newtabpage.pinned" = [ ];
             "browser.topsites.contile.enabled" = false;
 
-            "privacy.resistFingerprinting" = true;
-            "privacy.resistFingerprinting.randomization.canvas.use_siphash" = true;
-            "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
-            "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
-            "privacy.resistFingerprinting.block_mozAddonManager" = true;
-            "privacy.donottrackheader.enabled" = true;
-            "privacy.spoof_english" = 1;
-
-            "privacy.firstparty.isolate" = true;
             "network.cookie.cookieBehavior" = 5;
             "dom.battery.enabled" = false;
 
@@ -174,6 +166,15 @@ in
           "zen.view.compact.animate-sidebar" = false;
           "zen.welcome-screen.seen" = true;
           "zen.urlbar.behavior" = "float";
+
+          "privacy.resistFingerprinting" = true;
+          "privacy.resistFingerprinting.randomization.canvas.use_siphash" = true;
+          "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
+          "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
+          "privacy.resistFingerprinting.block_mozAddonManager" = true;
+          "privacy.donottrackheader.enabled" = true;
+          "privacy.spoof_english" = 1;
+          "privacy.firstparty.isolate" = true;
 
           # default enable extensions
           "extensions.autoDisableScopes" = 0;
@@ -377,6 +378,27 @@ in
             "google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
           };
         };
+
+        userChrome = # SCSS
+          ''
+            :root {
+              #zen-appcontent-navbar-wrapper {
+                &[zen-has-hover="true"] {
+                  height: var(--zen-element-separation) !important;
+                  min-height: var(--zen-element-separation) !important;
+                }
+                #PersonalToolbar, .titlebar-buttonbox-container {
+                  display: none !important;
+                }
+              }
+            }
+
+            .browserSidebarContainer:is(.deck-selected, [zen-split='true']) .browserContainer {
+              #tabbrowser-tabpanels[has-toolbar-hovered] & {
+                margin-top: 0 !important;
+              }
+            }
+          '';
       };
     };
 
