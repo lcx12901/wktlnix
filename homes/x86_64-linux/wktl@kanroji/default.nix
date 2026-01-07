@@ -26,7 +26,7 @@ in
               ])
             ];
         };
-        apps.vesktop = enabled;
+        # apps.vesktop = enabled;
       };
       terminal = {
         emulators.kitty = {
