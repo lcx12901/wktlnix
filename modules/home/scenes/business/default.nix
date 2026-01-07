@@ -23,7 +23,7 @@ in
     ];
 
     home.persistence = mkIf persist {
-      "/persist/home/${config.wktlnix.user.name}" = {
+      "/persist" = {
         directories = [ ".config/LarkShell" ];
       };
     };

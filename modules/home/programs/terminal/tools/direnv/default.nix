@@ -32,8 +32,7 @@ in
     };
 
     home.persistence = mkIf persist {
-      "/persist/home/${config.wktlnix.user.name}" = {
-        allowOther = true;
+      "/persist" = {
         directories = [ ".local/share/direnv" ];
       };
     };

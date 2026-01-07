@@ -32,8 +32,7 @@ in
         ];
 
       persistence = mkIf (persist && cfg.nodejsEnable) {
-        "/persist/home/${config.wktlnix.user.name}" = {
-          allowOther = true;
+        "/persist" = {
           directories = [ ".bun" ];
         };
       };
