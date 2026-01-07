@@ -54,7 +54,6 @@ in
           ]
           ++ [
             inputs.home-manager.flakeModules.home-manager
-            inputs.impermanence.nixosModules.home-manager.impermanence
             inputs.stylix.homeModules.stylix
             inputs.sops-nix.homeManagerModules.sops
             inputs.zed-extensions.homeManagerModules.default

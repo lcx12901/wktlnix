@@ -24,7 +24,7 @@ in
     ];
 
     home.persistence = mkIf persist {
-      "/persist/home/${config.wktlnix.user.name}" = {
+      "/persist" = {
         directories = [ ".local/share/TelegramDesktop" ];
       };
     };

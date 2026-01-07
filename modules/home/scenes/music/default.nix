@@ -21,7 +21,7 @@ in
     home.packages = with pkgs; [ qqmusic ];
 
     home.persistence = mkIf persist {
-      "/persist/home/${config.wktlnix.user.name}" = {
+      "/persist" = {
         directories = [ ".config/qqmusic" ];
       };
     };

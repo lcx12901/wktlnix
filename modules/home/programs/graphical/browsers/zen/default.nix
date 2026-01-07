@@ -409,8 +409,7 @@ in
       bind ,<Space> nohlsearch
     '';
     home.persistence = lib.mkIf persist {
-      "/persist/home/${config.wktlnix.user.name}" = {
-        allowOther = true;
+      "/persist" = {
         directories = [ ".zen/default" ];
       };
     };
