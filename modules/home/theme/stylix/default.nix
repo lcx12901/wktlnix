@@ -24,7 +24,7 @@ in
         polarity
         ;
 
-      iconTheme = {
+      icons = {
         enable = true;
         package = pkgs.catppuccin-papirus-folders.override {
           accent = "lavender";
