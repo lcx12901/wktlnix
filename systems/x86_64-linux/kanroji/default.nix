@@ -84,8 +84,10 @@ in
       sudo-rs = enabled;
       acme = enabled;
     };
-
-    virtualisation.kvm = enabled;
+    virtualisation = {
+      kvm = enabled;
+      podman = enabled;
+    };
   };
 
   sops.secrets."yukino_dae_node" = { };
