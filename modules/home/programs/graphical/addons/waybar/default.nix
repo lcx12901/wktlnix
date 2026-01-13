@@ -35,8 +35,8 @@ in
             "clock"
           ];
           modules-right = [
-            "tray"
             "network"
+            "tray"
             "memory"
             "pulseaudio"
           ];
