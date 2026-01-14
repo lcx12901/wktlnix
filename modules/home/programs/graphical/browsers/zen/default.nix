@@ -392,6 +392,12 @@ in
                 margin-top: 0 !important;
               }
             }
+
+            html:not([sizemode="fullscreen"]) {
+              .browserStack, browser {
+                clip-path: inset(0 round var(--zen-native-inner-radius));
+              }
+            }
           '';
       };
     };
