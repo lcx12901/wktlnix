@@ -22,5 +22,12 @@ in
       wget
       less
     ];
+
+    zramSwap.enable = true;
+
+    hardware.ksm = {
+      enable = true;
+      sleep = 100; # ms between scans (lower = more aggressive dedup, slightly more CPU)
+    };
   };
 }
