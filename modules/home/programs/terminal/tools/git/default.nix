@@ -29,12 +29,14 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       bfg-repo-cleaner
+      git-absorb
       git-crypt
       git-filter-repo
       git-lfs
       gitflow
       gitleaks
-      # gitlint
+      gitlint
+      tig
     ];
 
     programs = {
@@ -44,7 +46,7 @@ in
 
         options = {
           dark = true;
-          features = mkForce "decorations side-by-side navigate";
+          features = mkForce "decorations side-by-side navigate catppuccin-macchiato";
           line-numbers = true;
           navigate = true;
           side-by-side = true;
@@ -57,6 +59,8 @@ in
 
         inherit (cfg) includes;
         inherit (ignores) ignores;
+
+        maintenance.enable = true;
 
         settings = {
           branch.sort = "-committerdate";
@@ -91,15 +95,24 @@ in
           http.postBuffer = 157286400;
 
           alias = {
-            # common aliases
-            br = "branch";
+            a = "add";
+            ### Commit, checkout, and push
+            c = "commit --verbose";
             co = "checkout";
-            st = "status";
-            ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
-            ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
-            cm = "commit -m"; # commit via `git cm <message>`
-            ca = "commit -am"; # commit all changes via `git ca <message>`
+            p = "push";
+            ### Status
+            s = "status -sb";
+            ### Stash and list stashes
+            st = "stash";
+            stl = "stash list";
+            ### Diff, diff stat, diff cached
+            d = "diff";
+            ds = "diff --stat";
             dc = "diff --cached";
+            ### Add remote origin
+            rao = "remote add origin";
+            ### Checkout, create and checkout new branch
+            cob = "checkout -b";
           };
 
           user = {
@@ -108,6 +121,8 @@ in
           };
         };
       };
+
+      mergiraf = enabled;
     };
 
     sops.secrets."github_copilot_token" = {
