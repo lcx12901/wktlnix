@@ -2,8 +2,9 @@
   inputs,
   osConfig,
   config,
-  lib,
   system,
+  lib,
+  pkgs,
   ...
 }:
 let
@@ -21,10 +22,14 @@ in
 
   config = lib.mkIf cfg.enable {
     home = {
-      sessionVariables.EDITOR = "nvim";
+      sessionVariables = {
+        EDITOR = "nvim";
+        MANPAGER = "nvim -c 'set ft=man bt=nowrite noswapfile nobk shada=\\\"NONE\\\" ro noma' +Man! -o -";
+      };
 
       packages = [
         wktlvim
+        pkgs.nvrh
       ];
 
       persistence = lib.mkIf persist {
