@@ -38,20 +38,33 @@ in
         enable = true;
         settings = {
           general = {
-            softrealtime = "auto";
-            renice = 15;
+            renice = 10; # Nice game processes for better priority
+            ioprio = 0; # Highest IO priority for game processes
+            inhibit_screensaver = 1;
+            disable_splitlock = 1; # Disable split-lock mitigation for performance
           };
-          # gpu = {
-          #   apply_gpu_optimisations = "accept-responsibility";
-          #   gpu_device = 0;
-          #   amd_performance_level = "high";
-          # };
+
+          cpu = {
+            park_cores = "no"; # Don't park cores
+            pin_cores = "yes"; # Pin game to optimal cores (auto-detected)
+          };
+
+          gpu = {
+            # AMD GPU optimization - switch to high performance level
+            apply_gpu_optimisations = "accept-responsibility";
+            gpu_device = 1; # AMD GPU is on card1
+            amd_performance_level = "high";
+          };
+
           custom = {
             start = startScript.outPath;
             end = endScript.outPath;
           };
         };
       };
+
+      # Add user to gamemode group for renice and parking permissions
+      wktlnix.user.extraGroups = [ "gamemode" ];
 
       security.wrappers.gamemode = {
         owner = "root";
@@ -60,14 +73,17 @@ in
         capabilities = "cap_sys_ptrace,cap_sys_nice+pie";
       };
 
+      # Allow reading CPU power consumption for gamemode monitoring
+      systemd.tmpfiles.settings."10-gamemode-powercap" = {
+        "/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/intel-rapl:0:0/energy_uj".z = {
+          mode = "0644";
+        };
+      };
+
       boot.kernel.sysctl = {
         # default on some gaming (SteamOS) and desktop (Fedora) distributions
         # might help with gaming performance
         "vm.max_map_count" = 2147483642;
       };
-
-      # see https://github.com/fufexan/nix-gaming/#pipewire-low-latency
-      # services.pipewire.lowLatency.enable = true;
-      # programs.steam.platformOptimizations.enable = true;
     };
 }
