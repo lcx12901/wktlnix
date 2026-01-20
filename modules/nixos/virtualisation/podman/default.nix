@@ -16,10 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      podman-compose
-      # podman-desktop
-    ];
+    environment.systemPackages = with pkgs; [ podman-compose ];
 
     wktlnix = {
       user = {

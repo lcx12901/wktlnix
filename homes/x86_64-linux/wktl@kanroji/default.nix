@@ -33,13 +33,15 @@ in
           fontSize = 16;
         };
         editors.neovim = enabled;
-        tools.nh = enabled;
+        tools = {
+          distrobox = enabled;
+          nh = enabled;
+        };
       };
     };
 
     scenes = {
       daily = enabled;
-      business = enabled;
       development = {
         enable = true;
         nodejsEnable = true;
