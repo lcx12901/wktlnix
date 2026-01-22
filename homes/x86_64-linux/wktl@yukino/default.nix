@@ -43,7 +43,7 @@ in
             userName = "linchengxu";
             userEmail = "linchengxu@z9yun.com";
           };
-          distrobox = enabled;
+          # distrobox = enabled;
           nh = enabled;
         };
       };

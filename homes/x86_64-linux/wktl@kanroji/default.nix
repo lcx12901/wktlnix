@@ -34,7 +34,7 @@ in
         };
         editors.neovim = enabled;
         tools = {
-          distrobox = enabled;
+          # distrobox = enabled;
           nh = enabled;
         };
       };
