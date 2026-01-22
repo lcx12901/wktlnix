@@ -42,6 +42,7 @@ in
 
     scenes = {
       daily = enabled;
+      business = enabled;
       development = {
         enable = true;
         nodejsEnable = true;

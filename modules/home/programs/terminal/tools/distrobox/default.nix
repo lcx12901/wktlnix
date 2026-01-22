@@ -38,7 +38,6 @@ in
         directories = [
           ".local/share/applications"
           ".local/share/containers/storage"
-          ".config/LarkShell"
         ];
       };
     };
