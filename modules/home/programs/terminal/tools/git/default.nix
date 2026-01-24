@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -123,6 +124,11 @@ in
       };
 
       mergiraf = enabled;
+    };
+
+    home.file.".github/skills/vue-best-practices" = {
+      source = "${inputs.vue-skills}/skills/vue-best-practices";
+      recursive = true;
     };
 
     sops.secrets."github_copilot_token" = {

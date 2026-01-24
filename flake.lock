@@ -71,11 +71,11 @@
     "bt-tracker": {
       "flake": false,
       "locked": {
-        "lastModified": 1769040096,
-        "narHash": "sha256-/OJ/gE/V6CBdC4f/87Ct4b+QOhO2dLJOotph0p0uxAg=",
+        "lastModified": 1769126491,
+        "narHash": "sha256-oHoGzLOo6ATyLwKPZidLt5pIVZuwwyGbIqSwnyEJjYY=",
         "owner": "XIU2",
         "repo": "TrackersListCollection",
-        "rev": "3cf07b5f97bd284fee837130398a004601e4b761",
+        "rev": "61e90fe4cbf20204a0b5590df7c6d48556512185",
         "type": "github"
       },
       "original": {
@@ -351,11 +351,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769015285,
-        "narHash": "sha256-MlqzCJbckJsgwfkRs64H2xaX2Uxl4o6Z9XYfkYS1N/E=",
+        "lastModified": 1769132734,
+        "narHash": "sha256-gmU9cRplrQWqoback9PgQX7Dlsdx8JlhlVZwf0q1F7E=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "ec0247a7a19f641595c24ac1ea4df6461d1cdb36",
+        "rev": "d055b309a6277343cb1033a11d7500f0a0f669fc",
         "type": "github"
       },
       "original": {
@@ -584,11 +584,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1769095611,
-        "narHash": "sha256-C5fmBFlbvYO3unIyWvE1TLYY+Ofdfi9jahRM5p0cmFY=",
+        "lastModified": 1769131933,
+        "narHash": "sha256-Elwa0Q9bMnack6z1dOqUeaPNUDL5J6bnHuuL7VzzSsY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c4cfd5f134686f3a8342c15eeb7c92ff2e47f8ef",
+        "rev": "3a2d43564098b3b4684800f2f1f291cfa7bda101",
         "type": "github"
       },
       "original": {
@@ -857,6 +857,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
+        "vue-skills": "vue-skills",
         "wallpapers": "wallpapers",
         "waybar": "waybar",
         "wktlvim": "wktlvim",
@@ -1044,6 +1045,22 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "vue-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769090209,
+        "narHash": "sha256-Ytl8sWCr/RvvGvZ/4DBVJFNR+WfosAoU/NRYisC31z8=",
+        "owner": "hyf0",
+        "repo": "vue-skills",
+        "rev": "da286266141f057281abe5c1901cd778a41b5c31",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyf0",
+        "repo": "vue-skills",
         "type": "github"
       }
     },

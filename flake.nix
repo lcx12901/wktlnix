@@ -80,6 +80,12 @@
       url = "github:XIU2/TrackersListCollection";
       flake = false;
     };
+
+    #Vue Skills
+    vue-skills = {
+      url = "github:hyf0/vue-skills";
+      flake = false;
+    };
   };
 
   outputs =
