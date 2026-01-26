@@ -24,13 +24,6 @@ in
         container_always_pull = "1";
         container_generate_entry = 0;
       };
-
-      containers = {
-        archlinux = {
-          image = "archlinux";
-          entry = true;
-        };
-      };
     };
 
     home.persistence = lib.mkIf persist {
