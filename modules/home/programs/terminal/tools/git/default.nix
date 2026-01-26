@@ -126,7 +126,7 @@ in
       mergiraf = enabled;
     };
 
-    home.file.".github/skills/vue-best-practices" = {
+    home.file.".copilot/skills/vue-best-practices" = {
       source = "${inputs.vue-skills}/skills/vue-best-practices";
       recursive = true;
     };
