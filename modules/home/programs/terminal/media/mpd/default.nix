@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       playerctl # CLI interface for playerctld
-      mpc_cli # CLI interface for mpd
+      mpc # CLI interface for mpd
     ];
 
     services = {
@@ -28,7 +28,7 @@ in
 
       mpd = {
         enable = true;
-        musicDirectory = "${config.wkltnix.user.home}/Music";
+        musicDirectory = config.xdg.userDirs.music;
         network = {
           startWhenNeeded = true;
           listenAddress = "127.0.0.1";
