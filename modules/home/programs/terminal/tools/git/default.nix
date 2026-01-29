@@ -126,11 +126,6 @@ in
       mergiraf = enabled;
     };
 
-    home.file.".copilot/skills/vue-best-practices" = {
-      source = "${inputs.vue-skills}/skills/vue-best-practices";
-      recursive = true;
-    };
-
     sops.secrets."github_copilot_token" = {
       path = "/home/${config.wktlnix.user.name}/.config/github-copilot/apps.json";
     };
