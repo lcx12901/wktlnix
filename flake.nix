@@ -81,9 +81,9 @@
       flake = false;
     };
 
-    #Vue Skills
-    vue-skills = {
-      url = "github:hyf0/vue-skills";
+    #frontend Skills
+    antfu-skills = {
+      url = "github:antfu/skills";
       flake = false;
     };
   };
