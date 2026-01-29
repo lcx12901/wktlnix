@@ -1,6 +1,6 @@
 {
   config,
-  # osConfig,
+  osConfig,
   lib,
   pkgs,
   ...
@@ -11,7 +11,7 @@ let
 
   cfg = config.wktlnix.programs.graphical.editors.vscode;
 
-  # persist = osConfig.wktlnix.system.persist.enable;
+  persist = osConfig.wktlnix.system.persist.enable;
 in
 {
   options.wktlnix.programs.graphical.editors.vscode = with lib.types; {
@@ -46,7 +46,7 @@ in
 
       profiles =
         let
-          commonExtensions = with pkgs.vscode-marketplace; [
+          commonExtensions = with pkgs.nix-vscode-extensions.vscode-marketplace-release; [
             ms-ceintl.vscode-language-pack-zh-hans
             christian-kohler.path-intellisense
             streetsidesoftware.code-spell-checker
@@ -56,6 +56,10 @@ in
             formulahendry.auto-close-tag
             formulahendry.auto-rename-tag
             shardulm94.trailing-spaces
+            dbaeumer.vscode-eslint
+            vue.volar
+            github.copilot
+            github.copilot-chat
           ];
 
           commonSettings = {
@@ -78,7 +82,7 @@ in
             # Editor
             "editor.bracketPairColorization.enabled" = true;
             "editor.fontLigatures" = true;
-            # "editor.fontSize" = 16;
+            "editor.fontSize" = lib.mkForce 16;
             "editor.formatOnPaste" = true;
             "editor.formatOnSave" = true;
             "editor.formatOnType" = false;
@@ -99,7 +103,6 @@ in
             "terminal.integrated.gpuAcceleration" = "on";
 
             # Workbench
-            "workbench.editor.tabCloseButton" = "left";
             "workbench.list.smoothScrolling" = true;
             "workbench.startupEditor" = "none";
             "workbench.editor.tabActionLocation" = "left";
@@ -112,13 +115,27 @@ in
             "security.workspace.trust.enabled" = false;
             "todo-tree.filtering.includeHiddenFiles" = true;
             "typescript.updateImportsOnFileMove.enabled" = "always";
-            "vsicons.dontShowNewVersionMessage" = true;
             "window.menuBarVisibility" = "toggle";
-            "window.nativeTabs" = true;
             "window.restoreWindows" = "all";
             "window.titleBarStyle" = "custom";
 
             "github.copilot.nextEditSuggestions.enabled" = true;
+
+            "eslint.format.enable" = true;
+            "eslint.useFlatConfig" = true;
+            "typescript.tsserver.maxTsServerMemory" = 16384;
+            "css.lint.unknownAtRules" = "ignore";
+            "scss.lint.unknownAtRules" = "ignore";
+            "less.lint.unknownAtRules" = "ignore";
+            "[vue]" = {
+              "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
+            };
+            "[javascript]" = {
+              "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
+            };
+            "[typescript]" = {
+              "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
+            };
           };
         in
         {
@@ -128,45 +145,13 @@ in
             enableExtensionUpdateCheck = false;
             userSettings = commonSettings;
           };
-          Vue = {
-            extensions =
-              with pkgs.vscode-marketplace;
-              commonExtensions
-              ++ [
-                vue.volar
-                antfu.unocss
-                wix.vscode-import-cost
-              ];
-            userSettings = commonSettings // {
-              "vue.codeLens.enabled" = true;
-              "vue.autoInsert.dotValue" = true;
-              "vue.autoInsert.bracketSpacing" = true;
-              "vue.inlayHints.destructuredProps" = true;
-              "vue.inlayHints.missingProps" = true;
-              "vue.inlayHints.inlineHandlerLeading" = true;
-              "vue.inlayHints.optionsWrapper" = true;
-              "vue.inlayHints.vBindShorthand" = true;
-              "eslint.format.enable" = true;
-              "eslint.useFlatConfig" = true;
-              "[vue]" = {
-                "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
-              };
-              "[javascript]" = {
-                "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
-              };
-              "[typescript]" = {
-                "editor.defaultFormatter" = "dbaeumer.vscode-eslint";
-              };
-            };
-          };
         };
     };
 
-    # home.persistence = mkIf persist {
-    #   "/persist/home/${config.${namespace}.user.name}" = {
-    #     allowOther = true;
-    #     directories = [ ".config/Code" ];
-    #   };
-    # };
+    home.persistence = mkIf persist {
+      "/persist" = {
+        directories = [ ".config/Code" ];
+      };
+    };
   };
 }
