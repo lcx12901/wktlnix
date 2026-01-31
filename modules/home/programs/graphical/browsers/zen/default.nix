@@ -98,6 +98,9 @@ in
             "browser.newtabpage.activity-stream.feeds.topsites" = false;
             "browser.tabs.hoverPreview.enabled" = true;
             "browser.topsites.contile.enabled" = false;
+            "browser.translations.automaticallyPopup" = false;
+            "browser.translations.enable" = false;
+            "browser.translations.select.enable" = false;
           };
       };
       profiles.default = {
