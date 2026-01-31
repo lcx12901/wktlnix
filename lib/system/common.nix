@@ -58,6 +58,7 @@ in
             inputs.sops-nix.homeManagerModules.sops
             inputs.zed-extensions.homeManagerModules.default
             inputs.zen-browser.homeModules.twilight
+            inputs.noctalia.homeModules.default
           ]
           ++ (extendedLib.file.get-default-nix-files-recursive ../../modules/home);
           users = mapAttrs' (_name: homeConfig: {

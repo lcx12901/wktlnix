@@ -32,13 +32,14 @@
     };
 
     # Applications & packages
-    wktlvim = {
-      # url = "git+file:/home/wktl/Coding/nixvim-part";
-      url = "github:lcx12901/nixvim-part";
-    };
+    wktlvim.url = "github:lcx12901/nixvim-part";
     daeuniverse.url = "github:daeuniverse/flake.nix";
     niri = {
       url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
