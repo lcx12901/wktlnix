@@ -5,7 +5,12 @@
   ...
 }:
 let
-  inherit (lib) mkIf getExe getExe';
+  inherit (lib)
+    mkIf
+    optionals
+    getExe
+    getExe'
+    ;
   inherit (lib.kdl)
     leaf
     flag
@@ -16,18 +21,18 @@ let
 
   spawn-at-startup = leaf "spawn-at-startup";
 
-  waybar = getExe config.programs.waybar.package;
+  # waybar = getExe config.programs.waybar.package;
   xwayland-satellite-unstable = getExe pkgs.xwayland-satellite-unstable;
-  swww = getExe pkgs.swww;
-  swww-daemon = getExe' pkgs.swww "swww-daemon";
-  swaybg = getExe pkgs.swaybg;
+  # swww = getExe pkgs.swww;
+  # swww-daemon = getExe' pkgs.swww "swww-daemon";
+  # swaybg = getExe pkgs.swaybg;
   wl-paste = getExe' pkgs.wl-clipboard "wl-paste";
   cliphist = getExe' pkgs.cliphist "cliphist";
 
-  wallpaper = config.stylix.image;
-  blur-wallpaper = pkgs.runCommand "wallpaper-blur.jpg" { } ''
-    ${pkgs.imagemagick}/bin/magick ${wallpaper} -blur 0x30 $out
-  '';
+  # wallpaper = config.stylix.image;
+  # blur-wallpaper = pkgs.runCommand "wallpaper-blur.jpg" { } ''
+  #   ${pkgs.imagemagick}/bin/magick ${wallpaper} -blur 0x30 $out
+  # '';
 in
 {
   config = mkIf config.wktlnix.programs.graphical.wms.niri.enable {
@@ -39,7 +44,8 @@ in
             (flag "skip-at-startup")
           ])
           (flag "prefer-no-csd")
-          (spawn-at-startup [ waybar ])
+          # (spawn-at-startup [ waybar ])
+          (spawn-at-startup [ "noctalia-shell" ])
           (spawn-at-startup [
             wl-paste
             "--watch"
@@ -47,17 +53,17 @@ in
             "store"
           ])
           (spawn-at-startup [ xwayland-satellite-unstable ])
-          (spawn-at-startup [ swww-daemon ])
-          (spawn-at-startup [
-            swww
-            "img"
-            "${wallpaper}"
-          ])
-          (spawn-at-startup [
-            swaybg
-            "-i"
-            "${blur-wallpaper}"
-          ])
+          # (spawn-at-startup [ swww-daemon ])
+          # (spawn-at-startup [
+          #   swww
+          #   "img"
+          #   "${wallpaper}"
+          # ])
+          # (spawn-at-startup [
+          #   swaybg
+          #   "-i"
+          #   "${blur-wallpaper}"
+          # ])
           (plain "cursor" [
             (leaf' "xcursor-theme" config.stylix.cursor.name)
             (leaf' "xcursor-size" config.stylix.cursor.size)
@@ -101,6 +107,7 @@ in
             (plain "shadow" [
               (flag "on")
             ])
+            (leaf' "background-color" "transparent")
           ])
           (plain "animations" [
             (plain "window-close" [
@@ -121,18 +128,17 @@ in
             (leaf' "XDG_SESSION_TYPE" "wayland")
           ])
         ])
-        ++ (
-          let
-            layer-rule = plain "layer-rule";
-            match = leaf' "match";
-          in
-          [
-            (layer-rule [
-              (match { namespace = "^wallpaper$"; })
-              (leaf' "place-within-backdrop" true)
+        ++ (optionals config.programs.noctalia-shell.enable [
+          (plain "layer-rule" [
+            (leaf' "match" { namespace = "^noctalia-wallpaper*"; })
+            (leaf' "place-within-backdrop" true)
+          ])
+          (plain "overview" [
+            (plain "workspace-shadow" [
+              (flag "off")
             ])
-          ]
-        );
+          ])
+        ]);
     };
   };
 }

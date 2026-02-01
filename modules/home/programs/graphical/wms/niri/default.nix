@@ -42,11 +42,12 @@ in
           launchers.vicinae = enabled;
           screenlockers.hyprlock = enabled;
           browsers.zen = enabled;
+          bars.noctalia = enabled;
 
           addons = {
             fcitx5 = enabled;
-            mako = enabled;
-            waybar = enabled;
+            # mako = enabled;
+            # waybar = enabled;
           };
         };
       };

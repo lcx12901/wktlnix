@@ -45,6 +45,8 @@ in
       ];
 
       home = {
+        username = mkDefault cfg.name;
+
         homeDirectory = mkDefault cfg.home;
 
         shellAliases = {
@@ -87,7 +89,6 @@ in
           psg = "${getExe pkgs.ps} aux | grep";
           myip = "${getExe pkgs.curl} ifconfig.me";
         };
-        username = mkDefault cfg.name;
       };
 
       programs.home-manager = enabled;

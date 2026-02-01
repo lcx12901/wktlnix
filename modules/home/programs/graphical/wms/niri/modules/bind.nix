@@ -21,13 +21,21 @@ let
 
   spawn = leaf "spawn";
 
+  noctalia =
+    cmd:
+    [
+      "noctalia-shell"
+      "ipc"
+      "call"
+    ]
+    ++ (pkgs.lib.splitString " " cmd);
+
   sh = getExe' config.programs.bash.package "sh";
   flameshot = getExe config.services.flameshot.package;
   vlc = getExe pkgs.vlc;
   telegram = getExe pkgs.telegram-desktop;
   neovide = getExe pkgs.neovide;
   vicinae = getExe config.programs.vicinae.package;
-  hyprlock = getExe config.programs.hyprlock.package;
   wpctl = getExe' pkgs.wireplumber "wpctl";
   kitty = getExe config.programs.kitty.package;
   zen-browser = getExe' config.programs.zen-browser.package "zen";
@@ -38,10 +46,7 @@ in
       config = [
         (plain "binds" [
           (plain "Mod+W" [
-            (spawn [
-              vicinae
-              "open"
-            ])
+            (spawn (noctalia "launcher toggle"))
           ])
           (node' "Mod+X" { repeat = false; } [
             (spawn [
@@ -50,7 +55,7 @@ in
             ])
           ])
           (plain "Mod+Shift+P" [
-            (spawn [ hyprlock ])
+            (spawn (noctalia "lockScreen lock"))
           ])
           (plain "Mod+Shift+Slash" [
             (flag "show-hotkey-overlay")
