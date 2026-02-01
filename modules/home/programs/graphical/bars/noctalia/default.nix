@@ -19,16 +19,13 @@ in
     home.file = {
       "Pictures/Wallpapers" = {
         source = "${inputs.wallpapers}";
-        force = true;
       };
       ".face" = {
         source = lib.file.get-file ".face";
-        force = true;
       };
-
       ".cache/noctalia/wallpapers.json" = {
         text = builtins.toJSON {
-          defaultWallpaper = "${inputs.wallpapers}/wallhaven-jewvzy.jpg";
+          defaultWallpaper = "${config.wktlnix.user.home}/Pictures/Wallpapers/wallhaven-jewvzy.jpg";
         };
       };
     };
