@@ -2,7 +2,7 @@
   imports = [
     ../lib
     ./overlays.nix
-    # ./packages.nix
+    ./packages.nix
     ./configs.nix
     # ./apps.nix
   ];

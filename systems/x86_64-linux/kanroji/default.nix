@@ -59,15 +59,23 @@ in
     services = {
       dae = {
         enable = true;
-        extraNodes = config.sops.placeholder."yukino_dae_node";
+        extraNodes = ''
+          ${config.sops.placeholder."yukino_dae_node"}
+          ${config.sops.placeholder."netease_dae_node"}
+        '';
         extraGroups = ''
           z9yun {
             policy: random
             filter: name(yukino)
           }
+          neteaseMusic {
+            policy: random
+            filter: name(netease)
+          }
         '';
         extraRules = ''
           dip(192.168.0.0/24) -> z9yun
+          domain(suffix:music.163.com) -> neteaseMusic
         '';
       };
       openssh = enabled;
@@ -81,6 +89,7 @@ in
     };
 
     security = {
+      certificates = enabled;
       sudo-rs = enabled;
       acme = enabled;
     };
@@ -89,12 +98,15 @@ in
       podman = enabled;
     };
   };
+  sops.secrets = {
 
-  sops.secrets."yukino_dae_node" = { };
+    "yukino_dae_node" = { };
+    "netease_dae_node" = { };
 
-  sops.secrets."cf-kanroji-inadyn" = {
-    inherit (config.services.inadyn) group;
-    owner = config.services.inadyn.user;
+    "cf-kanroji-inadyn" = {
+      inherit (config.services.inadyn) group;
+      owner = config.services.inadyn.user;
+    };
   };
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

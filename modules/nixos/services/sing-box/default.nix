@@ -29,7 +29,6 @@ in
       serviceConfig = {
         DynamicUser = true;
         ExecStart = [
-          ""
           "${lib.getExe cfg.package} run -c $\{CREDENTIALS_DIRECTORY}/config.json -D $\{STATE_DIRECTORY}"
         ];
         LoadCredential = [ "config.json:${cfg.configFile}" ];
