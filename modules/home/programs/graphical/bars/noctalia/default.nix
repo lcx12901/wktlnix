@@ -190,7 +190,7 @@ in
           visualizerType = "mirrored";
         };
 
-        location.name = "Shanghai";
+        location.name = "Shenzhen";
 
         desktopWidgets = {
           enabled = true;
