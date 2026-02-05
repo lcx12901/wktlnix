@@ -17,7 +17,5 @@ stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out/app
     cp -r $src/precompiled/* $out/app/
-    cp -r $src/*.crt $out/app/
-    cp $src/*.key $out/app/
   '';
 }
