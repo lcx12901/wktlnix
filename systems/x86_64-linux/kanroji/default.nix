@@ -89,7 +89,6 @@ in
     };
 
     security = {
-      certificates = enabled;
       sudo-rs = enabled;
       acme = enabled;
     };
