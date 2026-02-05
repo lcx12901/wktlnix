@@ -29,7 +29,7 @@ in
       serviceConfig = {
         DynamicUser = true;
         ExecStart = [
-          "${getExe pkgs.nodejs} --env-file=$\{CREDENTIALS_DIRECTORY}/.env ${pkgs.wktlnix.unblock-netease-music-server}/app/app.js -p 9927 -o qq"
+          "${getExe pkgs.nodejs} --env-file=$\{CREDENTIALS_DIRECTORY}/.env ${pkgs.wktlnix.unblock-netease-music-server}/app/app.js -p 9927:9928 -o qq -s -e https://music.163.com"
         ];
         LoadCredential = [ ".env:${config.sops.templates.".env".path}" ];
         StateDirectory = "unblock-netease-music-server";
@@ -46,8 +46,8 @@ in
       ENABLE_FLAC=true
       DISABLE_UPGRADE_CHECK=true
       SELECT_MAX_BR=true
-      SIGN_CERT="${pkgs.wktlnix.unblock-netease-music-server}/app/server.crt"
-      SIGN_KEY="${pkgs.wktlnix.unblock-netease-music-server}/app/server.key"
+      SIGN_CERT="${./server.crt}"
+      SIGN_KEY="${./server.key}"
       QQ_COOKIE=${config.sops.placeholder.qq_cookies}
     '';
   };
