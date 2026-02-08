@@ -33,6 +33,8 @@ in
     programs.noctalia-shell = {
       enable = true;
 
+      systemd.enable = true;
+
       settings = {
         settingsVersion = 0;
 
@@ -53,7 +55,7 @@ in
           showHiddenFiles = false;
           transitionDuration = 1500;
           transitionEdgeSmoothness = 0.05;
-          transitionType = "disc";
+          transitionType = "pixelate";
           viewMode = "recursive";
           wallpaperChangeMode = "random";
         };
@@ -183,6 +185,15 @@ in
               id = "media-sysmon-card";
             }
           ];
+        };
+
+        notifications = {
+          enabled = true;
+          backgroundOpacity = 0.84;
+          sounds = {
+            enabled = true;
+            volume = 0.5;
+          };
         };
 
         audio = {
