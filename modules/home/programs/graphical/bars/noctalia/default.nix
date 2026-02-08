@@ -193,6 +193,7 @@ in
           sounds = {
             enabled = true;
             volume = 0.5;
+            excludedApps = "discord,firefox,flameshot";
           };
         };
 
