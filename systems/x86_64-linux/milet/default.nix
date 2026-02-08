@@ -42,7 +42,6 @@ in
         enable = true;
         role = "server";
       };
-      unblock-netease-music = enabled;
     };
 
     security = {
