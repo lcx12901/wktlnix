@@ -33,10 +33,19 @@ in
     programs.noctalia-shell = {
       enable = true;
 
+      package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+        calendarSupport = true;
+      };
+
       systemd.enable = true;
 
       settings = {
         settingsVersion = 0;
+
+        general = {
+          telemetryEnabled = false;
+          showChangelogOnStartup = false;
+        };
 
         colorSchemes = {
           darkMode = true;
@@ -141,6 +150,8 @@ in
               }
               {
                 id = "ControlCenter";
+                useDistroLogo = true;
+                colorizeDistroLogo = true;
               }
             ];
           };
