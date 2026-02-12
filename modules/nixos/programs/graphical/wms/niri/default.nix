@@ -32,8 +32,6 @@ in
       theme.stylix = enabled;
     };
 
-    services.xserver = enabled;
-
     services = {
       # needed for GNOME services outside of GNOME Desktop
       udev.packages = with pkgs; [ gnome-settings-daemon ];
