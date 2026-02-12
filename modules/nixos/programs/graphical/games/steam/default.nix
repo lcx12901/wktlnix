@@ -20,58 +20,19 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment = {
-      # systemPackages = with pkgs; [ steamtinkerlaunch ];
-
-      persistence."/persist" = mkIf persist {
-        users."${username}" = {
-          directories = [
-            ".steam"
-            ".local/share/Steam" # The default Steam install location
-          ];
-        };
+    environment.persistence."/persist" = mkIf persist {
+      users."${username}" = {
+        directories = [
+          ".steam"
+          ".local/share/Steam" # The default Steam install location
+        ];
       };
     };
 
     programs.steam = {
       enable = true;
 
-      # fix gamescope inside steam
-      package = pkgs.steam.override {
-        extraPkgs =
-          pkgs: with pkgs; [
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXScrnSaver
-            libpng
-            libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib
-            libkrb5
-            keyutils
-
-            # fix CJK fonts
-            source-sans
-            source-serif
-            source-han-sans
-            source-han-serif
-
-            # audio
-            pipewire
-
-            # other common
-            udev
-            alsa-lib
-            vulkan-loader
-            xorg.libX11
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXrandr # To use the x11 feature
-            libxkbcommon
-            wayland # To use the wayland feature
-          ];
-      };
+      extest.enable = true;
 
       # Whether to open ports in the firewall for Steam Remote Play
       remotePlay.openFirewall = false;
