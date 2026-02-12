@@ -21,7 +21,7 @@ let
 
   spawn-at-startup = leaf "spawn-at-startup";
 
-  xwayland-satellite-unstable = getExe pkgs.xwayland-satellite-unstable;
+  xwayland-satellite = getExe pkgs.xwayland-satellite;
   wl-paste = getExe' pkgs.wl-clipboard "wl-paste";
   cliphist = getExe' pkgs.cliphist "cliphist";
 in
@@ -41,7 +41,7 @@ in
             cliphist
             "store"
           ])
-          (spawn-at-startup [ xwayland-satellite-unstable ])
+          (spawn-at-startup [ xwayland-satellite ])
           (plain "cursor" [
             (leaf' "xcursor-theme" config.stylix.cursor.name)
             (leaf' "xcursor-size" config.stylix.cursor.size)
@@ -50,7 +50,7 @@ in
             (plain "keyboard" [ (flag "numlock") ])
           ])
           (plain "xwayland-satellite" [
-            (leaf' "path" "${xwayland-satellite-unstable}")
+            (leaf' "path" "${xwayland-satellite}")
           ])
           (plain "layout" [
             (plain "border" [
