@@ -6,6 +6,8 @@ in
   imports = [ ./hardware.nix ];
 
   wktlnix = {
+    archetypes.personal = enabled;
+
     system = {
       boot = enabled;
 
@@ -14,21 +16,30 @@ in
         device = "/dev/nvme0n1";
       };
       fonts = enabled;
-      locale = {
-        enable = true;
-      };
+      locale = enabled;
       time = enabled;
       persist = enabled;
       networking = enabled;
     };
 
     hardware = {
+      audio = enabled;
       cpu.amd = enabled;
       gpu.amd = enabled;
+      graphics = enabled;
       btrfs = enabled;
     };
 
     programs = {
+      graphical = {
+        wms.niri = enabled;
+        games = {
+          steam = enabled;
+          gamemode = enabled;
+          gamescope = enabled;
+        };
+        file-managers.nautilus = enabled;
+      };
       terminal.tools.nix-ld = enabled;
     };
 
