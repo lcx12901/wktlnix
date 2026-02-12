@@ -23,9 +23,9 @@ in
       ".face" = {
         source = lib.file.get-file ".face";
       };
-      ".cache/noctalia/wallpapers.json" = {
+      ".local/cache/noctalia/shell-state.json" = {
         text = builtins.toJSON {
-          defaultWallpaper = "${config.wktlnix.user.home}/Pictures/Wallpapers/wallhaven-jewvzy.jpg";
+          changelogState.lastSeenVersion = "v4.4.4";
         };
       };
     };
@@ -49,7 +49,7 @@ in
 
         colorSchemes = {
           darkMode = true;
-          generationMethod = "rainbow";
+          generationMethod = "tonal-spot";
           useWallpaperColors = true;
         };
 
@@ -65,6 +65,7 @@ in
           transitionDuration = 1500;
           transitionEdgeSmoothness = 0.05;
           transitionType = "pixelate";
+          skipStartupTransition = true;
           viewMode = "recursive";
           wallpaperChangeMode = "random";
         };
@@ -238,6 +239,11 @@ in
               ];
             }
           ];
+        };
+
+        hooks = {
+          enabled = true;
+          startup = "noctalia-shell ipc call wallpaper random";
         };
       };
     };
