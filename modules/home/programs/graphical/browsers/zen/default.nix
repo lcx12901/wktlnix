@@ -196,6 +196,14 @@ in
           "network.socket.ip_addr_any.disabled" = true; # disallow bind to 0.0.0.0
         };
 
+        mods = [
+          "cb15abdb-0514-4e09-8ce5-722cf1f4a20f" # Hide Extension Name
+          "7d577b21-4685-4db2-bb17-d39d08eec199" # Bleeding Corners Fix
+          "20e8cc78-3dac-4db0-81a4-814672fb50af" # Left Side Glance Buttons
+          "803c7895-b39b-458e-84f8-a521f4d7a064" # Hide Inactive Workspaces
+          "f7c71d9a-bce2-420f-ae44-a64bd92975ab" # Better Unloaded Tabs
+        ];
+
         bookmarks = {
           force = true;
           settings = [
@@ -393,12 +401,6 @@ in
             .browserSidebarContainer:is(.deck-selected, [zen-split='true']) .browserContainer {
               #tabbrowser-tabpanels[has-toolbar-hovered] & {
                 margin-top: 0 !important;
-              }
-            }
-
-            html:not([sizemode="fullscreen"]) {
-              .browserStack, browser {
-                clip-path: inset(0 round var(--zen-native-inner-radius));
               }
             }
           '';
