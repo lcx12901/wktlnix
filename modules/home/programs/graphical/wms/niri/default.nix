@@ -34,9 +34,7 @@ in
     wktlnix = {
       programs = {
         terminal = {
-          emulators = {
-            kitty = enabled;
-          };
+          emulators.ghostty = enabled;
         };
         graphical = {
           launchers.vicinae = enabled;
@@ -46,8 +44,6 @@ in
 
           addons = {
             fcitx5 = enabled;
-            # mako = enabled;
-            # waybar = enabled;
           };
         };
       };

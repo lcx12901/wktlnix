@@ -28,9 +28,6 @@ in
         };
       };
       terminal = {
-        emulators.kitty = {
-          fontSize = 16;
-        };
         editors.neovim = enabled;
         media.go-musicfox = enabled;
         tools = {

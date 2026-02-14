@@ -36,7 +36,7 @@ let
   telegram = getExe pkgs.telegram-desktop;
   vicinae = getExe config.programs.vicinae.package;
   wpctl = getExe' pkgs.wireplumber "wpctl";
-  kitty = getExe config.programs.kitty.package;
+  ghostty = getExe config.programs.ghostty.package;
   zen-browser = getExe' config.programs.zen-browser.package "zen";
 in
 {
@@ -60,7 +60,7 @@ in
             (flag "show-hotkey-overlay")
           ])
           (plain "Mod+Return" [
-            (spawn [ kitty ])
+            (spawn [ ghostty ])
           ])
           (plain "Mod+T" [
             (spawn [ telegram ])
