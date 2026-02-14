@@ -36,11 +36,11 @@ in
           (match { app-id = "Bytedance-feishu"; })
           (match { app-id = "wechat"; })
           (match { app-id = "code"; })
-          (match { app-id = "neovide"; })
           (leaf' "opacity" 0.9)
         ])
         (window-rule [
           (match { app-id = "kitty"; })
+          (match { app-id = "^com\.mitchellh\.ghostty$"; })
           (leaf' "opacity" 0.85)
         ])
         (window-rule [
