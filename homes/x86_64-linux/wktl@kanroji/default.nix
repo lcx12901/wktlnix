@@ -29,14 +29,8 @@ in
         # apps.vesktop = enabled;
       };
       terminal = {
-        emulators.kitty = {
-          fontSize = 16;
-        };
         editors.neovim = enabled;
-        tools = {
-          # distrobox = enabled;
-          nh = enabled;
-        };
+        tools.nh = enabled;
       };
     };
 

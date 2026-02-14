@@ -4,7 +4,7 @@ let
 
   cfg = config.wktlnix.system.xdg;
 
-  terminal = [ "kitty.desktop" ];
+  terminal = [ "ghostty.desktop" ];
   video = [ "vlc.desktop" ];
 
   # XDG MIME types
