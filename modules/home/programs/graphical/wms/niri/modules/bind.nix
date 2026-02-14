@@ -34,7 +34,6 @@ let
   flameshot = getExe config.services.flameshot.package;
   vlc = getExe pkgs.vlc;
   telegram = getExe pkgs.telegram-desktop;
-  neovide = getExe pkgs.neovide;
   vicinae = getExe config.programs.vicinae.package;
   wpctl = getExe' pkgs.wireplumber "wpctl";
   kitty = getExe config.programs.kitty.package;
@@ -65,9 +64,6 @@ in
           ])
           (plain "Mod+T" [
             (spawn [ telegram ])
-          ])
-          (plain "Mod+N" [
-            (spawn [ neovide ])
           ])
           (plain "Mod+V" [
             (spawn [ vlc ])
