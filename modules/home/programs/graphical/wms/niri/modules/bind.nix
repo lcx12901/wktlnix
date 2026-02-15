@@ -37,7 +37,7 @@ let
   vicinae = getExe config.programs.vicinae.package;
   wpctl = getExe' pkgs.wireplumber "wpctl";
   ghostty = getExe config.programs.ghostty.package;
-  zen-browser = getExe' config.programs.zen-browser.package "zen";
+  zen-browser = getExe' config.programs.zen-browser.package "zen-twilight";
 in
 {
   config = mkIf config.wktlnix.programs.graphical.wms.niri.enable {
