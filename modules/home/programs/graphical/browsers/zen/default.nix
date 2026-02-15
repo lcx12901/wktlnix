@@ -419,9 +419,10 @@ in
       bind gN composite findnext --search-from-view --reverse; findselect
       bind ,<Space> nohlsearch
     '';
+
     home.persistence = lib.mkIf persist {
       "/persist" = {
-        directories = [ ".zen/default" ];
+        directories = [ ".config/zen/default" ];
       };
     };
   };
