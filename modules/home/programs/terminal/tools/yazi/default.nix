@@ -30,6 +30,8 @@ in
       enableNushellIntegration = true;
       enableZshIntegration = true;
 
+      shellWrapperName = "y";
+
       inherit (import ./init.nix { inherit config lib; }) initLua;
 
       keymap = lib.mkMerge [
