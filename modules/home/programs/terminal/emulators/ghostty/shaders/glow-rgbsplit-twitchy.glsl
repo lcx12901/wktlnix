@@ -104,7 +104,7 @@ const float ABBERATION_FACTOR = 0.05;
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     vec2 uv = fragCoord.xy / iResolution.xy;
 
-    float amount = offsetFunction(iTime) * 0.1;
+    float amount = offsetFunction(iTime) * 0.15;
 
     vec3 col;
     col.r = texture( iChannel0, vec2(uv.x-ABBERATION_FACTOR*amount / iResolution.x, uv.y) ).r;
