@@ -35,6 +35,7 @@ in
       programs = {
         terminal = {
           emulators.ghostty = enabled;
+          tools.zellij = enabled;
         };
         graphical = {
           launchers.vicinae = enabled;
