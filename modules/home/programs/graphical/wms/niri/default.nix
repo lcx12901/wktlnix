@@ -2,6 +2,7 @@
   osConfig,
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -25,6 +26,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [ wl-clipboard ];
+
     programs.niri = {
       package = niri;
 
@@ -55,14 +58,6 @@ in
           systemdTargets = [ "niri.service" ];
         };
         flameshot = enabled;
-      };
-    };
-
-    systemd.user.services.cliphist = {
-      Unit = {
-        ConditionEnvironment = [
-          "WAYLAND_DISPLAY"
-        ];
       };
     };
   };
