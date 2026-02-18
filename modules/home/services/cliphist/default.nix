@@ -25,5 +25,7 @@ in
         inherit (cfg) systemdTargets;
       };
     };
+
+    systemd.user.services.cliphist.Unit.ConditionEnvironment = "WAYLAND_DISPLAY";
   };
 }
