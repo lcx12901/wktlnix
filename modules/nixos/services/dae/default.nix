@@ -88,7 +88,7 @@ in
         ${cfg.extraRules}
 
         domain(geosite:category-ads) -> block
-
+        domain(suffix:music.163.com, suffix:music.126.net) -> proxy
         domain(suffix:ota.waydro.id, suffix:sourceforge.net) -> proxy
         domain(suffix:duckduckgo.com) -> proxy
         domain(suffix:steamcommunity.com, suffix:steampowered.com, suffix:fastly.steamstatic.com, suffix:client-update.steamstatic.com) -> proxy
