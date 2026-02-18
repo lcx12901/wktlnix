@@ -29,7 +29,6 @@ in
       };
       terminal = {
         editors.neovim = enabled;
-        media.go-musicfox = enabled;
         tools = {
           distrobox = enabled;
           nh = enabled;

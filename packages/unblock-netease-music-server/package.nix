@@ -5,13 +5,13 @@
 }:
 stdenv.mkDerivation {
   pname = "unblock-netease-music-server";
-  version = "2025-11-06";
+  version = "2025-02-08";
 
   src = fetchFromGitHub {
     owner = "UnblockNeteaseMusic";
     repo = "server";
-    rev = "47d6b1d918f8dbf6160b8fa07cd17a9480285005";
-    hash = "sha256-qTX//oqwZuz/RyR6YJt4oGx2G0IcTiV7n6OXP+rUORM=";
+    rev = "7aa15ad92d44159d8f1ffcd94338207947cdbff2";
+    hash = "sha256-DFN8kgrapafkUS5Q0fwnC8B2w+bzWUiNs2J0v9rOGDA=";
   };
 
   installPhase = ''

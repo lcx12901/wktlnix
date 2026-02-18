@@ -29,7 +29,7 @@ in
       serviceConfig = {
         DynamicUser = true;
         ExecStart = [
-          "${getExe pkgs.nodejs} --env-file=$\{CREDENTIALS_DIRECTORY}/.env ${pkgs.wktlnix.unblock-netease-music-server}/app/app.js -p 9927:9928 -o qq -s -e https://music.163.com"
+          "${getExe pkgs.nodejs} --env-file=$\{CREDENTIALS_DIRECTORY}/.env ${pkgs.wktlnix.unblock-netease-music-server}/app/app.js -p 9927:9928 -o qq"
         ];
         LoadCredential = [ ".env:${config.sops.templates.".env".path}" ];
         StateDirectory = "unblock-netease-music-server";
