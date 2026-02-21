@@ -46,6 +46,7 @@ in
     overlays = dynamicOverlaysSet // {
       default = wktlnixPackagesOverlay;
       wktlnix = wktlnixPackagesOverlay;
+      firefox-addons = inputs.firefox-addons.overlays.default;
     };
 
     perSystem =
