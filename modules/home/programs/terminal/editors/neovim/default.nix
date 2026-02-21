@@ -29,6 +29,7 @@ in
 
       packages = [
         wktlvim
+        pkgs.wakatime-cli
         pkgs.nvrh
       ];
 
