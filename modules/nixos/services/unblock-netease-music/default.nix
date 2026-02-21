@@ -15,12 +15,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    networking.firewall = {
-      allowedTCPPorts = [
-        9927
-      ];
-    };
-
     systemd.services.unblock-netease-music-server = {
       wantedBy = [ "multi-user.target" ];
       after = [ "network-online.target" ];
