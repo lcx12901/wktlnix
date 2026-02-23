@@ -19,14 +19,12 @@ in
         rootSize = "1T";
       };
       fonts = enabled;
-      locale = {
-        enable = true;
-      };
+      locale = enabled;
       time = enabled;
       persist = enabled;
       networking = {
         enable = true;
-        wireless = true;
+        # wireless = true;
       };
     };
 
@@ -61,21 +59,15 @@ in
         enable = true;
         extraNodes = ''
           ${config.sops.placeholder."yukino_dae_node"}
-          ${config.sops.placeholder."netease_dae_node"}
         '';
         extraGroups = ''
           z9yun {
             policy: random
             filter: name(yukino)
           }
-          neteaseMusic {
-            policy: random
-            filter: name(netease)
-          }
         '';
         extraRules = ''
           dip(192.168.0.0/24) -> z9yun
-          domain(suffix:music.163.com) -> neteaseMusic
         '';
       };
       openssh = enabled;
@@ -91,6 +83,7 @@ in
     security = {
       sudo-rs = enabled;
       acme = enabled;
+      certificates = enabled;
     };
     virtualisation = {
       kvm = enabled;
@@ -98,10 +91,7 @@ in
     };
   };
   sops.secrets = {
-
     "yukino_dae_node" = { };
-    "netease_dae_node" = { };
-
     "cf-kanroji-inadyn" = {
       inherit (config.services.inadyn) group;
       owner = config.services.inadyn.user;
