@@ -44,6 +44,7 @@ in
         fcitx5 = enabled;
         fish = enabled;
         fzf = enabled;
+        ghostty = enabled;
         gnome = enabled;
         gtk = enabled;
         kitty = {
