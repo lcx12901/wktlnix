@@ -68,7 +68,7 @@ in
 
           verbatimConfig = ''
             namespaces = []
-            user = "+${builtins.toString config.users.users.${user.name}.uid}"
+            user = "+${toString config.users.users.${user.name}.uid}"
           '';
 
           vhostUserPackages = [ pkgs.virtiofsd ];
