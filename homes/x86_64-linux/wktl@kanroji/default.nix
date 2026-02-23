@@ -26,11 +26,17 @@ in
               ])
             ];
         };
-        # apps.vesktop = enabled;
       };
       terminal = {
         editors.neovim = enabled;
-        tools.nh = enabled;
+        emulators.ghostty = {
+          fontSize = 15;
+        };
+        tools = {
+          distrobox = enabled;
+          nh = enabled;
+          opencode = enabled;
+        };
       };
     };
 

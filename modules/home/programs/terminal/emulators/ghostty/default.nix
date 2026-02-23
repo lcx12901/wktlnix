@@ -5,6 +5,7 @@
 }:
 let
   inherit (lib) mkIf;
+  inherit (lib.wktlnix) mkOpt;
 
   cfg = config.wktlnix.programs.terminal.emulators.ghostty;
 
@@ -12,6 +13,7 @@ in
 {
   options.wktlnix.programs.terminal.emulators.ghostty = {
     enable = lib.mkEnableOption "ghostty";
+    fontSize = mkOpt lib.types.int 13.5 "Font size for ghostty terminal emulator";
   };
 
   config = mkIf cfg.enable {
@@ -25,6 +27,8 @@ in
       enableFishIntegration = true;
 
       settings = {
+        font-size = lib.mkForce cfg.fontSize;
+
         adw-toolbar-style = "flat";
 
         clipboard-trim-trailing-spaces = true;
