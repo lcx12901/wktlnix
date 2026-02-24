@@ -13,7 +13,7 @@ in
 {
   options.wktlnix.programs.terminal.emulators.ghostty = {
     enable = lib.mkEnableOption "ghostty";
-    fontSize = mkOpt lib.types.int 13.5 "Font size for ghostty terminal emulator";
+    fontSize = mkOpt lib.types.int 14 "Font size for ghostty terminal emulator";
   };
 
   config = mkIf cfg.enable {
