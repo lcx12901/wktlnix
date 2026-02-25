@@ -62,6 +62,7 @@ in
       redis = enabled;
       nextcloud = enabled;
       jellyfin = enabled;
+      aria2 = enabled;
     };
 
     security = {
