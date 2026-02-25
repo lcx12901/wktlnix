@@ -63,13 +63,6 @@
         for = "unix";
       }
     ];
-    dmg = [
-      {
-        run = "${lib.getExe pkgs.undmg} \"$1\"";
-        desc = "Extract here";
-        for = "unix";
-      }
-    ];
     extract = [
       {
         desc = "Extract with atool";
