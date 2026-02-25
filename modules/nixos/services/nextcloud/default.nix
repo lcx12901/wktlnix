@@ -21,7 +21,7 @@ in
 
     services.nextcloud = {
       enable = true;
-      package = pkgs.nextcloud32;
+      package = pkgs.nextcloud33;
       https = true;
       hostName = "nextcloud.${domain}";
 
@@ -37,7 +37,7 @@ in
       configureRedis = true;
 
       extraApps = {
-        inherit (pkgs.nextcloud31Packages.apps) previewgenerator;
+        inherit (pkgs.nextcloud33Packages.apps) previewgenerator;
       };
 
       settings = {
