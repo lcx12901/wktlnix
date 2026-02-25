@@ -29,6 +29,9 @@ in
       };
       terminal = {
         editors.neovim = enabled;
+        emulators.ghostty = {
+          fontSize = 15;
+        };
         tools = {
           distrobox = enabled;
           nh = enabled;
