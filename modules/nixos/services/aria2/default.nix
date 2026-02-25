@@ -83,7 +83,7 @@ in
         root = "${pkgs.ariang}/share/ariang";
 
         locations."/jsonrpc" = {
-          proxyPass = "http://localhost:${builtins.toString config.services.aria2.settings.rpc-listen-port}";
+          proxyPass = "http://localhost:${toString config.services.aria2.settings.rpc-listen-port}";
         };
       };
     };
