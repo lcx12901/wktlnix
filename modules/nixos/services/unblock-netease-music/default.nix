@@ -23,7 +23,7 @@ in
       serviceConfig = {
         DynamicUser = true;
         ExecStart = [
-          "${getExe pkgs.nodejs} --env-file=$\{CREDENTIALS_DIRECTORY}/.env ${pkgs.wktlnix.unblock-netease-music-server}/app/app.js -p 9927:9928 -o qq"
+          "${getExe pkgs.nodejs} --env-file=$\{CREDENTIALS_DIRECTORY}/.env ${pkgs.wktlnix.unblock-netease-music-server}/app/app.js -p 9927:9928 -o qq bilibili"
         ];
         LoadCredential = [ ".env:${config.sops.templates.".env".path}" ];
         StateDirectory = "unblock-netease-music-server";
@@ -39,7 +39,7 @@ in
       ENABLE_LOCAL_VIP=svip
       ENABLE_FLAC=true
       DISABLE_UPGRADE_CHECK=true
-      SELECT_MAX_BR=true
+      MIN_BR=320000
       SIGN_CERT="${./server.crt}"
       SIGN_KEY="${./server.key}"
       QQ_COOKIE=${config.sops.placeholder.qq_cookies}
