@@ -2,6 +2,7 @@
   osConfig,
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -14,6 +15,15 @@ in
 {
   options.wktlnix.programs.terminal.tools.zellij = {
     enable = mkEnableOption "zellij";
+
+    package = pkgs.zellij.overrideAttrs (_oldAttrs: {
+      patches = lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+        (pkgs.fetchpatch2 {
+          url = "https://github.com/zellij-org/zellij/commit/60acd439985339e518f090821c0e4eb366ce6014.patch?full_index=1";
+          hash = "sha256-pCFDEbgceNzZAjxSXme/nQ4iQc8qNw2IOMtec16cr8k=";
+        })
+      ];
+    });
   };
 
   imports = [
@@ -38,6 +48,16 @@ in
           pane_viewport_serialization = true;
           scrollback_lines_to_serialize = 100;
           session_serialization = true;
+          post_command_discovery_hook = ''
+            case "$RESURRECT_COMMAND" in
+              /nix/store/*/bin/*)
+                printf '%s\n' "''${RESURRECT_COMMAND#*/bin/}"
+                ;;
+              *)
+                printf '%s\n' "$RESURRECT_COMMAND"
+                ;;
+            esac
+          '';
 
           ui.pane_frames = {
             rounded_corners = true;
