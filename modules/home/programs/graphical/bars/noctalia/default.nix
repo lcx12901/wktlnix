@@ -37,7 +37,7 @@ in
         calendarSupport = true;
       };
 
-      systemd.enable = true;
+      # systemd.enable = true;
 
       settings = {
         settingsVersion = 0;

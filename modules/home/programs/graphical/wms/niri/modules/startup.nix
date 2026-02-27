@@ -42,6 +42,7 @@ in
             "store"
           ])
           (spawn-at-startup [ xwayland-satellite ])
+          (spawn-at-startup [ "noctalia-shell" ])
           (plain "cursor" [
             (leaf' "xcursor-theme" config.stylix.cursor.name)
             (leaf' "xcursor-size" config.stylix.cursor.size)
