@@ -41,7 +41,7 @@ in
           controlPersist = lib.mkDefault "no";
         };
 
-        "akeno.lincx.top" = {
+        "akeno.wktl.de" = {
           identityFile = config.sops.secrets."akeno_rsa".path;
           identitiesOnly = true;
         };
