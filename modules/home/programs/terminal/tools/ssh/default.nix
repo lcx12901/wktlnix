@@ -41,10 +41,6 @@ in
           controlPersist = lib.mkDefault "no";
         };
 
-        "akeno.wktl.de" = {
-          identityFile = config.sops.secrets."akeno_rsa".path;
-          identitiesOnly = true;
-        };
         "github.com" = {
           identityFile = config.sops.secrets."github_rsa".path;
           identitiesOnly = true;
@@ -62,7 +58,6 @@ in
         sopsFile = lib.file.get-file "secrets/ssh.yaml";
       in
       {
-        akeno_rsa = { inherit sopsFile; };
         github_rsa = { inherit sopsFile; };
       };
   };

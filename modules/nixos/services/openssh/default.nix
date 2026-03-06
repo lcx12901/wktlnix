@@ -57,7 +57,7 @@ in
         };
         akeno-ed25519 = {
           hostNames = [ "akeno.wktl.de" ];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ+KcGzf1h1enN4wWh2UOKrtUAbOukbgWG55yCEdpBXz";
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAING7bqcTZw/MIm3px4l6bCOOR37Em4hbnutkZJ4Jbnsm";
         };
         milet-ed25519 = {
           hostNames = [ "milet.lincx.top" ];
