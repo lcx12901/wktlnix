@@ -18,6 +18,10 @@ in
       };
       time = enabled;
       persist = enabled;
+      networking = {
+        enable = true;
+        optimizeTcp = true;
+      };
     };
 
     hardware = {
@@ -34,6 +38,10 @@ in
 
     services = {
       openssh = enabled;
+      sing-box = {
+        enable = true;
+        configFile = config.sops.secrets."akeno_sing".path;
+      };
     };
 
     security = {
@@ -42,6 +50,8 @@ in
   };
 
   networking = {
+    useNetworkd = true;
+
     interfaces."eth0" = {
       ipv4.addresses = [
         {
@@ -55,15 +65,28 @@ in
       address = "151.241.128.254";
       interface = "eth0";
     };
+
+    nameservers = lib.mkForce [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
+
+    firewall = {
+      allowedTCPPorts = [ 50030 ];
+      allowedUDPPorts = [ 50030 ];
+    };
   };
 
   systemd.network.links."10-eth0" = {
     matchConfig.PermanentMACAddress = "10:40:69:00:07:ee";
     linkConfig = {
       Name = "eth0";
-      # 保留 enp0s17 和 ens17 作为备用名称
       AlternativeName = "enp0s17 ens17";
     };
+  };
+
+  sops.secrets = {
+    "akeno_sing" = { };
   };
 
   # This value determines the NixOS release from which the default

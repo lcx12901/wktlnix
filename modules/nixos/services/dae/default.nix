@@ -45,6 +45,11 @@ in
         allow_insecure: false
         auto_config_kernel_parameter: false
         dial_mode: domain++
+        tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1,2606:4700:4700::1111'
+        tcp_check_http_method: HEAD
+        udp_check_dns: 'dns.google:53,8.8.8.8,2001:4860:4860::8888'
+        check_interval: 30s
+        check_tolerance: 50ms
       }
 
       node {
@@ -55,7 +60,7 @@ in
       group {
         proxy {
           policy: random
-          filter: name(milet,dnima)
+          filter: name(milet,akeno)
         }
 
         ${cfg.extraGroups}
