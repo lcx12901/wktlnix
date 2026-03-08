@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 let
   inherit (lib.wktlnix) enabled;
 in
@@ -38,6 +38,10 @@ in
 
     services = {
       openssh = enabled;
+      sing-box = {
+        enable = true;
+        configFile = config.sops.secrets."dmit_sing".path;
+      };
     };
 
     security = {
@@ -77,6 +81,12 @@ in
       "1.1.1.1"
       "1.0.0.1"
     ];
+
+    firewall = {
+      allowedTCPPorts = [ 51430 ];
+
+      allowedUDPPorts = [ 51430 ];
+    };
   };
 
   systemd.network.links."10-eth0" = {
@@ -85,6 +95,10 @@ in
       Name = "eth0";
       AlternativeName = "enp6s18 ens18";
     };
+  };
+
+  sops.secrets = {
+    "dmit_sing" = { };
   };
 
   # This value determines the NixOS release from which the default
