@@ -40,10 +40,6 @@ in
           controlPath = lib.mkDefault "~/.ssh/master-%r@%n:%p";
           controlPersist = lib.mkDefault "no";
         };
-        "dmit.wktl.de" = {
-          identityFile = config.sops.secrets."dmit_rsa".path;
-          identitiesOnly = true;
-        };
         "github.com" = {
           identityFile = config.sops.secrets."github_rsa".path;
           identitiesOnly = true;
@@ -61,7 +57,6 @@ in
         sopsFile = lib.file.get-file "secrets/ssh.yaml";
       in
       {
-        dmit_rsa = { inherit sopsFile; };
         github_rsa = { inherit sopsFile; };
       };
   };

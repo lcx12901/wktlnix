@@ -61,7 +61,7 @@ in
         };
         dmit-ed25519 = {
           hostNames = [ "dmit.wktl.de" ];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ1rdoElZb+FeyVEYX8grOSG4DTM1v920gwCbKdX7YJe";
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPkQDbyjld2Oi47HUM4paKaILpVzwXWTU9ZW4W5fpMZM";
         };
         milet-ed25519 = {
           hostNames = [ "milet.lincx.top" ];
