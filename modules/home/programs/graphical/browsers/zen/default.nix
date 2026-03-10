@@ -78,7 +78,10 @@ in
             auto-tab-discard
             immersive-translate
             tampermonkey
+            gitako-github-file-tree
             github-file-icons
+            github-issue-link-status
+            refined-github
             return-youtube-dislikes
             decentraleyes
             tridactyl
