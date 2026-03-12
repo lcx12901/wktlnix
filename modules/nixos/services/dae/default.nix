@@ -55,7 +55,7 @@ in
       group {
         proxy {
           policy: random
-          filter: name(milet,dmit)
+          filter: name(dmit)
         }
 
         ${cfg.extraGroups}
@@ -88,11 +88,19 @@ in
         ${cfg.extraRules}
 
         domain(geosite:category-ads) -> block
+
+        domain(premiere.emby.moe) ->proxy
+
         # domain(suffix:music.163.com, suffix:music.126.net) -> proxy
-        domain(suffix:ota.waydro.id, suffix:sourceforge.net) -> proxy
+
+        domain(suffix:hcaptcha.com) -> proxy
+        domain(suffix:github.com) -> proxy
         domain(suffix:duckduckgo.com) -> proxy
+
         domain(suffix:steamcommunity.com, suffix:steampowered.com, suffix:fastly.steamstatic.com, suffix:client-update.steamstatic.com) -> proxy
-        domain(suffix:warframe.com) -> proxy
+        pname(Warframe.x64.exe) -> proxy
+
+        domain(suffix:ota.waydro.id, suffix:sourceforge.net) -> proxy
 
         dip(geoip:cn, geoip:private) -> direct
         domain(geosite:cn) -> direct
