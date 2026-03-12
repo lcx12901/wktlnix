@@ -64,7 +64,7 @@ in
           publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPkQDbyjld2Oi47HUM4paKaILpVzwXWTU9ZW4W5fpMZM";
         };
         milet-ed25519 = {
-          hostNames = [ "milet.lincx.top" ];
+          hostNames = [ "milet.wktl.de" ];
           publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZgmbR1xNbPCmUfIMCTI0+QwYKP0d5YrkbFEPNaWErW";
         };
         z9yun-gitlab-nistp256 = {
