@@ -49,6 +49,9 @@ in
       sudo-rs = enabled;
     };
   };
+
+  services.qemuGuest.enable = true;
+
   networking = {
     # 6in4
     interfaces.ipv6net = {
