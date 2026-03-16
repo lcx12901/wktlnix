@@ -122,7 +122,10 @@ in
         };
       };
 
-      mergiraf = enabled;
+      mergiraf = {
+        enable = true;
+        enableGitIntegration = true;
+      };
     };
 
     sops.secrets."github_copilot_token" = {
