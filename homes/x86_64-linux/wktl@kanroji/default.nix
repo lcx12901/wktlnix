@@ -61,5 +61,9 @@ in
     };
   };
 
+  home.packages = with pkgs; [
+    tsukimi
+  ];
+
   home.stateVersion = "24.05";
 }
