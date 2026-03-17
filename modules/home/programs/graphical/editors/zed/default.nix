@@ -6,6 +6,7 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
+  inherit (lib.wktlnix) enabled;
 
   cfg = config.wktlnix.programs.graphical.editors.zed;
 in
@@ -19,54 +20,50 @@ in
       enable = true;
 
       extraPackages = with pkgs; [
-        nil
         nixd
+        nixfmt
         lua-language-server
         stylua
       ];
 
       userSettings = {
-        icon_theme = "Catppuccin Macchiato";
+        auto_update = false;
 
-        buffer_font_size = lib.mkForce 20;
-        ui_font_size = lib.mkForce 20;
-        terminal.font_size = lib.mkForce 18;
+        icon_theme = "Catppuccin Macchiato";
+        # buffer_font_size = lib.mkForce 20;
+        # ui_font_size = lib.mkForce 20;
+        # terminal.font_size = lib.mkForce 18;
         buffer_font_features = {
           "calt" = true;
           "zero" = true;
           "cv03" = true;
           "ss08" = true;
         };
-
-        relative_line_numbers = true;
-
+        relative_line_numbers = "enabled";
         indent_guides = {
           enabled = true;
           coloring = "indent_aware";
         };
 
-        inlay_hints = {
-          enabled = true;
-        };
+        ## tell zed to use direnv and direnv can use a flake.nix enviroment.
+        load_direnv = "shell_hook";
 
-        auto_install_extensions = {
-          html = false;
+        node = {
+          path = lib.getExe pkgs.nodejs;
+          npm_path = lib.getExe' pkgs.nodejs "npm";
         };
-
-        auto_update = false;
 
         prettier = {
           allowed = false;
         };
-
-        ## tell zed to use direnv and direnv can use a flake.nix enviroment.
-        load_direnv = "shell_hook";
-
-        features = {
-          edit_prediction_provider = "copilot";
-        };
-
+        inlay_hints = enabled;
         languages = {
+          Nix = {
+            language_servers = [
+              "nixd"
+              "!nil"
+            ];
+          };
           Lua = {
             format_on_save = "on";
             formatter = {
@@ -85,19 +82,27 @@ in
         };
 
         lsp = {
-          nil = {
+          nixd = {
             initialization_options = {
               formatting = {
-                command = [ "${lib.getExe pkgs.nixfmt}" ];
-              };
-              nix = {
-                flake = {
-                  autoArchive = true;
-                };
+                command = [ "nixfmt" ];
               };
             };
           };
+          eslint = {
+            binary = {
+              path = lib.getExe' pkgs.vscode-langservers-extracted "vscode-eslint-language-server";
+            };
+          };
         };
+      };
+
+      auto_install_extensions = {
+        html = false;
+      };
+
+      edit_predictions = {
+        provider = "copilot";
       };
 
       userKeymaps = [
