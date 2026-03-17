@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 let
   inherit (lib.wktlnix) enabled;
 in
@@ -25,6 +25,16 @@ in
                 (flag "variable-refresh-rate")
               ])
             ];
+        };
+        editors = {
+          zed = {
+            enable = true;
+            userSettings = {
+              buffer_font_size = lib.mkForce 18;
+              ui_font_size = lib.mkForce 18;
+              terminal.font_size = lib.mkForce 18;
+            };
+          };
         };
       };
       terminal = {
