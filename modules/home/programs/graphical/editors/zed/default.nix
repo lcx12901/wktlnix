@@ -5,14 +5,17 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
-  inherit (lib.wktlnix) enabled;
+  inherit (lib) mkIf mkEnableOption types;
+  inherit (lib.wktlnix) mkOpt;
 
   cfg = config.wktlnix.programs.graphical.editors.zed;
 in
 {
   options.wktlnix.programs.graphical.editors.zed = {
-    enable = mkEnableOption "Whether or not to enable zed.";
+    enable = mkEnableOption "zed";
+    userSettings =
+      mkOpt types.attrs { }
+        "user settings for zed editor, see https://zed.dev/docs/settings for more details.";
   };
 
   config = mkIf cfg.enable {
@@ -26,19 +29,25 @@ in
         stylua
       ];
 
-      userSettings = {
+      userSettings = cfg.userSettings // {
         auto_update = false;
 
+        auto_install_extensions = {
+          html = false;
+        };
+
+        edit_predictions = {
+          provider = "copilot";
+        };
+
         icon_theme = "Catppuccin Macchiato";
-        # buffer_font_size = lib.mkForce 20;
-        # ui_font_size = lib.mkForce 20;
-        # terminal.font_size = lib.mkForce 18;
         buffer_font_features = {
           "calt" = true;
           "zero" = true;
           "cv03" = true;
           "ss08" = true;
         };
+        soft_wrap = "editor_width";
         relative_line_numbers = "enabled";
         indent_guides = {
           enabled = true;
@@ -56,7 +65,9 @@ in
         prettier = {
           allowed = false;
         };
-        inlay_hints = enabled;
+        inlay_hints = {
+          enabled = true;
+        };
         languages = {
           Nix = {
             language_servers = [
@@ -91,18 +102,23 @@ in
           };
           eslint = {
             binary = {
-              path = lib.getExe' pkgs.vscode-langservers-extracted "vscode-eslint-language-server";
+              path = "${lib.getExe' pkgs.vscode-langservers-extracted "vscode-eslint-language-server"}";
+              arguments = [ "--stdio" ];
+            };
+          };
+          json-language-server = {
+            binary = {
+              path = "${lib.getExe' pkgs.vscode-langservers-extracted "vscode-json-language-server"}";
+              arguments = [ "--stdio" ];
+            };
+          };
+          vtsls = {
+            binary = {
+              path = lib.getExe pkgs.vtsls;
+              arguments = [ "--stdio" ];
             };
           };
         };
-      };
-
-      auto_install_extensions = {
-        html = false;
-      };
-
-      edit_predictions = {
-        provider = "copilot";
       };
 
       userKeymaps = [
@@ -122,6 +138,8 @@ in
       packages = with pkgs.zed-extensions; [
         nix
         lua
+        vue
+        unocss
         git-firefly
         # theme
         catppuccin-icons
