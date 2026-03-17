@@ -21,7 +21,12 @@ in
       fonts = enabled;
       locale = enabled;
       time = enabled;
-      persist = enabled;
+      persist = {
+        enable = true;
+        userDirs = [
+          ".config/dconf"
+        ];
+      };
       networking = {
         enable = true;
         # wireless = true;
@@ -83,7 +88,6 @@ in
     security = {
       sudo-rs = enabled;
       acme = enabled;
-      # certificates = enabled;
     };
     virtualisation = {
       # kvm = enabled;
