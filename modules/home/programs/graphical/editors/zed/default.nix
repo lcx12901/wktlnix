@@ -90,6 +90,13 @@ in
               };
             };
           };
+          CSS = {
+            language_servers = [
+              "vscode-css-language-server"
+              "!tailwindcss-intellisense-css"
+              "..."
+            ];
+          };
         };
 
         lsp = {
@@ -102,13 +109,13 @@ in
           };
           eslint = {
             binary = {
-              path = "${lib.getExe' pkgs.vscode-langservers-extracted "vscode-eslint-language-server"}";
+              path = lib.getExe' pkgs.vscode-langservers-extracted "vscode-eslint-language-server";
               arguments = [ "--stdio" ];
             };
           };
           json-language-server = {
             binary = {
-              path = "${lib.getExe' pkgs.vscode-langservers-extracted "vscode-json-language-server"}";
+              path = lib.getExe' pkgs.vscode-langservers-extracted "vscode-json-language-server";
               arguments = [ "--stdio" ];
             };
           };
@@ -116,6 +123,21 @@ in
             binary = {
               path = lib.getExe pkgs.vtsls;
               arguments = [ "--stdio" ];
+            };
+          };
+          vscode-css-language-server = {
+            binary = {
+              path = lib.getExe' pkgs.vscode-langservers-extracted "vscode-css-language-server";
+              arguments = [ "--stdio" ];
+            };
+          };
+          tailwindcss-language-server = {
+            binary = {
+              path = lib.getExe pkgs.tailwindcss-language-server;
+              arguments = [ "--stdio" ];
+            };
+            settings = {
+              includeLanguages = { };
             };
           };
         };
