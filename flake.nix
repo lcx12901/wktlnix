@@ -33,6 +33,17 @@
 
     # Applications & packages
     wktlvim.url = "github:lcx12901/nixvim-part";
+    nix4nvchad = {
+      url = "github:nix-community/nix4nvchad";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nvchad-starter.follows = "nvchad-config";
+    };
+    nvchad-config = {
+      url = "git+file:/home/wktl/Coding/nvchad-config";
+      # url = "github:lcx12901/nvchad-config";
+      flake = false;
+    };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     daeuniverse.url = "github:daeuniverse/flake.nix";
     niri = {
       url = "github:sodiboo/niri-flake";
