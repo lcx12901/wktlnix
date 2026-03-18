@@ -5,6 +5,8 @@ let
 
   dae = inputs.daeuniverse.packages."${system}".dae-unstable;
 
+  neovim-nightly = inputs.neovim-nightly-overlay.packages."${system}".default;
+
   master = import inputs.nixpkgs-master {
     inherit (final.stdenv.hostPlatform) system;
     inherit (final) config;
@@ -15,7 +17,7 @@ let
   # };
 in
 {
-  inherit dae;
+  inherit dae neovim-nightly;
   # From nixpkgs-master (fast updating / want latest always)
   inherit (master) linuxPackages_zen;
 }

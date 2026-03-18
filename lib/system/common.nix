@@ -59,6 +59,7 @@ in
             inputs.zed-extensions.homeManagerModules.default
             inputs.zen-browser.homeModules.twilight
             inputs.noctalia.homeModules.default
+            inputs.nix4nvchad.homeManagerModule
           ]
           ++ (extendedLib.file.get-default-nix-files-recursive ../../modules/home);
           users = mapAttrs' (_name: homeConfig: {
