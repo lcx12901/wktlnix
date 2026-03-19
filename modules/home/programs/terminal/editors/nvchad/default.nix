@@ -36,8 +36,6 @@ in
         deadnix
         stylua
         eslint_d
-
-        tree-sitter
       ];
       neovim = pkgs.neovim-nightly;
       hm-activation = true;
@@ -53,10 +51,18 @@ in
       };
     };
 
-    sops.secrets = {
-      wakatime = {
-        path = "${config.home.homeDirectory}/.wakatime.cfg";
+    sops.secrets =
+      let
+        dir = config.home.homeDirectory;
+      in
+      {
+        wakatime = {
+          path = "${dir}/.wakatime.cfg";
+        };
+        "github_copilot_token" = {
+          path = "${dir}/.config/github-copilot/apps.json";
+          mode = "0600";
+        };
       };
-    };
   };
 }

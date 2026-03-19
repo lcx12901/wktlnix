@@ -127,9 +127,5 @@ in
         enableGitIntegration = true;
       };
     };
-
-    sops.secrets."github_copilot_token" = {
-      path = "/home/${config.wktlnix.user.name}/.config/github-copilot/apps.json";
-    };
   };
 }
