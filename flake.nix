@@ -32,7 +32,6 @@
     };
 
     # Applications & packages
-    wktlvim.url = "github:lcx12901/nixvim-part";
     nix4nvchad = {
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
