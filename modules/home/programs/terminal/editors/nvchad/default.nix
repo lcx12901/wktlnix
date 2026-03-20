@@ -43,12 +43,19 @@ in
       backup = false;
     };
 
-    home.persistence = lib.mkIf persist {
-      "/persist" = {
-        directories = [
-          ".local/share/nvim"
-          ".local/state/nvim"
-        ];
+    home = {
+      sessionVariables = {
+        EDITOR = "nvim";
+        MANPAGER = "nvim -c 'set ft=man bt=nowrite noswapfile nobk shada=\\\"NONE\\\" ro noma' +Man! -o -";
+      };
+
+      persistence = lib.mkIf persist {
+        "/persist" = {
+          directories = [
+            ".local/share/nvim"
+            ".local/state/nvim"
+          ];
+        };
       };
     };
 
