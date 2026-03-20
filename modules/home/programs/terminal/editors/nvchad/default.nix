@@ -28,6 +28,7 @@ in
         typescript-language-server
         vue-language-server
         emmet-language-server
+        bash-language-server
         wktlnix.unocss-language-server
 
         # formatters
