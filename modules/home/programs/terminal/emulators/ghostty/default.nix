@@ -50,7 +50,6 @@ in
 
         custom-shader-animation = "always";
         custom-shader = [
-          "${./shaders/glow-rgbsplit-twitchy.glsl}"
           "${./shaders/wrap_cursor.glsl}"
           "${./shaders/ripple_cursor.glsl}"
         ];
