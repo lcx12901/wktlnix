@@ -62,6 +62,8 @@ in
 
         maintenance.enable = true;
 
+        signing.format = "openpgp";
+
         settings = {
           branch.sort = "-committerdate";
 
