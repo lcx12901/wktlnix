@@ -16,14 +16,7 @@ in
   options.wktlnix.programs.terminal.tools.zellij = {
     enable = mkEnableOption "zellij";
 
-    package = pkgs.zellij.overrideAttrs (_oldAttrs: {
-      patches = lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-        (pkgs.fetchpatch2 {
-          url = "https://github.com/zellij-org/zellij/commit/60acd439985339e518f090821c0e4eb366ce6014.patch?full_index=1";
-          hash = "sha256-pCFDEbgceNzZAjxSXme/nQ4iQc8qNw2IOMtec16cr8k=";
-        })
-      ];
-    });
+    package = pkgs.zellij;
   };
 
   imports = [
