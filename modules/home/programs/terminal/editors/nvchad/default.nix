@@ -29,6 +29,7 @@ in
         vue-language-server
         emmet-language-server
         bash-language-server
+        prisma-language-server
         wktlnix.unocss-language-server
 
         # formatters
