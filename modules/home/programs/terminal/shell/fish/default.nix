@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.wktlnix) mkBoolOpt;
+  inherit (lib.wktlnix) mkBoolOpt enabled;
 
   cfg = config.wktlnix.programs.terminal.shell.fish;
 in
@@ -16,6 +16,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    wktlnix.programs.terminal.shell.startship = enabled;
+
     programs.fish = {
       enable = true;
 

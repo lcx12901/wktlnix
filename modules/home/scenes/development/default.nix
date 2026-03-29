@@ -59,7 +59,6 @@ in
             eza = enabled;
             direnv = enabled;
             jq = enabled;
-            oh-my-posh = enabled;
             ripgrep = enabled;
             yazi = enabled;
           };
