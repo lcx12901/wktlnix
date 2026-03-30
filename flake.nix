@@ -49,7 +49,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia-shell/664707d77ec793be68ff117d613fd2569f5e2e83";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
