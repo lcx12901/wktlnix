@@ -14,6 +14,11 @@ let
   cfg = config.wktlnix.programs.terminal.tools.opencode;
 in
 {
+  imports = [
+    ./lsp.nix
+    ./permission.nix
+  ];
+
   options.wktlnix.programs.terminal.tools.opencode = {
     enable = mkEnableOption "opencode";
   };
@@ -31,6 +36,15 @@ in
         model = "github-copilot/gpt-5.2-codex";
         autoshare = false;
         autoupdate = false;
+
+        plugin = [
+          # Dynamic context pruning
+          "@tarquinen/opencode-dcp@latest"
+          # Support background shell commands
+          "opencode-pty"
+          #
+          "oh-my-opencode"
+        ];
       };
     };
 
