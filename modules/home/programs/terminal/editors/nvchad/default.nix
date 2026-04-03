@@ -30,6 +30,7 @@ in
         emmet-language-server
         bash-language-server
         prisma-language-server
+        marksman
         wktlnix.unocss-language-server
 
         # formatters
@@ -38,6 +39,7 @@ in
         deadnix
         stylua
         eslint_d
+        deno
       ];
       neovim = pkgs.neovim-nightly;
       hm-activation = true;
