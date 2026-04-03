@@ -28,7 +28,7 @@ in
         };
         editors = {
           zed = {
-            enable = true;
+            enable = false;
             userSettings = {
               buffer_font_size = lib.mkForce 18;
               ui_font_size = lib.mkForce 18;

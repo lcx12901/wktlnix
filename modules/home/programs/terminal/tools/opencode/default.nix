@@ -12,6 +12,9 @@ let
   persist = osConfig.wktlnix.system.persist.enable;
 
   cfg = config.wktlnix.programs.terminal.tools.opencode;
+
+  agents = import ./agents.nix { inherit lib; };
+  commands = import ./commands.nix { inherit lib; };
 in
 {
   imports = [
@@ -46,11 +49,13 @@ in
           "oh-my-opencode"
         ];
       };
-    };
 
-    xdg.configFile."opencode/skill" = {
-      source = "${inputs.antfu-skills}/skills";
-      recursive = true;
+      agents = agents.renderAgents;
+      commands = commands.renderCommands;
+      skills = {
+        antfu = "${inputs.antfu-skills}/skills"; 
+      };
+      rules = builtins.readFile ./rules/base.md;
     };
 
     sops.secrets."opencode_auth" = {
