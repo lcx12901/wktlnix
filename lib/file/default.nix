@@ -6,8 +6,10 @@ let
     filterAttrs
     mapAttrsToList
     hasPrefix
+    hasSuffix
     foldl'
     flatten
+    filter
     ;
   file-name-regex = "(.*)\\.(.*)$";
 
@@ -25,6 +27,15 @@ let
   ## ```
   #@ (a -> b -> [c]) -> Attrs -> [c]
   map-concat-attrs-to-list = f: attrs: flatten (mapAttrsToList f attrs);
+
+  getNixFiles' =
+    dirPath:
+    let
+      entries = builtins.readDir dirPath;
+    in
+    filter (name: hasSuffix ".nix" name) (builtins.attrNames entries);
+
+  mergeAttrs' = attrsList: foldl' (acc: attrs: acc // attrs) { } attrsList;
 in
 rec {
   ## Check if a file name has a file extension.
@@ -146,7 +157,7 @@ rec {
   ## ```
   #@ Path -> [Path]
   get-default-nix-files-recursive =
-    path: builtins.filter (name: builtins.baseNameOf name == "default.nix") (get-files-recursive path);
+    path: builtins.filter (name: baseNameOf name == "default.nix") (get-files-recursive path);
 
   ## Get nix files at a given path not named "default.nix".
   ## Example Usage:
@@ -160,9 +171,9 @@ rec {
   #@ Path -> [Path]
   get-non-default-nix-files =
     path:
-    builtins.filter (
-      name: (has-file-extension "nix" name) && (builtins.baseNameOf name != "default.nix")
-    ) (get-files path);
+    builtins.filter (name: (has-file-extension "nix" name) && (baseNameOf name != "default.nix")) (
+      get-files path
+    );
 
   ## Get nix files at a given path not named "default.nix", traversing any directories within.
   ## Example Usage:
@@ -176,9 +187,9 @@ rec {
   #@ Path -> [Path]
   get-non-default-nix-files-recursive =
     path:
-    builtins.filter (
-      name: (has-file-extension "nix" name) && (builtins.baseNameOf name != "default.nix")
-    ) (get-files-recursive path);
+    builtins.filter (name: (has-file-extension "nix" name) && (baseNameOf name != "default.nix")) (
+      get-files-recursive path
+    );
 
   # Recursively parse systems directory structure
   parseSystemConfigurations =
@@ -239,4 +250,43 @@ rec {
     filterAttrs (
       _name: { system, ... }: hasPrefix "x86_64-linux" system || hasPrefix "aarch64-linux" system
     ) systems;
+
+  /**
+    Import all .nix files from all subdirectories, merging results.
+    Useful for organizing related files in subdirs.
+
+    # Inputs
+
+    `dirPath`
+
+    : 1\. Function argument
+
+    `exclude`
+
+    : Optional exclude list
+
+    `args`
+
+    : Optional arguments to pass to imports
+  */
+  importSubdirs =
+    dirPath:
+    {
+      exclude ? [ ],
+      args ? null,
+    }:
+    let
+      entries = builtins.readDir dirPath;
+      subdirs = filter (name: entries.${name} == "directory") (builtins.attrNames entries);
+      importSubdir =
+        dir:
+        let
+          subDirPath = dirPath + "/${dir}";
+          files = filter (f: !(builtins.elem f exclude)) (getNixFiles' subDirPath);
+          importFile =
+            f: if args == null then import (subDirPath + "/${f}") else import (subDirPath + "/${f}") args;
+        in
+        mergeAttrs' (map importFile files);
+    in
+    mergeAttrs' (map importSubdir subdirs);
 }
