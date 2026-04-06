@@ -19,6 +19,7 @@ in
 {
   imports = [
     ./lsp.nix
+    ./formatters.nix
     ./permission.nix
   ];
 
