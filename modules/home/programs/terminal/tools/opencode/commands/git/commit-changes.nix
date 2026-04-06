@@ -120,6 +120,7 @@ let
     - 遵循约定式（conventional commits）提交信息格式
     - 说明为什么需要这个变更
     - 保持标题行（subject line）在 72 字符以内
+    - 备注行（body）可以详细描述变更的背景、实现细节和任何相关信息，但是不要包含AI作为协同人员的任何信息
 
     ### 步骤 3.2：验证提交（Validate Commit）
 
