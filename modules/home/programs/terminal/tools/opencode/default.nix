@@ -37,7 +37,7 @@ in
 
       settings = {
         theme = "catppuccin-frappe";
-        model = "github-copilot/gpt-5.2-codex";
+        model = "github-copilot/gpt-5.3-codex";
         autoshare = false;
         autoupdate = false;
 
