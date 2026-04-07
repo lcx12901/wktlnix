@@ -42,11 +42,13 @@ in
         enable = true;
         role = "server";
       };
-      # unblock-netease-music = enabled;
+      nginx = enabled;
+      metapi = enabled;
     };
 
     security = {
       sudo-rs = enabled;
+      acme = enabled;
     };
   };
 
