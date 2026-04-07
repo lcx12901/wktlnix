@@ -35,8 +35,11 @@ in
 
       enableMcpIntegration = false;
 
-      settings = {
+      tui = {
         theme = "catppuccin-frappe";
+      };
+
+      settings = {
         model = "github-copilot/gpt-5.3-codex";
         autoshare = false;
         autoupdate = false;
@@ -46,7 +49,6 @@ in
           "@tarquinen/opencode-dcp@latest"
           # Support background shell commands
           "opencode-pty"
-          #
           "oh-my-opencode"
         ];
       };
@@ -54,7 +56,7 @@ in
       agents = agents.renderAgents;
       commands = commands.renderCommands;
       skills = {
-        antfu = "${inputs.antfu-skills}/skills"; 
+        antfu = "${inputs.antfu-skills}/skills";
       };
       rules = builtins.readFile ./rules/base.md;
     };
