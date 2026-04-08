@@ -246,6 +246,27 @@ in
           startup = "noctalia-shell ipc call wallpaper random";
         };
       };
+
+      plugins =
+        let
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        in
+        {
+          version = 2;
+          sources = [
+            {
+              enabled = true;
+              name = "Noctalia Plugins";
+              url = sourceUrl;
+            }
+          ];
+          states = {
+            clipper = {
+              inherit sourceUrl;
+              enabled = true;
+            };
+          };
+        };
     };
   };
 }
