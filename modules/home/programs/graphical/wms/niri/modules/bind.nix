@@ -34,7 +34,7 @@ let
   flameshot = getExe config.services.flameshot.package;
   vlc = getExe pkgs.vlc;
   telegram = getExe pkgs.telegram-desktop;
-  vicinae = getExe config.programs.vicinae.package;
+  # vicinae = getExe config.programs.vicinae.package;
   wpctl = getExe' pkgs.wireplumber "wpctl";
   ghostty = getExe config.programs.ghostty.package;
   zen-browser = getExe' config.programs.zen-browser.package "zen-twilight";
@@ -48,10 +48,11 @@ in
             (spawn (noctalia "launcher toggle"))
           ])
           (node' "Mod+X" { repeat = false; } [
-            (spawn [
-              vicinae
-              "vicinae://extensions/vicinae/clipboard/history"
-            ])
+            # (spawn [
+              # vicinae
+              # "vicinae://extensions/vicinae/clipboard/history"
+            # ])
+            (spawn (noctalia "plugin:clipper toggle"))
           ])
           (plain "Mod+Shift+P" [
             (spawn (noctalia "lockScreen lock"))
