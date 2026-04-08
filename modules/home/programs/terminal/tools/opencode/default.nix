@@ -30,45 +30,47 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ lsof ];
 
-    programs.opencode = {
-      enable = true;
+    programs = {
+      opencode = {
+        enable = true;
 
-      enableMcpIntegration = false;
+        enableMcpIntegration = false;
 
-      tui = {
-        theme = "catppuccin-frappe";
+        tui = {
+          theme = "catppuccin-frappe";
+        };
+
+        settings = {
+          model = "github-copilot/gpt-5.3-codex";
+          autoshare = false;
+          autoupdate = false;
+
+          plugin = [
+            # Dynamic context pruning
+            "@tarquinen/opencode-dcp@latest"
+            # Support background shell commands
+            "opencode-pty"
+            "oh-my-opencode"
+          ];
+        };
+
+        agents = agents.renderAgents;
+        commands = commands.renderCommands;
+        skills = {
+          antfu = "${inputs.antfu-skills}/skills";
+        };
+        rules = builtins.readFile ./rules/base.md;
       };
-
-      settings = {
-        model = "github-copilot/gpt-5.3-codex";
-        autoshare = false;
-        autoupdate = false;
-
-        plugin = [
-          # Dynamic context pruning
-          "@tarquinen/opencode-dcp@latest"
-          # Support background shell commands
-          "opencode-pty"
-          "oh-my-opencode"
-        ];
-      };
-
-      agents = agents.renderAgents;
-      commands = commands.renderCommands;
-      skills = {
-        antfu = "${inputs.antfu-skills}/skills";
-      };
-      rules = builtins.readFile ./rules/base.md;
-    };
-
-    sops.secrets."opencode_auth" = {
-      path = "/home/${config.wktlnix.user.name}/.local/share/opencode/auth.json";
     };
 
     home.persistence = lib.mkIf persist {
       "/persist" = {
         directories = [ ".local/share/opencode" ];
       };
+    };
+
+    sops.secrets."opencode_auth" = {
+      path = "/home/${config.wktlnix.user.name}/.local/share/opencode/auth.json";
     };
   };
 }
