@@ -37,7 +37,7 @@ in
         # apps.vesktop = enabled;
       };
       terminal = {
-        editors.neovim = enabled;
+        editors.nvchad = enabled;
         tools = {
           git = {
             userName = "linchengxu";
