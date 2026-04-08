@@ -41,7 +41,7 @@ in
           tools.zellij = enabled;
         };
         graphical = {
-          launchers.vicinae = enabled;
+          # launchers.vicinae = enabled;
           screenlockers.hyprlock = enabled;
           browsers.zen = enabled;
           bars.noctalia = enabled;
