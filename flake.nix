@@ -38,8 +38,8 @@
       inputs.nvchad-starter.follows = "nvchad-config";
     };
     nvchad-config = {
-      url = "git+file:/home/wktl/Coding/nvchad-config";
-      # url = "github:lcx12901/nvchad-config";
+      # url = "git+file:/home/wktl/Coding/nvchad-config";
+      url = "github:lcx12901/nvchad-config";
       flake = false;
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -49,7 +49,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/664707d77ec793be68ff117d613fd2569f5e2e83";
+      url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
