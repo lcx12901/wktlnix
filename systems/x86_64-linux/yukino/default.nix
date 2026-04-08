@@ -64,7 +64,7 @@ in
       sudo-rs = enabled;
     };
 
-    virtualisation.kvm = enabled;
+    # virtualisation.kvm = enabled;
   };
 
   networking = {
