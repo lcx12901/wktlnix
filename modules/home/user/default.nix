@@ -49,6 +49,8 @@ in
 
         homeDirectory = mkDefault cfg.home;
 
+        preferXdgDirectories = true;
+
         shellAliases = {
           # nix alias
           nsn = "nix shell nixpkgs#";
