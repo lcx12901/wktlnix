@@ -24,12 +24,11 @@ in
           kdePackages.fcitx5-chinese-addons
           fcitx5-gtk
           libsForQt5.fcitx5-qt
-          fcitx5-rime
-          # (fcitx5-rime.override {
-          #   rimeDataPkgs = [
-          #     rime-all
-          #   ];
-          # })
+          (fcitx5-rime.override {
+            rimeDataPkgs = [
+              rime-all
+            ];
+          })
         ];
 
         waylandFrontend = true;
