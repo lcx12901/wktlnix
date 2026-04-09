@@ -144,9 +144,8 @@ in
               }
             ];
             right = [
-              {
-                id = "Tray";
-              }
+              { id = "plugin:catwalk"; }
+              { id = "Tray"; }
               {
                 id = "Volume";
                 displayMode = "onhover";
@@ -272,6 +271,10 @@ in
           ];
           states = {
             clipper = {
+              inherit sourceUrl;
+              enabled = true;
+            };
+            catwalk = {
               inherit sourceUrl;
               enabled = true;
             };
