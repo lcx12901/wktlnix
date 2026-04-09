@@ -89,10 +89,6 @@ in
               Name = "rime";
               Layout = "";
             };
-            "Groups/0/Items/2" = {
-              Name = "keyboard-us-dvp";
-              Layout = "";
-            };
             "GroupOrder" = {
               "0" = "Default";
             };
