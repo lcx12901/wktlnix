@@ -34,7 +34,20 @@ let
       wktlnix = prev.lib.fix (
         self:
         prev.lib.mapAttrs (
-          _name: func: final.callPackage func (self // { inherit inputs; })
+          _name: func:
+          final.callPackage func (
+            # 让 overlay 的打包流程保持健壮：先提供共享上下文
+            # （self/final/inputs），再按函数签名过滤参数。
+            # 这样可避免 package 函数未声明某些键时，
+            # 触发“unexpected argument”错误。
+            builtins.intersectAttrs (builtins.functionArgs func) (
+              self
+              // final
+              // {
+                inherit inputs;
+              }
+            )
+          )
         ) packageFunctions
       );
     };
