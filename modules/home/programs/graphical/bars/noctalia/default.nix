@@ -1,5 +1,6 @@
 {
   inputs,
+  osConfig,
   config,
   lib,
   pkgs,
@@ -7,6 +8,8 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
+
+  persist = osConfig.wktlnix.system.persist.enable;
 
   cfg = config.wktlnix.programs.graphical.bars.noctalia;
 in
@@ -16,16 +19,23 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.file = {
-      "Pictures/Wallpapers" = {
-        source = "${inputs.wallpapers}";
+    home = {
+      file = {
+        "Pictures/Wallpapers" = {
+          source = "${inputs.wallpapers}";
+        };
+        ".face" = {
+          source = lib.file.get-file ".face";
+        };
+        ".local/cache/noctalia/shell-state.json" = {
+          text = builtins.toJSON {
+            changelogState.lastSeenVersion = "v4.4.4";
+          };
+        };
       };
-      ".face" = {
-        source = lib.file.get-file ".face";
-      };
-      ".local/cache/noctalia/shell-state.json" = {
-        text = builtins.toJSON {
-          changelogState.lastSeenVersion = "v4.4.4";
+      persistence = lib.mkIf persist {
+        "/persist" = {
+          directories = [ ".config/noctalia/plugins" ];
         };
       };
     };
