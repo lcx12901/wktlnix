@@ -9,7 +9,7 @@ in
     overlays = builtins.attrValues flake.overlays;
     config = {
       allowAliases = false;
-      allowUnfree = true;
+      allowUnfreePredicate = _: true;
       permittedInsecurePackages = [
         "immersive-translate-1.26.5"
       ];
