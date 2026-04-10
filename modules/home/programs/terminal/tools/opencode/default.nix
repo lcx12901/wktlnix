@@ -41,7 +41,7 @@ in
         };
 
         settings = {
-          model = "github-copilot/gpt-5.3-codex";
+          model = "github-copilot/gpt-5.4";
           autoshare = false;
           autoupdate = false;
 
