@@ -15,13 +15,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    # https://github.com/ulic-youthlic/flakes/blob/5f6a71f47f555747cfe2c41b79fc5a52f4bac9bb/nixos/modules/i18n.nix#L29
     i18n.inputMethod = {
       enable = true;
       type = "fcitx5";
       fcitx5 = {
         addons = with pkgs; [
-          kdePackages.fcitx5-chinese-addons
           fcitx5-gtk
           libsForQt5.fcitx5-qt
           (fcitx5-rime.override {
