@@ -52,6 +52,20 @@
         ];
       };
 
+      eslint = {
+        command = [
+          (lib.getExe' pkgs.vscode-langservers-extracted "vscode-eslint-language-server")
+          "--stdio"
+        ];
+        extensions = [
+          ".js"
+          ".jsx"
+          ".ts"
+          ".tsx"
+          ".vue"
+        ];
+      };
+
       yamlls = {
         command = [
           (lib.getExe pkgs.yaml-language-server)
@@ -71,6 +85,17 @@
         extensions = [
           ".json"
           ".jsonc"
+        ];
+      };
+
+      bashls = {
+        command = [
+          (lib.getExe pkgs.bash-language-server)
+          "start"
+        ];
+        extensions = [
+          ".sh"
+          ".bash"
         ];
       };
     };
