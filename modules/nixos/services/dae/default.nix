@@ -55,7 +55,7 @@ in
       group {
         proxy {
           policy: random
-          filter: name(milet,dmit)
+          filter: name(dmit)
         }
 
         ${cfg.extraGroups}
