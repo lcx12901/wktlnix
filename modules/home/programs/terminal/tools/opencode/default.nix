@@ -21,6 +21,7 @@ in
     ./lsp.nix
     ./formatters.nix
     ./permission.nix
+    ./openagent.nix
   ];
 
   options.wktlnix.programs.terminal.tools.opencode = {
@@ -46,11 +47,9 @@ in
           autoupdate = false;
 
           plugin = [
-            # Dynamic context pruning
             "@tarquinen/opencode-dcp@latest"
-            # Support background shell commands
             "opencode-pty"
-            "oh-my-opencode"
+            "oh-my-openagent"
           ];
         };
 
@@ -65,7 +64,10 @@ in
 
     home.persistence = lib.mkIf persist {
       "/persist" = {
-        directories = [ ".local/share/opencode" ];
+        directories = [
+          "./opencode"
+          ".local/share/opencode"
+        ];
       };
     };
 
