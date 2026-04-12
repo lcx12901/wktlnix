@@ -14,6 +14,10 @@ let
   cfg = config.wktlnix.programs.graphical.bars.noctalia;
 in
 {
+  imports = [
+    ./plugins.nix
+  ];
+
   options.wktlnix.programs.graphical.bars.noctalia = {
     enable = mkEnableOption "noctalia";
   };
@@ -21,9 +25,6 @@ in
   config = mkIf cfg.enable {
     home = {
       file = {
-        "Pictures/Wallpapers" = {
-          source = "${inputs.wallpapers}";
-        };
         ".face" = {
           source = lib.file.get-file ".face";
         };
@@ -47,8 +48,6 @@ in
         calendarSupport = true;
       };
 
-      # systemd.enable = true;
-
       settings = {
         settingsVersion = 0;
 
@@ -66,6 +65,7 @@ in
         wallpaper = {
           enabled = true;
           overviewEnabled = false;
+          directory = "${inputs.wallpapers}";
           enableMultiMonitorDirectories = false;
           setWallpaperOnAllMonitors = true;
           panelPosition = "center";
@@ -78,6 +78,7 @@ in
           skipStartupTransition = true;
           viewMode = "recursive";
           wallpaperChangeMode = "random";
+          useOriginalImages = true;
         };
 
         dock.enabled = false;
@@ -255,31 +256,6 @@ in
           startup = "noctalia-shell ipc call wallpaper random";
         };
       };
-
-      plugins =
-        let
-          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-        in
-        {
-          version = 2;
-          sources = [
-            {
-              enabled = true;
-              name = "Noctalia Plugins";
-              url = sourceUrl;
-            }
-          ];
-          states = {
-            clipper = {
-              inherit sourceUrl;
-              enabled = true;
-            };
-            catwalk = {
-              inherit sourceUrl;
-              enabled = true;
-            };
-          };
-        };
     };
   };
 }
