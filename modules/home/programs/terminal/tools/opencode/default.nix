@@ -58,7 +58,7 @@ in
         skills = {
           antfu = "${inputs.antfu-skills}/skills";
         };
-        rules = builtins.readFile ./rules/base.md;
+        context = builtins.readFile ./rules/base.md;
       };
     };
 
