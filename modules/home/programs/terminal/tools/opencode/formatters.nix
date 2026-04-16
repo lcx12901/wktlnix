@@ -11,6 +11,14 @@
         ];
         extensions = [ ".nix" ];
       };
+
+      rustfmt = {
+        command = [
+          (lib.getExe pkgs.rustfmt)
+          "$FILE"
+        ];
+        extensions = [ ".rs" ];
+      };
     };
   };
 }

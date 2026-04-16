@@ -98,6 +98,11 @@
           ".bash"
         ];
       };
+
+      rust-analyzer = {
+        command = [ (lib.getExe pkgs.rust-analyzer) ];
+        extensions = [ ".rs" ];
+      };
     };
   };
 }
