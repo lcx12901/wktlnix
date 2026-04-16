@@ -21,6 +21,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    nix.settings.allowed-users = [ "hermes" ];
+
     services.hermes-agent = {
       enable = true;
       package = inputs.hermes-agent.packages.${system}.default;
