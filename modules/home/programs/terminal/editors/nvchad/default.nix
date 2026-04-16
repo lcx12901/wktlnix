@@ -30,6 +30,10 @@ in
         emmet-language-server
         bash-language-server
         prisma-language-server
+        cargo
+        clippy
+        rust-analyzer
+        rustc
         marksman
         wktlnix.unocss-language-server
 
@@ -38,6 +42,7 @@ in
         statix
         deadnix
         stylua
+        rustfmt
         eslint_d
         deno
       ];
