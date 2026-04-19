@@ -15,6 +15,8 @@ let
 
   agents = import ./agents.nix { inherit lib; };
   commands = import ./commands.nix { inherit lib; };
+  # Import curated skills (local bundle of skill packages)
+  skillsPkg = import ./skills.nix { inherit inputs pkgs; };
 in
 {
   imports = [
@@ -55,9 +57,10 @@ in
 
         agents = agents.renderAgents;
         commands = commands.renderCommands;
-        skills = {
-          antfu = "${inputs.antfu-skills}/skills";
-        };
+        # Expose skill bundles to the opencode program. `skillsPkg` is a
+        # small Nix derivation that packages multiple skills (antfu, ui-ux-pro-max, ...)
+        # This keeps skill packaging separate from the opencode module configuration.
+        skills = skillsPkg;
         context = builtins.readFile ./rules/base.md;
       };
     };
