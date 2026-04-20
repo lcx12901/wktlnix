@@ -44,7 +44,7 @@ in
         };
 
         settings = {
-          model = "github-copilot/gpt-5.4";
+          model = "metapi/gpt-5.4";
           autoshare = false;
           autoupdate = false;
 
@@ -53,6 +53,26 @@ in
             "opencode-pty"
             "oh-my-openagent"
           ];
+
+          provider = {
+            metapi = {
+              npm = "@ai-sdk/openai-compatible";
+              name = "metapi";
+              options = {
+                baseURL = "https://metapi.milet.lincx.top/v1";
+                apiKey = "{file:${config.sops.secrets."metapi_key".path}}";
+              };
+              models = {
+                "gpt-5.4" ={
+                  name = "GPT-5.4";
+                  limit = {
+                    context = 1050000;
+                    output = 128000;
+                  };
+                };
+              };
+            };
+          };
         };
 
         agents = agents.renderAgents;
@@ -74,8 +94,9 @@ in
       };
     };
 
-    sops.secrets."opencode_auth" = {
-      path = "/home/${config.wktlnix.user.name}/.local/share/opencode/auth.json";
-    };
+    # sops.secrets."opencode_auth" = {
+    #   path = "/home/${config.wktlnix.user.name}/.local/share/opencode/auth.json";
+    # };
+    sops.secrets."metapi_key" = { };
   };
 }
