@@ -41,6 +41,12 @@ in
             cliphist
             "store"
           ])
+          (plain "blur" [
+            (leaf' "passes" 3)
+            (leaf' "offset" 3)
+            (leaf' "noise" 0.02)
+            (leaf' "saturation" 1.5)
+          ])
           (spawn-at-startup [ xwayland-satellite ])
           (spawn-at-startup [ "noctalia-shell" ])
           (plain "cursor" [
