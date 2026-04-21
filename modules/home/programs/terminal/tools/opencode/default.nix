@@ -63,7 +63,7 @@ in
                 apiKey = "{file:${config.sops.secrets."metapi_key".path}}";
               };
               models = {
-                "gpt-5.4" ={
+                "gpt-5.4" = {
                   name = "GPT-5.4";
                   limit = {
                     context = 1050000;
@@ -94,9 +94,9 @@ in
       };
     };
 
-    # sops.secrets."opencode_auth" = {
-    #   path = "/home/${config.wktlnix.user.name}/.local/share/opencode/auth.json";
-    # };
+    sops.secrets."opencode_auth" = {
+      path = "/home/${config.wktlnix.user.name}/.local/share/opencode/auth.json";
+    };
     sops.secrets."metapi_key" = { };
   };
 }
