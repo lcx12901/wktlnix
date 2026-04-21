@@ -27,21 +27,16 @@ in
           (leaf' "open-fullscreen" true)
         ])
         (window-rule [
-          (match { app-id = "firefox"; })
-          (match { app-id = "^dev\.zed\.Zed$"; })
-          (leaf' "opacity" 0.95)
-        ])
-        (window-rule [
+          (match { app-id = "^zen-twilight$"; })
           (match { app-id = "^org\.telegram\.desktop$"; })
-          (match { app-id = "Bytedance-feishu"; })
+          (match { app-id = "^Bytedance-feishu$"; })
           (match { app-id = "wechat"; })
-          (match { app-id = "code"; })
-          (leaf' "opacity" 0.9)
-        ])
-        (window-rule [
           (match { app-id = "kitty"; })
           (match { app-id = "^com\.mitchellh\.ghostty$"; })
           (leaf' "opacity" 0.85)
+          (plain "background-effect" [
+            (leaf' "blur" true)
+          ])
         ])
         (window-rule [
           (match {
