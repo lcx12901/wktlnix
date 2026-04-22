@@ -44,7 +44,7 @@ in
         };
 
         settings = {
-          model = "metapi/gpt-5.4";
+          model = "github-copilot/gpt-5-mini";
           autoshare = false;
           autoupdate = false;
 
@@ -68,6 +68,13 @@ in
                   limit = {
                     context = 1050000;
                     output = 128000;
+                  };
+                };
+                "gpt-5.3-codex-spark" = {
+                  name = "GPT-5.3 Codex Spark";
+                  limit = {
+                    context = 128000;
+                    output = 32000;
                   };
                 };
               };
