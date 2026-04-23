@@ -45,6 +45,7 @@ in
           };
           # distrobox = enabled;
           nh = enabled;
+          opencode = enabled;
         };
       };
     };
