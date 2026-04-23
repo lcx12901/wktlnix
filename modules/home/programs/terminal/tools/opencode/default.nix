@@ -44,7 +44,7 @@ in
         };
 
         settings = {
-          model = "github-copilot/gpt-5-mini";
+          model = "metapi/gpt-5.4";
           autoshare = false;
           autoupdate = false;
 
@@ -101,9 +101,6 @@ in
       };
     };
 
-    sops.secrets."opencode_auth" = {
-      path = "/home/${config.wktlnix.user.name}/.local/share/opencode/auth.json";
-    };
     sops.secrets."metapi_key" = { };
   };
 }

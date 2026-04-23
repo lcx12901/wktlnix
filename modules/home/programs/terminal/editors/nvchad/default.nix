@@ -76,10 +76,6 @@ in
         wakatime = {
           path = "${dir}/.wakatime.cfg";
         };
-        "github_copilot_token" = {
-          path = "${dir}/.config/github-copilot/apps.json";
-          mode = "0600";
-        };
       };
   };
 }

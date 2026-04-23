@@ -16,7 +16,7 @@ let
         "Glob"
         "Bash"
       ];
-      model = "github-copilot/gpt-5-mini";
+      model = "metapi/gpt-5.4";
       permission = {
         edit = "ask";
         bash = "ask";
