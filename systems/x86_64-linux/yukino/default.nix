@@ -57,7 +57,6 @@ in
         enable = true;
         role = "client";
       };
-      clamav = enabled;
     };
 
     security = {
