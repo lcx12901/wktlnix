@@ -15,7 +15,6 @@ in
       let
         mainModel = "metapi/gpt-5.4";
         quickModel = "metapi/gpt-5.3-codex-spark";
-        lowerModel = "github-copilot/gpt-5-mini";
 
         defaultSettings = {
           agents = {
@@ -26,16 +25,15 @@ in
               model = mainModel;
             };
             explore = {
-              model = lowerModel;
+              model = mainModel;
             };
             librarian = {
-              model = lowerModel;
+              model = mainModel;
             };
           };
           categories = {
             quick = {
               model = quickModel;
-              fallback_models = [ lowerModel ];
               description = "Fast, minimal edits and low-surface changes.";
             };
             deep = {
@@ -46,11 +44,11 @@ in
               description = "General engineering work that benefits from stronger reasoning.";
             };
             unspecified-low = {
-              model = lowerModel;
+              model = mainModel;
               description = "Cheaper general subtasks and verification work.";
             };
             writing = {
-              model = lowerModel;
+              model = mainModel;
               description = "Documentation and prose-heavy tasks.";
             };
           };
@@ -61,15 +59,6 @@ in
             "playwright"
             "playwright-cli"
           ];
-
-          background_task = {
-            providerConcurrency = {
-              github-copilot = 8;
-            };
-            modelConcurrency = {
-              "github-copilot/gpt-5-mini" = 12;
-            };
-          };
 
           git_master = {
             commit_footer = false;
