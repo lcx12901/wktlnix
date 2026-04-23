@@ -42,7 +42,6 @@ in
         enable = true;
         role = "server";
       };
-      hermes = enabled;
       nginx = enabled;
       metapi = enabled;
     };
