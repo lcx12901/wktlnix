@@ -44,7 +44,7 @@ in
         };
 
         settings = {
-          model = "metapi/gpt-5.4";
+          model = "metapi/gpt-5.5";
           autoshare = false;
           autoupdate = false;
 
@@ -63,19 +63,14 @@ in
                 apiKey = "{file:${config.sops.secrets."metapi_key".path}}";
               };
               models = {
+                "gpt-5.5" = {
+                  name = "GPT-5.5";
+                };
                 "gpt-5.4" = {
                   name = "GPT-5.4";
-                  limit = {
-                    context = 1050000;
-                    output = 128000;
-                  };
                 };
-                "gpt-5.3-codex-spark" = {
-                  name = "GPT-5.3 Codex Spark";
-                  limit = {
-                    context = 128000;
-                    output = 32000;
-                  };
+                "gpt-5.3-codex" = {
+                  name = "GPT-5.3 Codex";
                 };
               };
             };
