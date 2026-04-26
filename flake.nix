@@ -30,6 +30,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    nix-openclaw = {
+      url = "github:openclaw/nix-openclaw/13deaaf73ffb0ef567c83f7730320f6ee6b157b2";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
 
     # Applications & packages
     nix4nvchad = {
