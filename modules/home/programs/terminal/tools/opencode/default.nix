@@ -92,6 +92,8 @@ in
         directories = [
           "./opencode"
           ".local/share/opencode"
+          ".local/cache/opencode"
+          ".local/cache/oh-my-opencode"
         ];
       };
     };
