@@ -63,6 +63,7 @@ in
           directories = [
             ".local/share/nvim"
             ".local/state/nvim"
+            ".local/cache/nvim"
           ];
         };
       };
