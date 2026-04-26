@@ -13,8 +13,8 @@ in
   config = lib.mkIf cfg.enable {
     xdg.configFile."opencode/oh-my-openagent.json".source =
       let
-        mainModel = "metapi/gpt-5.4";
-        quickModel = "metapi/gpt-5.3-codex-spark";
+        mainModel = "metapi/gpt-5.5";
+        quickModel = "metapi/gpt-5.4";
 
         defaultSettings = {
           agents = {
