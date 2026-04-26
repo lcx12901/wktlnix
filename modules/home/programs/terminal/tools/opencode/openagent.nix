@@ -53,13 +53,6 @@ in
             };
           };
 
-          disabled_skills = [
-            "frontend-ui-ux"
-            "git-master"
-            "playwright"
-            "playwright-cli"
-          ];
-
           git_master = {
             commit_footer = false;
             include_co_authored_by = false;
@@ -72,6 +65,8 @@ in
             auto_refresh_on_start = true;
             refresh_timeout_ms = 5000;
           };
+
+          disabled_hooks = [ "no-sisyphus-gpt" ];
         };
       in
       json.generate "oh-my-openagent.json" defaultSettings;
