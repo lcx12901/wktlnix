@@ -20,7 +20,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       (feishu.override {
-        commandLineArgs = "--use-gl=desktop";
+        commandLineArgs = "--use-gl=desktop --enable-platform=wayland --enable-wayland-ime --wayland-text-input-version=3";
       })
     ];
 
