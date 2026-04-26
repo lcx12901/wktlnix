@@ -52,6 +52,7 @@ in
         home = "/home/${cfg.name}";
         createHome = true;
         isNormalUser = true;
+        linger = true;
         shell = pkgs.fish;
         uid = 1000;
 
