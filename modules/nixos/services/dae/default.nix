@@ -64,7 +64,7 @@ in
       dns {
         upstream {
           googledns: 'tcp+udp://dns.google.com:53'
-          alidns: 'udp://dns.alidns.com:53'
+          alidns: 'https://dns.alidns.com/dns-query'
         }
         routing {
           request {
