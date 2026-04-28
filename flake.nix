@@ -7,7 +7,7 @@
 
   inputs = {
     # Core
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/4bd9165a9165d7b5e33ae57f3eecbcb28fb231c9";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
