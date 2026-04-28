@@ -110,6 +110,7 @@ in
         settings = {
           "zen.workspaces.continue-where-left-off" = true;
           "zen.workspaces.natural-scroll" = true;
+          "zen.view.compact.enable-at-startup" = true;
           "zen.view.compact.hide-tabbar" = true;
           "zen.view.compact.hide-toolbar" = true;
           "zen.view.compact.animate-sidebar" = false;
