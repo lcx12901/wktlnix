@@ -63,16 +63,17 @@ in
 
       dns {
         upstream {
-          googledns: 'tcp+udp://dns.google.com:53'
-          alidns: 'https://dns.alidns.com/dns-query'
+          googledns: 'tcp+udp://8.8.8.8:53'
+          alidns: 'udp://223.5.5.5:53'
         }
         routing {
           request {
             qname(geosite:category-ads-all) -> reject
-            fallback: alidns
+            qname(geosite:cn) -> alidns
+            fallback: googledns
           }
           response {
-            upstream(googledns) -> accept
+            qname(geosite:cn) && upstream(alidns) -> accept
             ip(geoip:private) && !qname(geosite:cn) -> googledns
             fallback: accept
           }
