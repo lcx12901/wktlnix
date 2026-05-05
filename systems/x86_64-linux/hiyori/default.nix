@@ -48,7 +48,6 @@ in
     };
 
     services = {
-      dae = enabled;
       openssh = enabled;
       avahi = enabled;
       inadyn = {
@@ -64,6 +63,7 @@ in
       jellyfin = enabled;
       aria2 = enabled;
       ollama = enabled;
+      mihomo = enabled;
     };
 
     security = {
