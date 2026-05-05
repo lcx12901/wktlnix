@@ -13,8 +13,8 @@ in
   config = lib.mkIf cfg.enable {
     xdg.configFile."opencode/oh-my-openagent.json".source =
       let
-        mainModel = "metapi/gpt-5.5";
-        quickModel = "metapi/gpt-5.4";
+        mainModel = "minimax/MiniMax-M2.7";
+        quickModel = "minimax/MiniMax-M2.7";
 
         defaultSettings = {
           agents = {
@@ -66,7 +66,7 @@ in
             refresh_timeout_ms = 5000;
           };
 
-          disabled_hooks = [ "no-sisyphus-gpt" ];
+          # disabled_hooks = [ "no-sisyphus-gpt" ];
         };
       in
       json.generate "oh-my-openagent.json" defaultSettings;
