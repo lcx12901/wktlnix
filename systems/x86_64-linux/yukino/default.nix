@@ -44,10 +44,6 @@ in
     };
 
     services = {
-      dae = {
-        enable = true;
-        openFirewall = true;
-      };
       openssh = enabled;
       sing-box = {
         enable = true;
@@ -57,6 +53,7 @@ in
         enable = true;
         role = "client";
       };
+      mihomo = enabled;
     };
 
     security = {
