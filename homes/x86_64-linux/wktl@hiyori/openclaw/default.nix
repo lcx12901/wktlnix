@@ -6,8 +6,6 @@
 }:
 {
   programs.openclaw = {
-    documents = null;
-
     excludeTools = [
       "git"
       "jq"
