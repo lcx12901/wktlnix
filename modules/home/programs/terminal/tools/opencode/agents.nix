@@ -16,7 +16,7 @@ let
         "Glob"
         "Bash"
       ];
-      model = "metapi/gpt-5.4";
+      model = "minimax/MiniMax-M2.7";
       permission = {
         edit = "ask";
         bash = "ask";

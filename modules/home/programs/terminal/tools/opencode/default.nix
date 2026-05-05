@@ -44,7 +44,7 @@ in
         };
 
         settings = {
-          model = "metapi/gpt-5.5";
+          model = "minimax/MiniMax-M2.7";
           autoshare = false;
           autoupdate = false;
 
@@ -55,6 +55,18 @@ in
           ];
 
           provider = {
+            minimax = {
+              npm = "@ai-sdk/anthropic";
+              options = {
+                baseURL = "https://api.minimax.io/anthropic/v1";
+                apiKey = "{file:${config.sops.secrets."minimax_key".path}}";
+              };
+              models = {
+                "MiniMax-M2.7" = {
+                  name = "MiniMax-M2.7";
+                };
+              };
+            };
             metapi = {
               npm = "@ai-sdk/openai-compatible";
               name = "metapi";
@@ -98,6 +110,9 @@ in
       };
     };
 
-    sops.secrets."metapi_key" = { };
+    sops.secrets = {
+      "metapi_key" = { };
+      "minimax_key" = { };
+    };
   };
 }
