@@ -25,7 +25,7 @@ in
       enable = true;
 
       settings = {
-        scan_timeout = 2;
+        scan_timeout = 30;
         command_timeout = 2000; # nixpkgs makes starship implode with lower values
         line_break.disabled = true;
 
