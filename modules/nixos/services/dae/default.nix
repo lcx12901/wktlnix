@@ -54,8 +54,8 @@ in
 
       group {
         proxy {
-          policy: random
-          filter: name(milet,dmit)
+          policy: min_moving_avg
+          filter: name(milet, dmit)
         }
 
         ${cfg.extraGroups}
