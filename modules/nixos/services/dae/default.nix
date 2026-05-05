@@ -72,11 +72,6 @@ in
             qname(geosite:cn) -> alidns
             fallback: googledns
           }
-          response {
-            qname(geosite:cn) && upstream(alidns) -> accept
-            ip(geoip:private) && !qname(geosite:cn) -> googledns
-            fallback: accept
-          }
         }
       }
 
