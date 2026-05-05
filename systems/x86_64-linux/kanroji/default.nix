@@ -60,27 +60,13 @@ in
     };
 
     services = {
-      dae = {
-        enable = true;
-        extraNodes = ''
-          ${config.sops.placeholder."yukino_dae_node"}
-        '';
-        extraGroups = ''
-          z9yun {
-            policy: random
-            filter: name(yukino)
-          }
-        '';
-        extraRules = ''
-          dip(192.168.0.0/24) -> z9yun
-        '';
-      };
       openssh = enabled;
       avahi = enabled;
       inadyn = {
         enable = true;
         configFile = config.sops.secrets."cf-kanroji-inadyn".path;
       };
+      mihomo = enabled;
       nginx = enabled;
       aria2 = enabled;
     };
@@ -95,7 +81,6 @@ in
     };
   };
   sops.secrets = {
-    "yukino_dae_node" = { };
     "cf-kanroji-inadyn" = {
       inherit (config.services.inadyn) group;
       owner = config.services.inadyn.user;
