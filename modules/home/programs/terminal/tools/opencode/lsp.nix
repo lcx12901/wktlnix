@@ -66,7 +66,7 @@
         ];
       };
 
-      yamlls = {
+      yaml-ls = {
         command = [
           (lib.getExe pkgs.yaml-language-server)
           "--stdio"
