@@ -43,7 +43,6 @@
       inputs.nvchad-starter.follows = "nvchad-config";
     };
     nvchad-config = {
-      # url = "git+file:/home/wktl/Coding/nvchad-config";
       url = "github:lcx12901/nvchad-config";
       flake = false;
     };
