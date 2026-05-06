@@ -62,7 +62,6 @@ in
       nextcloud = enabled;
       jellyfin = enabled;
       aria2 = enabled;
-      ollama = enabled;
       mihomo = enabled;
     };
 
