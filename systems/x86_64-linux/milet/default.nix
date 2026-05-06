@@ -52,8 +52,6 @@ in
     };
   };
 
-  services.qemuGuest.enable = true;
-
   networking = {
     # 6in4
     interfaces.ipv6net = {
@@ -99,8 +97,44 @@ in
     };
   };
 
+  services = {
+    qemuGuest = enabled;
+
+    hermes-agent = {
+      enable = true;
+
+      addToSystemPackages = true;
+
+      environmentFiles = [ config.sops.secrets."hermes_env".path ];
+
+      settings = {
+        toolsets = [ "all" ];
+        memory = {
+          memory_enabled = true;
+          user_profile_enabled = true;
+        };
+        documents = {
+          "SOUL.md" = ./hermes/documents/SOUL.md;
+        };
+        model = {
+          provider = "minimax";
+          default = "MiniMax-M2.7";
+        };
+      };
+    };
+  };
+
+  environment.persistence."/persist" = {
+    hideMounts = true;
+
+    directories = [
+      "/var/lib/hermes"
+    ];
+  };
+
   sops.secrets = {
     "milet_sing" = { };
+    "hermes_env" = { };
   };
 
   # This value determines the NixOS release from which the default
