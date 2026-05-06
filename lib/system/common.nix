@@ -56,7 +56,6 @@ in
             inputs.home-manager.flakeModules.home-manager
             inputs.stylix.homeModules.stylix
             inputs.sops-nix.homeManagerModules.sops
-            inputs.nix-openclaw.homeManagerModules.openclaw
             inputs.zed-extensions.homeManagerModules.default
             inputs.zen-browser.homeModules.twilight
             inputs.noctalia.homeModules.default

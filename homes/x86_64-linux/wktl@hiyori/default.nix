@@ -3,8 +3,6 @@ let
   inherit (lib.wktlnix) enabled;
 in
 {
-  imports = [ ./openclaw/default.nix ];
-
   wktlnix = {
     user = enabled;
 
