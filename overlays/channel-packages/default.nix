@@ -3,8 +3,6 @@ final: _prev:
 let
   inherit (final.stdenv.hostPlatform) system;
 
-  dae = inputs.daeuniverse.packages."${system}".dae-unstable;
-
   neovim-nightly = inputs.neovim-nightly-overlay.packages."${system}".default;
 
   master = import inputs.nixpkgs-master {
@@ -17,7 +15,7 @@ let
   # };
 in
 {
-  inherit dae neovim-nightly;
+  inherit neovim-nightly;
   # From nixpkgs-master (fast updating / want latest always)
   inherit (master) opencode;
 }
