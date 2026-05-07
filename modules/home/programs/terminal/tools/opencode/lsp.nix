@@ -100,11 +100,11 @@
       };
 
       marksman = {
-        command = [
-          (lib.getExe pkgs.marksman)
-          "server"
+        command = [ (lib.getExe pkgs.marksman) ];
+        extensions = [
+          ".md"
+          ".mdx"
         ];
-        extensions = [ ".md" ];
       };
 
       rust-analyzer = {
