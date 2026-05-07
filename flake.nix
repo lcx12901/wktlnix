@@ -32,7 +32,6 @@
     };
 
     # Applications & packages
-    hermes-agent.url = "github:NousResearch/hermes-agent";
     nix4nvchad = {
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
