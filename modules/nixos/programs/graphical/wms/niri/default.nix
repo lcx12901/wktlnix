@@ -36,5 +36,12 @@ in
       # needed for GNOME services outside of GNOME Desktop
       udev.packages = with pkgs; [ gnome-settings-daemon ];
     };
+
+    # xdg-desktop-portal backend for screenshots and file dialogs
+    xdg.portal.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
   };
 }

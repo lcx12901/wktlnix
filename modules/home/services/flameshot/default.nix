@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -18,11 +17,6 @@ in
     services.flameshot = {
       enable = true;
 
-      # Enable wayland support with this build flag
-      package = pkgs.flameshot.override {
-        enableWlrSupport = true;
-      };
-
       settings = {
         General = {
           disabledTrayIcon = true;
@@ -35,9 +29,6 @@ in
           filenamePattern = "%F_%H-%M";
           drawThickness = 1;
           copyPathAfterSave = true;
-
-          # For wayland
-          useGrimAdapter = true;
         };
       };
     };

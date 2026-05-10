@@ -49,8 +49,8 @@ in
           ])
           (node' "Mod+X" { repeat = false; } [
             # (spawn [
-              # vicinae
-              # "vicinae://extensions/vicinae/clipboard/history"
+            # vicinae
+            # "vicinae://extensions/vicinae/clipboard/history"
             # ])
             (spawn (noctalia "plugin:clipper toggle"))
           ])
@@ -381,7 +381,16 @@ in
             (spawn [
               sh
               "-c"
-              "${flameshot} gui"
+              ''
+                # Pre-seed screenshot permission, then launch flameshot
+                dbus-send --session --print-reply=literal \
+                  --dest=org.freedesktop.impl.portal.PermissionStore \
+                  /org/freedesktop/impl/portal/PermissionStore \
+                  org.freedesktop.impl.portal.PermissionStore.SetPermission \
+                  string:'screenshot' boolean:true string:'screenshot' \
+                  string:'org.flameshot.Flameshot' array:string:'yes' 2>/dev/null || true
+                ${flameshot} gui
+              ''
             ])
           ])
           (plain "Shift+Print" [
