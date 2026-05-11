@@ -70,16 +70,8 @@ in
           from = 8033;
           to = 8039;
         }
-        {
-          from = 9000;
-          to = 9001;
-        }
       ];
     };
-
-    extraHosts = ''
-      127.0.0.1 t3.z9soft.cn
-    '';
   };
 
   sops.secrets."yukino_sing" = { };
