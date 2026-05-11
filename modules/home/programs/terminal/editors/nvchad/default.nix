@@ -37,6 +37,10 @@ in
         marksman
         wktlnix.unocss-language-server
         yaml-language-server
+        omnisharp-roslyn
+
+        # dotnet
+        dotnet-sdk_8
 
         # formatters
         nixfmt
