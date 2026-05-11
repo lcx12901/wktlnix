@@ -41,7 +41,7 @@ in
     xdg.portal.enable = true;
 
     environment.systemPackages = with pkgs; [
-      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
     ];
   };
 }
