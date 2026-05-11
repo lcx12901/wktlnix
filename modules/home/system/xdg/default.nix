@@ -58,8 +58,8 @@ in
           portalConfigs = {
             niri = lib.optionalAttrs config.wktlnix.programs.graphical.wms.niri.enable {
               default = [
-                "wlr"
                 "gtk"
+                "gnome"
               ];
               "org.freedesktop.impl.portal.Screencast" = "wlr";
               "org.freedesktop.impl.portal.Screenshot" = "wlr";
