@@ -1,112 +1,135 @@
-{ config, ... }:
 {
-  # nix-openclaw handles documents installation as real files (not symlinks)
-  # This fixes the boundary-path security issue where symlinks to /nix/store were rejected
-
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   programs.openclaw = {
-    enable = true;
-
-    # Point to our documents directory - nix-openclaw will install them as real files
     documents = ./documents;
 
-    config = {
-      agents.defaults = {
-        model = {
-          primary = "metapi/gpt-5.5";
-          fallbacks = [ "metapi/gpt-5.4" ];
-        };
-        models = {
-          "metapi/gpt-5.5" = {
-            alias = "GPT 5.5";
-          };
-          "metapi/gpt-5.4" = {
-            alias = "GPT 5.4";
-          };
-        };
-      };
+    instances = {
+      default = {
+        enable = true;
 
-      gateway = {
-        mode = "local";
-        auth = {
-          token = "\${OPENCLAW_GATEWAY_TOKEN}";
-        };
-      };
-
-      channels.telegram = {
-        allowFrom = [
-          975201632
-          (-5071044517)
-        ];
-        groups = {
-          "*" = {
-            requireMention = true;
-          };
-        };
-      };
-
-      models = {
-        mode = "merge";
-        providers.metapi = {
-          api = "openai-completions";
-          baseUrl = "https://metapi.milet.lincx.top/v1";
-          apiKey = "\${METAPI_API_KEY}";
-          models = [
-            {
-              id = "gpt-5.5";
-              name = "GPT 5.5";
-              input = [ "text" ];
-            }
-            {
-              id = "gpt-5.4";
-              name = "GPT 5.4";
-              input = [ "text" ];
-            }
-          ];
-        };
-      };
-
-      plugins = {
-        enabled = true;
-        load.paths = [ "${config.home.homeDirectory}/.openclaw/plugins/memory-lancedb-pro" ];
-        slots.memory = "memory-lancedb-pro";
-
-        entries."memory-lancedb-pro" = {
-          enabled = true;
-          config = {
-            embedding = {
-              provider = "openai-compatible";
-              apiKey = "ollama";
-              model = "nomic-embed-text";
-              baseURL = "http://127.0.0.1:11434/v1";
-              dimensions = 768;
+        config = {
+          agents.defaults = {
+            model = {
+              primary = "minimax/MiniMax-M2.7";
+              fallbacks = [ "minimax/MiniMax-M2.5" ];
             };
-
-            autoCapture = true;
-            autoRecall = true;
-            smartExtraction = true;
-            extractMinMessages = 2;
-            extractMaxChars = 8000;
-
-            llm = {
-              auth = "api-key";
-              apiKey = "\${METAPI_API_KEY}";
-              model = "gpt-5.5";
-              baseURL = "https://metapi.milet.lincx.top/v1";
-              timeoutMs = 30000;
+            models = {
+              "minimax/MiniMax-M2.7" = {
+                alias = "MiniMax M2.7";
+              };
+              "minimax/MiniMax-M2.5" = {
+                alias = "MiniMax M2.5";
+              };
             };
+          };
 
-            retrieval = {
-              mode = "hybrid";
-              rerank = "cross-encoder";
-              rerankProvider = "siliconflow";
-              rerankApiKey = "\${SILICONFLOW_API_KEY}";
-              rerankModel = "BAAI/bge-reranker-v2-m3";
-              rerankEndpoint = "https://api.siliconflow.cn/v1/rerank";
-              rerankTimeoutMs = 30000;
+          gateway = {
+            mode = "local";
+            auth = {
+              token = "\${OPENCLAW_GATEWAY_TOKEN}";
             };
+          };
 
-            sessionMemory = {
-              enabled = false;
+          channels.telegram = {
+            allowFrom = [
+              975201632
+              (-5281713495)
+            ];
+            groups = {
+              "*" = {
+                requireMention = true;
+              };
+            };
+          };
+
+          models = {
+            mode = "merge";
+            providers.minimax = {
+              api = "anthropic-messages";
+              baseUrl = "https://api.minimax.io/anthropic/v1";
+              apiKey = "\${MINIMAX_API_KEY}";
+              models = [
+                {
+                  id = "MiniMax-M2.7";
+                  name = "MiniMax M2.7";
+                  reasoning = true;
+                  input = [ "text" ];
+                  contextWindow = 200000;
+                  maxTokens = 8192;
+                  cost = {
+                    input = 0.3;
+                    output = 1.2;
+                    cacheRead = 0.03;
+                    cacheWrite = 0.12;
+                  };
+                }
+                {
+                  id = "MiniMax-M2.5";
+                  name = "MiniMax M2.5";
+                  reasoning = true;
+                  input = [ "text" ];
+                  contextWindow = 200000;
+                  maxTokens = 8192;
+                  cost = {
+                    input = 0.3;
+                    output = 1.2;
+                    cacheRead = 0.03;
+                    cacheWrite = 0.12;
+                  };
+                }
+              ];
+            };
+          };
+
+          plugins = {
+            enabled = true;
+            load.paths = [ "${config.home.homeDirectory}/.openclaw/plugins/memory-lancedb-pro" ];
+            slots.memory = "memory-lancedb-pro";
+
+            entries."memory-lancedb-pro" = {
+              enabled = true;
+              config = {
+                embedding = {
+                  provider = "openai-compatible";
+                  apiKey = "ollama";
+                  model = "nomic-embed-text";
+                  baseURL = "http://127.0.0.1:11434/v1";
+                  dimensions = 768;
+                };
+
+                autoCapture = true;
+                autoRecall = true;
+                smartExtraction = true;
+                extractMinMessages = 2;
+                extractMaxChars = 8000;
+
+                llm = {
+                  auth = "api-key";
+                  apiKey = "\${MINIMAX_API_KEY}";
+                  model = "MiniMax-M2.7";
+                  baseURL = "https://api.minimax.io/anthropic/v1";
+                  timeoutMs = 30000;
+                };
+
+                retrieval = {
+                  mode = "hybrid";
+                  rerank = "cross-encoder";
+                  rerankProvider = "siliconflow";
+                  rerankApiKey = "\${SILICONFLOW_API_KEY}";
+                  rerankModel = "BAAI/bge-reranker-v2-m3";
+                  rerankEndpoint = "https://api.siliconflow.cn/v1/rerank";
+                  rerankTimeoutMs = 30000;
+                };
+
+                sessionMemory = {
+                  enabled = false;
+                };
+              };
             };
           };
         };
@@ -121,10 +144,6 @@
       "curl"
       "nodejs_22"
     ];
-
-    instances.default = {
-      enable = true;
-    };
 
     bundledPlugins = {
       # Enable bundled plugins as needed
@@ -154,6 +173,15 @@
   };
 
   home = {
+    activation = {
+      copyOpenClawMemoryPlugin = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        pluginDir="$HOME/.openclaw/plugins/memory-lancedb-pro"
+        rm -rf "$pluginDir"
+        mkdir -p "$pluginDir"
+        cp -r --no-preserve=mode,ownership,timestamps,links ${pkgs.wktlnix.memory-lancedb-pro}/. "$pluginDir/"
+      '';
+    };
+
     persistence = {
       "/persist" = {
         directories = [
