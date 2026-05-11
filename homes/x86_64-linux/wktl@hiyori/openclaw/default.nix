@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, ... }:
 {
   # nix-openclaw handles documents installation as real files (not symlinks)
   # This fixes the boundary-path security issue where symlinks to /nix/store were rejected
