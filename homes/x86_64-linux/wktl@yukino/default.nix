@@ -31,10 +31,6 @@ in
 
             ];
         };
-        # editors = {
-        #   vscode = enabled;
-        # };
-        # apps.vesktop = enabled;
       };
       terminal = {
         editors.nvchad = enabled;
@@ -43,7 +39,6 @@ in
             userName = "linchengxu";
             userEmail = "linchengxu@z9yun.com";
           };
-          # distrobox = enabled;
           nh = enabled;
           opencode = enabled;
         };
