@@ -159,14 +159,6 @@
   };
 
   home = {
-    activation = {
-      copyOpenClawMemoryPlugin = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        pluginDir="$HOME/.openclaw/plugins/memory-lancedb-pro"
-        rm -rf "$pluginDir"
-        mkdir -p "$pluginDir"
-        cp -r --no-preserve=mode,ownership,timestamps,links ${pkgs.wktlnix.memory-lancedb-pro}/. "$pluginDir/"
-      '';
-    };
     persistence = {
       "/persist" = {
         directories = [
