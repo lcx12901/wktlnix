@@ -152,13 +152,9 @@
       # goplaces.enable = true;
     };
 
-    customPlugins = [
-      # Add custom plugins here
-      # {
-      #   source = "github:owner/repo?rev=<commit>&narHash=<narHash>";
-      #   config = { ... };
-      # }
-    ];
+    customPlugins = [ ];
+
+    skills = import ./skills.nix { inherit pkgs; };
   };
 
   systemd.user.services.openclaw-gateway = {
