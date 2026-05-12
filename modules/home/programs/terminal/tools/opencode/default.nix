@@ -1,5 +1,4 @@
 {
-  inputs,
   osConfig,
   config,
   lib,
@@ -15,8 +14,6 @@ let
 
   agents = import ./agents.nix { inherit lib; };
   commands = import ./commands.nix { inherit lib; };
-  # Import curated skills (local bundle of skill packages)
-  skillsPkg = import ./skills.nix { inherit inputs pkgs; };
 in
 {
   imports = [
@@ -67,34 +64,11 @@ in
                 };
               };
             };
-            metapi = {
-              npm = "@ai-sdk/openai-compatible";
-              name = "metapi";
-              options = {
-                baseURL = "https://metapi.milet.lincx.top/v1";
-                apiKey = "{file:${config.sops.secrets."metapi_key".path}}";
-              };
-              models = {
-                "gpt-5.5" = {
-                  name = "GPT-5.5";
-                };
-                "gpt-5.4" = {
-                  name = "GPT-5.4";
-                };
-                "gpt-5.3-codex" = {
-                  name = "GPT-5.3 Codex";
-                };
-              };
-            };
           };
         };
 
         agents = agents.renderAgents;
         commands = commands.renderCommands;
-        # Expose skill bundles to the opencode program. `skillsPkg` is a
-        # small Nix derivation that packages multiple skills (antfu, ui-ux-pro-max, ...)
-        # This keeps skill packaging separate from the opencode module configuration.
-        skills = skillsPkg;
         context = builtins.readFile ./rules/base.md;
       };
     };
