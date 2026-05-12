@@ -13,46 +13,7 @@ in
   config = lib.mkIf cfg.enable {
     xdg.configFile."opencode/oh-my-openagent.json".source =
       let
-        mainModel = "minimax/MiniMax-M2.7";
-        quickModel = "minimax/MiniMax-M2.7";
-
         defaultSettings = {
-          agents = {
-            sisyphus = {
-              model = mainModel;
-            };
-            oracle = {
-              model = mainModel;
-            };
-            explore = {
-              model = mainModel;
-            };
-            librarian = {
-              model = mainModel;
-            };
-          };
-          categories = {
-            quick = {
-              model = quickModel;
-              description = "Fast, minimal edits and low-surface changes.";
-            };
-            deep = {
-              model = mainModel;
-            };
-            unspecified-high = {
-              model = mainModel;
-              description = "General engineering work that benefits from stronger reasoning.";
-            };
-            unspecified-low = {
-              model = mainModel;
-              description = "Cheaper general subtasks and verification work.";
-            };
-            writing = {
-              model = mainModel;
-              description = "Documentation and prose-heavy tasks.";
-            };
-          };
-
           git_master = {
             commit_footer = false;
             include_co_authored_by = false;
