@@ -9,16 +9,16 @@ let
 in
 buildNpmPackage {
   pname = "memory-lancedb-pro";
-  version = "1.1.0-beta.10";
+  version = "2026.05.15";
 
   src = fetchFromGitHub {
     owner = "CortexReach";
     repo = "memory-lancedb-pro";
-    rev = "02b97bb7ba0123c127179b3f0d8f249b136fce11";
-    hash = "sha256-u7EHHSh4cWSJrTWiCnxqh/98JDzTMc7dsrn2qLJMqCM=";
+    rev = "38eba06cc459d9d9f1f8eadb418f3ae446502188";
+    hash = "sha256-bxKDSzJI4KRT7geyiWwaGHIaiSbhCsqkxEu1//5wKKM=";
   };
 
-  npmDepsHash = "sha256-pPGJn9mVbncyHxPtULSv56d4T4OQjXHWyCV3WI+2OfQ=";
+  npmDepsHash = "sha256-wqX0kAzxEtgAHPvGLby8/p4tqxARLvV6LV9otNaJwNA=";
   inherit nodejs;
 
   dontNpmBuild = true;
