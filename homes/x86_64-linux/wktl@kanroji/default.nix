@@ -8,6 +8,8 @@ in
 
     system.xdg = enabled;
 
+    services.openclaw = enabled;
+
     programs = {
       graphical = {
         wms.niri = {
