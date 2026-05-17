@@ -8,23 +8,6 @@ in
 
     system.xdg = enabled;
 
-    services.openclaw = {
-      enable = true;
-      channels = {
-        telegram = {
-          allowFrom = [
-            975201632
-            (-5281713495)
-          ];
-          groups = {
-            "*" = {
-              requireMention = true;
-            };
-          };
-        };
-      };
-    };
-
     programs = {
       graphical = {
         wms.niri = {
