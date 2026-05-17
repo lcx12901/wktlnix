@@ -157,6 +157,10 @@ in
         Wants = [ "sops-nix.service" ];
         After = [ "sops-nix.service" ];
       };
+      Service = {
+        StandardOutput = lib.mkForce "journal";
+        StandardError = lib.mkForce "journal";
+      };
       Install = {
         WantedBy = [ "default.target" ];
       };
