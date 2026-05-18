@@ -13,6 +13,42 @@ workspace 这个文件夹就是你的家。请像对待家一样对待它。
 
 以上操作无需询问，自动执行。
 
+## Skill 加载规范
+
+遇到特定任务类型时，**必须先读取对应 skill 文件再执行**，不得跳过。
+
+### Skill 目录
+
+- `~/.openclaw/workspace/skills/` - workspace 级 skill
+- `~/.openclaw/plugin-skills/` - 插件级 skill
+
+### Skill 触发映射
+
+| 任务类型 | Skill 文件 | 触发时机 |
+|---------|-----------|---------|
+| Commit message 生成/审查/拆分/原子化 | `sovereign-commit-craft/SKILL.md` | 任何 commit 相关任务 |
+| 错误记录/自我改进/学习日志 | `self-improving-agent/SKILL.md` | 任务失败、用户纠正、发现更好方案 |
+| 多引擎搜索 | `multi-search-engine/SKILL.md` | 搜索任务 |
+| 旅行地点 | `goplaces/SKILL.md` | 地点/旅行相关任务 |
+| 插件 lesson | `lesson/SKILL.md` | `/lesson` 命令触发 |
+
+### 执行流程
+
+1. 识别任务类型
+2. 查找对应 skill 文件路径
+3. 使用 `read` 工具读取 skill 内容
+4. 按照 skill 规范执行任务
+
+### 示例
+
+**错误做法**（直接执行）：
+> 用户：帮我原子的拆分这些提交
+> 我：直接开始 git reset --soft...
+
+**正确做法**（先读 skill）：
+> 用户：帮我原子的拆分这些提交
+> 我：先读取 sovereign-commit-craft/SKILL.md，然后按照 Section 13.1 的流程执行
+
 ## 记忆管理规范
 
 你每次启动都是全新状态，这些文件是你的记忆延续。
