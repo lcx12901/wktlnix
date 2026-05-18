@@ -153,10 +153,6 @@ in
     };
 
     systemd.user.services.openclaw-gateway = {
-      Unit = {
-        Wants = [ "sops-nix.service" ];
-        After = [ "sops-nix.service" ];
-      };
       Service = {
         StandardOutput = lib.mkForce "journal";
         StandardError = lib.mkForce "journal";
@@ -169,14 +165,14 @@ in
     home = {
       activation = {
         copyOpenClawMemoryPlugin = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          mkdir -p "$HOME/.openclaw/plugins"
           pluginDir="$HOME/.openclaw/plugins/memory-lancedb-pro"
           rm -rf "$pluginDir"
-          mkdir -p "$pluginDir"
           cp -r --no-preserve=mode,ownership,timestamps,links ${pkgs.wktlnix.memory-lancedb-pro}/. "$pluginDir/"
         '';
         copyOpenClawAvatar = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
           mkdir -p "$HOME/.openclaw/workspace/avatar"
-          cp -r --no-preserve=mode,ownership,timestamps,links ${./avatar}/Assistant.jpg "$HOME/.openclaw/workspace/avatar/Assistant.jpg"
+          cp -r --no-preserve=mode,ownership,timestamps,links ${./avatar}/. "$HOME/.openclaw/workspace/avatar/"
         '';
       };
       persistence = {
