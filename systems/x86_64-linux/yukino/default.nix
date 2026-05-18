@@ -54,13 +54,12 @@ in
         role = "client";
       };
       mihomo = enabled;
+      ollama = enabled;
     };
 
     security = {
       sudo-rs = enabled;
     };
-
-    # virtualisation.kvm = enabled;
   };
 
   networking = {
