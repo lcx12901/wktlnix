@@ -175,7 +175,7 @@ in
           cp -r --no-preserve=mode,ownership,timestamps,links ${./avatar}/. "$HOME/.openclaw/workspace/avatar/"
         '';
         copySubAgentPolicy = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          cp -r ${./documents}/SUBAGENT-POLICY.md "$HOME/.openclaw/workspace/SUBAGENT-POLICY.md"
+          cp -r --no-preserve=mode,ownership,timestamps,links ${./documents}/SUBAGENT-POLICY.md "$HOME/.openclaw/workspace/SUBAGENT-POLICY.md"
         '';
       };
       persistence = {
