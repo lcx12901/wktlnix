@@ -15,17 +15,53 @@ let
     hash = "sha256-dGNS1EV+PD6NolyFbX3bGboukT2LmTasx7/rM9jjsN8=";
   };
 
-  sovereignCommitCraft = pkgs.runCommand "sovereign-commit-craft" {
-    src = pkgs.fetchurl {
-      url = "https://wry-manatee-359.convex.site/api/v1/download?slug=sovereign-commit-craft";
-      hash = "sha256-mbf8LIoY2bep3n/vWyk1XbKrC6UBm5dMWdhWxyIWMGY=";
-    };
-    buildInputs = [ pkgs.unzip ];
-  } ''
-    unzip $src
-    mkdir -p $out
-    cp EXAMPLES.md README.md SKILL.md $out/
-  '';
+  sovereignCommitCraft =
+    pkgs.runCommand "sovereign-commit-craft"
+      {
+        src = pkgs.fetchurl {
+          url = "https://wry-manatee-359.convex.site/api/v1/download?slug=sovereign-commit-craft";
+          hash = "sha256-mbf8LIoY2bep3n/vWyk1XbKrC6UBm5dMWdhWxyIWMGY=";
+        };
+        buildInputs = [ pkgs.unzip ];
+      }
+      ''
+        unzip $src
+        mkdir -p $out
+        cp EXAMPLES.md README.md SKILL.md $out/
+      '';
+
+  antfuSkills = pkgs.fetchFromGitHub {
+    owner = "antfu";
+    repo = "skills";
+    rev = "50deaeb269d80d92db7a2c5a677290309ae307fc";
+    hash = "sha256-FAyqk2uhWwXt1fmZZdftnjPSvNFAtB73M2AJueHy4TY=";
+  };
+
+  # All antfu-skills except turborepo
+  antfuSkillNames = [
+    "antfu"
+    "nuxt"
+    "pinia"
+    "pnpm"
+    "slidev"
+    "tsdown"
+    "unocss"
+    "vite"
+    "vitepress"
+    "vitest"
+    "vue-best-practices"
+    "vue-router-best-practices"
+    "vue-testing-best-practices"
+    "vue"
+    "vueuse-functions"
+    "web-design-guidelines"
+  ];
+
+  antfuSkillList = pkgs.lib.mapAttrsToList (name: _: {
+    inherit name;
+    source = "${antfuSkills}/skills/${name}";
+    mode = "copy";
+  }) (pkgs.lib.genAttrs antfuSkillNames (_: null));
 in
 [
   {
@@ -44,3 +80,5 @@ in
     mode = "copy";
   }
 ]
+++ antfuSkillList
+
