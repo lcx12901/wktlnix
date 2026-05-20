@@ -100,6 +100,7 @@ in
               slots.memory = "memory-lancedb-pro";
               entries."memory-lancedb-pro" = {
                 enabled = true;
+                hooks.allowConversationAccess = true;
                 config = {
                   embedding = {
                     provider = "openai-compatible";
@@ -111,13 +112,34 @@ in
                   autoCapture = true;
                   autoRecall = true;
                   smartExtraction = true;
-                  extractMinMessages = 2;
+                  extractMinMessages = 6;
+                  autoRecallMinLength = 50;
+                  autoRecallMinRepeated = 20;
+                  recallMode = "adaptive";
+                  workspaceBoundary.userMdExclusive = {
+                    enabled = true;
+                    filterRecall = true;
+                  };
+                  sessionCompression = {
+                    enabled = true;
+                    minScoreToKeep = 0.4;
+                  };
+                  memoryCompaction = {
+                    enabled = true;
+                    minAgeDays = 7;
+                    similarityThreshold = 0.92;
+                    cooldownHours = 24;
+                  };
+                  selfImprovement = {
+                    skipSubagentBootstrap = true;
+                    ensureLearningFiles = true;
+                  };
                   extractMaxChars = 8000;
                   llm = {
                     auth = "api-key";
                     apiKey = "\${MINIMAX_API_KEY}";
                     model = "MiniMax-M2.7";
-                    baseURL = "https://api.minimax.io/anthropic/v1";
+                    baseURL = "https://api.minimax.io";
                     timeoutMs = 30000;
                   };
                   retrieval = {
@@ -128,6 +150,7 @@ in
                     rerankModel = "BAAI/bge-reranker-v2-m3";
                     rerankEndpoint = "https://api.siliconflow.cn/v1/rerank";
                     rerankTimeoutMs = 30000;
+                    hardMinScore = 0.5;
                   };
                   sessionMemory = {
                     enabled = false;
@@ -176,6 +199,12 @@ in
         '';
         copySubAgentPolicy = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
           cp -r --no-preserve=mode,ownership,timestamps,links ${./documents}/SUBAGENT-POLICY.md "$HOME/.openclaw/workspace/SUBAGENT-POLICY.md"
+        '';
+        cleanStaleLockFiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          find "$HOME/.openclaw/memory/lancedb-pro" -name ".memory-write.lock" -mmin +60 -delete 2>/dev/null || true
+        '';
+        ensureSelfImprovementReminder = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          touch "$HOME/.openclaw/workspace/SELF_IMPROVEMENT_REMINDER.md"
         '';
       };
       persistence = {
