@@ -30,6 +30,21 @@ let
         cp EXAMPLES.md README.md SKILL.md $out/
       '';
 
+  capabilityEvolverPro =
+    pkgs.runCommand "capability-evolver-pro"
+      {
+        src = pkgs.fetchurl {
+          url = "https://wry-manatee-359.convex.site/api/v1/download?slug=capability-evolver-pro";
+          hash = "sha256-r/683YxAEMcljTLnshH6aUYeViPf7CVXwVBSenhzUtg=";
+        };
+        buildInputs = [ pkgs.unzip ];
+      }
+      ''
+        unzip $src
+        mkdir -p $out
+        cp SKILL.md handler.ts $out/
+      '';
+
   antfuSkills = pkgs.fetchFromGitHub {
     owner = "antfu";
     repo = "skills";
@@ -77,6 +92,11 @@ in
   {
     name = "sovereign-commit-craft";
     source = "${sovereignCommitCraft}";
+    mode = "copy";
+  }
+  {
+    name = "capability-evolver-pro";
+    source = "${capabilityEvolverPro}";
     mode = "copy";
   }
 ]
