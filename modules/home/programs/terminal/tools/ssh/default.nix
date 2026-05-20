@@ -27,7 +27,7 @@ in
 
       enableDefaultConfig = false;
 
-      matchBlocks = {
+      settings = {
         "*" = {
           forwardAgent = lib.mkDefault false;
           addKeysToAgent = lib.mkDefault "no";
