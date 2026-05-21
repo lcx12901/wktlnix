@@ -23,8 +23,16 @@ in
         default = {
           enable = true;
 
+          runtimePackages = [ pkgs.chromium ];
+
           config = {
             inherit (cfg) channels;
+
+            browser = {
+              executablePath = "${pkgs.chromium}/bin/chromium";
+              headless = true;
+              noSandbox = true;
+            };
 
             agents.defaults = {
               model = {
