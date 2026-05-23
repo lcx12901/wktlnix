@@ -31,6 +31,14 @@
         on = [ "N" ];
         run = "find_arrow --previous";
       }
+      {
+        on = [
+          "t"
+          "r"
+        ];
+        run = "tab_rename --interactive";
+        desc = "Rename the current tab";
+      }
     ];
   };
 }

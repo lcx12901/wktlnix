@@ -7,61 +7,64 @@ let
 in
 {
   plugin = {
-    prepend_fetchers = lib.optionals (lib.hasAttr "git" enabledPlugins) [
-      {
-        id = "git";
-        name = "*";
-        run = "git";
-      }
-      {
-        id = "git";
-        name = "*/";
-        run = "git";
-      }
-    ];
+    prepend_fetchers =
+      lib.optionals (lib.hasAttr "git" enabledPlugins) [
+        {
+          group = "git";
+          url = "*";
+          run = "git";
+        }
+        {
+          group = "git";
+          url = "*/";
+          run = "git";
+        }
+      ]
+      ++ lib.optional (lib.hasAttr "mime-ext" enabledPlugins) {
+        group = "mime";
+        url = "*";
+        run = "mime-ext";
+        prio = "high";
+      };
 
     prepend_preloaders = [
       {
-        name = "/mnt/austinserver/**";
+        url = "/mnt/austinserver/**";
         run = "noop";
       }
       {
-        name = "/mnt/disk/**";
+        url = "/mnt/disk/**";
         run = "noop";
       }
       {
-        name = "/mnt/dropbox/**";
+        url = "/mnt/dropbox/**";
         run = "noop";
-      }
-    ];
-
-    preloaders = [
-      # Image
-      {
-        mime = "image/vnd.djvu";
-        run = "noop";
-      }
-      {
-        mime = "image/*";
-        run = "image";
-      }
-      # Video
-      {
-        mime = "video/*";
-        run = "video";
-      }
-      # PDF
-      {
-        mime = "application/pdf";
-        run = "pdf";
       }
     ];
 
     prepend_previewers =
-      lib.optional (lib.hasAttr "glow" enabledPlugins) {
-        name = "*.md";
-        run = "glow";
-      }
+      lib.optionals (lib.hasAttr "piper" enabledPlugins) [
+        {
+          url = "*.parquet";
+          run = ''piper -- duckdb -c "SELECT * FROM read_parquet('$1') LIMIT 50"'';
+        }
+        {
+          url = "*.xlsx";
+          run = ''piper -- xlsx2csv "$1" | bat -p --color=always --file-name "$1.csv"'';
+        }
+        {
+          url = "*.json";
+          run = ''piper -- bat -p --color=always "$1"'';
+        }
+        {
+          url = "*.sqlite";
+          run = ''piper -- duckdb -c "SELECT * FROM sqlite_scan('$1') LIMIT 50"'';
+        }
+        {
+          url = "*.db";
+          run = ''piper -- duckdb -c "SELECT * FROM sqlite_scan('$1') LIMIT 50"'';
+        }
+      ]
       ++ lib.optionals (lib.hasAttr "ouch" enabledPlugins) (
         let
           mimeTypes = [
@@ -82,65 +85,24 @@ in
           inherit mime;
           run = "ouch";
         }) mimeTypes
-      );
-
-    previewers = [
-      {
-        name = "*/";
-        run = "folder";
-        sync = true;
-      }
-      # Code
-      {
-        mime = "text/*";
-        run = "code";
-      }
-      {
-        mime = "*/xml";
-        run = "code";
-      }
-      {
-        mime = "*/javascript";
-        run = "code";
-      }
-      {
-        mime = "*/wine-extension-ini";
-        run = "code";
-      }
-      # JSON
-      {
-        mime = "application/json";
-        run = "json";
-      }
-      # Image
-      {
-        mime = "image/vnd.djvu";
-        run = "noop";
-      }
-      {
-        mime = "image/*";
-        run = "image";
-      }
-      # Video
-      {
-        mime = "video/*";
-        run = "video";
-      }
-      # PDF
-      {
-        mime = "application/pdf";
-        run = "pdf";
-      }
-      # Archive
-      {
-        mime = "application/gzip";
-        run = "archive";
-      }
-      # Fallback
-      {
-        name = "*";
-        run = "file";
-      }
-    ];
+      )
+      ++ lib.optionals (lib.hasAttr "piper" enabledPlugins) [
+        {
+          url = "*.tar*";
+          run = ''piper --format=url -- tar tf "$1"'';
+        }
+        {
+          url = "*.csv";
+          run = ''piper -- bat -p --color=always "$1"'';
+        }
+        {
+          url = "*.md";
+          run = ''piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'';
+        }
+        {
+          url = "*/";
+          run = ''piper -- eza -TL=3 --color=always --icons=always --group-directories-first --no-quotes "$1"'';
+        }
+      ];
   };
 }

@@ -46,7 +46,7 @@ in
           diff
           full-border
           git
-          # glow
+          glow
           jump-to-char
           mount
           ouch
@@ -56,14 +56,6 @@ in
           sudo
           toggle-pane
           ;
-        glow = pkgs.yaziPlugins.glow.overrideAttrs {
-          patches = [
-            (pkgs.fetchpatch {
-              url = "https://github.com/Reledia/glow.yazi/pull/28.patch";
-              hash = "sha256-wNAqaCMucfw8BZvUi1vqARoraXWGIzZN6YoWcFAelTw=";
-            })
-          ];
-        };
       };
 
       settings = lib.mkMerge [
@@ -87,8 +79,14 @@ in
             show_symlink = true;
             sort_by = "alphabetical";
             sort_dir_first = true;
+            sort_fallback = "natural";
             sort_reverse = false;
             sort_sensitive = false;
+            mouse_events = [
+              "click"
+              "scroll"
+              "drag"
+            ];
           };
 
           pick = {
@@ -120,8 +118,11 @@ in
           };
 
           tasks = {
-            micro_workers = 10;
-            macro_workers = 25;
+            file_workers = 3;
+            plugin_workers = 10;
+            fetch_workers = 10;
+            preload_workers = 2;
+            process_workers = 25;
             bizarre_retry = 5;
             image_alloc = 536870912; # 512MB
             image_bound = [
