@@ -17,8 +17,6 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.openclaw = {
-      documents = ./documents;
-
       instances = {
         default = {
           enable = true;
@@ -37,17 +35,81 @@ in
             agents.defaults = {
               model = {
                 primary = "minimax/MiniMax-M2.7";
-                fallbacks = [ "minimax/MiniMax-M2.5" ];
               };
               models = {
                 "minimax/MiniMax-M2.7" = {
                   alias = "MiniMax M2.7";
                 };
-                "minimax/MiniMax-M2.5" = {
-                  alias = "MiniMax M2.5";
-                };
+              };
+              subagents = {
+                maxConcurrent = 8;
+                maxSpawnDepth = 2;
+                maxChildrenPerAgent = 5;
+                runTimeoutSeconds = 600;
+                thinking = "medium";
+                allowAgents = [
+                  "researcher"
+                  "frontend-dev"
+                  "backend-dev"
+                  "product-manager"
+                ];
               };
             };
+
+            agents.list = [
+              {
+                id = "nova";
+              }
+              {
+                id = "researcher";
+                name = "研究专家";
+                workspace = "${config.home.homeDirectory}/.openclaw/workspace/researcher";
+                skills = [
+                  "multi-search-engine"
+                  "self-improving-agent"
+                ];
+              }
+              {
+                id = "frontend-dev";
+                name = "前端开发专家";
+                workspace = "${config.home.homeDirectory}/.openclaw/workspace/frontend-dev";
+                skills = [
+                  "vue"
+                  "vite"
+                  "vitest"
+                  "pinia"
+                  "unocss"
+                  "vue-best-practices"
+                  "vue-testing-best-practices"
+                  "self-improving-agent"
+                ];
+              }
+              {
+                id = "backend-dev";
+                name = "后端开发专家";
+                workspace = "${config.home.homeDirectory}/.openclaw/workspace/backend-dev";
+                skills = [
+                  "self-improving-agent"
+                  "code-review"
+                ];
+              }
+              {
+                id = "product-manager";
+                name = "产品经理专家";
+                workspace = "${config.home.homeDirectory}/.openclaw/workspace/product-manager";
+                skills = [
+                  "user-story-mapping"
+                  "roadmap-planning"
+                  "user-story-splitting"
+                  "discovery-process"
+                  "prd-development"
+                  "prioritization-advisor"
+                  "company-research"
+                  "multi-search-engine"
+                  "self-improving-agent"
+                ];
+              }
+            ];
 
             gateway = {
               mode = "local";
@@ -205,15 +267,24 @@ in
           mkdir -p "$HOME/.openclaw/workspace/avatar"
           cp -r --no-preserve=mode,ownership,timestamps,links ${./avatar}/. "$HOME/.openclaw/workspace/avatar/"
         '';
-        copySubAgentPolicy = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          cp -r --no-preserve=mode,ownership,timestamps,links ${./documents}/SUBAGENT-POLICY.md "$HOME/.openclaw/workspace/SUBAGENT-POLICY.md"
-        '';
         cleanStaleLockFiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
           find "$HOME/.openclaw/memory/lancedb-pro" -name ".memory-write.lock" -mmin +60 -delete 2>/dev/null || true
         '';
-        ensureSelfImprovementReminder = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          touch "$HOME/.openclaw/workspace/SELF_IMPROVEMENT_REMINDER.md"
-        '';
+        copyAgentDocuments =
+          lib.hm.dag.entryAfter [ "writeBoundary" ] # bash
+            ''
+              # Copy nova documents directly to workspace root
+              mkdir -p "$HOME/.openclaw/workspace"
+              cp -r --no-preserve=mode,ownership,timestamps,links ${./documents}/nova/. "$HOME/.openclaw/workspace/"
+              # Copy other agent documents to their respective workspace subdirectories
+              for agent_dir in ${./documents}/*/; do
+                agent_name=$(basename "$agent_dir")
+                if [ "$agent_name" != "nova" ]; then
+                  mkdir -p "$HOME/.openclaw/workspace/$agent_name"
+                  cp -r --no-preserve=mode,ownership,timestamps,links "$agent_dir/." "$HOME/.openclaw/workspace/$agent_name/"
+                fi
+              done
+            '';
       };
       persistence = {
         "/persist" = {

@@ -1,6 +1,7 @@
 { pkgs }:
 
 let
+  # Core skills
   selfImprovingAgent = pkgs.fetchFromGitHub {
     owner = "peterskoett";
     repo = "self-improving-agent";
@@ -45,6 +46,30 @@ let
         cp SKILL.md handler.ts $out/
       '';
 
+  # PM Agent skills
+  productManagerSkills = pkgs.fetchFromGitHub {
+    owner = "deanpeters";
+    repo = "Product-Manager-Skills";
+    rev = "main";
+    hash = "sha256-bBNtzTVwrlCh8itSNKMIKvbPXV1+39W/VrK090lxncE=";
+  };
+
+  # Code review skill (audit-code)
+  auditCode =
+    pkgs.runCommand "audit-code"
+      {
+        src = pkgs.fetchurl {
+          url = "https://wry-manatee-359.convex.site/api/v1/download?slug=audit-code";
+          hash = "sha256-NKyzepsM2scSspwBTOlJ+p12rMb8lX3WwKKp35mNy7M=";
+        };
+        buildInputs = [ pkgs.unzip ];
+      }
+      ''
+        unzip $src
+        mkdir -p $out
+        cp -r * $out/
+      '';
+
   antfuSkills = pkgs.fetchFromGitHub {
     owner = "antfu";
     repo = "skills";
@@ -77,8 +102,26 @@ let
     source = "${antfuSkills}/skills/${name}";
     mode = "copy";
   }) (pkgs.lib.genAttrs antfuSkillNames (_: null));
+
+  # PM skills list
+  pmSkillNames = [
+    "user-story-mapping"
+    "roadmap-planning"
+    "user-story-splitting"
+    "discovery-process"
+    "prd-development"
+    "prioritization-advisor"
+    "company-research"
+  ];
+
+  pmSkillList = pkgs.lib.mapAttrsToList (name: _: {
+    inherit name;
+    source = "${productManagerSkills}/skills/${name}";
+    mode = "copy";
+  }) (pkgs.lib.genAttrs pmSkillNames (_: null));
 in
 [
+  # Core skills
   {
     name = "self-improving-agent";
     source = "${selfImprovingAgent}";
@@ -99,6 +142,13 @@ in
     source = "${capabilityEvolverPro}";
     mode = "copy";
   }
+
+  # Code review skill (audit-code)
+  {
+    name = "code-review";
+    source = "${auditCode}";
+    mode = "copy";
+  }
 ]
 ++ antfuSkillList
-
+++ pmSkillList
