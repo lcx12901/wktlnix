@@ -38,6 +38,7 @@ in
             };
           };
         };
+        apps.vesktop = enabled;
       };
       terminal = {
         editors.nvchad = enabled;
