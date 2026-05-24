@@ -43,7 +43,6 @@ in
         role = "server";
       };
       nginx = enabled;
-      metapi = enabled;
     };
 
     security = {

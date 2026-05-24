@@ -68,7 +68,7 @@ in
       };
       mihomo = enabled;
       nginx = enabled;
-      aria2 = enabled;
+      # aria2 = enabled;
       ollama = enabled;
     };
 

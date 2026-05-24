@@ -27,7 +27,7 @@ in
         ];
       };
 
-      steam.gamescopeSession.enable = true;
+      steam.gamescopeSession.enable = false;
     };
   };
 }
