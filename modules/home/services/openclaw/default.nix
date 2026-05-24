@@ -81,6 +81,7 @@ in
                   "unocss"
                   "vue-best-practices"
                   "vue-testing-best-practices"
+                  "multi-search-engine"
                   "self-improving-agent"
                 ];
               }
@@ -89,6 +90,7 @@ in
                 name = "后端开发专家";
                 workspace = "${config.home.homeDirectory}/.openclaw/workspace/backend-dev";
                 skills = [
+                  "multi-search-engine"
                   "self-improving-agent"
                   "code-review"
                 ];
