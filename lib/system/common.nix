@@ -11,7 +11,7 @@ in
       allowAliases = false;
       allowUnfreePredicate = _: true;
       permittedInsecurePackages = [
-        "immersive-translate-1.29.4"
+        "immersive-translate-1.29.6"
       ];
     };
   };
