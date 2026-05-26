@@ -222,3 +222,28 @@ Session = sessions_spawn({
   task: "...",
 });
 ```
+
+---
+
+## Cron 任务配置规范
+
+### delivery 配置
+
+- `delivery.mode: "announce"` 需要已配置的 channel，否则任务会报错 "Channel is required"
+- 没有 channel 时应使用 `delivery.mode: "none"`，或配置 `sessionTarget: "current"`
+- 创建 cron 前先确认目标 session 有 channel 绑定
+
+### 超时配置
+
+- model-call-started 阶段容易超时，timeout 建议 >= 600 秒
+- 长任务（日志分析、健康检查）设置 timeoutSeconds: 600
+
+### 重试与限流
+
+- Token Plan 套餐并发受限，自动化任务应添加指数退避重试机制
+- 批量任务错峰执行，避免同一时段大量请求触发限流
+
+### 健康监控
+
+- 关注 task_runs 表中的 failed/timed_out 趋势
+- health_score < 60 时输出警告并写入建议到本文档
