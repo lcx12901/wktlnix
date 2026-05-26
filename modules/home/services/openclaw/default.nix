@@ -32,6 +32,8 @@ in
               noSandbox = true;
             };
 
+            tools.web.fetch.ssrfPolicy.allowRfc2544BenchmarkRange = true;
+
             agents.defaults = {
               model = {
                 primary = "minimax/MiniMax-M2.7";
@@ -39,6 +41,12 @@ in
               models = {
                 "minimax/MiniMax-M2.7" = {
                   alias = "MiniMax M2.7";
+                };
+                "deepseek/deepseek-v4-flash" = {
+                  alias = "DeepSeek V4 Flash";
+                };
+                "deepseek/deepseek-v4-pro" = {
+                  alias = "DeepSeek V4 Pro";
                 };
               };
               subagents = {
@@ -53,6 +61,19 @@ in
                   "backend-dev"
                   "product-manager"
                 ];
+              };
+
+              contextPruning = {
+                mode = "cache-ttl";
+                ttl = "1h";
+              };
+
+              compaction = {
+                mode = "safeguard";
+              };
+
+              heartbeat = {
+                every = "30m";
               };
             };
 
@@ -84,6 +105,9 @@ in
                   "multi-search-engine"
                   "self-improving-agent"
                 ];
+                model = {
+                  primary = "deepseek/deepseek-v4-flash";
+                };
               }
               {
                 id = "backend-dev";
@@ -94,6 +118,9 @@ in
                   "self-improving-agent"
                   "code-review"
                 ];
+                model = {
+                  primary = "deepseek/deepseek-v4-flash";
+                };
               }
               {
                 id = "product-manager";
@@ -129,40 +156,61 @@ in
 
             models = {
               mode = "merge";
-              providers.minimax = {
-                api = "anthropic-messages";
-                baseUrl = "https://api.minimax.io/anthropic/v1";
-                apiKey = "\${MINIMAX_API_KEY}";
-                models = [
-                  {
-                    id = "MiniMax-M2.7";
-                    name = "MiniMax M2.7";
-                    reasoning = true;
-                    input = [ "text" ];
-                    contextWindow = 200000;
-                    maxTokens = 8192;
-                    cost = {
-                      input = 0.3;
-                      output = 1.2;
-                      cacheRead = 0.03;
-                      cacheWrite = 0.12;
-                    };
-                  }
-                  {
-                    id = "MiniMax-M2.5";
-                    name = "MiniMax M2.5";
-                    reasoning = true;
-                    input = [ "text" ];
-                    contextWindow = 200000;
-                    maxTokens = 8192;
-                    cost = {
-                      input = 0.3;
-                      output = 1.2;
-                      cacheRead = 0.03;
-                      cacheWrite = 0.12;
-                    };
-                  }
-                ];
+              providers = {
+                minimax = {
+                  api = "anthropic-messages";
+                  baseUrl = "https://api.minimax.io/anthropic/v1";
+                  apiKey = "\${MINIMAX_API_KEY}";
+                  models = [
+                    {
+                      id = "MiniMax-M2.7";
+                      name = "MiniMax M2.7";
+                      reasoning = true;
+                      input = [ "text" ];
+                      contextWindow = 200000;
+                      maxTokens = 8192;
+                      cost = {
+                        input = 0;
+                        output = 0;
+                        cacheRead = 0;
+                        cacheWrite = 0;
+                      };
+                    }
+                  ];
+                };
+                deepseek = {
+                  api = "openai-completions";
+                  baseUrl = "https://api.deepseek.com/v1";
+                  apiKey = "\${DEEPSEEK_API_KEY}";
+                  models = [
+                    {
+                      id = "deepseek-v4-flash";
+                      name = "DeepSeek V4 Flash";
+                      input = [ "text" ];
+                      contextWindow = 1000000;
+                      maxTokens = 128000;
+                      cost = {
+                        input = 0.14;
+                        output = 0.28;
+                        cacheRead = 0.0028;
+                        cacheWrite = 0;
+                      };
+                    }
+                    {
+                      id = "deepseek-v4-pro";
+                      name = "DeepSeek V4 Pro";
+                      input = [ "text" ];
+                      contextWindow = 1000000;
+                      maxTokens = 384000;
+                      cost = {
+                        input = 0.435;
+                        output = 0.87;
+                        cacheRead = 0.0145;
+                        cacheWrite = 0;
+                      };
+                    }
+                  ];
+                };
               };
             };
 
