@@ -28,6 +28,10 @@ in
                   requireMention = true;
                   users = [ "962057055622012939" ];
                 };
+                "1508880614806261883" = {
+                  requireMention = true;
+                  users = [ "962057055622012939" ];
+                };
               };
             };
           };
