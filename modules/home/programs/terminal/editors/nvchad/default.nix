@@ -35,7 +35,7 @@ in
         rust-analyzer
         rustc
         marksman
-        wktlnix.unocss-language-server
+        unocss-language-server
         yaml-language-server
 
         # formatters

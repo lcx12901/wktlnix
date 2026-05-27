@@ -31,7 +31,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nix-openclaw = {
-      url = "github:openclaw/nix-openclaw/f5e6d2ea2355eb297af5b5e618b37b2fca244df9";
+      url = "github:openclaw/nix-openclaw";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -46,6 +46,7 @@
       flake = false;
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    unocss-language-server.url = "github:xna00/unocss-language-server";
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
