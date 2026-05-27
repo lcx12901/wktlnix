@@ -29,6 +29,12 @@
 - `action=analyze` — 日志模式检测
 - `action=evolve` — 生成改进提案（strategy: auto/balanced/innovate/harden/repair-only）
 
+### 跨渠道消息发送
+
+- **跨渠道（Discord group chat 等）回复必须显式调用 `message` 工具**，不能依赖默认行为或会话上下文自动路由
+- 必须传递 `action=send` + `channel` 参数指定目标渠道
+- Discord mention 格式：用户 `<@USER_ID>`，频道 `<#CHANNEL_ID>`，角色 `<@&ROLE_ID>`
+
 ## 工具使用注意
 
 - LanceDB memory 直接读取需要用 Node.js 脚本（lancedb npm 包）
