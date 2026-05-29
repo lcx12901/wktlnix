@@ -47,6 +47,38 @@ in
       systemPackages = [ pkgs.gitMinimal ];
     };
 
+    # Use fast-nix-gc module for GC and optimise
+    services.fast-nix-gc = {
+      enable = true;
+      # Run weekly on Sunday at 03:15
+      automatic = true;
+      dates = "weekly";
+      # Keep paths registered within 1 day
+      keepRecent = "1d";
+      # Delete generations older than 7 days
+      deleteOlderThan = "7d";
+    };
+
+    services.fast-nix-optimise = {
+      enable = true;
+      # Run weekly, ordered after fast-nix-gc
+      automatic = true;
+      dates = "weekly";
+      # Random delay to stagger across machines
+      randomizedDelaySec = "1h";
+    };
+
+    # Apply systemd optimizations for low-priority background operation
+    systemd.services.fast-nix-gc.serviceConfig = {
+      ProcessType = "Background";
+      LowPriorityIO = true;
+    };
+
+    systemd.services.fast-nix-optimise.serviceConfig = {
+      ProcessType = "Background";
+      LowPriorityIO = true;
+    };
+
     nix =
       let
         mappedRegistry = pipe inputs [
@@ -64,21 +96,18 @@ in
       {
         inherit (cfg) package;
 
+        # Disable native GC and optimise - using fast-nix-gc instead
         gc = {
-          automatic = true;
-          options = "--delete-older-than 7d";
+          automatic = false;
         };
-
-        # This will additionally add your inputs to the system's legacy channels
-        # Making legacy nix commands consistent as well
 
         optimise = {
-          automatic = true;
-          dates = [ "04:00" ];
+          automatic = false;
         };
 
         # This will additionally add your inputs to the system's legacy channels
         # Making legacy nix commands consistent as well
+
         nixPath = mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
 
         # pin the registry to avoid downloading and evaluating a new nixpkgs version every time
