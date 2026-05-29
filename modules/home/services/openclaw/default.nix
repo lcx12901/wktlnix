@@ -102,6 +102,7 @@ in
                   "unocss"
                   "vue-best-practices"
                   "vue-testing-best-practices"
+                  "leaferjs"
                   "multi-search-engine"
                   "self-improving-agent"
                 ];

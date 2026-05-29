@@ -21,7 +21,7 @@ let
       {
         src = pkgs.fetchurl {
           url = "https://wry-manatee-359.convex.site/api/v1/download?slug=sovereign-commit-craft";
-          hash = "sha256-mbf8LIoY2bep3n/vWyk1XbKrC6UBm5dMWdhWxyIWMGY=";
+          hash = "sha256-zqAiZ4MuWWOGvdX8X9u0hV2OTd8vG6P75wLKVXd0xQg=";
         };
         buildInputs = [ pkgs.unzip ];
       }
@@ -77,48 +77,33 @@ let
     hash = "sha256-FAyqk2uhWwXt1fmZZdftnjPSvNFAtB73M2AJueHy4TY=";
   };
 
-  # All antfu-skills except turborepo
-  antfuSkillNames = [
-    "antfu"
-    "nuxt"
-    "pinia"
-    "pnpm"
-    "slidev"
-    "tsdown"
-    "unocss"
-    "vite"
-    "vitepress"
-    "vitest"
-    "vue-best-practices"
-    "vue-router-best-practices"
-    "vue-testing-best-practices"
-    "vue"
-    "vueuse-functions"
-    "web-design-guidelines"
-  ];
+  antfuSkillList =
+    let
+      dir = builtins.readDir "${antfuSkills}/skills";
+    in
+    pkgs.lib.mapAttrsToList (name: _: {
+      inherit name;
+      source = "${antfuSkills}/skills/${name}";
+      mode = "copy";
+    }) dir;
 
-  antfuSkillList = pkgs.lib.mapAttrsToList (name: _: {
-    inherit name;
-    source = "${antfuSkills}/skills/${name}";
-    mode = "copy";
-  }) (pkgs.lib.genAttrs antfuSkillNames (_: null));
+  leaferjsSkills = pkgs.fetchFromGitHub {
+    owner = "leaferjs";
+    repo = "ai-docs";
+    tag = "v2.1.2";
+    hash = "sha256-B4jbvnXZpl7/zw9jE2UnmrpdlLNLz6FiVL2CsG3fusk=";
+  };
 
-  # PM skills list
-  pmSkillNames = [
-    "user-story-mapping"
-    "roadmap-planning"
-    "user-story-splitting"
-    "discovery-process"
-    "prd-development"
-    "prioritization-advisor"
-    "company-research"
-  ];
+  pmSkillList =
+    let
+      dir = builtins.readDir "${productManagerSkills}/skills";
+    in
+    pkgs.lib.mapAttrsToList (name: _: {
+      inherit name;
+      source = "${productManagerSkills}/skills/${name}";
+      mode = "copy";
+    }) dir;
 
-  pmSkillList = pkgs.lib.mapAttrsToList (name: _: {
-    inherit name;
-    source = "${productManagerSkills}/skills/${name}";
-    mode = "copy";
-  }) (pkgs.lib.genAttrs pmSkillNames (_: null));
 in
 [
   # Core skills
@@ -147,6 +132,11 @@ in
   {
     name = "code-review";
     source = "${auditCode}";
+    mode = "copy";
+  }
+  {
+    name = "leaferjs";
+    source = "${leaferjsSkills}/skills/leafer-ai";
     mode = "copy";
   }
 ]
