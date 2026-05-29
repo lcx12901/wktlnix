@@ -131,8 +131,16 @@ agentSession = sessions_spawn({
   runtime: "subagent",
   task:
     "任务描述，包含：\n1. 具体任务目标\n2. 工作范围和边界\n3. 交付标准\n4. 工作目录信息",
+  // taskName: 必须 1-64 字符，匹配 [a-z][a-z0-9_]*，即小写英文/拼音+下划线，禁止中文/空格/大写
+  taskName: "<英文或拼音下划线命名>",
 });
 ```
+
+**⚠️ taskName 命名规范**：
+- 只能使用 `a-z` 开头，后续字符 `a-z0-9_`
+- 禁止：中文、空格、大写字母、特殊字符
+- ✅ 正确：`nvim_nvchad_research`、`yonghu_xitong_fenxi`、`frontend_vue_debug`
+- ❌ 错误：`nvim_nvchad调研`、`用户系统 分析`、`debug`
 
 **researcher 任务** - 先加载 skill：
 
