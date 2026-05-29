@@ -260,7 +260,7 @@ in
                     auth = "api-key";
                     apiKey = "\${MINIMAX_API_KEY}";
                     model = "MiniMax-M2.7";
-                    baseURL = "https://api.minimax.io";
+                    baseURL = "https://api.minimax.io/v1";
                     timeoutMs = 30000;
                   };
                   retrieval = {
