@@ -83,6 +83,20 @@
 
 本地未安装的程序使用 `nix-shell` 运行。
 
+### 执行效率原则
+
+**连续 3+ 次类似操作 → 先聚合脚本再执行**
+
+适用：`exec`、`web_fetch`、`read`、`sessions_spawn`
+
+- 用 `rg`（ripgrep）替代 `grep -r`
+- 用项目内置命令替代手写循环
+- 只总结不Dump噪音输出
+
+#### 核心教训
+
+能聚合的不拆分，能 fetch 的不 search，能脚本的不 exec
+
 ---
 
 ## 子 Agent 协调
