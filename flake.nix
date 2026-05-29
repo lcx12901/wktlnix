@@ -21,6 +21,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    fast-nix-gc = {
+      url = "github:Mic92/fast-nix-gc";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +35,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nix-openclaw = {
-      url = "github:openclaw/nix-openclaw";
+      url = "github:openclaw/nix-openclaw/ed00b170386eca78d4ed380e15de618b983c70e1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
