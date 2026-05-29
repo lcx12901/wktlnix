@@ -13,10 +13,8 @@ in
       channels = {
         discord = {
           enabled = true;
-          dm = {
-            policy = "allowlist";
-            allowFrom = [ "962057055622012939" ];
-          };
+          dmPolicy = "allowlist";
+          allowFrom = [ "962057055622012939" ];
           groupPolicy = "allowlist";
           guilds = {
             "1507221972579516487" = {
