@@ -233,6 +233,7 @@ in
                   autoCapture = true;
                   autoRecall = true;
                   smartExtraction = true;
+                  enableManagementTools = true;
                   extractMinMessages = 6;
                   autoRecallMinLength = 50;
                   autoRecallMinRepeated = 20;
