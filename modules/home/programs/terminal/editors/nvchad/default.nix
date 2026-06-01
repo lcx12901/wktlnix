@@ -16,6 +16,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [ neovide ];
+
     programs.nvchad = {
       enable = true;
       extraPackages = with pkgs; [

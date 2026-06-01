@@ -33,6 +33,7 @@ in
           (match { app-id = "wechat"; })
           (match { app-id = "kitty"; })
           (match { app-id = "^com\.mitchellh\.ghostty$"; })
+          (match { app-id = "neovide"; })
           (leaf' "opacity" 0.85)
           (plain "background-effect" [
             (leaf' "blur" true)
