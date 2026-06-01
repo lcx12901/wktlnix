@@ -70,6 +70,7 @@ in
                   "frontend-dev"
                   "backend-dev"
                   "product-manager"
+                  "ui-designer"
                 ];
               };
 
@@ -149,6 +150,31 @@ in
                   "multi-search-engine"
                   "self-improving-agent"
                 ];
+              }
+              {
+                id = "ui-designer";
+                name = "UI 设计专家";
+                workspace = "${config.home.homeDirectory}/.openclaw/workspace/ui-designer";
+                skills = [
+                  "ui-ux-pro-max"
+                  "design-system"
+                  "design"
+                  "banner-design"
+                  "brand"
+                  "slides"
+                  "ui-styling"
+                  "design-review"
+                  "react"
+                  "tailwindcss"
+                  "shadcn-ui"
+                  "responsive-design"
+                  "a11y"
+                  "multi-search-engine"
+                  "self-improving-agent"
+                ];
+                model = {
+                  primary = "deepseek/deepseek-v4-flash";
+                };
               }
             ];
 

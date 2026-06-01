@@ -46,7 +46,6 @@ let
         cp SKILL.md handler.ts $out/
       '';
 
-  # PM Agent skills
   productManagerSkills = pkgs.fetchFromGitHub {
     owner = "deanpeters";
     repo = "Product-Manager-Skills";
@@ -54,7 +53,6 @@ let
     hash = "sha256-bBNtzTVwrlCh8itSNKMIKvbPXV1+39W/VrK090lxncE=";
   };
 
-  # Code review skill (audit-code)
   auditCode =
     pkgs.runCommand "audit-code"
       {
@@ -104,9 +102,128 @@ let
       mode = "copy";
     }) dir;
 
+  # ui-ux-pro-max-skill (from GitHub)
+  uiUxProMaxRepo = pkgs.fetchFromGitHub {
+    owner = "nextlevelbuilder";
+    repo = "ui-ux-pro-max-skill";
+    rev = "b7e3af80f6e331f6fb456667b82b12cade7c9d35";
+    hash = "sha256-tgGnZt6ITH8IDPqglNDC1JCt5ZkVMGcET9IbP0vITjo=";
+  };
+
+  uiUxProMax =
+    pkgs.runCommand "ui-ux-pro-max"
+      {
+        src = uiUxProMaxRepo;
+        buildInputs = [ pkgs.python3 ];
+      }
+      ''
+        mkdir -p $out
+        cp -rL $src/.claude/skills/* $out/
+      '';
+
+  uiUxProMaxSkillList =
+    let
+      dir = builtins.readDir "${uiUxProMax}";
+    in
+    pkgs.lib.mapAttrsToList (name: _: {
+      inherit name;
+      source = "${uiUxProMax}/${name}";
+      mode = "copy";
+    }) dir;
+
+  # ClawHub skills
+  designReview =
+    pkgs.runCommand "design-review"
+      {
+        src = pkgs.fetchurl {
+          url = "https://wry-manatee-359.convex.site/api/v1/download?slug=design-review";
+          hash = "sha256-ae0o88hUtdU76/B0W19rUJbEd+gljrfduuxEV2YbMNc=";
+        };
+        buildInputs = [ pkgs.unzip ];
+      }
+      ''
+        unzip $src
+        mkdir -p $out
+        cp -r * $out/
+      '';
+
+  react =
+    pkgs.runCommand "react"
+      {
+        src = pkgs.fetchurl {
+          url = "https://wry-manatee-359.convex.site/api/v1/download?slug=react";
+          hash = "sha256-gQtE3UEEJieHZ2v40Oiw3GYX1qyFRWOnCF42xgezdOQ=";
+        };
+        buildInputs = [ pkgs.unzip ];
+      }
+      ''
+        unzip $src
+        mkdir -p $out
+        cp -r * $out/
+      '';
+
+  tailwindcss =
+    pkgs.runCommand "tailwindcss"
+      {
+        src = pkgs.fetchurl {
+          url = "https://wry-manatee-359.convex.site/api/v1/download?slug=tailwindcss";
+          hash = "sha256-8jkEm5xdmf9q11nkKD7MSuJBdLuZWb0eAElYJObuWlY=";
+        };
+        buildInputs = [ pkgs.unzip ];
+      }
+      ''
+        unzip $src
+        mkdir -p $out
+        cp -r * $out/
+      '';
+
+  shadcnUi =
+    pkgs.runCommand "shadcn-ui"
+      {
+        src = pkgs.fetchurl {
+          url = "https://wry-manatee-359.convex.site/api/v1/download?slug=shadcn-ui";
+          hash = "sha256-YiU4kU92jHRlqm0bIsS/XBKSNE0fWY1iphLkUbncPMk=";
+        };
+        buildInputs = [ pkgs.unzip ];
+      }
+      ''
+        unzip $src
+        mkdir -p $out
+        cp -r * $out/
+      '';
+
+  responsiveDesign =
+    pkgs.runCommand "responsive-design"
+      {
+        src = pkgs.fetchurl {
+          url = "https://wry-manatee-359.convex.site/api/v1/download?slug=responsive-design";
+          hash = "sha256-2RqexgiSCXdScw/5U8rIyQ3Np8FJkvH65/E65AANZas=";
+        };
+        buildInputs = [ pkgs.unzip ];
+      }
+      ''
+        unzip $src
+        mkdir -p $out
+        cp -r * $out/
+      '';
+
+  a11y =
+    pkgs.runCommand "a11y"
+      {
+        src = pkgs.fetchurl {
+          url = "https://wry-manatee-359.convex.site/api/v1/download?slug=a11y";
+          hash = "sha256-O3mdINISbCXqfOLl/+QIbxNO8ooYpm9OZbngpFHUZaM=";
+        };
+        buildInputs = [ pkgs.unzip ];
+      }
+      ''
+        unzip $src
+        mkdir -p $out
+        cp -r * $out/
+      '';
+
 in
 [
-  # Core skills
   {
     name = "self-improving-agent";
     source = "${selfImprovingAgent}";
@@ -127,8 +244,6 @@ in
     source = "${capabilityEvolverPro}";
     mode = "copy";
   }
-
-  # Code review skill (audit-code)
   {
     name = "code-review";
     source = "${auditCode}";
@@ -139,6 +254,37 @@ in
     source = "${leaferjsSkills}/skills/leafer-ai";
     mode = "copy";
   }
+  {
+    name = "design-review";
+    source = "${designReview}";
+    mode = "copy";
+  }
+  {
+    name = "react";
+    source = "${react}";
+    mode = "copy";
+  }
+  {
+    name = "tailwindcss";
+    source = "${tailwindcss}";
+    mode = "copy";
+  }
+  {
+    name = "shadcn-ui";
+    source = "${shadcnUi}";
+    mode = "copy";
+  }
+  {
+    name = "responsive-design";
+    source = "${responsiveDesign}";
+    mode = "copy";
+  }
+  {
+    name = "a11y";
+    source = "${a11y}";
+    mode = "copy";
+  }
 ]
 ++ antfuSkillList
 ++ pmSkillList
+++ uiUxProMaxSkillList
