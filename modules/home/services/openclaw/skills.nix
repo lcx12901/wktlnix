@@ -36,7 +36,7 @@ let
       {
         src = pkgs.fetchurl {
           url = "https://wry-manatee-359.convex.site/api/v1/download?slug=capability-evolver-pro";
-          hash = "sha256-r/683YxAEMcljTLnshH6aUYeViPf7CVXwVBSenhzUtg=";
+          hash = "sha256-quHCIQFaohSc5FOOOM65vMOG1I9OMdjfU6vLdoaxgeg=";
         };
         buildInputs = [ pkgs.unzip ];
       }

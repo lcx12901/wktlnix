@@ -8,6 +8,9 @@
 let
   inherit (lib.wktlnix) mkBoolOpt mkOpt;
   cfg = config.wktlnix.services.openclaw;
+
+  allSkills = import ./skills.nix { inherit pkgs; };
+  allSkillNames = map (s: s.name) allSkills;
 in
 {
   options.wktlnix.services.openclaw = with lib.types; {
@@ -36,11 +39,18 @@ in
 
             agents.defaults = {
               model = {
-                primary = "minimax/MiniMax-M2.7";
+                primary = "minimax/MiniMax-M3";
+                fallbacks = [
+                  "minimax/MiniMax-M2.7"
+                  "deepseek/deepseek-v4-flash"
+                ];
               };
               models = {
                 "minimax/MiniMax-M2.7" = {
                   alias = "MiniMax M2.7";
+                };
+                "minimax/MiniMax-M3" = {
+                  alias = "MiniMax M3";
                 };
                 "deepseek/deepseek-v4-flash" = {
                   alias = "DeepSeek V4 Flash";
@@ -80,6 +90,7 @@ in
             agents.list = [
               {
                 id = "nova";
+                skills = allSkillNames;
               }
               {
                 id = "researcher";
@@ -170,6 +181,20 @@ in
                       input = [ "text" ];
                       contextWindow = 200000;
                       maxTokens = 8192;
+                      cost = {
+                        input = 0;
+                        output = 0;
+                        cacheRead = 0;
+                        cacheWrite = 0;
+                      };
+                    }
+                    {
+                      id = "MiniMax-M3";
+                      name = "MiniMax M3";
+                      reasoning = true;
+                      input = [ "text" ];
+                      contextWindow = 1000000;
+                      maxTokens = 32000;
                       cost = {
                         input = 0;
                         output = 0;
@@ -294,7 +319,7 @@ in
       bundledPlugins = { };
       customPlugins = [ ];
 
-      skills = import ./skills.nix { inherit pkgs; };
+      skills = allSkills;
     };
 
     systemd.user.services.openclaw-gateway = {
