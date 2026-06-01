@@ -35,7 +35,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nix-openclaw = {
-      url = "github:openclaw/nix-openclaw/ed00b170386eca78d4ed380e15de618b983c70e1";
+      url = "github:openclaw/nix-openclaw";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
