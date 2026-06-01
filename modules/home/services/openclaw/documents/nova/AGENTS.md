@@ -82,7 +82,7 @@ message --action send --channel discord --target <id> --message "..."
 
 ---
 
-## 4. 安全与数据管理
+## 5. 安全与数据管理
 
 ### 5.1 数据三级分类
 
@@ -160,6 +160,7 @@ message --action send --channel discord --target <id> --message "..."
 | §3.5-3.6 cron / memory | 配置定时任务 / 操作记忆时 |
 | §4.2-4.5 子 agent 协调详细 | spawn 前、添加新 agent 时 |
 | §4.6 阶段 2：Sub-agent 省 token 模式 | spawn sub-agent 前（**重要**）|
+| §4.7 Sub-agent 超时救援 SOP | sub-agent timed_out 时（**必读**）|
 | §5.6 提示注入识别 | 处理不可信源时 |
 | §7 报告反例库 | 写交付报告时 |
 | §8 时间显示规范 | 显示时间时 |
