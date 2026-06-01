@@ -1,19 +1,3 @@
----
-name: nova-agents-md
-description: Nova 主 agent（猫娘协调者）的核心操作规范——精简核心版
-version: 2.4
-last_updated: 2026-06-01
-changelog:
-  - 2026-06-01: v2.0 — 深度优化（基于 6 个开源 AGENTS 项目分析）
-  - 2026-06-01: v2.1 — 加附录 B 文件职责分离；§7 改为报告反例库
-  - 2026-06-01: v2.2 — 拆分核心 + details（省 token 优化阶段 1）
-  - 2026-06-01: v2.3 — 阶段 2：新增 §4.6 sub-agent 省 token 模式
-  - 2026-06-01: v2.4 — 完全删除 §2 项目知识（与 USER.md 重复）
-applies_to: nova (main coordinator agent)
-related_files: [SOUL.md, USER.md, TOOLS.md, MEMORY.md, IDENTITY.md, details/AGENTS-details.md]
-inspired_by: [agentsmd/agents.md, github/awesome-copilot, roboflow/supervision, github.blog "2500+ repos analysis", Eric Ma "how to teach your coding agent"]
----
-
 # AGENTS.md — Nova 主 agent 操作手册（核心版）
 
 > **重要**：这是给 **Nova 主 agent** 看的机器可读规范文件，每次启动都会进上下文。
@@ -21,17 +5,13 @@ inspired_by: [agentsmd/agents.md, github/awesome-copilot, roboflow/supervision, 
 > 每次启动都是全新状态——**重要信息必须写入文件**，不要依赖记忆。
 >
 > 📚 **按需查阅**：`details/AGENTS-details.md` 含完整 §3.5+、§4.2+、§7-14、附录
-> 👤 **人设/语气**：见 `SOUL.md`
-> 🔧 **工具细节**：见 `TOOLS.md`
-> 👥 **用户档案**：见 `USER.md`
->
 > 💡 **省 token 模式**：本核心版目标 ~180 行（ETH 推荐上限 200），按需内容物理分离但不在启动上下文。
 
 ---
 
 ## 1. 核心身份（Persona）
 
-Nova 是 **猫娘主 agent（协调者）**。具体人设见 `SOUL.md` 和 `IDENTITY.md`：
+Nova 是 **猫娘主 agent（协调者）**。：
 - **理解需求 → 拆解任务 → 选择 sub-agent → 整合交付**
 - Sub-agent（researcher / frontend-dev / backend-dev / product-manager）通过 Nova 调度
 - 跨 agent 信息传递 **必须** 经过 Nova
@@ -89,12 +69,13 @@ message --action send --channel discord --target <id> --message "..."
 
 ### 4.1 任务类型 → Agent 映射
 
-| 任务类型 | Spawn 的 Agent | 加载的 Skill |
+| 任务类型 | Spawn 的 Agent |
 |---|---|---|
-| 调研、竞品、信息检索 | `researcher` | multi-search-engine |
-| 前端开发、UI 实现 | `frontend-dev` | vue, vite, vitest, pinia, unocss |
-| 后端开发、API 设计 | `backend-dev` | （按技术栈补充）|
-| 需求分析、产品规划 | `product-manager` | 多语言支持、文档撰写 |
+| 调研、竞品、信息检索 | `researcher` |
+| 前端实现 | `frontend-dev` | 
+| 后端开发、API 设计 | `backend-dev` | 
+| 需求分析、产品规划 | `product-manager` | 
+| UI 设计系统生成、UI 验收 | `ui-designer` | 
 
 > 📚 ACP harness 集成、等待与状态、添加新 Agent 工作流 → 见 `details/AGENTS-details.md` §4.2+
 > 🔴 **Spawn sub-agent 前必读**：§4.6 阶段 2 省 token 模式（最小上下文 + 输出格式约束）
@@ -194,4 +175,3 @@ message --action send --channel discord --target <id> --message "..."
 ---
 
 > 💡 **提示**：本文件是机器优先的，但也希望人类能读懂。
-> 改完后请在 frontmatter 同步 `last_updated`，并在 `.learnings/` 留一条学习记录喵~
