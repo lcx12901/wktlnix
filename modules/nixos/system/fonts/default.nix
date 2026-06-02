@@ -102,14 +102,11 @@ in
     };
     services.kmscon = {
       enable = true;
-      fonts = [
-        {
-          name = cfg.default;
-          package = pkgs.maple-mono.NF-CN;
-        }
-      ];
       extraOptions = "--term xterm-256color";
-      extraConfig = "font-size=12";
+      config = {
+        font-size = 12;
+        font-name = "Maple Mono NF CN";
+      };
       # Whether to use 3D hardware acceleration to render the console.
       hwRender = true;
     };
