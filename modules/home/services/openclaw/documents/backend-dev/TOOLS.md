@@ -6,6 +6,7 @@
 - **read / glob / grep** → 查代码、数据模型、配置文件，先查本地
 - **exec** → 运行测试、构建、迁移脚本
 - **edit / write** → 修改服务器代码、API 文档、数据库脚本
+- **memory_recall** → 搜索历史记忆（只读，跨 session 查之前的 API 变更/技术决策）
 
 ### Level 2: 网络·轻量（次选）
 - **web_fetch** → 读技术文档、库的 API 参考，先确认本地无缓存

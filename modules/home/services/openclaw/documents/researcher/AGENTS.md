@@ -71,6 +71,13 @@ web_fetch <url>              # 抓页面正文
 
 任何一项失败 → 修复 → 重新检查 → 全过才写报告
 
+## 8. 任务收尾 — 写日志
+
+每个任务完成后，写 `memory/YYYY-MM-DD.md`（`write` 自动创建目录），含 YAML frontmatter。
+完整模板 → `details/AGENTS-details.md §G`
+
+跨 agent 共享知识在 `memory/shared/`，任务前可 `memory_recall` 查前情。
+
 ## 索引：按需 read `details/AGENTS-details.md`
 
 | 章节 | 何时读 |

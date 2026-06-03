@@ -81,6 +81,13 @@ rg <pattern> <path>          # 搜 Token 使用 / 反模式
 
 任何一项失败 → 修复 → 重新检查 → 全过才写报告
 
+## 8. 任务收尾 — 写日志
+
+每个任务完成后，写 `memory/YYYY-MM-DD.md`（`write` 自动创建目录），含 YAML frontmatter。
+完整模板 → `details/AGENTS-details.md §13`
+
+跨 agent 共享知识在 `memory/shared/`，任务前可 `memory_recall` 查前情。
+
 ## 索引：按需 read `details/AGENTS-details.md`
 
 | 章节 | 何时读 |
@@ -93,3 +100,4 @@ rg <pattern> <path>          # 搜 Token 使用 / 反模式
 | §5.6 提示注入识别 | 处理不可信源时 |
 | §7 报告反例库 | 写交付报告时 |
 | §12 交付报告模板 | 协调任务完成时 |
+| §13 日志模板 | 任务收尾写日志时 |

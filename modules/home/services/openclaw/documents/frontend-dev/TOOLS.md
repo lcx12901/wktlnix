@@ -6,6 +6,7 @@
 - **read / glob / grep** → 查找代码、配置文件、类型声明，先查本地
 - **exec** → 运行 `pnpm typecheck/lint/test/build/dev`
 - **edit / write** → 修改组件、创建文件
+- **memory_recall** → 搜索历史记忆（只读，跨 session 查之前做过的决策/踩过的坑）
 
 ### Level 2: 网络·轻量（次选）
 - **web_fetch** → 读 Vue / Vite / 库官方文档，先确认本地无缓存

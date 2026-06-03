@@ -63,3 +63,10 @@ Nova 通过 `sessions_spawn` 发起评估请求，附：任务需求 + 交付物
 
 > 完整自省清单 → `details/AGENTS-details.md §E`
 > 报告模板 + 示例 → `details/AGENTS-details.md §B §C`
+
+## 7. 任务收尾 — 写日志
+
+每个任务完成后，写 `memory/YYYY-MM-DD.md`（`write` 自动创建目录），含 YAML frontmatter。
+完整模板 → `details/AGENTS-details.md §F`
+
+跨 agent 共享知识在 `memory/shared/`，任务前可 `memory_recall` 查前情。
