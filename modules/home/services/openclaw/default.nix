@@ -45,10 +45,6 @@ in
             };
 
             tools.web.fetch.ssrfPolicy.allowRfc2544BenchmarkRange = true;
-            tools.exec = {
-              mode = "auto";
-              strictInlineEval = true;
-            };
 
             agents.defaults = {
               contextInjection = "continuation-skip";
