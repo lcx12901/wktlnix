@@ -73,6 +73,17 @@ API 文档: "OpenAPI / Swagger 链接"
 
 完整模板 → `details/AGENTS-details.md §7`
 
+## 7. 交付前自检
+
+写交付报告前，逐条检查：
+1. API 文档（OpenAPI/Swagger）是否完整？
+2. 数据库迁移脚本是否可回滚？
+3. 所有变更是否通过了测试？（单元测试/API 测试）
+4. 是否遗漏了需求中的任何端点或业务逻辑？
+5. 是否暴露了敏感信息到输出中？
+
+任何一项失败 → 修复 → 重新检查 → 全过才写报告
+
 ## 索引：按需 read `details/AGENTS-details.md`
 
 | 章节 | 何时读 |

@@ -70,6 +70,17 @@ rg <pattern> <path>          # ripgrep 搜索
 
 完整报告结构 + 每日日志模板 → `details/AGENTS-details.md §7`
 
+## 8. 交付前自检
+
+写 PRD/分析报告前，逐条检查：
+1. 每个用户故事是否有明确的验收标准？
+2. 是否明确定义了非目标（out of scope）？
+3. 跨 Agent 协作的接口约定是否已确认？
+4. 是否遗漏了 Nova 需求中的任何一条？
+5. 调研结论（如有）是否引用了 researcher 的报告？
+
+任何一项失败 → 修复 → 重新检查 → 全过才交付
+
 ## 索引：按需 read `details/AGENTS-details.md`
 
 | 章节 | 何时读 |
