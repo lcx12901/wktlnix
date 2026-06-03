@@ -71,6 +71,7 @@ in
                   "backend-dev"
                   "product-manager"
                   "ui-designer"
+                  "evaluator"
                 ];
               };
 
@@ -81,6 +82,9 @@ in
 
               compaction = {
                 mode = "safeguard";
+                reserveTokens = 8000;
+                keepRecentTokens = 4000;
+                maxHistoryShare = 0.6;
               };
 
               heartbeat = {
@@ -92,6 +96,18 @@ in
               {
                 id = "nova";
                 skills = allSkillNames;
+              }
+              {
+                id = "evaluator";
+                name = "质量评估专家";
+                workspace = "${config.home.homeDirectory}/.openclaw/workspace/evaluator";
+                skills = [
+                  "code-review"
+                  "self-improving-agent"
+                ];
+                model = {
+                  primary = "deepseek/deepseek-v4-pro";
+                };
               }
               {
                 id = "researcher";
@@ -189,6 +205,16 @@ in
               maintenance = {
                 mode = "enforce";
                 pruneAfter = "30d";
+              };
+            };
+
+            diagnostics = {
+              cacheTrace = {
+                enabled = true;
+                filePath = "${config.home.homeDirectory}/.openclaw/trajectory/cache-traces.jsonl";
+                includeMessages = false;
+                includePrompt = false;
+                includeSystem = false;
               };
             };
 
@@ -373,12 +399,39 @@ in
         cleanStaleLockFiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
           find "$HOME/.openclaw/memory/lancedb-pro" -name ".memory-write.lock" -mmin +60 -delete 2>/dev/null || true
         '';
+        setupTrajectoryDir = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          mkdir -p "$HOME/.openclaw/trajectory"
+          # Archive cache-traces > 7 days to old/, keep at most 100 MB recent
+          traj="$HOME/.openclaw/trajectory"
+          if [ -f "$traj/cache-traces.jsonl" ] && [ "$(wc -c < "$traj/cache-traces.jsonl" 2>/dev/null || echo 0)" -gt 104857600 ]; then
+            mkdir -p "$traj/old"
+            ts=$(stat -c %Y "$traj/cache-traces.jsonl" 2>/dev/null || echo "$(date +%s)")
+            mv "$traj/cache-traces.jsonl" "$traj/old/cache-traces-$ts.jsonl"
+          fi
+          # Prune old/ archives > 90 days
+          find "$traj/old" -name "*.jsonl" -mtime +90 -delete 2>/dev/null || true
+        '';
         copyAgentDocuments =
           lib.hm.dag.entryAfter [ "writeBoundary" ] # bash
             ''
+              # Backup runtime PROGRESS.md if it has real user content
+              # (size > 200 bytes means user has appended history beyond the template)
+              runtime_progress="$HOME/.openclaw/workspace/PROGRESS.md"
+              preserve_progress=0
+              if [ -f "$runtime_progress" ] && [ "$(wc -c < "$runtime_progress")" -gt 200 ]; then
+                cp "$runtime_progress" "$runtime_progress.runtime-bak-$$"
+                preserve_progress=1
+              fi
+
               # Copy nova documents directly to workspace root
               mkdir -p "$HOME/.openclaw/workspace"
               cp -r --no-preserve=mode,ownership,timestamps,links ${./documents}/nova/. "$HOME/.openclaw/workspace/"
+
+              # Restore runtime PROGRESS.md if we backed it up
+              if [ "$preserve_progress" = "1" ]; then
+                mv "$runtime_progress.runtime-bak-$$" "$runtime_progress"
+              fi
+
               # Copy other agent documents to their respective workspace subdirectories
               for agent_dir in ${./documents}/*/; do
                 agent_name=$(basename "$agent_dir")
