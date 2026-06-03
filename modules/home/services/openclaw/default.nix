@@ -33,9 +33,22 @@ in
               executablePath = "${pkgs.chromium}/bin/chromium";
               headless = true;
               noSandbox = true;
+              extraArgs = [
+                "--disable-gpu"
+                "--disable-dev-shm-usage"
+                "--no-zygote"
+              ];
+              tabCleanup = {
+                enabled = true;
+                idleMinutes = 30;
+              };
             };
 
             tools.web.fetch.ssrfPolicy.allowRfc2544BenchmarkRange = true;
+            tools.exec = {
+              mode = "auto";
+              strictInlineEval = true;
+            };
 
             agents.defaults = {
               model = {
@@ -95,7 +108,13 @@ in
             agents.list = [
               {
                 id = "nova";
-                skills = allSkillNames;
+                skills = [
+                  "self-improving-agent"
+                  "multi-search-engine"
+                  "sovereign-commit-craft"
+                  "capability-evolver-pro"
+                  "code-review"
+                ];
               }
               {
                 id = "evaluator";
@@ -205,6 +224,10 @@ in
               maintenance = {
                 mode = "enforce";
                 pruneAfter = "30d";
+              };
+              reset = {
+                mode = "idle";
+                idleMinutes = 240;
               };
             };
 
@@ -336,9 +359,9 @@ in
                   extractMaxChars = 8000;
                   llm = {
                     auth = "api-key";
-                    apiKey = "\${MINIMAX_API_KEY}";
-                    model = "MiniMax-M2.7";
-                    baseURL = "https://api.minimax.io/v1";
+                    apiKey = "\${DEEPSEEK_API_KEY}";
+                    model = "deepseek-v4-flash";
+                    baseURL = "https://api.deepseek.com/v1";
                     timeoutMs = 30000;
                   };
                   retrieval = {
