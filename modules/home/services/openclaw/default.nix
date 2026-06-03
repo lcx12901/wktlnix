@@ -10,7 +10,6 @@ let
   cfg = config.wktlnix.services.openclaw;
 
   allSkills = import ./skills.nix { inherit pkgs; };
-  allSkillNames = map (s: s.name) allSkills;
 in
 {
   options.wktlnix.services.openclaw = with lib.types; {
@@ -48,24 +47,16 @@ in
 
             agents.defaults = {
               contextInjection = "continuation-skip";
-              skipOptionalBootstrapFiles = ["IDENTITY.md"];
               bootstrapMaxChars = 12000;
               bootstrapTotalMaxChars = 35000;
 
               model = {
-                primary = "minimax/MiniMax-M3";
+                primary = "deepseek/deepseek-v4-flash";
                 fallbacks = [
-                  "minimax/MiniMax-M2.7"
-                  "deepseek/deepseek-v4-flash"
+                  "deepseek/deepseek-v4-pro"
                 ];
               };
               models = {
-                "minimax/MiniMax-M2.7" = {
-                  alias = "MiniMax M2.7";
-                };
-                "minimax/MiniMax-M3" = {
-                  alias = "MiniMax M3";
-                };
                 "deepseek/deepseek-v4-flash" = {
                   alias = "DeepSeek V4 Flash";
                 };
@@ -250,41 +241,6 @@ in
             models = {
               mode = "merge";
               providers = {
-                minimax = {
-                  api = "anthropic-messages";
-                  baseUrl = "https://api.minimax.io/anthropic/v1";
-                  apiKey = "\${MINIMAX_API_KEY}";
-                  models = [
-                    {
-                      id = "MiniMax-M2.7";
-                      name = "MiniMax M2.7";
-                      reasoning = true;
-                      input = [ "text" ];
-                      contextWindow = 200000;
-                      maxTokens = 8192;
-                      cost = {
-                        input = 0;
-                        output = 0;
-                        cacheRead = 0;
-                        cacheWrite = 0;
-                      };
-                    }
-                    {
-                      id = "MiniMax-M3";
-                      name = "MiniMax M3";
-                      reasoning = true;
-                      input = [ "text" ];
-                      contextWindow = 1000000;
-                      maxTokens = 32000;
-                      cost = {
-                        input = 0;
-                        output = 0;
-                        cacheRead = 0;
-                        cacheWrite = 0;
-                      };
-                    }
-                  ];
-                };
                 deepseek = {
                   api = "openai-completions";
                   baseUrl = "https://api.deepseek.com/v1";
