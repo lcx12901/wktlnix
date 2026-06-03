@@ -110,7 +110,12 @@ sessions_spawn({
 
 ## 上下文
 - 工作目录：[绝对路径]
-- 相关文件：[路径列表]`,
+- 相关文件：[路径列表]
+
+## 前情（可选）
+- 本次任务前，对方做过什么相关任务：memory_recall --query "相关关键词"
+- 如果有结果，在任务中引用关键结论（只贴结论，不贴全文）
+- 无结果则忽略此节`,
   taskName: "snake_case_name",
 });
 // 不要在 task 里贴 SOUL/USER/AGENTS 内容
@@ -363,6 +368,62 @@ PROGRESS.md 是**日志**（append-only），无法快速回答：
 - claude-progress.txt + git log = 跨 session 状态桥
 - 每个 session 收尾必须"clean state"（可合并的代码）
 - 用 JSON 不用 Markdown（防止意外覆盖）
+
+---
+
+## 5.3 共享知识（memory/shared/）
+
+> 核心规则见 `../AGENTS.md §5.2`
+
+### 5.3.1 触发时机
+
+Nova 在 sub-agent 交付后评估是否写入 `memory/shared/`：
+
+1. **跨 agent 技术决策**（如 researcher 发现的框架选型结论，frontend-dev 的组件设计模式）
+2. **用户偏好更新**（如 wktl 确认了新偏好）
+3. **命名规范/约定**（如 API 路径统一格式）
+4. **已知错误模式**（如重复遇到同一类构建问题）
+
+### 5.3.2 写入规范
+
+```markdown
+---
+date: YYYY-MM-DD
+decision: "一句话描述"
+reason: "为什么选"
+alternatives: ["方案A", "方案B"]
+scope: [affected-agent1, affected-agent2]
+source: "来自 X sub-agent 的调研/实现"
+author: Nova
+ttl_days: 180
+---
+
+# {主题}
+
+## 背景
+{为什么需要这个共享知识}
+
+## 内容
+{具体内容}
+
+## 影响范围
+- {agent 名}：受影响的地方
+
+## 相关来源
+- {调研报告/PRD/实现报告路径}
+```
+
+### 5.3.3 通知机制
+
+写入后，Nova 在 spawn 相关 sub-agent 时通过任务中的**前情**节引用共享知识：
+
+```
+## 前情
+参考 memory/shared/xxx.md —— {一句话摘要}
+```
+
+sub-agent 不需要知道共享知识存在——Nova 在任务中直接注入相关内容。
+```
 
 ---
 

@@ -48,7 +48,15 @@ exec <command>                  # shell 执行
 - 完成时：追加一条（日期 + 状态 + 产出 + 下一步）
 - 格式模板 + 已沉淀的工作流 → `details/AGENTS-details.md §5.1`
 
-### 5.2 长期项目（feature_list.json）
+### 5.2 共享知识（memory/shared/）
+
+- sub-agent 交付中发现跨 agent 相关的事实/决策/规范 → 写 `memory/shared/`
+- 含技术决策、用户偏好、命名规范、已知错误模式
+- 写入后告知相关 sub-agent（下次 spawn 时引用）
+
+> `memory/shared/` 目录由 `write` 自动创建。完整说明 → `details/AGENTS-details.md §5.2`
+
+### 5.3 长期项目（feature_list.json）
 
 - 检测 `~/.openclaw/workspace/feature_list.json` 是否存在
 - **不存在** → 第一次进入项目 → 进入 Initializer 模式（写 feature 清单）
