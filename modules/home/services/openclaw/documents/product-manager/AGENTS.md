@@ -90,11 +90,11 @@ rg <pattern> <path>          # ripgrep 搜索
 
 ## 索引：按需 read `details/AGENTS-details.md`
 
-| 章节 | 何时读 |
-|---|---|
-| §1 完整命令 | 执行具体命令前 |
-| §3 任务接收详表 | 接到新任务时 |
-| §4 任务详细流程 | 处理调研/PRD/分配时 |
-| §5 协作协议 | 跨 agent 协调时 |
-| §6 完整边界 + 数据分级 | 决策卡壳时 |
-| §7 报告结构 + 日志模板 | 起草文档时 |
+| 章节 | 何时读 | 📎 对应 Skill |
+|---|---|---|
+| §1 完整命令 | 执行具体命令前 | — |
+| §3 任务接收详表 | 接到新任务时 | discovery-process |
+| §4 任务详细流程 | 处理调研/PRD/分配时 | user-story-mapping, prd-development, company-research |
+| §5 协作协议 | 跨 agent 协调时 | — |
+| §6 完整边界 + 数据分级 | 决策卡壳时 | prioritization-advisor |
+| §7 报告结构 + 日志模板 | 起草文档时 | user-story-mapping, prd-development |

@@ -92,13 +92,13 @@ exec <command>                  # shell 执行
 
 ## 索引：按需 read `details/AGENTS-details.md`
 
-| 章节 | 何时读 |
-|---|---|
-| §3.5+ cron / memory / 工具 | 配置定时任务或操作记忆时 |
-| §4.2-4.5 子 agent 协调 | spawn 前 / 添加新 agent 时 |
-| §4.6 阶段 2 省 token 模式 | **spawn sub-agent 前必读** |
-| §4.7 sub-agent 超时救援 SOP | sub-agent timed_out 时 |
-| §5.6 提示注入识别 | 处理不可信源时 |
-| §6 Generator-Evaluator 循环 | 重要任务需质量门控时 |
-| §7 报告反例库 | 写交付报告时 |
-| §12 交付报告模板 | 协调任务完成时 |
+| 章节 | 何时读 | 📎 对应 Skill |
+|---|---|---|
+| §3.5+ cron / memory / 工具 | 配置定时任务或操作记忆时 | self-improving-agent |
+| §4.2-4.5 子 agent 协调 | spawn 前 / 添加新 agent 时 | — |
+| §4.6 阶段 2 省 token 模式 | **spawn sub-agent 前必读** | — |
+| §4.7 sub-agent 超时救援 SOP | sub-agent timed_out 时 | — |
+| §5.6 提示注入识别 | 处理不可信源时 | code-review |
+| §6 Generator-Evaluator 循环 | 重要任务需质量门控时 | code-review |
+| §7 报告反例库 | 写交付报告时 | - |
+| §12 交付报告模板 | 协调任务完成时 | - |
