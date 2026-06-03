@@ -51,6 +51,11 @@ in
             };
 
             agents.defaults = {
+              contextInjection = "continuation-skip";
+              skipOptionalBootstrapFiles = ["IDENTITY.md"];
+              bootstrapMaxChars = 12000;
+              bootstrapTotalMaxChars = 35000;
+
               model = {
                 primary = "minimax/MiniMax-M3";
                 fallbacks = [
@@ -120,6 +125,7 @@ in
                 id = "evaluator";
                 name = "质量评估专家";
                 workspace = "${config.home.homeDirectory}/.openclaw/workspace/evaluator";
+                bootstrapMaxChars = 8000;
                 skills = [
                   "code-review"
                   "self-improving-agent"
@@ -141,6 +147,8 @@ in
                 id = "frontend-dev";
                 name = "前端开发专家";
                 workspace = "${config.home.homeDirectory}/.openclaw/workspace/frontend-dev";
+                bootstrapMaxChars = 15000;
+                bootstrapTotalMaxChars = 50000;
                 skills = [
                   "vue"
                   "vite"
@@ -190,6 +198,8 @@ in
                 id = "ui-designer";
                 name = "UI 设计专家";
                 workspace = "${config.home.homeDirectory}/.openclaw/workspace/ui-designer";
+                bootstrapMaxChars = 15000;
+                bootstrapTotalMaxChars = 50000;
                 skills = [
                   "ui-ux-pro-max"
                   "design-system"

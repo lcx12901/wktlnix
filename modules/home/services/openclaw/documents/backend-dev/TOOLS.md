@@ -1,58 +1,32 @@
-# TOOLS.md - 后端开发工具配置
+# TOOLS.md — 工具选择规则
 
-## 必须工具
+## 优先层级（从廉到贵）
 
-| 工具 | 用途 |
-|------|------|
-| Read | 读取源码、配置文件、数据库 schema |
-| Edit | 修改现有代码、配置文件 |
-| Write | 创建新模块、测试文件、迁移脚本 |
-| Bash | 运行构建命令、数据库操作、测试套件 |
-| Glob | 查找源文件、测试文件、配置文件 |
-| Grep | 搜索 API 路由、数据库模型、业务逻辑 |
+### Level 1: 本地·免费·即时（首选）
+- **read / glob / grep** → 查代码、数据模型、配置文件，先查本地
+- **exec** → 运行测试、构建、迁移脚本
+- **edit / write** → 修改服务器代码、API 文档、数据库脚本
 
-## 可选工具
+### Level 2: 网络·轻量（次选）
+- **web_fetch** → 读技术文档、库的 API 参考，先确认本地无缓存
+- **web_search** → 搜索特定实现方案或 bug 解决方案
 
-| 工具 | 用途 |
-|------|------|
-| WebFetch | 获取框架、库的文档 |
-| WebSearch | 研究后端问题的解决方案 |
+### Level 3: LLM 密集型（最小化）
+- **sessions_spawn** → 仅独立子任务
 
-## 常用命令
+## 错误恢复
+### 可恢复（自动处理）
+- 命令失败 → 检查 exit code + stderr，换方法重试 1 次
+- 数据库迁移冲突 → 回滚上一步，检查变更再重试
+- HTTP 429/503 → 等待 10s 重试，3 次后跳过
 
-```bash
-# Node.js
-node src/index.js           # 启动服务
-npm run dev                 # 开发模式
-npm run build               # 构建
-npm test                    # 测试
+### 不可恢复 → 停止 + 报告 Nova
+- 密钥泄露或暴露到输出
+- 数据完整性问题（回滚失败、数据不一致）
+- 连续 3+ 同类工具失败
 
-# Python
-python -m uvicorn main:app  # 启动 FastAPI
-python -m pytest            # 运行测试
-
-# 数据库
-psql $DATABASE_URL          # 连接 PostgreSQL
-mongosh $MONGO_URL          # 连接 MongoDB
-redis-cli                   # Redis CLI
-
-# Docker
-docker build -t app .       # 构建镜像
-docker-compose up           # 启动服务
-docker exec -it app sh      # 进入容器
-
-# 迁移
-npm run migrate             # 运行迁移
-npm run migrate:rollback    # 回滚迁移
-```
-
-## 技能加载
-
-| 任务类型 | 读取 skill |
-|---------|-----------|
-| API 设计 | `multi-search-engine` 搜索 REST API 最佳实践 |
-| 安全审查 | `multi-search-engine` 搜索 OWASP Top 10 |
-
----
-
-*后端开发 Agent 工具配置*
+## 硬边界
+- 不 bypass git（`--no-verify`、`--force`）
+- 不 direct 联系其他 agent
+- 不修改 `.openclaw` 内部文件
+- 不在命令/参数/URL 中嵌入 API key 或 token

@@ -1,18 +1,29 @@
-# TOOLS.md — Evaluator 工具约束
+# TOOLS.md — 工具选择规则
 
-## 可用工具
+## 优先层级（从廉到贵）
 
-| 工具 | 用途 | 限制 |
-|---|---|---|
-| read | 读交付物文件 | 无限制 |
-| write | **只有** `evaluations/` 目录下写报告 | 禁写工作区其他文件 |
-| exec | 验证编译/测试/路径 | **禁** git commit / push / nix build |
-| web_search | 查参考资料 | 无限制 |
-| web_fetch | 查文档 | 无限制 |
+### Level 1: 本地·免费·即时（首选）
+- **read** → 读任务需求、交付物代码/报告/文档
+- **write / edit** → 写评估报告到 `evaluations/` 目录
+- **exec** → 运行测试确认交付物是否可运行
 
-## 禁止工具
+### Level 2: 网络（按需）
+- 通常不需要网络工具——评估基于本地文件
 
-- ❌ sessions_spawn / sessions_send（不 spawn 新 agent）
-- ❌ write 到工作区 `evaluations/` 之外（不碰代码）
-- ❌ message（不直接与用户通信——由 Nova 转达）
-- ❌ git commit / git push（不产生代码提交）
+### Level 3: 稀缺（尽量避免）
+- 唯有 Nova 明确要求时才使用非常规工具
+
+## 错误恢复
+### 可恢复（自动处理）
+- 文件不存在 → 日志记录后报告 Nova
+- 测试运行失败 → 作为 execution_quality 扣分项
+
+### 不可恢复 → 停止 + 报告 Nova
+- 交付物完全不满足任务需求（直接写 FAIL 报告）
+- 发现重大安全问题（PII 泄露、凭证暴露）
+
+## 硬边界
+- 不改代码（写了就是违规）
+- 不改分（被质疑时亮证据）
+- 不 direct 联系 Generator（结果通过 Nova）
+- 不输出低于 0.8 却标 PASS（评分标准是底线）
