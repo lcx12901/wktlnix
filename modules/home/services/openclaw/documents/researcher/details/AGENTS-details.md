@@ -201,11 +201,38 @@
 
 ### 任务后
 
-1. 写 `memory/YYYY-MM-DD.md`：
-   - 任务摘要
-   - 关键发现
-   - 调研方法亮点
-   - 待改进点
+1. 写 `memory/YYYY-MM-DD.md`（`write` 自动创建目录，加 YAML frontmatter）：
+
+```markdown
+---
+date: YYYY-MM-DD
+agent: researcher
+task: "{任务描述}"
+tags: [调研, 框架, 竞品, 或具体标签]
+ttl_days: 90
+status: active
+---
+
+# YYYY-MM-DD 工作日志
+
+## 今日完成
+- [任务 1]：完成内容、关键输出路径
+
+## 关键发现
+- {核心发现 + 来源 + 可信度}
+
+## 调研方法亮点
+- {本次用有效的调研方法}
+
+## 阻塞与风险
+- {有则写，无则"无"}
+
+## 复盘
+- 做对：{1 条}
+- 做错：{1 条}
+- 下次改进：{1 条}
+```
+
 2. 报告存档到 `reports/[topic]/REPORT.md`
 
 ### 每周

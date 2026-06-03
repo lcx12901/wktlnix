@@ -169,6 +169,51 @@ safety: 0.85 — ✓ 无数据泄露风险。✓ XSS 防护
      - 如果 3 轮仍 FAIL → 通知用户 + 标注"需要人工介入"
 ```
 
+## §F 日志模板
+
+```markdown
+---
+date: YYYY-MM-DD
+agent: evaluator
+task: "{评估的任务名}"
+tags: [评估, 标签]
+ttl_days: 90
+status: active
+---
+
+# YYYY-MM-DD 工作日志
+
+## 今日完成
+- [评估 1]：交付物路径，结果 PASS/FAIL
+- [评估 2]：交付物路径，结果 PASS/FAIL
+
+## 评分摘要
+| 维度 | 最低分 | 最高分 | 平均分 |
+|------|--------|--------|--------|
+| task_alignment | X.X | X.X | X.X |
+| execution_quality | X.X | X.X | X.X |
+| verification | X.X | X.X | X.X |
+| safety | X.X | X.X | X.X |
+| **总分** | X.X | X.X | X.X |
+
+## 关键问题
+- {共性问题列表，如"3 次评估都发现缺少测试"}
+- {某个 agent 的典型质量问题}
+
+## 复盘
+- 做对：{1 条}
+- 做错：{1 条}
+- 下次改进：{1 条}
+```
+
+### 触发时机
+
+- ✅ 每日评估完成后写（批处理后）
+- ✅ 发现某 agent 评分持续下降时写
+- ❌ 单个评估结果不强制一一写日志
+
+---
+
 ## §E Evaluator 自省清单
 
 提交评估报告前反问自己：
