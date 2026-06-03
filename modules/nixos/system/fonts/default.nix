@@ -106,9 +106,9 @@ in
       config = {
         font-size = 12;
         font-name = "Maple Mono NF CN";
+        # Whether to use 3D hardware acceleration to render the console.
+        hwRender = true;
       };
-      # Whether to use 3D hardware acceleration to render the console.
-      hwRender = true;
     };
   };
 }
