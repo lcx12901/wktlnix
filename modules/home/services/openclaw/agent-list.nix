@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.wktlnix.services.openclaw;
 in
@@ -8,11 +8,24 @@ in
       {
         id = "nova";
         skills = [
-          "self-improving-agent"
+          "self-improvement"
           "multi-search-engine"
           "sovereign-commit-craft"
-          "capability-evolver-pro"
-          "code-review"
+          "Capability Evolver"
+          "audit-code"
+          "antfu"
+          "vue"
+          "vite"
+          "vitest"
+          "pinia"
+          "unocss"
+          "leafer-ai"
+          "design-review"
+          "React"
+          "Tailwind CSS"
+          "shadcn-ui"
+          "responsive-design"
+          "a11y"
         ];
       }
       {
@@ -22,8 +35,11 @@ in
         bootstrapMaxChars = 5000;
         thinkingDefault = "high";
         skills = [
-          "code-review"
-          "self-improving-agent"
+          "audit-code"
+          "self-improvement"
+          "multi-search-engine"
+          "sovereign-commit-craft"
+          "Capability Evolver"
         ];
         model = {
           primary = "deepseek/deepseek-v4-pro";
@@ -37,7 +53,14 @@ in
         thinkingDefault = "medium";
         skills = [
           "multi-search-engine"
-          "self-improving-agent"
+          "self-improvement"
+          "company-research"
+          "discovery-process"
+          "discovery-interview-prep"
+          "pestel-analysis"
+          "tam-sam-som-calculator"
+          "opportunity-solution-tree"
+          "jobs-to-be-done"
         ];
         model = {
           primary = "deepseek/deepseek-v4-flash";
@@ -51,16 +74,27 @@ in
         bootstrapTotalMaxChars = 30000;
         thinkingDefault = "low";
         skills = [
+          "antfu"
           "vue"
           "vite"
           "vitest"
+          "vitepress"
           "pinia"
           "unocss"
+          "pnpm"
+          "nuxt"
+          "slidev"
+          "tsdown"
+          "turborepo"
+          "leafer-ai"
+          "vue-router-best-practices"
           "vue-best-practices"
           "vue-testing-best-practices"
-          "leaferjs"
+          "vueuse-functions"
+          "web-design-guidelines"
           "multi-search-engine"
-          "self-improving-agent"
+          "self-improvement"
+          "audit-code"
         ];
         model = {
           primary = "deepseek/deepseek-v4-flash";
@@ -74,8 +108,8 @@ in
         thinkingDefault = "low";
         skills = [
           "multi-search-engine"
-          "self-improving-agent"
-          "code-review"
+          "self-improvement"
+          "audit-code"
         ];
         model = {
           primary = "deepseek/deepseek-v4-flash";
@@ -88,15 +122,57 @@ in
         bootstrapMaxChars = 8000;
         thinkingDefault = "medium";
         skills = [
-          "user-story-mapping"
-          "roadmap-planning"
-          "user-story-splitting"
-          "discovery-process"
-          "prd-development"
-          "prioritization-advisor"
+          "acquisition-channel-advisor"
+          "ai-shaped-readiness-advisor"
+          "altitude-horizon-framework"
+          "business-health-diagnostic"
           "company-research"
+          "context-engineering-advisor"
+          "customer-journey-map"
+          "customer-journey-mapping-workshop"
+          "director-readiness-advisor"
+          "discovery-interview-prep"
+          "discovery-process"
+          "eol-message"
+          "epic-breakdown-advisor"
+          "epic-hypothesis"
+          "executive-onboarding-playbook"
+          "feature-investment-advisor"
+          "finance-based-pricing-advisor"
+          "finance-metrics-quickref"
+          "jobs-to-be-done"
+          "lean-ux-canvas"
           "multi-search-engine"
-          "self-improving-agent"
+          "opportunity-solution-tree"
+          "organic-growth-advisor"
+          "pestel-analysis"
+          "pm-skill-creator"
+          "pol-probe"
+          "pol-probe-advisor"
+          "positioning-statement"
+          "positioning-workshop"
+          "prd-development"
+          "press-release"
+          "prioritization-advisor"
+          "problem-framing-canvas"
+          "problem-statement"
+          "product-sense-interview-answer"
+          "product-strategy-session"
+          "proto-persona"
+          "recommendation-canvas"
+          "roadmap-planning"
+          "saas-economics-efficiency-metrics"
+          "saas-revenue-growth-metrics"
+          "self-improvement"
+          "skill-authoring-workflow"
+          "storyboard"
+          "tam-sam-som-calculator"
+          "user-story"
+          "user-story-mapping"
+          "user-story-mapping-workshop"
+          "user-story-splitting"
+          "vp-cpo-readiness-advisor"
+          "workshop-facilitation"
         ];
         model = {
           primary = "deepseek/deepseek-v4-flash";
@@ -111,20 +187,21 @@ in
         thinkingDefault = "low";
         skills = [
           "ui-ux-pro-max"
-          "design-system"
-          "design"
-          "banner-design"
-          "brand"
-          "slides"
-          "ui-styling"
+          "ckm:design-system"
+          "ckm:design"
+          "ckm:banner-design"
+          "ckm:brand"
+          "ckm:slides"
+          "ckm:ui-styling"
           "design-review"
-          "react"
-          "tailwindcss"
+          "React"
+          "Tailwind CSS"
           "shadcn-ui"
           "responsive-design"
           "a11y"
+          "web-design-guidelines"
           "multi-search-engine"
-          "self-improving-agent"
+          "self-improvement"
         ];
         model = {
           primary = "deepseek/deepseek-v4-flash";
