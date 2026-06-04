@@ -82,7 +82,6 @@ let
     pkgs.lib.mapAttrsToList (name: _: {
       inherit name;
       source = "${antfuSkills}/skills/${name}";
-      mode = "copy";
     }) dir;
 
   leaferjsSkills = pkgs.fetchFromGitHub {
@@ -99,7 +98,6 @@ let
     pkgs.lib.mapAttrsToList (name: _: {
       inherit name;
       source = "${productManagerSkills}/skills/${name}";
-      mode = "copy";
     }) dir;
 
   # ui-ux-pro-max-skill (from GitHub)
@@ -128,7 +126,6 @@ let
     pkgs.lib.mapAttrsToList (name: _: {
       inherit name;
       source = "${uiUxProMax}/${name}";
-      mode = "copy";
     }) dir;
 
   # ClawHub skills
@@ -227,62 +224,50 @@ in
   {
     name = "self-improving-agent";
     source = "${selfImprovingAgent}";
-    mode = "copy";
   }
   {
     name = "multi-search-engine";
     source = "${openclawMasterSkills}/skills/multi-search-engine";
-    mode = "copy";
   }
   {
     name = "sovereign-commit-craft";
     source = "${sovereignCommitCraft}";
-    mode = "copy";
   }
   {
     name = "capability-evolver-pro";
     source = "${capabilityEvolverPro}";
-    mode = "copy";
   }
   {
     name = "code-review";
     source = "${auditCode}";
-    mode = "copy";
   }
   {
     name = "leaferjs";
     source = "${leaferjsSkills}/skills/leafer-ai";
-    mode = "copy";
   }
   {
     name = "design-review";
     source = "${designReview}";
-    mode = "copy";
   }
   {
     name = "react";
     source = "${react}";
-    mode = "copy";
   }
   {
     name = "tailwindcss";
     source = "${tailwindcss}";
-    mode = "copy";
   }
   {
     name = "shadcn-ui";
     source = "${shadcnUi}";
-    mode = "copy";
   }
   {
     name = "responsive-design";
     source = "${responsiveDesign}";
-    mode = "copy";
   }
   {
     name = "a11y";
     source = "${a11y}";
-    mode = "copy";
   }
 ]
 ++ antfuSkillList

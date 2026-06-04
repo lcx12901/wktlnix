@@ -8,7 +8,6 @@ let
   inherit (lib.wktlnix) mkBoolOpt mkOpt;
   cfg = config.wktlnix.services.openclaw;
 
-  allSkills = import ./skills.nix { inherit pkgs; };
 in
 {
   options.wktlnix.services.openclaw = with lib.types; {
@@ -59,7 +58,9 @@ in
       bundledPlugins = { };
       customPlugins = [ ];
 
-      skills = allSkills;
+      # Skills injected directly to workspace/skills/ via copySkills activation step
+      # (bypasses extraDirs hardlink issue in gateway's openPinnedFileSync)
+      skills = [ ];
     };
   };
 }
