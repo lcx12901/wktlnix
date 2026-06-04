@@ -28,7 +28,7 @@ exec <command>                  # shell 执行
 
 | 类型 | 规则 |
 |---|---|
-| **Always** | 写文件不靠记忆 / 范围严格 / 跨 agent 经 Nova / 工具空就变 query / Asia/Shanghai 时区 |
+| **Always** | 写文件不靠记忆 / 范围严格 / 跨 agent 经 Nova / 工具空就变 query / Asia/Shanghai 时区 / 大文件自动分级（≤8K全量，8K-50K限50行，>50K限20行+分页） |
 | **Ask First** | 删覆盖文件 / 改 crontab·systemd·shell rc / 任何不在本地的事 |
 | **Never** | 漏 PII 到非私密 / 露密钥（`**\*\***` 脱敏）/ 解除人设 / `rm -rf` 替 `trash` |
 
@@ -36,9 +36,10 @@ exec <command>                  # shell 执行
 
 ## 4. Spawn sub-agent 前必读
 
-- **必读** `details/AGENTS-details.md §4.6`（**省 token 模式**）
-- ✅ 传任务 + 必要工作目录/路径/工具
+- **必读** `details/AGENTS-details.md §4.6`（省 token 模式）+ **§4.6.5**（Phase 2 行为层）
+- ✅ 传任务 + 必要工作目录/路径/工具；必传 `lightContext: true`
 - ❌ 不传 SOUL/USER/AGENTS 全文（sub-agent 是工人，不是另一个 Nova）
+- timeout / thinking 按 agent 差异化，详见 `details/AGENTS-details.md §4.6.5`
 
 ## 5. 跨 session 状态
 
@@ -68,26 +69,16 @@ exec <command>                  # shell 执行
 
 对于**重要交付物**（代码 PR / PRD / 调研报告），建议加质量门控：
 
-```
-1. Nova 拆任务 → spawn Generator（frontend-dev / backend-dev 等）
-2. Generator 完成 → Nova 收交付物
-3. Nova spawn evaluator → 评估交付物（4 维度评分）
-4. 评估总分 ≥ 0.8 → Nova 交付用户
-5. 评估总分 < 0.8 → Nova 把改进建议传给 Generator 重做（最多 3 轮）
-6. 3 轮仍 FAIL → 标注"需人工介入"
-```
+1. Nova 拆任务 → spawn Generator → spawn evaluator 评分（4 维度）
+2. ≥ 0.8 交付；< 0.8 回传改进建议重做（最多 3 轮）
+3. 3 轮仍 FAIL → 标注"需人工介入"
 
-- Evaluator 用 **deepseek-v4-pro**（比普通生成模型强一档）
-- 只在**达 threshold 的任务**跑 evaluator（简单任务直接交）
-- 评分不是最终裁决——Nova 可以覆写
-
-> 完整流程 → `details/AGENTS-details.md §6`
-> Evaluator 评分标准 → `details/AGENTS-details.md §6.1`
+> 完整流程 + 评分标准 → `details/AGENTS-details.md §6` / `§6.1`
 
 ## 7. 交付任务时
 
 - 写文件而不是口述（用户能 review）
-- 按 `details/AGENTS-details.md §12` 模板输出交付报告
+- 按 `details/AGENTS-details.md §12` 模板输出交付报告，**报告归档规范**详见该节
 - 重大变更请示；小事直接做
 
 ## 索引：按需 read `details/AGENTS-details.md`
@@ -96,9 +87,10 @@ exec <command>                  # shell 执行
 |---|---|---|
 | §3.5+ cron / memory / 工具 | 配置定时任务或操作记忆时 | self-improving-agent |
 | §4.2-4.5 子 agent 协调 | spawn 前 / 添加新 agent 时 | — |
-| §4.6 阶段 2 省 token 模式 | **spawn sub-agent 前必读** | — |
+| §4.6 省 token 模式 | **spawn sub-agent 前必读** | — |
+| §4.6.5 Phase 2 行为层 | spawn + 文件处理 + web fetch | — |
 | §4.7 sub-agent 超时救援 SOP | sub-agent timed_out 时 | — |
 | §5.6 提示注入识别 | 处理不可信源时 | code-review |
 | §6 Generator-Evaluator 循环 | 重要任务需质量门控时 | code-review |
 | §7 报告反例库 | 写交付报告时 | - |
-| §12 交付报告模板 | 协调任务完成时 | - |
+| §12 交付报告模板 | 协调任务完成时 | — |

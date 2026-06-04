@@ -40,3 +40,40 @@
 - LanceDB memory 直接读取需要用 Node.js 脚本（lancedb npm 包）
 - `exec` 中 `yieldMs` 用于后台任务，避免长时间等待
 - 不在命令参数中暴露密钥，使用环境变量读取
+
+## Phase 2 行为优化
+
+### 文件读取分级
+
+```
+- ≤ 8K chars  → read 全量
+- 8K-50K chars → read --limit 50（仅开头 50 行）
+- > 50K chars  → read --limit 20，分页读取
+- 代码文件例外：按需全量
+```
+
+### Web fetch 默认截断
+
+```
+web_fetch url maxChars:4000   # 默认
+web_fetch url maxChars:8000   # 仅深度调研时
+```
+
+### 大工具结果 offload（>20K tokens）
+
+```
+write ~/.openclaw/workspace/.cache/<ts>-<desc>.txt
+```
+
+### 用户上传文件
+
+内容已注入 message 时，先估算大小：
+- 明显 >8K chars → 只参考前 50 行
+- 需要细节时 read 源文件
+- 不重复复述全部上传内容
+
+### Spawn 必传 `lightContext: true`
+
+减少 sub-agent 启动开销。
+
+详见 `details/AGENTS-details.md §4.6.5`

@@ -192,6 +192,128 @@ product-manager），可能都报告了 "user profile 需求"。
 
 ---
 
+### 4.6.5 Phase 2 行为层守则
+
+> 本节定义 Nova 在日常执行中的行为约束，旨在减少不必要的 token 消耗。
+> **不会注入到 LLM 调用**，原则性写入此文件由 Nova 自主执行。
+
+#### A. Spawn 差异化参数
+
+**timeout 按 agent 选**（在 task 开头标注，config 层暂不支持 per-agent timeout）：
+
+| Agent | timeout | 理由 |
+|---|---|---|
+| frontend-dev | 120s | 代码生成通常很快 |
+| backend-dev | 180s | 涉及编译逻辑稍长 |
+| researcher | 300s | 多步骤搜索需要时间 |
+| ui-designer | 180s | 设计生成 |
+| product-manager | 300s | PRD 写作需要思考 |
+| evaluator | 120s | 评估通常很快 |
+
+**thinking 差异化**（已通过 agent-level `thinkingDefault` 配置）：
+
+| Agent | thinking | 理由 |
+|---|---|---|
+| evaluator | high | 评估需要深度分析 |
+| researcher | medium | 需要检索推理 |
+| product-manager | medium | 策略推理 |
+| frontend-dev | low | 代码生成不需要深度推理 |
+| backend-dev | low | 同上 |
+| ui-designer | low | UI 设计偏执行 |
+
+**spawn 语法**：
+
+```typescript
+sessions_spawn({
+  agentId: "frontend-dev",
+  mode: "run",
+  runtime: "subagent",
+  lightContext: true,  // ✅ 必传
+  task: `...`,
+  taskName: "snake_case_name",
+});
+```
+
+> 注：`lightContext: true` 必须在每次 spawn 中显式传递以减少 sub-agent 启动开销。
+
+#### B. Web Fetch 行为守则
+
+```
+web_fetch 默认传 maxChars: 4000
+仅在以下情况调至 8000+：
+- 需要全文翻译 / 完整分析
+- 用户明确要求深度调研
+- 目标页面内容密度高（学术论文、技术规范等）
+```
+
+#### C. 大文件处理守则
+
+**读取文件时**（包括用户上传和主动 read）：
+
+```
+- ≤ 8K chars  → read 全量
+- 8K-50K chars → read --limit 50（只看开头 50 行）
+- > 50K chars  → read --limit 20，分页往后读
+
+例外：代码文件（.ts/.vue/.nix/.py 等）需要完整上下文时除外。
+```
+
+**工具结果 offload**（>20K tokens）：
+
+```
+看到大工具结果（web_fetch / read 返回 >20K）→
+  write ~/.openclaw/workspace/.cache/<ts>-<name>.txt
+主对话只说"已写到 .cache/xxx.txt，必要时 read"
+read 时用 --offset N --limit M 分页
+```
+
+**用户上传文件**（内容已注入 message 中时）：
+
+```
+- 判断注入内容的近似大小（行数或字符数估算）
+- 如果内容明显 >8K chars → 只参考前 50 行
+- 需要细节时再针对性 read 源文件（如果用户是本地文件）
+- 不需要在回复中复述全部上传内容
+```
+
+**`.cache/` 目录**：bootstrap 自动创建，>7 天的文件自动清理。
+无需手动维护。
+
+#### D. Sub-agent 回传处理
+
+收到 sub-agent 回传后：
+
+1. 只提取 `summary`（1 句）+ `key_facts`（≤5 条）
+2. 只记录 `files_written` 路径，**不读内容**
+3. 需要时再去 `read`
+4. 多 agent 返回同类信息 → Nova 去重
+
+**在 spawn 的 task 参数头部明确要求输出格式**：
+
+```typescript
+task: `## 交付格式（严格要求）
+最后输出**仅**以下 JSON，不要解释：
+{
+  "summary": "一句话总结",
+  "key_facts": ["3-5 条要点"],
+  "files_written": ["文件路径列表"],
+  "blockers": ["被阻塞的项"],
+  "next_steps": ["建议下一步"]
+}
+```
+
+#### E. Memory Recall 标准化
+
+spawn 前的 `memory_recall` 只在有明确关键词时做，不做空 recall：
+
+| 场景 | 做？ |
+|---|---|
+| 有明确项目名/关键词 | ✅ 做 recall |
+| 不确定 | ❌ 跳过，省 token |
+| 空查询或泛查询 | ❌ 跳过 |
+
+---
+
 ### 4.7 Sub-agent 超时救援 SOP
 
 > 触发：`sessions_spawn` 后 `runTimeoutSeconds` 到期，runtime 推送 `timed_out`
@@ -659,6 +781,8 @@ FAIL：
 
 ## 12. 交付报告模板
 
+### 12.1 模板格式
+
 完成协调型任务后输出：
 
 ```markdown
@@ -685,6 +809,18 @@ FAIL：
 
 {基于结果的建议}
 ```
+
+### 12.2 报告归档规范
+
+所有报告文件（分析、调研、方案、PRD 等）严格按以下规则归档：
+
+- **目录**：`workspace/reports/`
+- **命名**：`<topic>-<YYYY-MM-DD>.md`
+  - topic 用 kebab-case，简洁描述主题
+  - 日期用完整 4 位年份
+  - 示例：`cachetrace-analysis-2026-06-04.md`、`token-optimization-plan-2026-06-04.md`
+- **无子目录**：所有报告扁平放在 `reports/` 下，不建子分类
+- **报告内**：首行或开头标注生成日期和来源
 
 ---
 
@@ -750,6 +886,8 @@ NO_REPLY
 | 9  | 自我演化       | 任务结束后（本文件）                                        |
 | 10 | 任务执行       | 收到任务时（本文件）                                        |
 | 11 | 失败处理       | 工具失败时（本文件）                                        |
+| 12 | 交付报告模板   | 协调任务完成时（本文件 §12.1）                              |
+|    | 报告归档规范   | 交付任务落盘时（本文件 §12.2）                              |
 | 12 | 交付报告       | 协调任务完成时（本文件）                                    |
 | 13 | 静默与边界     | 回复前（本文件）                                            |
 | 14 | 持续改进       | 任务结束（本文件）                                          |

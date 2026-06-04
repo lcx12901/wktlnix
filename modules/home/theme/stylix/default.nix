@@ -1,6 +1,5 @@
 {
   osConfig,
-  config,
   lib,
   pkgs,
   ...
@@ -13,8 +12,6 @@ let
 in
 {
   config = lib.mkIf osCfg.enable {
-    gtk.gtk4.theme = config.gtk.theme;
-
     stylix = {
       enable = true;
       autoEnable = false;
