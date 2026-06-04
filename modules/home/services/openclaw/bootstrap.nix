@@ -98,6 +98,8 @@ in
                 if [ "$agent_name" != "nova" ]; then
                   mkdir -p "$HOME/.openclaw/workspace/$agent_name"
                   cp -r --no-preserve=mode,ownership,timestamps,links "$agent_dir/." "$HOME/.openclaw/workspace/$agent_name/"
+                  # Link shared skills so sub-agents can discover them from their workspace
+                  ln -sfn ../skills "$HOME/.openclaw/workspace/$agent_name/skills"
                 fi
               done
             '';
