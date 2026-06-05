@@ -236,14 +236,53 @@ sessions_spawn({
 
 > 注：`lightContext: true` 必须在每次 spawn 中显式传递以减少 sub-agent 启动开销。
 
-#### B. Web Fetch 行为守则
+#### B. ToolResult 截断规则（MUST）
+
+**B.1 `web_fetch` 调用前：**
 
 ```
-web_fetch 默认传 maxChars: 4000
-仅在以下情况调至 8000+：
-- 需要全文翻译 / 完整分析
-- 用户明确要求深度调研
-- 目标页面内容密度高（学术论文、技术规范等）
+IF 常规查询 → web_fetch(url, maxChars: 4000)
+IF (全文翻译 OR 深度调研 OR 高密度页面) → web_fetch(url, maxChars: 8000)
+```
+
+**B.2 `exec` 调用前（预估输出量）：**
+
+```
+IF 目标为「读取文件内容」: MUST 用 head/tail/grep/awk 限定输出行
+IF 执行命令且预期 >200 行输出: MUST 写聚合脚本或 pipe 到 .cache/ 文件
+IF 执行命令且预期 ≤200 行: MAY 裸执行
+```
+
+**B.3 `read` 调用前：**
+
+```
+IF 文件 >8K chars:  MUST 传 --limit <除数>/--offset <页数>
+IF 文件 >50K chars: MUST 每页 ≤20 行
+EXCEPTION: 代码文件（.ts/.vue/.nix/.py）需完整上下文时除外
+```
+
+**B.4 连续 >=3 次同类操作：**
+
+```
+MUST 拆解为聚合脚本（单个 exec 完成）
+EXCEPTION: 各操作目标不同且不能合并时
+```
+
+**B.5 工具返回后：**
+
+```
+IF result >4K chars:
+  → write ~/.openclaw/workspace/.cache/<ts>-<name>.txt（config 层也会自动 softTrim）
+IF result >20K tokens:
+  → MUST write .cache/ 且主回复不引用原文
+  → read 时用 --offset N --limit M 分页
+
+config 层自动兜底：
+  contextPruning.softTrim.maxChars:      8000  # 每条 toolResult cap
+  contextPruning.minPrunableToolChars:   4000  # >4K 才修剪
+  contextPruning.hardClearRatio:         0.3   # context 压力大时清 30%
+  contextPruning.tools.allow: [exec, web_fetch, file_fetch]
+  compaction.midTurnPrecheck.enabled: true     # 中途压力检测
 ```
 
 #### C. 大文件处理守则
