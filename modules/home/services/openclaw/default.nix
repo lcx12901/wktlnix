@@ -29,10 +29,24 @@ in
       instances.default = {
         enable = true;
 
-        runtimePackages = [ pkgs.chromium ];
+        runtimePackages = with pkgs; [
+          chromium
+        ];
 
         config = {
           inherit (cfg) channels;
+
+          # MCP servers
+          mcp = {
+            servers = {
+              # NixOS packages, options, Home Manager, nix-darwin, flakes, etc.
+              # https://mcp-nixos.io/
+              nixos = {
+                command = "nix";
+                args = [ "run" "github:utensils/mcp-nixos" "--" ];
+              };
+            };
+          };
 
           # Phase 1: enable cache trace diagnostics for 24h to analyze context bloat
           # TODO: set includeMessages/includePrompt/includeSystem to false after analysis
