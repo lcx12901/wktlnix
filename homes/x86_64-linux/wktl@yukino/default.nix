@@ -41,7 +41,7 @@ in
             userEmail = "linchengxu@z9yun.com";
           };
           nh = enabled;
-          # opencode = enabled;
+          opencode = enabled;
         };
       };
     };

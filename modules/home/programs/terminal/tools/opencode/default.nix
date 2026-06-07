@@ -41,7 +41,7 @@ in
         };
 
         settings = {
-          model = "minimax/MiniMax-M2.7";
+          model = "opencode-go/mimo-v2.5";
           autoshare = false;
           autoupdate = false;
 
@@ -52,16 +52,9 @@ in
           ];
 
           provider = {
-            minimax = {
-              npm = "@ai-sdk/anthropic";
+            opencode-go = {
               options = {
-                baseURL = "https://api.minimax.io/anthropic/v1";
-                apiKey = "{file:${config.sops.secrets."minimax_key".path}}";
-              };
-              models = {
-                "MiniMax-M2.7" = {
-                  name = "MiniMax-M2.7";
-                };
+                apiKey = "{file:${config.sops.secrets."OPENCODE_API_KEY".path}}";
               };
             };
           };
@@ -85,8 +78,7 @@ in
     };
 
     sops.secrets = {
-      "metapi_key" = { };
-      "minimax_key" = { };
+      "OPENCODE_API_KEY" = { };
     };
   };
 }

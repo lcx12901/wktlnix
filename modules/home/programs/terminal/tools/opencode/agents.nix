@@ -16,7 +16,7 @@ let
         "Glob"
         "Bash"
       ];
-      model = "minimax/MiniMax-M2.7";
+      model = "opencode-go/mimo-v2.5";
       permission = {
         edit = "ask";
         bash = "ask";
