@@ -58,6 +58,7 @@ inputs.nixpkgs.lib.nixosSystem {
     inputs.stylix.nixosModules.stylix
     inputs.niri.nixosModules.niri
     inputs.fast-nix-gc.nixosModules.default
+    inputs.hermes-agent.nixosModules.default
 
     # Auto-inject home configurations for this system+hostname
     homeManagerConfig

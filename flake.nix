@@ -84,6 +84,11 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
 
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # my wallpapers
     wallpapers = {
       url = "github:lcx12901/wallpapers";
