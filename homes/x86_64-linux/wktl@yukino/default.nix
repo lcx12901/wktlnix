@@ -8,33 +8,6 @@ in
 
     system.xdg = enabled;
 
-    services.openclaw = {
-      enable = true;
-      channels = {
-        discord = {
-          enabled = true;
-          dmPolicy = "allowlist";
-          allowFrom = [ "962057055622012939" ];
-          groupPolicy = "allowlist";
-          guilds = {
-            "1507221972579516487" = {
-              requireMention = true;
-              users = [ "962057055622012939" ];
-
-              channels = {
-                "1507224368785260574" = {
-                  requireMention = true;
-                };
-                "1508880614806261883" = {
-                  requireMention = true;
-                };
-              };
-            };
-          };
-        };
-      };
-    };
-
     programs = {
       graphical = {
         wms.niri = {
