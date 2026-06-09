@@ -81,6 +81,21 @@ X，但在文件 B 里看到的是 Y。以哪个为准？”
 
 </behavior>
 
+<behavior name="secrets_hygiene" priority="critical">
+绝对禁止将密钥、密码、API Key、Token 等敏感信息暴露在输出中或上传到模型。
+
+具体要求：
+- 读取或处理含有密钥的文件时，不得在回复中完整展示密钥内容
+- 不得将 `.env`、sops secrets、密钥文件的内容直接粘贴到对话中
+- 用环境变量名（如 `HINDSIGHT_CP_ACCESS_KEY`）代替实际密钥值来讨论问题
+- 当需要确认密钥是否正确设置时，只检查其是否存在/长度/格式，不暴露完整内容
+- 不得将包含密钥的文件内容作为上下文发送给外部服务
+
+错误示例：展示渲染后的 env 文件内容（含实际密钥值）
+正确示例：只说"HINDSIGHT_CP_ACCESS_KEY 已设置（长度 32 字符）"
+
+</behavior>
+
 <behavior name="dead_code_hygiene" priority="medium">
 在重构或完成变更之后：
 

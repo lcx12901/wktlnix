@@ -14,6 +14,11 @@ let
 
   agents = import ./agents.nix { inherit lib; };
   commands = import ./commands.nix { inherit lib; };
+
+  # Shared skills - filtered for opencode
+  sharedSkills = import (lib.file.get-file "modules/common/skills/default.nix") {
+    inherit pkgs lib;
+  };
 in
 {
   imports = [
@@ -49,6 +54,18 @@ in
             "@tarquinen/opencode-dcp@latest"
             "opencode-pty"
             "oh-my-openagent"
+            [
+              "@vectorize-io/opencode-hindsight"
+              {
+                hindsightApiUrl = "https://hindsight.milet.lincx.top";
+                hindsightApiToken = "{file:${config.sops.secrets."hindsight-tenant-api-key".path}}";
+                bankId = "opencode";
+                autoRecall = true;
+                autoRetain = true;
+                recallBudget = "mid";
+                retainEveryNTurns = 3;
+              }
+            ]
           ];
 
           provider = {
@@ -59,6 +76,11 @@ in
             };
           };
         };
+
+        # Shared skills - filtered for opencode
+        # This uses the dedicated home-manager option, not settings.skills
+        # Convert derivation to string path for type compatibility
+        skills = toString sharedSkills.opencode;
 
         agents = agents.renderAgents;
         commands = commands.renderCommands;
@@ -79,6 +101,7 @@ in
 
     sops.secrets = {
       "OPENCODE_API_KEY" = { };
+      "hindsight-tenant-api-key" = { };
     };
   };
 }
