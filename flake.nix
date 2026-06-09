@@ -100,12 +100,6 @@
       url = "github:XIU2/TrackersListCollection";
       flake = false;
     };
-
-    #frontend Skills
-    antfu-skills = {
-      url = "github:antfu/skills";
-      flake = false;
-    };
   };
 
   outputs =
