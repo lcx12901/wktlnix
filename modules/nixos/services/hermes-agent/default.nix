@@ -5,13 +5,25 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    ;
   inherit (lib.wktlnix) mkOpt;
 
   cfg = config.wktlnix.services.hermes-agent;
+  hindsightCfg = config.wktlnix.services.hindsight or { };
 
   stateDir = "/var/lib/hermes";
   workingDirectory = "${stateDir}/workspace";
+
+  # Shared skills - filtered for hermes
+  sharedSkills = import (lib.file.get-file "modules/common/skills/default.nix") {
+    inherit pkgs lib;
+  };
+
+  # Hindsight is enabled when the hindsight service is enabled
+  hindsightEnabled = hindsightCfg.enable or false;
 in
 {
   options.wktlnix.services.hermes-agent = {
@@ -20,6 +32,12 @@ in
   };
 
   config = mkIf cfg.enable {
+    # Add hindsight-api dependency when hindsight is enabled
+    systemd.services.hermes-agent = lib.mkIf hindsightEnabled {
+      after = [ "hindsight-api.service" ];
+      requires = [ "hindsight-api.service" ];
+    };
+
     services.hermes-agent = {
       enable = true;
 
@@ -86,11 +104,29 @@ in
 
         dashboard.show_token_analytics = false;
 
-        memory = {
-          memory_enabled = true;
-          user_profile_enabled = true;
-          memory_char_limit = 3000;
-          user_char_limit = 1800;
+        memory = lib.mkMerge [
+          {
+            memory_enabled = true;
+            user_profile_enabled = true;
+            memory_char_limit = 3000;
+            user_char_limit = 1800;
+          }
+          # Hindsight configuration (when enabled, local mode, all parameters fixed)
+          (lib.mkIf hindsightEnabled {
+            provider = "hindsight";
+            hindsight = {
+              mode = "local_external";
+              bank_id = "hermes";
+              bank_mission = "hermes";
+              auto_recall = true;
+              auto_retain = true;
+              recall_budget = "mid";
+            };
+          })
+        ];
+
+        skills = {
+          external_dirs = [ (toString sharedSkills.hermes) ];
         };
 
         tool_loop_guardrails = {
@@ -99,25 +135,39 @@ in
         };
       } cfg.settings;
 
-      mcpServers = {
-        filesystem = {
-          command = "npx";
-          args = [
-            "-y"
-            "@modelcontextprotocol/server-filesystem"
-            workingDirectory
-            stateDir
-          ];
-        };
+      mcpServers = lib.mkMerge [
+        {
+          filesystem = {
+            command = "npx";
+            args = [
+              "-y"
+              "@modelcontextprotocol/server-filesystem"
+              workingDirectory
+              stateDir
+            ];
+          };
 
-        sequential-thinking = {
-          command = "npx";
-          args = [
-            "-y"
-            "@modelcontextprotocol/server-sequential-thinking"
-          ];
-        };
-      };
+          sequential-thinking = {
+            command = "npx";
+            args = [
+              "-y"
+              "@modelcontextprotocol/server-sequential-thinking"
+            ];
+          };
+        }
+        # Hindsight MCP server (when enabled)
+        (lib.mkIf hindsightEnabled {
+          hindsight = {
+            command = "npx";
+            args = [
+              "-y"
+              "@vectorize-io/hindsight-mcp"
+              "--api-url"
+              "http://localhost:${toString (hindsightCfg.apiPort or 8888)}"
+            ];
+          };
+        })
+      ];
 
       extraPackages = with pkgs; [
         bashInteractive
@@ -129,6 +179,9 @@ in
         jq
         nodejs
         python312
+        python312Packages.ptyprocess # Dashboard Chat 标签页需要
+        python312Packages.fastapi # Dashboard Web 服务器
+        python312Packages.uvicorn # Dashboard ASGI 服务器
         ripgrep
         uv
       ];
@@ -136,12 +189,12 @@ in
 
     sops.secrets."hermes-agent-env" = { };
 
-    # environment.persistence."/persist" = {
-    #   hideMounts = true;
-    #
-    #   directories = [
-    #     stateDir
-    #   ];
-    # };
+    environment.persistence."/persist" = {
+      hideMounts = true;
+
+      directories = [
+        stateDir
+      ];
+    };
   };
 }
