@@ -101,6 +101,7 @@ in
         dashboard.show_token_analytics = false;
 
         memory = {
+          provider = "hindsight";
           memory_enabled = true;
           user_profile_enabled = true;
           memory_char_limit = 3000;
@@ -183,6 +184,24 @@ in
     system.activationScripts.hermes-soul = ''
       install -o hermes -g hermes -m 0640 ${./documents/SOUL.md} ${stateDir}/.hermes/SOUL.md
     '';
+
+    system.activationScripts.hindsight-config =
+      let
+        cfg = builtins.toJSON {
+          mode = "local_external";
+          api_url = "https://hindsight.milet.lincx.top";
+          bank_id = "hermes";
+          recall_budget = "mid";
+          memory_mode = "hybrid";
+          auto_retain = true;
+          auto_recall = true;
+        };
+      in
+      ''
+        mkdir -p /var/lib/hermes/.hermes/hindsight
+        echo '${cfg}' > /var/lib/hermes/.hermes/hindsight/config.json
+        chown -R hermes:hermes /var/lib/hermes/.hermes/hindsight
+      '';
 
     sops.secrets."hermes-agent-env" = { };
 
