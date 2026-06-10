@@ -63,7 +63,6 @@ in
       jellyfin = enabled;
       aria2 = enabled;
       mihomo = enabled;
-      ollama = enabled;
     };
 
     security = {

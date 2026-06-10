@@ -54,7 +54,6 @@ in
         role = "client";
       };
       mihomo = enabled;
-      ollama = enabled;
     };
 
     security = {
