@@ -12,7 +12,6 @@ let
   inherit (lib.wktlnix) mkOpt;
 
   cfg = config.wktlnix.services.hermes-agent;
-  hindsightCfg = config.wktlnix.services.hindsight or { };
 
   stateDir = "/var/lib/hermes";
   workingDirectory = "${stateDir}/workspace";
@@ -21,9 +20,6 @@ let
   sharedSkills = import (lib.file.get-file "modules/common/skills/default.nix") {
     inherit pkgs lib;
   };
-
-  # Hindsight is enabled when the hindsight service is enabled
-  hindsightEnabled = hindsightCfg.enable or false;
 in
 {
   options.wktlnix.services.hermes-agent = {
@@ -32,14 +28,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    # Add hindsight-api dependency when hindsight is enabled
-    systemd.services.hermes-agent = lib.mkIf hindsightEnabled {
-      after = [ "hindsight-api.service" ];
-      requires = [ "hindsight-api.service" ];
-    };
-
     services.hermes-agent = {
       enable = true;
+
+      extraDependencyGroups = [
+        "messaging"
+        "voice"
+        "hindsight"
+      ];
 
       addToSystemPackages = true;
       restart = "always";
@@ -77,7 +73,7 @@ in
         };
 
         delegation = {
-          model = "Mimo-v2.5";
+          model = "mimo-v2.5";
           reasoning_effort = "medium";
           max_iterations = 50;
           child_timeout_seconds = 900;
@@ -104,26 +100,12 @@ in
 
         dashboard.show_token_analytics = false;
 
-        memory = lib.mkMerge [
-          {
-            memory_enabled = true;
-            user_profile_enabled = true;
-            memory_char_limit = 3000;
-            user_char_limit = 1800;
-          }
-          # Hindsight configuration (when enabled, local mode, all parameters fixed)
-          (lib.mkIf hindsightEnabled {
-            provider = "hindsight";
-            hindsight = {
-              mode = "local_external";
-              bank_id = "hermes";
-              bank_mission = "hermes";
-              auto_recall = true;
-              auto_retain = true;
-              recall_budget = "mid";
-            };
-          })
-        ];
+        memory = {
+          memory_enabled = true;
+          user_profile_enabled = true;
+          memory_char_limit = 3000;
+          user_char_limit = 1800;
+        };
 
         skills = {
           external_dirs = [ (toString sharedSkills.hermes) ];
@@ -133,41 +115,51 @@ in
           warnings_enabled = true;
           hard_stop_enabled = true;
         };
+
+        gateway = {
+          platforms = {
+            discord = {
+              enabled = true;
+              require_mention = true;
+              auto_thread = true;
+              reactions = true;
+              history_backfill = true;
+              history_backfill_limit = 50;
+            };
+          };
+        };
       } cfg.settings;
 
-      mcpServers = lib.mkMerge [
-        {
-          filesystem = {
-            command = "npx";
-            args = [
-              "-y"
-              "@modelcontextprotocol/server-filesystem"
-              workingDirectory
-              stateDir
-            ];
-          };
+      mcpServers = {
+        filesystem = {
+          command = "npx";
+          args = [
+            "-y"
+            "@modelcontextprotocol/server-filesystem"
+            workingDirectory
+            stateDir
+          ];
+        };
 
-          sequential-thinking = {
-            command = "npx";
-            args = [
-              "-y"
-              "@modelcontextprotocol/server-sequential-thinking"
-            ];
-          };
-        }
-        # Hindsight MCP server (when enabled)
-        (lib.mkIf hindsightEnabled {
-          hindsight = {
-            command = "npx";
-            args = [
-              "-y"
-              "@vectorize-io/hindsight-mcp"
-              "--api-url"
-              "http://localhost:${toString (hindsightCfg.apiPort or 8888)}"
-            ];
-          };
-        })
-      ];
+        sequential-thinking = {
+          command = "npx";
+          args = [
+            "-y"
+            "@modelcontextprotocol/server-sequential-thinking"
+          ];
+        };
+
+        hindsight = {
+          command = "npx";
+          args = [
+            "-y"
+            "mcp-remote"
+            "https://hindsight.milet.lincx.top/mcp/hermes/"
+            "--header"
+            "Authorization:Bearer \${HINDSIGHT_API_KEY}"
+          ];
+        };
+      };
 
       extraPackages = with pkgs; [
         bashInteractive
@@ -179,13 +171,18 @@ in
         jq
         nodejs
         python312
-        python312Packages.ptyprocess # Dashboard Chat 标签页需要
-        python312Packages.fastapi # Dashboard Web 服务器
-        python312Packages.uvicorn # Dashboard ASGI 服务器
         ripgrep
         uv
       ];
     };
+
+    systemd.tmpfiles.rules = [
+      "d ${stateDir}/.hermes/pairing 0750 hermes hermes -"
+    ];
+
+    system.activationScripts.hermes-soul = ''
+      install -o hermes -g hermes -m 0640 ${./documents/SOUL.md} ${stateDir}/.hermes/SOUL.md
+    '';
 
     sops.secrets."hermes-agent-env" = { };
 

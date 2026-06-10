@@ -42,6 +42,7 @@ in
         enable = true;
         configFile = config.sops.secrets."dmit_sing".path;
       };
+      hermes-agent = enabled;
     };
 
     security = {
