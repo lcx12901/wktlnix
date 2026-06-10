@@ -37,7 +37,6 @@ in
       podman = {
         inherit (cfg) enable;
 
-        # prune images and containers periodically
         autoPrune = {
           enable = true;
           flags = [ "--all" ];
@@ -54,6 +53,12 @@ in
       oci-containers = {
         backend = "podman";
       };
+    };
+
+    environment.persistence."/persist" = {
+      hideMounts = true;
+
+      directories = [ "/var/lib/containers" ];
     };
   };
 }

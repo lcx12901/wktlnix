@@ -27,10 +27,7 @@ in
           ".config/dconf"
         ];
       };
-      networking = {
-        enable = true;
-        # wireless = true;
-      };
+      networking = enabled;
     };
 
     hardware = {
@@ -68,7 +65,7 @@ in
       };
       mihomo = enabled;
       nginx = enabled;
-      # aria2 = enabled;
+      aria2 = enabled;
       ollama = enabled;
     };
 
@@ -81,6 +78,7 @@ in
       podman = enabled;
     };
   };
+
   sops.secrets = {
     "cf-kanroji-inadyn" = {
       inherit (config.services.inadyn) group;

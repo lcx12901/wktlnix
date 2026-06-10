@@ -2,7 +2,6 @@
   inputs,
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -80,11 +79,26 @@ in
       };
 
       nginx.virtualHosts."ariang.${domain}" = {
-        root = "${pkgs.ariang}/share/ariang";
+        locations."/" = {
+          proxyPass = "http://localhost:6880";
+          proxyWebsockets = true;
+        };
 
         locations."/jsonrpc" = {
           proxyPass = "http://localhost:${toString config.services.aria2.settings.rpc-listen-port}";
         };
+      };
+    };
+
+    virtualisation.oci-containers = {
+      containers.ariang = {
+        image = "docker.io/p3terx/ariang:latest";
+        ports = [ "6880:6880" ];
+        extraOptions = [
+          "--log-opt"
+          "max-size=1m"
+        ];
+        autoStart = true;
       };
     };
 
