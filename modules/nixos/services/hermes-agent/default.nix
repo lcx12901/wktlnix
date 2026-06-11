@@ -150,14 +150,12 @@ in
           ];
         };
 
-        hindsight = {
-          command = "npx";
+        nixos = {
+          command = "nix";
           args = [
-            "-y"
-            "mcp-remote"
-            "https://hindsight.milet.lincx.top/mcp/hermes/"
-            "--header"
-            "Authorization:Bearer \${HINDSIGHT_API_KEY}"
+            "run"
+            "github:utensils/mcp-nixos"
+            "--"
           ];
         };
       };
@@ -166,10 +164,12 @@ in
         bashInteractive
         coreutils
         curl
+        direnv
         fd
         git
         gnumake
         jq
+        nix-direnv
         nodejs
         python312
         ripgrep
