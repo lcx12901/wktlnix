@@ -28,6 +28,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    wktlnix.user.extraGroups = [ "hermes" ];
+
     services.hermes-agent = {
       enable = true;
 
@@ -169,6 +171,7 @@ in
         git
         gnumake
         jq
+        nix
         nix-direnv
         nodejs
         python312
@@ -200,7 +203,7 @@ in
       ''
         mkdir -p /var/lib/hermes/.hermes/hindsight
         echo '${cfg}' > /var/lib/hermes/.hermes/hindsight/config.json
-        chown -R hermes:hermes /var/lib/hermes/.hermes/hindsight
+        chown -R hermes:hermes /var/lib/hermes/.hermes
       '';
 
     sops.secrets."hermes-agent-env" = { };
