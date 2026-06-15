@@ -188,7 +188,7 @@ in
             "https://nix-community.cachix.org" # nix-community cache
             "https://nixpkgs-unfree.cachix.org" # unfree-package cache
             "https://numtide.cachix.org" # another unfree package cache
-            "https://wktlvim.cachix.org"
+            "https://noctalia.cachix.org"
           ];
 
           trusted-public-keys = [
@@ -197,7 +197,7 @@ in
             "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
             "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-            "wktlvim.cachix.org-1:eNtq211GkOCpTk4ZWbSn8ov1p+Jvq1a5zDsmYWKthTw="
+            "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
           ];
         };
       };

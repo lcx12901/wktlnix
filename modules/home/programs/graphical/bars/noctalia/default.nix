@@ -14,246 +14,164 @@ let
   cfg = config.wktlnix.programs.graphical.bars.noctalia;
 in
 {
-  imports = [
-    ./plugins.nix
-  ];
-
   options.wktlnix.programs.graphical.bars.noctalia = {
     enable = mkEnableOption "noctalia";
   };
 
   config = mkIf cfg.enable {
-    home = {
-      file = {
-        ".face" = {
-          source = lib.file.get-file ".face";
-        };
-        ".local/cache/noctalia/shell-state.json" = {
-          text = builtins.toJSON {
-            changelogState.lastSeenVersion = "v4.4.4";
-          };
-        };
-      };
-      persistence = lib.mkIf persist {
-        "/persist" = {
-          directories = [ ".config/noctalia/plugins" ];
-        };
-      };
-    };
+    # home = {
+    #   file = {
+    #     ".face" = {
+    #       source = lib.file.get-file ".face";
+    #     };
+    #   };
+    # persistence = lib.mkIf persist {
+    #   "/persist" = {
+    #     directories = [ ".config/noctalia" ];
+    #   };
+    # };
+    # };
 
-    programs.noctalia-shell = {
+    programs.noctalia = {
       enable = true;
-
-      package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-        calendarSupport = true;
-      };
+      systemd.enable = true;
 
       settings = {
-        settingsVersion = 0;
-
-        general = {
-          telemetryEnabled = false;
-          showChangelogOnStartup = false;
+        shell = {
+          ui_scale = 1.0;
+          font_family = "Maple Mono NF CN";
+          telemetry_enabled = false;
+          clipboard_enabled = true;
+          clipboard_auto_paste = "auto";
+          clipboard_placement = "centered";
+          avatar_path = lib.file.get-file ".face";
         };
 
-        colorSchemes = {
-          darkMode = true;
-          generationMethod = "tonal-spot";
-          useWallpaperColors = true;
+        shell.panel = {
+          density = "comfortable";
+        };
+
+        theme = {
+          mode = "dark";
+          source = "wallpaper";
         };
 
         wallpaper = {
           enabled = true;
-          overviewEnabled = false;
+          fill_mode = "fill";
+          transition = "pixelate";
+          transition_duration = 1500;
           directory = "${inputs.wallpapers}";
-          enableMultiMonitorDirectories = false;
-          setWallpaperOnAllMonitors = true;
-          panelPosition = "center";
-          automationEnabled = true;
-          randomIntervalSec = 1800;
-          showHiddenFiles = false;
-          transitionDuration = 1500;
-          transitionEdgeSmoothness = 0.05;
-          transitionType = "pixelate";
-          skipStartupTransition = true;
-          viewMode = "recursive";
-          wallpaperChangeMode = "random";
-          useOriginalImages = true;
         };
 
-        dock.enabled = false;
-        network.enabled = false;
-
-        bar = {
-          density = "comfortable";
-          widgets = {
-            left = [
-              {
-                id = "Launcher";
-              }
-              {
-                id = "Clock";
-              }
-              {
-                id = "SystemMonitor";
-                compactMode = true;
-                diskPath = "/persist";
-                showCpuFreq = false;
-                showCpuTemp = false;
-                showCpuUsage = true;
-                showDiskAsFree = false;
-                showDiskUsage = false;
-                showGpuTemp = false;
-                showLoadAverage = false;
-                showMemoryAsPercent = false;
-                showMemoryUsage = true;
-                showNetworkStats = true;
-                showSwapUsage = false;
-                useMonospaceFont = true;
-                usePrimaryColor = true;
-              }
-              {
-                id = "ActiveWindow";
-                maxWidth = 145;
-                scrollingMode = "hover";
-              }
-              {
-                id = "MediaMini";
-                maxWidth = 200;
-                panelShowAlbumArt = true;
-                panelShowVisualizer = true;
-                scrollingMode = "always";
-                showAlbumArt = true;
-                showArtistFirst = true;
-                showProgressRing = true;
-                showVisualizer = true;
-                useFixedWidth = false;
-                visualizerType = "mirrored";
-              }
-            ];
-            center = [
-              {
-                id = "Workspace";
-                emptyColor = "secondary";
-                focusedColor = "tertiary";
-                occupiedColor = "primary";
-                enableScrollWheel = true;
-                followFocusedScreen = true;
-                labelMode = "index";
-                showBadge = true;
-                showLabelsOnlyWhenOccupied = true;
-              }
-            ];
-            right = [
-              { id = "plugin:catwalk"; }
-              { id = "Tray"; }
-              {
-                id = "Volume";
-                displayMode = "onhover";
-                middleClickCommand = "${lib.getExe pkgs.pavucontrol}";
-              }
-              {
-                id = "NotificationHistory";
-                hideWhenZero = true;
-                hideWhenZeroUnread = false;
-                showUnreadBadge = true;
-                unreadBadgeColor = "primary";
-              }
-              {
-                id = "ControlCenter";
-                useDistroLogo = true;
-                colorizeDistroLogo = true;
-              }
-            ];
-          };
+        wallpaper.automation = {
+          enabled = true;
+          interval_seconds = 1800;
+          order = "random";
+          recursive = true;
         };
 
-        controlCenter = {
-          position = "close_to_bar_button";
-          diskPath = "/persist";
-          shortcuts = {
-            left = [
-              { id = "Bluetooth"; }
-              { id = "WallpaperSelector"; }
-            ];
-            right = [
-              { id = "Notifications"; }
-              { id = "KeepAwake"; }
-            ];
-          };
-          cards = [
-            {
-              enabled = true;
-              id = "profile-card";
-            }
-            {
-              enabled = true;
-              id = "shortcuts-card";
-            }
-            {
-              enabled = true;
-              id = "audio-card";
-            }
-            {
-              enabled = false;
-              id = "brightness-card";
-            }
-            {
-              enabled = true;
-              id = "weather-card";
-            }
-            {
-              enabled = true;
-              id = "media-sysmon-card";
-            }
+        bar.main = {
+          position = "top";
+          thickness = 40;
+          background_opacity = 0.85;
+          radius = 0;
+          margin = 0;
+          padding = 0;
+          widget_spacing = 16;
+          scale = 1.0;
+
+          start = [
+            "clock"
+            "cpu"
+            "mem"
+            "active_window"
+            "media"
+          ];
+          center = [ "workspaces" ];
+          end = [
+            "tray"
+            "volume"
+            "notifications"
+            "control-center"
           ];
         };
 
-        notifications = {
-          enabled = true;
-          backgroundOpacity = 0.84;
-          sounds = {
-            enabled = true;
-            volume = 0.5;
-            excludedApps = "discord,firefox,flameshot";
+        widget = {
+          cpu = {
+            type = "sysmon";
+            stat = "cpu_usage";
           };
+          mem = {
+            type = "sysmon";
+            stat = "ram_used";
+          };
+          active_window = {
+            max_length = 145;
+          };
+          media = {
+            max_length = 200;
+            album_art_only = true;
+            hide_when_no_media = true;
+          };
+          workspaces = {
+            show_labels = true;
+            show_badge = true;
+          };
+          volume = {
+            middle_click_command = "${lib.getExe pkgs.pavucontrol}";
+          };
+          notifications = {
+            hide_when_no_unread = true;
+          };
+        };
+
+        control_center = {
+          sidebar = "compact";
+          shortcuts = [
+            { type = "wallpaper"; }
+            { type = "notification"; }
+            { type = "caffeine"; }
+          ];
+        };
+
+        notification = {
+          enable_daemon = true;
+          background_opacity = 0.84;
         };
 
         audio = {
-          cavaFrameRate = 60;
-          visualizerType = "mirrored";
+          enable_sounds = true;
+          sound_volume = 0.5;
         };
 
-        location.name = "Shenzhen";
+        location = {
+          address = "Shenzhen, China";
+        };
 
-        desktopWidgets = {
+        desktop_widgets = {
           enabled = true;
-          gridSnap = false;
-          monitorWidgets = [
+          widget_order = [
             {
-              name = "DP-1";
-              widgets = [
-                {
-                  id = "MediaPlayer";
-                  hideMode = "hidden";
-                  roundedCorners = true;
-                  scale = 1.4394558159639832;
-                  showAlbumArt = true;
-                  showBackground = true;
-                  showButtons = true;
-                  showVisualizer = true;
-                  visualizerType = "mirrored";
-                  x = 1960;
-                  y = 120;
-                }
-              ];
+              type = "media_player";
+              output = "DP-1";
+              cx = 1960;
+              cy = 120;
+              box_width = 400;
+              box_height = 200;
             }
           ];
         };
 
-        hooks = {
+        system.monitor = {
           enabled = true;
-          startup = "noctalia-shell ipc call wallpaper random";
+          cpu_poll_seconds = 2;
+          memory_poll_seconds = 2;
+          network_poll_seconds = 5;
+        };
+
+        nightlight = {
+          enabled = false;
         };
       };
     };

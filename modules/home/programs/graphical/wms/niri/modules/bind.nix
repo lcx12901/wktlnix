@@ -24,9 +24,8 @@ let
   noctalia =
     cmd:
     [
-      "noctalia-shell"
-      "ipc"
-      "call"
+      "noctalia"
+      "msg"
     ]
     ++ (pkgs.lib.splitString " " cmd);
 
@@ -45,17 +44,17 @@ in
       config = [
         (plain "binds" [
           (plain "Mod+W" [
-            (spawn (noctalia "launcher toggle"))
+            (spawn (noctalia "panel-toggle launcher"))
           ])
           (node' "Mod+X" { repeat = false; } [
             # (spawn [
             # vicinae
             # "vicinae://extensions/vicinae/clipboard/history"
             # ])
-            (spawn (noctalia "plugin:clipper toggle"))
+            (spawn (noctalia "panel-toggle clipboard"))
           ])
           (plain "Mod+Shift+P" [
-            (spawn (noctalia "lockScreen lock"))
+            (spawn (noctalia "session lock"))
           ])
           (plain "Mod+Shift+Slash" [
             (flag "show-hotkey-overlay")

@@ -48,7 +48,6 @@ in
             (leaf' "saturation" 1.5)
           ])
           (spawn-at-startup [ xwayland-satellite ])
-          (spawn-at-startup [ "noctalia-shell" ])
           (plain "cursor" [
             (leaf' "xcursor-theme" config.stylix.cursor.name)
             (leaf' "xcursor-size" config.stylix.cursor.size)
@@ -113,7 +112,7 @@ in
             (leaf' "XDG_SESSION_TYPE" "wayland")
           ])
         ])
-        ++ (optionals config.programs.noctalia-shell.enable [
+        ++ (optionals config.programs.noctalia.enable [
           (plain "layer-rule" [
             (leaf' "match" { namespace = "^noctalia-wallpaper*"; })
             (leaf' "place-within-backdrop" true)
