@@ -55,10 +55,6 @@ in
           hostNames = [ "github.com" ];
           publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
         };
-        akeno-ed25519 = {
-          hostNames = [ "akeno.wktl.de" ];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAING7bqcTZw/MIm3px4l6bCOOR37Em4hbnutkZJ4Jbnsm";
-        };
         dmit-ed25519 = {
           hostNames = [ "dmit.wktl.de" ];
           publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPkQDbyjld2Oi47HUM4paKaILpVzwXWTU9ZW4W5fpMZM";
@@ -66,10 +62,6 @@ in
         milet-ed25519 = {
           hostNames = [ "milet.wktl.de" ];
           publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZgmbR1xNbPCmUfIMCTI0+QwYKP0d5YrkbFEPNaWErW";
-        };
-        z9yun-gitlab-nistp256 = {
-          hostNames = [ "[192.168.0.216]:8221" ];
-          publicKey = "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJ4DwUbrGvjrVD1+xg5B9KsEwdjxeE2SdvtWOz5fVKBHxCyo0k5nY/nNFB8s8+KUIqpUqTFxOBdz6ILdj3F9KCU=";
         };
         z9yun-gitlab-ed25519 = {
           hostNames = [ "[192.168.0.216]:8221" ];
