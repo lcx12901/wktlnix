@@ -24,10 +24,11 @@ buildEnv {
     ln -s ${./default.custom.yaml} $out/share/rime-data/default.custom.yaml
 
     cd $out/share/rime-data/
+    mkdir -p ./build
     for s in *.schema.yaml; do
-      rime_deployer --compile "$s" . "${rime-data}/share/rime-data/" ./build
+      rime_deployer --compile "$s" "${rime-data}/share/rime-data/" . ./build
     done
 
-    rm ./build/*.txt
+    rm -f ./build/*.txt
   '';
 }
