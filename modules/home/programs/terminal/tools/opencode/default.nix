@@ -62,8 +62,12 @@ in
                 bankId = "opencode";
                 autoRecall = true;
                 autoRetain = true;
-                recallBudget = "mid";
-                retainEveryNTurns = 3;
+                recallBudget = "high";
+                recallMaxTokens = 2048; # 增加 token 预算
+                retainEveryNTurns = 2; # 更频繁保留
+                retainOverlapTurns = 3; # 增加重叠窗口
+                retainMode = "full-session"; # 保留完整会话
+
               }
             ]
           ];
