@@ -10,7 +10,6 @@ let
   inherit (lib) mkIf mkEnableOption;
 
   persist = osConfig.wktlnix.system.persist.enable;
-
   cfg = config.wktlnix.programs.graphical.bars.noctalia;
 in
 {
@@ -19,18 +18,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    # home = {
-    #   file = {
-    #     ".face" = {
-    #       source = lib.file.get-file ".face";
-    #     };
-    #   };
-    # persistence = lib.mkIf persist {
-    #   "/persist" = {
-    #     directories = [ ".config/noctalia" ];
-    #   };
-    # };
-    # };
+    home.packages = [ pkgs.evtest ];
 
     programs.noctalia = {
       enable = true;
@@ -75,9 +63,9 @@ in
           position = "top";
           thickness = 40;
           background_opacity = 0.85;
-          radius = 0;
+          radius = 100;
           margin = 0;
-          padding = 0;
+          padding = 16;
           widget_spacing = 16;
           scale = 1.0;
 
@@ -88,7 +76,10 @@ in
             "active_window"
             "media"
           ];
-          center = [ "workspaces" ];
+          center = [
+            "workspaces"
+            "cat"
+          ];
           end = [
             "tray"
             "volume"
@@ -123,6 +114,11 @@ in
           };
           notifications = {
             hide_when_no_unread = true;
+          };
+          cat = {
+            type = "noctalia/bongocat:cat";
+            input_device = "/dev/input/event0";
+            scale = 1.25;
           };
         };
 
@@ -173,6 +169,26 @@ in
         nightlight = {
           enabled = false;
         };
+
+        plugins = {
+          enabled = [ "noctalia/bongocat" ];
+          source = [
+            {
+              name = "official";
+              kind = "git";
+              location = "https://github.com/noctalia-dev/official-plugins";
+              auto_update = true;
+            }
+          ];
+        };
+      };
+    };
+
+    home.persistence = lib.mkIf persist {
+      "/persist" = {
+        directories = [
+          ".local/state/noctalia/clipboard"
+        ];
       };
     };
   };
