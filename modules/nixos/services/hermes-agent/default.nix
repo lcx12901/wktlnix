@@ -53,6 +53,14 @@ in
 
         toolsets = [ "all" ];
 
+        discord = {
+          require_mention = true;
+          thread_require_mention = true;
+          auto_thread = true;
+          reactions = true;
+          reply_to_mode = "first";
+        };
+
         agent = {
           max_turns = 90;
           gateway_timeout = 3600;
@@ -119,19 +127,6 @@ in
         tool_loop_guardrails = {
           warnings_enabled = true;
           hard_stop_enabled = true;
-        };
-
-        gateway = {
-          platforms = {
-            discord = {
-              enabled = true;
-              require_mention = true;
-              auto_thread = true;
-              reactions = true;
-              history_backfill = true;
-              history_backfill_limit = 50;
-            };
-          };
         };
       } cfg.settings;
 
