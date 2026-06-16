@@ -10,7 +10,11 @@ let
   inherit (lib) mkIf mkEnableOption;
 
   persist = osConfig.wktlnix.system.persist.enable;
+
   cfg = config.wktlnix.programs.graphical.bars.noctalia;
+
+  keyboard-device =
+    if osConfig.networking.hostName == "kanroji" then "/dev/input/event0" else "/dev/input/event4";
 in
 {
   options.wktlnix.programs.graphical.bars.noctalia = {
@@ -22,7 +26,6 @@ in
 
     programs.noctalia = {
       enable = true;
-      systemd.enable = true;
 
       settings = {
         shell = {
@@ -31,12 +34,11 @@ in
           telemetry_enabled = false;
           clipboard_enabled = true;
           clipboard_auto_paste = "auto";
-          clipboard_placement = "centered";
           avatar_path = lib.file.get-file ".face";
-        };
 
-        shell.panel = {
-          density = "comfortable";
+          panel = {
+            clipboard_placement = "centered";
+          };
         };
 
         theme = {
@@ -46,7 +48,7 @@ in
 
         wallpaper = {
           enabled = true;
-          fill_mode = "fill";
+          fill_mode = "crop";
           transition = "pixelate";
           transition_duration = 1500;
           directory = "${inputs.wallpapers}";
@@ -64,7 +66,8 @@ in
           thickness = 40;
           background_opacity = 0.85;
           radius = 100;
-          margin = 0;
+          margin_edge = 10;
+          margin_ends = 180;
           padding = 16;
           widget_spacing = 16;
           scale = 1.0;
@@ -105,19 +108,12 @@ in
             album_art_only = true;
             hide_when_no_media = true;
           };
-          workspaces = {
-            show_labels = true;
-            show_badge = true;
-          };
-          volume = {
-            middle_click_command = "${lib.getExe pkgs.pavucontrol}";
-          };
           notifications = {
             hide_when_no_unread = true;
           };
           cat = {
             type = "noctalia/bongocat:cat";
-            input_device = "/dev/input/event0";
+            input_device = keyboard-device;
             scale = 1.25;
           };
         };
@@ -174,6 +170,7 @@ in
           enabled = [ "noctalia/bongocat" ];
           source = [
             {
+              enabled = true;
               name = "official";
               kind = "git";
               location = "https://github.com/noctalia-dev/official-plugins";
@@ -187,7 +184,8 @@ in
     home.persistence = lib.mkIf persist {
       "/persist" = {
         directories = [
-          ".local/state/noctalia/clipboard"
+          ".local/state/noctalia"
+          ".local/cache/noctalia"
         ];
       };
     };
