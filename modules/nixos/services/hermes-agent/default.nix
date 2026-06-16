@@ -51,6 +51,8 @@ in
           provider = "opencode-go";
         };
 
+        toolsets = [ "all" ];
+
         agent = {
           max_turns = 90;
           gateway_timeout = 3600;
