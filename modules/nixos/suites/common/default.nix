@@ -21,6 +21,7 @@ in
       unzip
       wget
       less
+      ghostty.terminfo
     ];
 
     zramSwap.enable = true;

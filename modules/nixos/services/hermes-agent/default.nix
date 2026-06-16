@@ -206,7 +206,12 @@ in
         chown -R hermes:hermes /var/lib/hermes/.hermes
       '';
 
-    sops.secrets."hermes-agent-env" = { };
+    sops.secrets."hermes-agent-env" = {
+      mode = "0400";
+      owner = config.services.hermes-agent.user;
+      group = config.services.hermes-agent.group;
+      restartUnits = [ "hermes-agent.service" ];
+    };
 
     environment.persistence."/persist" = {
       hideMounts = true;
