@@ -173,6 +173,7 @@ in
         nodejs
         python312
         ripgrep
+        tmux
         uv
       ];
     };
