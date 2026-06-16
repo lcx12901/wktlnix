@@ -108,7 +108,6 @@ in
     home.persistence = lib.mkIf persist {
       "/persist" = {
         directories = [
-          "./opencode"
           ".local/share/opencode"
           ".local/cache/opencode"
           ".local/cache/oh-my-opencode"
