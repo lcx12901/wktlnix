@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   inherit (lib) mkIf;
-  inherit (lib.kdl) leaf plain;
+  inherit (lib.kdl) leaf plain flag;
 
   leaf' = name: arg: leaf name [ arg ];
 
@@ -51,6 +51,15 @@ in
         (window-rule [
           (match { app-id = "wechat"; })
           (leaf' "open-focused" false)
+        ])
+        (plain "layer-rule" [
+          (leaf' "match" { namespace = "^noctalia-wallpaper*"; })
+          (leaf' "place-within-backdrop" true)
+        ])
+        (plain "overview" [
+          (plain "workspace-shadow" [
+            (flag "off")
+          ])
         ])
       ];
     };

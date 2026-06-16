@@ -7,7 +7,6 @@
 let
   inherit (lib)
     mkIf
-    optionals
     getExe
     getExe'
     ;
@@ -28,101 +27,90 @@ in
 {
   config = mkIf config.wktlnix.programs.graphical.wms.niri.enable {
     programs.niri = {
-      config =
-        (with config.lib.stylix.colors.withHashtag; [
-          (leaf' "screenshot-path" "${config.xdg.userDirs.pictures}/screenshots/%Y-%m-%d_%H:%M:%S.png")
-          (plain "hotkey-overlay" [
-            (flag "skip-at-startup")
+      config = with config.lib.stylix.colors.withHashtag; [
+        (leaf' "screenshot-path" "${config.xdg.userDirs.pictures}/screenshots/%Y-%m-%d_%H:%M:%S.png")
+        (plain "hotkey-overlay" [
+          (flag "skip-at-startup")
+        ])
+        (flag "prefer-no-csd")
+        (plain "blur" [
+          (leaf' "passes" 3)
+          (leaf' "offset" 3)
+          (leaf' "noise" 0.02)
+          (leaf' "saturation" 1.5)
+        ])
+        (spawn-at-startup [
+          wl-paste
+          "--watch"
+          cliphist
+          "store"
+        ])
+        (spawn-at-startup [ "noctalia" ])
+        (spawn-at-startup [ xwayland-satellite ])
+        (plain "cursor" [
+          (leaf' "xcursor-theme" config.stylix.cursor.name)
+          (leaf' "xcursor-size" config.stylix.cursor.size)
+        ])
+        (plain "input" [
+          (plain "keyboard" [ (flag "numlock") ])
+        ])
+        (plain "xwayland-satellite" [
+          (leaf' "path" "${xwayland-satellite}")
+        ])
+        (plain "layout" [
+          (plain "border" [
+            (leaf' "width" 3)
+            (leaf' "active-gradient" {
+              from = base07;
+              to = base0E;
+              angle = 45;
+            })
+            (leaf' "inactive-color" base02)
           ])
-          (flag "prefer-no-csd")
-          (spawn-at-startup [
-            wl-paste
-            "--watch"
-            cliphist
-            "store"
+          (plain "focus-ring" [ (flag "off") ])
+          (plain "tab-indicator" [
+            (flag "hide-when-single-tab")
           ])
-          (plain "blur" [
-            (leaf' "passes" 3)
-            (leaf' "offset" 3)
-            (leaf' "noise" 0.02)
-            (leaf' "saturation" 1.5)
+          (plain "preset-column-widths" [
+            (leaf' "proportion" (1. / 4.))
+            (leaf' "proportion" (1. / 3.))
+            (leaf' "proportion" (1. / 2.))
+            (leaf' "proportion" (2. / 3.))
+            (leaf' "proportion" (3. / 4.))
+            (leaf' "proportion" (4. / 4.))
           ])
-          (spawn-at-startup [ xwayland-satellite ])
-          (plain "cursor" [
-            (leaf' "xcursor-theme" config.stylix.cursor.name)
-            (leaf' "xcursor-size" config.stylix.cursor.size)
+          (flag "always-center-single-column")
+          (leaf' "center-focused-column" "never")
+          (leaf' "default-column-display" "tabbed")
+          (plain "default-column-width" [
+            (leaf' "proportion" (1. / 2.))
           ])
-          (plain "input" [
-            (plain "keyboard" [ (flag "numlock") ])
+          (flag "empty-workspace-above-first")
+          (leaf' "gaps" 16)
+          (plain "shadow" [
+            (flag "on")
           ])
-          (plain "xwayland-satellite" [
-            (leaf' "path" "${xwayland-satellite}")
-          ])
-          (plain "layout" [
-            (plain "border" [
-              (leaf' "width" 3)
-              (leaf' "active-gradient" {
-                from = base07;
-                to = base0E;
-                angle = 45;
-              })
-              (leaf' "inactive-color" base02)
-            ])
-            (plain "focus-ring" [ (flag "off") ])
-            (plain "tab-indicator" [
-              (flag "hide-when-single-tab")
-            ])
-            (plain "preset-column-widths" [
-              (leaf' "proportion" (1. / 4.))
-              (leaf' "proportion" (1. / 3.))
-              (leaf' "proportion" (1. / 2.))
-              (leaf' "proportion" (2. / 3.))
-              (leaf' "proportion" (3. / 4.))
-              (leaf' "proportion" (4. / 4.))
-            ])
-            (flag "always-center-single-column")
-            (leaf' "center-focused-column" "never")
-            (leaf' "default-column-display" "tabbed")
-            (plain "default-column-width" [
-              (leaf' "proportion" (1. / 2.))
-            ])
-            (flag "empty-workspace-above-first")
-            (leaf' "gaps" 16)
-            (plain "shadow" [
-              (flag "on")
-            ])
-            (leaf' "background-color" "transparent")
-          ])
-          (plain "animations" [
-            (plain "window-close" [
-              (leaf' "spring" {
-                damping-ratio = 1.0;
-                stiffness = 800;
-                epsilon = 0.0001;
-              })
-            ])
-          ])
-          (plain "environment" [
-            (leaf' "GSK_RENDERER" "gl")
-            (leaf' "NIXOS_OZONE_WL" "1")
-            (leaf' "MOZ_ENABLE_WAYLAND" "1")
-            (leaf' "QT_QPA_PLATFORM" "wayland;xcb")
-            (leaf' "QT_WAYLAND_DISABLE_WINDOWDECORATION" "1")
-            (leaf' "XDG_CURRENT_DESKTOP" "niri")
-            (leaf' "XDG_SESSION_TYPE" "wayland")
+          (leaf' "background-color" "transparent")
+        ])
+        (plain "animations" [
+          (plain "window-close" [
+            (leaf' "spring" {
+              damping-ratio = 1.0;
+              stiffness = 800;
+              epsilon = 0.0001;
+            })
           ])
         ])
-        ++ (optionals config.programs.noctalia.enable [
-          (plain "layer-rule" [
-            (leaf' "match" { namespace = "^noctalia-wallpaper*"; })
-            (leaf' "place-within-backdrop" true)
-          ])
-          (plain "overview" [
-            (plain "workspace-shadow" [
-              (flag "off")
-            ])
-          ])
-        ]);
+        (plain "environment" [
+          (leaf' "GSK_RENDERER" "gl")
+          (leaf' "NIXOS_OZONE_WL" "1")
+          (leaf' "MOZ_ENABLE_WAYLAND" "1")
+          (leaf' "QT_QPA_PLATFORM" "wayland;xcb")
+          (leaf' "QT_WAYLAND_DISABLE_WINDOWDECORATION" "1")
+          (leaf' "XDG_CURRENT_DESKTOP" "niri")
+          (leaf' "XDG_SESSION_TYPE" "wayland")
+        ])
+      ];
     };
   };
 }
