@@ -79,6 +79,19 @@ in
               };
             };
           };
+
+          mcp = {
+            nixos = {
+              enabled = true;
+              type = "local";
+              command = "nix";
+              args = [
+                "run"
+                "github:utensils/mcp-nixos"
+                "--"
+              ];
+            };
+          };
         };
 
         # Shared skills - filtered for opencode
