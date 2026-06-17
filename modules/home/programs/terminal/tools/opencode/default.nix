@@ -67,7 +67,6 @@ in
                 retainEveryNTurns = 2; # 更频繁保留
                 retainOverlapTurns = 3; # 增加重叠窗口
                 retainMode = "full-session"; # 保留完整会话
-
               }
             ]
           ];
@@ -84,12 +83,13 @@ in
             nixos = {
               enabled = true;
               type = "local";
-              command = "nix";
-              args = [
+              command = [
+                "nix"
                 "run"
                 "github:utensils/mcp-nixos"
                 "--"
               ];
+              timeout = 300000;
             };
           };
         };
