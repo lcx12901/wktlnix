@@ -119,11 +119,9 @@ in
 
           "browser.newtabpage.pinned" = [ ];
 
-          "privacy.resistFingerprinting" = true;
-          "privacy.resistFingerprinting.randomization.canvas.use_siphash" = true;
-          "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
-          "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
-          "privacy.resistFingerprinting.block_mozAddonManager" = true;
+          "privacy.resistFingerprinting" = lib.mkForce false;
+          "privacy.fingerprintingProtection" = true;
+          "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
           "privacy.donottrackheader.enabled" = true;
           "privacy.spoof_english" = 1;
           "privacy.firstparty.isolate" = true;
