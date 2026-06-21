@@ -172,6 +172,9 @@ in
         nix-direnv
         nodejs
         python312
+        python312Packages.ptyprocess # Dashboard Chat 标签页需要
+        python312Packages.fastapi # Dashboard Web 服务器
+        python312Packages.uvicorn # Dashboard ASGI 服务器
         ripgrep
         tmux
         uv
