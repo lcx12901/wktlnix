@@ -34,6 +34,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    chaotic.url = "github:chaotic-cx/nyx";
 
     # Applications & packages
     nix4nvchad = {
