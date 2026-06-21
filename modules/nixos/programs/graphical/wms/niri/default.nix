@@ -43,5 +43,11 @@ in
     environment.systemPackages = with pkgs; [
       xdg-desktop-portal-wlr
     ];
+
+    # Wayland 优化：强制 SDL 应用使用 Wayland 原生渲染
+    environment.variables = {
+      SDL_RENDER_DRIVER = "opengl";
+      SDL_VIDEODRIVER = "wayland";
+    };
   };
 }
