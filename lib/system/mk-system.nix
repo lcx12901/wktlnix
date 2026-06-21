@@ -59,6 +59,7 @@ inputs.nixpkgs.lib.nixosSystem {
     inputs.niri.nixosModules.niri
     inputs.fast-nix-gc.nixosModules.default
     inputs.hermes-agent.nixosModules.default
+    inputs.chaotic.nixosModules.default
 
     # Auto-inject home configurations for this system+hostname
     homeManagerConfig
