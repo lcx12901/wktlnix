@@ -197,6 +197,10 @@ in
           bank_id = "hermes";
           recall_budget = "mid";
           memory_mode = "hybrid";
+          recall_max_tokens = 2048;
+          retain_every_n_turns = 10;
+          retain_overlap_turns = 3;
+          retain_async = true;
           auto_retain = true;
           auto_recall = true;
         };
