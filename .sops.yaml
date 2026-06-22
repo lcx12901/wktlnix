@@ -4,7 +4,7 @@ keys:
   - &host_kanroji age1zhg38324c6uaexfdhgermpsgwk2ll6795qn0n9j2pxula94yr36qaqfph4
   - &host_yukino age1ag79ucstq460ysr78e2d78vkgg5tl2sq8r6wpa2kvmf5x2qh5s6szupsa0
   - &host_milet age1ug0s0wd45s7c8zleahzsrkxdprwz9sssrqyyhre6jljzhykt7qeqctxkt0
-  - &host_akeno age1j3gu8zmufj923t8re0relmz9vjg5grkxj9fwfq8m2r4av87sygrszpyvsr
+  - &host_emilia age1tgg95uuf0wlxe673l9kmk3helnayznj0puj26c5jpgz0p3h4ts2q9m8qk5
   - &host_dmit age1wqtnc2rnrhns0z8j8vfrrhptplkxkslc5gm7z9nzm8gq06va5gzqcc3jqk
   # user
   - &user_wktl age1rrpde8u95jscps6uyc6as6r05qanxhw2cpm5tfgc5p2gjmu5u49qqpa9c9
@@ -16,6 +16,6 @@ creation_rules:
           - *host_kanroji
           - *host_yukino
           - *host_milet
-          - *host_akeno
+          - *host_emilia
           - *host_dmit
           - *user_wktl
