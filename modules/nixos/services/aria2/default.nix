@@ -9,7 +9,7 @@ let
 
   cfg = config.wktlnix.services.aria2;
 
-  domain = "${config.networking.hostName}.lincx.top";
+  domain = config.networking.fqdn;
 in
 {
   options.wktlnix.services.aria2 = {

@@ -6,7 +6,7 @@
 let
   cfg = config.wktlnix.services.jellyfin;
 
-  domain = "${config.networking.hostName}.lincx.top";
+  domain = config.networking.fqdn;
 
   inherit (lib) mkIf mkEnableOption;
 in

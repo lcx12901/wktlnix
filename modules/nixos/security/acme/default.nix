@@ -4,7 +4,7 @@ let
 
   cfg = config.wktlnix.security.acme;
 
-  domain = "${config.networking.hostName}.lincx.top";
+  domain = config.networking.fqdn;
 in
 {
   options.wktlnix.security.acme = {

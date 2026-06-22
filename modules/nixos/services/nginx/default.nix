@@ -16,7 +16,7 @@ let
 
   cfg = config.wktlnix.services.nginx;
 
-  domain = "${config.networking.hostName}.lincx.top";
+  domain = config.networking.fqdn;
 in
 {
   options.services.nginx.virtualHosts = mkOption {

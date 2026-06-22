@@ -193,7 +193,7 @@ in
       let
         cfg = builtins.toJSON {
           mode = "local_external";
-          api_url = "https://hindsight.milet.lincx.top";
+          api_url = "https://hindsight.${config.networking.fqdn}";
           bank_id = "hermes";
           recall_budget = "mid";
           memory_mode = "hybrid";

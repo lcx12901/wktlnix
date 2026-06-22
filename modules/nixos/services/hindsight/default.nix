@@ -12,7 +12,7 @@ let
 
   cfg = config.wktlnix.services.hindsight;
 
-  domain = "${config.networking.hostName}.lincx.top";
+  domain = config.networking.fqdn;
 
   stateDir = "/var/lib/hindsight";
 

@@ -2,7 +2,6 @@
   config,
   lib,
   hostname,
-
   ...
 }:
 let
@@ -17,6 +16,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    networking.hostName = hostname;
+    networking = {
+      inherit hostname;
+      domain = "lincx.top";
+    };
   };
 }
