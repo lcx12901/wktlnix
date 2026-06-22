@@ -36,7 +36,10 @@ in
             };
           };
         };
-        apps.vesktop = enabled;
+        apps = {
+          vesktop = enabled;
+          obsidian = enabled;
+        };
       };
       terminal = {
         editors.nvchad = enabled;
