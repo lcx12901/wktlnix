@@ -37,10 +37,14 @@ in
     };
 
     services = {
+      nginx = enabled;
       openssh = enabled;
+      obsidian-livesync = enabled;
+      obsidian-backup = enabled;
     };
 
     security = {
+      acme = enabled;
       sudo-rs = enabled;
     };
   };
@@ -48,6 +52,7 @@ in
   services.qemuGuest.enable = true;
 
   networking = {
+    domain = lib.mkForce "wktl.de";
     interfaces."eth0" = {
       ipv4.addresses = [
         {
