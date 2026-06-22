@@ -73,7 +73,7 @@ in
         };
         emilia = {
           hostNames = [ "emilia.wktl.de" ];
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEaHjv9wkmgDJNdz5Ha3Wqi2oGD9TuL7RZPLwqE8li87";
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPq88tg+JBJvILnQFQfauGbndsP+U3L+/X3GfdJcU5Lk";
         };
       };
     };
