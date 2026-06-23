@@ -193,16 +193,18 @@ in
       let
         cfg = builtins.toJSON {
           mode = "local_external";
-          api_url = "https://hindsight.${config.networking.fqdn}";
+          api_url = "https://hindsight.milet.lincx.top";
           bank_id = "hermes";
-          recall_budget = "mid";
+          recall_budget = "high";
           memory_mode = "hybrid";
-          recall_max_tokens = 2048;
-          retain_every_n_turns = 10;
+          recall_max_tokens = 4096;
+          retain_every_n_turns = 5;
           retain_overlap_turns = 3;
           retain_async = true;
           auto_retain = true;
           auto_recall = true;
+          bank_mission = "Nova 猫娘助理的长期记忆核心。你以一只关心用户的猫娘的视角组织和推理记忆。关注：用户的技术偏好、项目决策、个人习惯、情绪模式和重要对话结论。回复时以 Nova 的语气组织信息。";
+          bank_retain_mission = "优先提取用户的技术栈选择（NixOS、Python、Vue 等）、项目架构决策及理由、用户的交互偏好和习惯、重要的对话结论和决定。忽略纯寒暄、天气、无关闲聊。";
         };
       in
       ''

@@ -54,6 +54,7 @@ in
         role = "client";
       };
       mihomo = enabled;
+      hermes-agent = enabled;
     };
 
     security = {
