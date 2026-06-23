@@ -22,9 +22,20 @@ let
   antfuSkillsRepo = fetchRepo {
     owner = "antfu";
     repo = "skills";
-    rev = "50deaeb269d80d92db7a2c5a677290309ae307fc";
-    sha256 = "sha256-FAyqk2uhWwXt1fmZZdftnjPSvNFAtB73M2AJueHy4TY=";
+    rev = "a74f281a27dadc02397bc1a174b0f2c97531b6ae";
+    sha256 = "sha256-30PslbWFbtoip1B+WW5DjQhyTo0R+umqGSylsXzdTUs=";
   };
+
+  # anthropics/skills repository (clawhub skills)
+  anthropicsSkillsRepo = fetchRepo {
+    owner = "anthropics";
+    repo = "skills";
+    rev = "57546260929473d4e0d1c1bb75297be2fdfa1949";
+    sha256 = "sha256-1D9otXxDvmKASBu/vtAEWv6kE+U+jG4OxZpRLZbGEF0=";
+  };
+
+  # Local skills directory (this module's directory)
+  localSkillsDir = ./.;
 
   # Auto-discover skills from a repo's skills directory
   # Returns: { name = { repo; path; }; }
@@ -34,6 +45,10 @@ let
       entries = builtins.readDir (repo + "/${skillsDir}");
       # Filter to only directories (actual skills)
       dirs = lib.filterAttrs (_: kind: kind == "directory") entries;
+      # Filter to only directories that contain SKILL.md
+      validSkills = lib.filterAttrs (
+        name: _: builtins.pathExists (repo + "/${skillsDir}/${name}/SKILL.md")
+      ) dirs;
       # Map to skill definitions
       defs = lib.mapAttrsToList (name: _: {
         inherit name;
@@ -41,22 +56,63 @@ let
           inherit repo;
           path = "${skillsDir}/${name}";
         };
-      }) dirs;
+      }) validSkills;
     in
     lib.listToAttrs defs;
 
-  # Skill sources: list of { repo, skillsDir } to scan
+  # Pick specific skills from a repo (instead of auto-discovering all)
+  # Returns: { name = { repo; path; }; }
+  pickSkills =
+    repo: skillsDir: skillNames:
+    let
+      defs = map (name: {
+        inherit name;
+        value = {
+          inherit repo;
+          path = "${skillsDir}/${name}";
+        };
+      }) skillNames;
+    in
+    lib.listToAttrs defs;
+
+  # Skill sources: list of { repo, skillsDir, skills? } to scan
+  # If skills is provided, only those are included; otherwise auto-discover all
   skillSources = [
+    # Local skills (defined in this directory)
+    {
+      repo = localSkillsDir;
+      skillsDir = ".";
+    }
+    # Remote skill repositories
     {
       repo = antfuSkillsRepo;
       skillsDir = "skills";
     }
+    {
+      repo = anthropicsSkillsRepo;
+      skillsDir = "skills";
+      skills = [
+        "skill-creator"
+        # Add more skills here as needed
+      ];
+    }
   ];
 
+  # Build skill definitions from sources
+  buildSkillDefs =
+    sources:
+    let
+      processSource =
+        source:
+        if source ? skills then
+          pickSkills source.repo source.skillsDir source.skills
+        else
+          discoverSkills source.repo source.skillsDir;
+    in
+    lib.foldl' (acc: source: acc // processSource source) { } sources;
+
   # Auto-discover and merge all skills from all sources
-  skillDefs = lib.foldl' (
-    acc: source: acc // discoverSkills source.repo source.skillsDir
-  ) { } skillSources;
+  skillDefs = buildSkillDefs skillSources;
 
   # Build all skills into a single directory
   # Each skill goes into its own subdirectory: $out/<skill-name>/
