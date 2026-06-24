@@ -39,6 +39,7 @@ in
     services = {
       nginx = enabled;
       openssh = enabled;
+      openclaw-nginx = enabled;
     };
 
     security = {
