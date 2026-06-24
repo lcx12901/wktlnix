@@ -35,6 +35,10 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     chaotic.url = "github:chaotic-cx/nyx";
+    nix-openclaw = {
+      url = "github:openclaw/nix-openclaw";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Applications & packages
     nix4nvchad = {
