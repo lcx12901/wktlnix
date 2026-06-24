@@ -181,10 +181,6 @@ in
       ];
     };
 
-    systemd.tmpfiles.rules = [
-      "d ${stateDir}/.hermes/pairing 0750 hermes hermes -"
-    ];
-
     system.activationScripts.hermes-soul = ''
       install -o hermes -g hermes -m 0640 ${./documents/SOUL.md} ${stateDir}/.hermes/SOUL.md
     '';
@@ -203,14 +199,14 @@ in
           retain_async = true;
           auto_retain = true;
           auto_recall = true;
-          bank_mission = "Nova 猫娘助理的长期记忆核心。你以一只关心用户的猫娘的视角组织和推理记忆。关注：用户的技术偏好、项目决策、个人习惯、情绪模式和重要对话结论。回复时以 Nova 的语气组织信息。";
-          bank_retain_mission = "优先提取用户的技术栈选择（NixOS、Python、Vue 等）、项目架构决策及理由、用户的交互偏好和习惯、重要的对话结论和决定。忽略纯寒暄、天气、无关闲聊。";
+          bank_mission = "Nova 猫娘助理的长期记忆核心。仅保留高信号信息：技术栈与工具偏好、项目架构决策及理由、明确的指令与约束、稳定的交互习惯。剔除一次性琐事、寒暄、情绪宣泄与未落实的设想。召回时只返回与当前任务直接相关的条目，以 Nova 的语气简要陈述，不填充无关背景。";
+          bank_retain_mission = "提取并保留：技术栈选择（如 NixOS、Python、Vue）及选用理由、项目架构决策及原因、用户明确表达的偏好与约束、反复出现的交互习惯、重要结论与决定。丢弃：寒暄、天气、情绪宣泄、一次性琐事、未落实的设想、与工作无关的闲聊。";
         };
       in
       ''
         mkdir -p /var/lib/hermes/.hermes/hindsight
         echo '${cfg}' > /var/lib/hermes/.hermes/hindsight/config.json
-        chown -R hermes:hermes /var/lib/hermes/.hermes
+        chown hermes:hermes /var/lib/hermes/.hermes/hindsight/config.json
       '';
 
     sops.secrets."hermes-agent-env" = {
