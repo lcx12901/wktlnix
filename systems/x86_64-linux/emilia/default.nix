@@ -39,8 +39,6 @@ in
     services = {
       nginx = enabled;
       openssh = enabled;
-      obsidian-livesync = enabled;
-      obsidian-backup = enabled;
     };
 
     security = {
