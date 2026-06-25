@@ -19,6 +19,10 @@ in
           "${pkgs.wktlnix.hindsight-openclaw}"
         ];
 
+        # Grab the memory slot from the bundled memory-core plugin. Without this,
+        # memory-core auto-claims the slot and Hindsight gets disabled.
+        slots.memory = "hindsight-openclaw";
+
         # Plugin configuration
         entries.hindsight-openclaw = {
           enabled = true;
