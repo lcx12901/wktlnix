@@ -27,7 +27,7 @@ in
         with pkgs;
         lib.optionals cfg.nodejsEnable [
           nodejs
-          pnpm_10
+          pnpm
           bun
         ];
 
