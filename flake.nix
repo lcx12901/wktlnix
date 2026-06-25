@@ -7,9 +7,9 @@
 
   inputs = {
     # Core
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-master.url = "github:NixOS/nixpkgs";
     flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -34,7 +34,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    chaotic.url = "github:chaotic-cx/nyx";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nix-openclaw = {
       url = "github:openclaw/nix-openclaw";
       inputs.nixpkgs.follows = "nixpkgs";
