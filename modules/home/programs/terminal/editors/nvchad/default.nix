@@ -29,7 +29,7 @@ in
         vscode-langservers-extracted
         typescript-language-server
         vue-language-server
-        emmet-language-server
+        # emmet-language-server
         bash-language-server
         prisma-language-server
         cargo
