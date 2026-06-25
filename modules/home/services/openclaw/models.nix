@@ -15,18 +15,16 @@ in
           opencode-go = {
             api = "openai-completions";
             baseUrl = "https://opencode.ai/zen/go/v1";
-            # Use environment variable (set in default.nix environment)
-            apiKey = "{env:OPENCODE_API_KEY}";
+            # SecretRef: resolved at runtime via env var (wrapper reads sops file)
+            apiKey = {
+              source = "env";
+              provider = "default";
+              id = "OPENCODE_API_KEY";
+            };
             models = [
               {
                 id = "mimo-v2.5";
                 name = "MiMo V2.5";
-                input = [
-                  "text"
-                  "image"
-                  "audio"
-                  "video"
-                ];
                 contextWindow = 1000000;
                 maxTokens = 128000;
               }
@@ -35,8 +33,12 @@ in
           opencode-go-anthropic = {
             api = "anthropic-messages";
             baseUrl = "https://opencode.ai/zen/go/v1";
-            # Use environment variable (set in default.nix environment)
-            apiKey = "{env:OPENCODE_API_KEY}";
+            # SecretRef: resolved at runtime via env var (wrapper reads sops file)
+            apiKey = {
+              source = "env";
+              provider = "default";
+              id = "OPENCODE_API_KEY";
+            };
             models = [
               {
                 id = "minimax-m3";

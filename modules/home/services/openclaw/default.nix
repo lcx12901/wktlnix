@@ -25,6 +25,14 @@ in
   ];
 
   config = lib.mkIf cfg.enable {
+    # Ensure secrets are decrypted before OpenClaw gateway starts
+    systemd.user.services.openclaw-gateway = {
+      Unit = {
+        After = [ "sops-nix.service" ];
+        Wants = [ "sops-nix.service" ];
+      };
+    };
+
     programs.openclaw = {
       enable = true;
 
@@ -40,9 +48,8 @@ in
         chromium
       ];
 
-      # Environment variables for secrets (nix-openclaw handles file reading)
+      # Environment variables for secrets not handled by file-backed SecretRefs
       environment = {
-        OPENCLAW_GATEWAY_TOKEN = config.sops.secrets."${osConfig.networking.hostName}_openclaw_token".path;
         TELEGRAM_BOT_TOKEN = config.sops.secrets."${osConfig.networking.hostName}_telegram_token".path;
         OPENCODE_API_KEY = config.sops.secrets."OPENCODE_API_KEY".path;
         HINDSIGHT_API_TOKEN = config.sops.secrets."hindsight-tenant-api-key".path;
@@ -53,12 +60,22 @@ in
           domain = osConfig.networking.fqdn;
         in
         {
+          secrets.providers.sops = {
+            source = "file";
+            path = config.sops.secrets."${osConfig.networking.hostName}_openclaw_token".path;
+            mode = "singleValue";
+          };
+
           # Gateway reverse proxy config (Nginx terminates TLS, forwards to loopback)
           gateway = {
             mode = "local";
             auth = {
               mode = "token";
-              token = "{env:OPENCLAW_GATEWAY_TOKEN}";
+              token = {
+                source = "file";
+                provider = "sops";
+                id = "value";
+              };
             };
             trustedProxies = [ "127.0.0.1" ];
             controlUi = {
@@ -68,7 +85,11 @@ in
           };
 
           channels.telegram = {
-            botToken = "{env:TELEGRAM_BOT_TOKEN}";
+            botToken = {
+              source = "env";
+              provider = "default";
+              id = "TELEGRAM_BOT_TOKEN";
+            };
             dmPolicy = "allowlist";
             allowFrom = [ 975201632 ]; # your Telegram user ID
             groups = {
