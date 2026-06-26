@@ -26,14 +26,6 @@ let
     sha256 = "sha256-30PslbWFbtoip1B+WW5DjQhyTo0R+umqGSylsXzdTUs=";
   };
 
-  # anthropics/skills repository (clawhub skills)
-  anthropicsSkillsRepo = fetchRepo {
-    owner = "anthropics";
-    repo = "skills";
-    rev = "57546260929473d4e0d1c1bb75297be2fdfa1949";
-    sha256 = "sha256-1D9otXxDvmKASBu/vtAEWv6kE+U+jG4OxZpRLZbGEF0=";
-  };
-
   # Local skills directory (this module's directory)
   localSkillsDir = ./.;
 
@@ -88,14 +80,6 @@ let
       repo = antfuSkillsRepo;
       skillsDir = "skills";
     }
-    {
-      repo = anthropicsSkillsRepo;
-      skillsDir = "skills";
-      skills = [
-        "skill-creator"
-        # Add more skills here as needed
-      ];
-    }
   ];
 
   # Build skill definitions from sources
@@ -119,21 +103,14 @@ let
   buildSkills =
     skills:
     let
-      derivations = lib.mapAttrsToList (
+      # Create a mapping of skill name -> derivation
+      drvMap = lib.mapAttrs (
         name: def:
         pkgs.runCommand "skill-${name}" { } ''
           mkdir -p $out
           cp -r ${def.repo}/${def.path}/* $out/
         ''
       ) skills;
-
-      # Create a mapping of derivation name -> derivation
-      drvMap = lib.listToAttrs (
-        map (drv: {
-          inherit (drv) name;
-          value = drv;
-        }) derivations
-      );
     in
     pkgs.runCommand "skills-collection" { } ''
       mkdir -p $out
@@ -150,7 +127,6 @@ let
   # Harness-specific skill filters
   harnessSkillFilters = {
     # opencode = { exclude = [ "hermes-only-skill" ]; };
-    # hermes = { exclude = [ "opencode-only-skill" ]; };
   };
 
   # Filter skills for a specific harness
@@ -175,9 +151,13 @@ let
 
 in
 {
-  inherit skillDefs allSkills skillsForHarness;
+  inherit
+    skillDefs
+    allSkills
+    skillsForHarness
+    ;
 
   # Filtered skills for each harness
   opencode = skillsForHarness "opencode";
-  hermes = skillsForHarness "hermes";
+  openclaw = allSkills;
 }

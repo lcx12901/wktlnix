@@ -60,6 +60,10 @@ in
       };
       music = enabled;
     };
+
+    services = {
+      openclaw = enabled;
+    };
   };
 
   home.packages = with pkgs; [
