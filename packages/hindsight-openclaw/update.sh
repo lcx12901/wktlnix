@@ -8,7 +8,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PACKAGE_DIR="$SCRIPT_DIR"
 NIX_FILE="$PACKAGE_DIR/package.nix"
-SHRINKWRAP_FILE="$PACKAGE_DIR/npm-shrinkwrap.json"
+LOCK_FILE="$PACKAGE_DIR/pnpm-lock.yaml"
 
 usage() {
   echo "Usage: $0 <version>"
@@ -17,16 +17,15 @@ usage() {
   echo ""
   echo "Steps performed:"
   echo "  1. Download tarball from npm registry"
-  echo "  2. Extract and generate npm-shrinkwrap.json"
-  echo "  3. Compute npmDepsHash (prefetch-npm-deps)"
-  echo "  4. Compute tarball hash (nix-hash --type sha256 --flat --base32)"
+  echo "  2. Extract and generate pnpm-lock.yaml"
+  echo "  3. Compute pnpmDepsHash (prefetch-pnpm-deps)"
+  echo "  4. Compute tarball hash (nix-prefetch-url)"
   echo "  5. Update package.nix with new version and hashes"
-  echo "  6. Copy shrinkwrap to package directory"
+  echo "  6. Copy lock file to package directory"
   echo ""
   echo "Prerequisites:"
-  echo "  - npm (for generating shrinkwrap)"
-  echo "  - nix-prefetch-npm-deps (from nixpkgs.npmHooks)"
-  echo "  - nix-hash (from nix)"
+  echo "  - pnpm (for generating lock file)"
+  echo "  - nix (for prefetch commands)"
   echo ""
   echo "Example:"
   echo "  $0 0.7.0"
@@ -68,38 +67,38 @@ fi
 
 echo "  Downloaded: $TARBALL_URL"
 
-# Step 2: Extract and generate shrinkwrap
-echo "[2/6] Generating npm-shrinkwrap.json..."
+# Step 2: Extract and generate pnpm-lock.yaml
+echo "[2/6] Generating pnpm-lock.yaml..."
 EXTRACT_DIR="$TMPDIR/package"
 mkdir -p "$EXTRACT_DIR"
 tar xzf "$TARBALL_FILE" -C "$EXTRACT_DIR" --strip-components=1
 
 cd "$EXTRACT_DIR"
 
-# Generate shrinkwrap
-if ! npm install --package-lock-only --omit=dev --omit=peer --legacy-peer-deps 2>/dev/null; then
-  echo "ERROR: Failed to generate package-lock.json"
+# Generate pnpm-lock.yaml
+if ! pnpm install --no-frozen-lockfile 2>/dev/null; then
+  echo "ERROR: Failed to generate pnpm-lock.yaml"
   exit 1
 fi
 
-# Convert to shrinkwrap
-if ! npm shrinkwrap 2>/dev/null; then
-  echo "ERROR: Failed to generate npm-shrinkwrap.json"
+if [[ ! -f pnpm-lock.yaml ]]; then
+  echo "ERROR: pnpm-lock.yaml not generated"
   exit 1
 fi
 
-if [[ ! -f npm-shrinkwrap.json ]]; then
-  echo "ERROR: npm-shrinkwrap.json not generated"
-  exit 1
+echo "  Generated lock file with $(grep -c 'resolution:' pnpm-lock.yaml || echo 0) packages"
+
+# Step 3: Compute pnpmDepsHash
+echo "[3/6] Computing pnpmDepsHash..."
+PNPM_DEPS_HASH=$(nix run nixpkgs#prefetch-pnpm-deps -- pnpm-lock.yaml 2>/dev/null || echo "")
+if [[ -z "$PNPM_DEPS_HASH" ]]; then
+  echo "  WARNING: Could not compute hash automatically."
+  echo "  Setting empty hash - build will fail and show correct hash."
+  PNPM_DEPS_HASH=""
+else
+  PNPM_DEPS_HASH="${PNPM_DEPS_HASH#sha256-}"
+  echo "  pnpmDepsHash: sha256-$PNPM_DEPS_HASH"
 fi
-
-echo "  Generated shrinkwrap with $(jq '.packages | length' npm-shrinkwrap.json) packages"
-
-# Step 3: Compute npmDepsHash
-echo "[3/6] Computing npmDepsHash..."
-NPM_DEPS_HASH=$(nix run nixpkgs#prefetch-npm-deps -- npm-shrinkwrap.json 2>/dev/null)
-NPM_DEPS_HASH="${NPM_DEPS_HASH#sha256-}"
-echo "  npmDepsHash: sha256-$NPM_DEPS_HASH"
 
 # Step 4: Compute tarball hash
 echo "[4/6] Computing tarball hash..."
@@ -110,28 +109,34 @@ echo "  tarball hash: sha256-$TARBALL_HASH"
 # Step 5: Update package.nix
 echo "[5/6] Updating package.nix..."
 
-# Update version
-sed -i "s/version = \"[0-9]*\.[0-9]*\.[0-9]*\";/version = \"${VERSION}\";/" "$NIX_FILE"
+sed -i "/url = .*hindsight-openclaw/{
+  N
+  s|hash = \"sha256-[A-Za-z0-9+/=]*\"|hash = \"sha256-${TARBALL_HASH}\"|
+}" "$NIX_FILE"
 
-# Update tarball hash
-sed -i "s|hash = \"sha256-[A-Za-z0-9+/=]*\";|hash = \"sha256-${TARBALL_HASH}\";|" "$NIX_FILE"
-
-# Update npmDepsHash
-sed -i "s|npmDepsHash = \"sha256-[A-Za-z0-9+/=]*\";|npmDepsHash = \"sha256-${NPM_DEPS_HASH}\";|" "$NIX_FILE"
+if [[ -n "$PNPM_DEPS_HASH" ]]; then
+  sed -i "0,/sha256-[A-Za-z0-9+/=]*=/{
+    s|hash = \"sha256-[A-Za-z0-9+/=]*\"|hash = \"sha256-${PNPM_DEPS_HASH}\"|
+  }" "$NIX_FILE"
+fi
 
 echo "  Updated $NIX_FILE"
 
-# Step 6: Copy shrinkwrap
-echo "[6/6] Copying shrinkwrap..."
-cp "$EXTRACT_DIR/npm-shrinkwrap.json" "$SHRINKWRAP_FILE"
-echo "  Copied to $SHRINKWRAP_FILE"
+# Step 6: Copy lock file
+echo "[6/6] Copying lock file..."
+cp "$EXTRACT_DIR/pnpm-lock.yaml" "$LOCK_FILE"
+echo "  Copied to $LOCK_FILE"
 
 # Verify
 echo ""
 echo "=== Update complete ==="
 echo "Version: $VERSION"
 echo "Tarball hash: sha256-$TARBALL_HASH"
-echo "npmDepsHash: sha256-$NPM_DEPS_HASH"
+if [[ -n "$PNPM_DEPS_HASH" ]]; then
+  echo "pnpmDepsHash: sha256-$PNPM_DEPS_HASH"
+else
+  echo "pnpmDepsHash: (empty - build to get correct hash)"
+fi
 echo ""
 echo "Next steps:"
 echo "  1. Review changes: git diff packages/hindsight-openclaw/"

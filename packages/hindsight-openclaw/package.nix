@@ -1,27 +1,52 @@
 {
-  buildNpmPackage,
+  stdenvNoCC,
   fetchurl,
+  runCommand,
+  nodejs,
+  pnpm_11,
+  fetchPnpmDeps,
+  pnpmConfigHook,
 }:
 
 let
+  pnpm = pnpm_11;
   version = "0.6.0";
+
+  # Unpacked tarball + pnpm-lock.yaml merged into a single source.
+  # fetchPnpmDeps requires pnpm-lock.yaml in the source root, but the npm
+  # registry tarball doesn't ship one.  We generate it locally and merge.
+  src = runCommand "hindsight-openclaw-src" { } ''
+    mkdir -p $out
+    tar xzf ${
+      fetchurl {
+        url = "https://registry.npmjs.org/@vectorize-io/hindsight-openclaw/-/hindsight-openclaw-${version}.tgz";
+        hash = "sha256-hAc+tVlHxe8ks+U3b+n0bRpgJ5/1rF/jzN88Rkns9h0=";
+      }
+    } -C $out --strip-components=1
+    cp ${./pnpm-lock.yaml} $out/pnpm-lock.yaml
+  '';
 in
-buildNpmPackage {
+stdenvNoCC.mkDerivation rec {
   pname = "hindsight-openclaw";
   inherit version;
+  inherit src;
 
-  src = fetchurl {
-    url = "https://registry.npmjs.org/@vectorize-io/hindsight-openclaw/-/hindsight-openclaw-${version}.tgz";
-    hash = "sha256-hAc+tVlHxe8ks+U3b+n0bRpgJ5/1rF/jzN88Rkns9h0=";
+  nativeBuildInputs = [
+    nodejs
+    pnpmConfigHook
+    pnpm
+  ];
+
+  pnpmDeps = fetchPnpmDeps {
+    inherit
+      pname
+      version
+      src
+      pnpm
+      ;
+    fetcherVersion = 4;
+    hash = "sha256-tH09vDhje5eWSIv9rH23WnCjGYb0sUlb7lfFW9ld7aI=";
   };
-
-  npmDepsHash = "sha256-uySF7BWOey4MfWVnHwgQkON3ZTl399VlNUyb5bfonEo=";
-
-  # Pre-generated shrinkwrap (built offline, committed to repo)
-  postPatch = ''
-    cp ${./npm-shrinkwrap.json} ./npm-shrinkwrap.json
-    rm -f package-lock.json
-  '';
 
   # No build step needed
   dontNpmBuild = true;
@@ -29,7 +54,6 @@ buildNpmPackage {
   installPhase = ''
     runHook preInstall
 
-    # Copy everything to output
     mkdir -p $out
     cp -r . $out/
 
