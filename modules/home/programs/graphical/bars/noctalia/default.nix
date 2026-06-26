@@ -12,9 +12,6 @@ let
   persist = osConfig.wktlnix.system.persist.enable;
 
   cfg = config.wktlnix.programs.graphical.bars.noctalia;
-
-  keyboard-device =
-    if osConfig.networking.hostName == "kanroji" then "/dev/input/event0" else "/dev/input/event4";
 in
 {
   options.wktlnix.programs.graphical.bars.noctalia = {
@@ -113,7 +110,7 @@ in
           };
           cat = {
             type = "noctalia/bongocat:cat";
-            input_device = keyboard-device;
+            input_device = "/dev/input/event4";
             scale = 1.25;
           };
         };

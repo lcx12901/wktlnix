@@ -42,7 +42,7 @@ in
           {
             type = "custom";
             outputColor = "blue";
-            format = ''┌──────────── OS Information ────────────┐'';
+            format = "┌──────────── OS Information ────────────┐";
           }
           {
             type = "title";
@@ -76,7 +76,7 @@ in
           {
             type = "custom";
             outputColor = "blue";
-            format = ''├───────── Hardware Information ─────────┤'';
+            format = "├───────── Hardware Information ─────────┤";
           }
           {
             type = "display";
@@ -107,7 +107,7 @@ in
           {
             type = "custom";
             outputColor = "blue";
-            format = ''├───────── Software Information ─────────┤'';
+            format = "├───────── Software Information ─────────┤";
           }
           {
             type = "wm";
@@ -127,7 +127,7 @@ in
           {
             type = "custom";
             outputColor = "blue";
-            format = ''└────────────────────────────────────────┘'';
+            format = "└────────────────────────────────────────┘";
           }
           {
             type = "custom";
