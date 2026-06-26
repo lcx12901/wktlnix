@@ -91,8 +91,7 @@ in
           "root"
           "@wheel"
           config.wktlnix.user.name
-        ]
-        ++ (lib.optionals config.wktlnix.services.hermes-agent.enable [ "hermes" ]);
+        ];
       in
       {
         inherit (cfg) package;
