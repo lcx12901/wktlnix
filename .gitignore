@@ -6,3 +6,4 @@
 result
 .ccls-cache
 .pre-commit-config.yaml
+.omo/*
