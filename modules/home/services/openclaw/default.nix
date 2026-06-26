@@ -56,6 +56,9 @@ in
   config = lib.mkIf cfg.enable {
     # Ensure secrets are decrypted before OpenClaw gateway starts
     systemd.user.services.openclaw-gateway = {
+      Install = {
+        WantedBy = [ "default.target" ];
+      };
       Unit = {
         After = [ "sops-nix.service" ];
         Wants = [ "sops-nix.service" ];
