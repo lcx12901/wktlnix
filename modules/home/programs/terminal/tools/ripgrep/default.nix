@@ -27,8 +27,8 @@ in
       arguments = [
         # Don't have ripgrep vomit a bunch of stuff on the screen
         # show a preview of the match
-        "--max-columns=150"
-        "--max-columns-preview"
+        # "--max-columns=150"
+        # "--max-columns-preview"
 
         # ignore git files
         "--glob=!.git/*"
