@@ -62,13 +62,11 @@ in
                 autoRecall = true;
                 autoRetain = true;
                 recallBudget = "high";
-                memoryMode = "hybrid";
                 recallMaxTokens = 4096; # 增加 token 预算
                 retainEveryNTurns = 5; # 更稀疏保留
                 retainOverlapTurns = 3; # 增加重叠窗口
-                retainAsync = true;
                 bankMission = "Full-stack developer working on diverse projects including NixOS infrastructure, web applications, and system tooling. Remember architecture decisions, debugging patterns, and project context.";
-                bankRetainMission = "Retain: project structure, design decisions, debugging solutions, architectural patterns, configuration preferences, learned workflows, and reusable knowledge. Prioritize insights that transfer across projects.";
+                retainMission = "Retain: project structure, design decisions, debugging solutions, architectural patterns, configuration preferences, learned workflows, and reusable knowledge. Prioritize insights that transfer across projects.";
               }
             ]
           ];
