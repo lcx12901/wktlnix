@@ -159,5 +159,4 @@ in
 
   # Filtered skills for each harness
   opencode = skillsForHarness "opencode";
-  openclaw = allSkills;
 }

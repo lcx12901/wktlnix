@@ -1,5 +1,4 @@
 {
-  osConfig,
   config,
   lib,
   pkgs,
@@ -10,8 +9,6 @@ let
   inherit (lib.wktlnix) enabled;
 
   homeDirectory = config.wktlnix.user.home;
-
-  persist = osConfig.wktlnix.system.persist.enable;
 
   cfg = config.wktlnix.scenes.development;
 in
@@ -28,14 +25,7 @@ in
         lib.optionals cfg.nodejsEnable [
           nodejs
           pnpm
-          bun
         ];
-
-      persistence = mkIf (persist && cfg.nodejsEnable) {
-        "/persist" = {
-          directories = [ ".bun" ];
-        };
-      };
     };
 
     xdg.configFile = mkIf cfg.nodejsEnable {

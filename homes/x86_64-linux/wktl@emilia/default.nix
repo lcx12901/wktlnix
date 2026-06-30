@@ -17,10 +17,6 @@ in
         };
       };
     };
-
-    services = {
-      openclaw = enabled;
-    };
   };
 
   stylix.overlays.enable = false;
