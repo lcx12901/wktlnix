@@ -28,7 +28,17 @@ in
     };
 
     boot = {
-      kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-gcc;
+      kernelPackages =
+        let
+          kp = pkgs.linuxPackages_cachyos-gcc;
+        in
+        lib.mkForce (
+          kp.cachyOverride {
+            cachyVars = kp.kernel.cachyConfig.cachyVars // {
+              "_processor_opt" = "GENERIC_V3";
+            };
+          }
+        );
       kernelParams = [
         # GPU 恢复：出错时自动重置，防止桌面冻结
         "amdgpu.gpu_recovery=1"

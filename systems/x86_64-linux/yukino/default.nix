@@ -34,6 +34,9 @@ in
     programs = {
       graphical = {
         wms.niri = enabled;
+        games = {
+          gaming-optimization = enabled;
+        };
         file-managers.nautilus = enabled;
       };
       terminal.tools.nix-ld = enabled;
