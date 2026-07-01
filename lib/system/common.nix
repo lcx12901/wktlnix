@@ -12,6 +12,8 @@ in
       allowUnfreePredicate = _: true;
       permittedInsecurePackages = [
         "immersive-translate-1.30.2"
+        "pnpm-10.29.2"
+        "pnpm-10.34.0"
       ];
     };
   };
