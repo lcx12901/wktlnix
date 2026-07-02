@@ -34,6 +34,7 @@ in
           (match { app-id = "kitty"; })
           (match { app-id = "^com\.mitchellh\.ghostty$"; })
           (match { app-id = "neovide"; })
+          (match { app-id = "dev\.zed\.Zed"; })
           (leaf' "opacity" 0.85)
           (plain "background-effect" [
             (leaf' "blur" true)
