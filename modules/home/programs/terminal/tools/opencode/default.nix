@@ -91,6 +91,15 @@ in
               ];
               timeout = 300000;
             };
+            codegraph = {
+              enabled = true;
+              type = "local";
+              command = [
+                "${pkgs.wktlnix.codegraph}/bin/codegraph"
+                "serve"
+                "--mcp"
+              ];
+            };
           };
         };
 
