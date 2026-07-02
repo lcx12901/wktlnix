@@ -27,7 +27,7 @@ in
         nixfmt
         lua-language-server
         stylua
-        package-version-server
+        unocss-language-server
       ];
 
       userSettings = cfg.userSettings // {
@@ -43,6 +43,24 @@ in
         };
 
         icon_theme = "Catppuccin Macchiato";
+        theme_overrides = {
+          "Base16 Catppuccin Macchiato" = {
+            syntax = {
+              comment = {
+                font_style = "italic";
+              };
+              "comment.doc" = {
+                font_style = "italic";
+              };
+              keyword = {
+                font_style = "italic";
+              };
+              "keyword.control" = {
+                font_style = "italic";
+              };
+            };
+          };
+        };
         buffer_font_features = {
           "calt" = true;
           "zero" = true;
@@ -72,6 +90,7 @@ in
         };
         languages = {
           Nix = {
+            format_on_save = "on";
             language_servers = [
               "nixd"
               "!nil"
@@ -107,6 +126,12 @@ in
               formatting = {
                 command = [ "nixfmt" ];
               };
+            };
+          };
+          unocss-language-server = {
+            binary = {
+              path = lib.getExe pkgs.unocss-language-server;
+              arguments = [ "--stdio" ];
             };
           };
           eslint = {
