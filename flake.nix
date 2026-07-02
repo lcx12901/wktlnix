@@ -37,6 +37,8 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     # Applications & packages
+    # wktlvim.url = "git+file:///home/wktl/Coding/nixvim-part";
+    wktlvim.url = "github:lcx12901/nixvim-part";
     nix4nvchad = {
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
