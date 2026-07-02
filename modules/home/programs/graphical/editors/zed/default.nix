@@ -27,10 +27,12 @@ in
         nixfmt
         lua-language-server
         stylua
+        package-version-server
       ];
 
       userSettings = cfg.userSettings // {
         auto_update = false;
+        vim_mode = true;
 
         auto_install_extensions = {
           html = false;
@@ -140,16 +142,90 @@ in
               includeLanguages = { };
             };
           };
+          package-version-server = {
+            binary = {
+              path = lib.getExe pkgs.package-version-server;
+            };
+          };
         };
       };
 
       userKeymaps = [
+        # 通用操作 (Normal + Visual)
+        {
+          context = "vim_mode == normal || vim_mode == visual";
+          bindings = {
+            "space q" = "zed::Quit";
+            "space Q" = "workspace::CloseWindow";
+            "-" = "pane::SplitDown";
+            "|" = "pane::SplitRight";
+            "space w d" = "pane::CloseActiveItem";
+            "s" = "vim::PushSneak";
+            "shift-s" = "vim::PushSneakBackward";
+          };
+        }
+        # 格式化
         {
           context = "vim_mode == normal || vim_mode == visual";
           bindings = {
             "space l f" = "editor::Format";
-            "s" = "vim::PushSneak";
-            "shift-s" = "vim::PushSneakBackward";
+            "space c f" = "editor::Format";
+          };
+        }
+        # 查找 (EmptyPane/SharedScreen + Workspace)
+        {
+          context = "EmptyPane || SharedScreen";
+          bindings = {
+            "space space" = "file_finder::Toggle";
+          };
+        }
+        {
+          context = "Workspace";
+          bindings = {
+            "space f f" = "file_finder::Toggle";
+            "space f w" = "project_search::ToggleFocus";
+            "space f W" = "project_search::ToggleFocus";
+            "space f b" = "tab_switcher::Toggle";
+            "space f o" = "projects::OpenRecent";
+            "space f k" = "command_palette::Toggle";
+            "space f m" = "command_palette::Toggle";
+            "space f s" = "workspace::Save";
+            "space f S" = "workspace::SaveAll";
+          };
+        }
+        # LSP 操作
+        {
+          context = "vim_mode == normal";
+          bindings = {
+            "space c a" = "editor::ToggleCodeActions";
+            "space c r" = "editor::Rename";
+            "space c d" = "diagnostics::Deploy";
+          };
+        }
+        # Tab 切换
+        {
+          context = "Pane";
+          bindings = {
+            "alt-1" = [
+              "pane::ActivateItem"
+              0
+            ];
+            "alt-2" = [
+              "pane::ActivateItem"
+              1
+            ];
+            "alt-3" = [
+              "pane::ActivateItem"
+              2
+            ];
+            "alt-4" = [
+              "pane::ActivateItem"
+              3
+            ];
+            "alt-5" = [
+              "pane::ActivateItem"
+              4
+            ];
           };
         }
       ];
