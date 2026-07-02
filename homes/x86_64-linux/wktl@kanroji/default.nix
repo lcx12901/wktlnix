@@ -28,7 +28,7 @@ in
         };
         editors = {
           zed = {
-            enable = false;
+            enable = true;
             userSettings = {
               buffer_font_size = lib.mkForce 18;
               ui_font_size = lib.mkForce 18;
@@ -36,10 +36,9 @@ in
             };
           };
         };
-        apps.vesktop = enabled;
       };
       terminal = {
-        editors.nvchad = enabled;
+        editors.neovim = enabled;
         emulators.ghostty = {
           fontSize = 15;
         };
