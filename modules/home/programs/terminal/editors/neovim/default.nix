@@ -34,25 +34,15 @@ in
         pkgs.neovide
       ];
 
-      # persistence = lib.mkIf persist {
-      #   "/persist" = {
-      #     directories = [
-      #       ".local/share/nvim"
-      #       ".local/state/nvim"
-      #       ".local/cache/nvim"
-      #     ];
-      #   };
-      # };
-    };
-
-    sops.secrets =
-      let
-        dir = config.home.homeDirectory;
-      in
-      {
-        wakatime = {
-          path = "${dir}/.wakatime.cfg";
+      persistence = lib.mkIf persist {
+        "/persist" = {
+          directories = [
+            ".local/share/nvim"
+            ".local/state/nvim"
+            ".local/cache/nvim"
+          ];
         };
       };
+    };
   };
 }
