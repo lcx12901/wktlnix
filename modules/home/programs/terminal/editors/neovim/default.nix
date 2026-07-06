@@ -8,16 +8,23 @@
   ...
 }:
 let
-  wktlvimConfiguration = inputs.wktlvim.nixvimConfigurations.${system}.wktlvim;
+  inherit (lib.types) attrs;
+  inherit (lib.wktlnix) mkOpt;
+
+  cfg = config.wktlnix.programs.terminal.editors.neovim;
+
+  wktlvimConfiguration = inputs.wktlvim.nixvimConfigurations.${system}.wktlvim.extendModules {
+    modules = [ cfg.extendConfig ];
+  };
   wktlvim = wktlvimConfiguration.config.build.package;
 
   persist = osConfig.wktlnix.system.persist.enable;
 
-  cfg = config.wktlnix.programs.terminal.editors.neovim;
 in
 {
   options.wktlnix.programs.terminal.editors.neovim = {
     enable = lib.mkEnableOption "neovim";
+    extendConfig = mkOpt attrs { } "extend the neovim configuration.";
   };
 
   config = lib.mkIf cfg.enable {
