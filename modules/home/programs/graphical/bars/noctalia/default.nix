@@ -34,7 +34,7 @@ in
           avatar_path = lib.file.get-file ".face";
 
           panel = {
-            clipboard_placement = "centered";
+            clipboard_placement = "floating";
           };
         };
 
@@ -110,7 +110,7 @@ in
           };
           cat = {
             type = "noctalia/bongocat:cat";
-            input_device = "/dev/input/event4";
+            input_devices = [ "/dev/input/event4" ];
             scale = 1.25;
           };
         };
