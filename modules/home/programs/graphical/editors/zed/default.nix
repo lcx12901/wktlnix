@@ -118,6 +118,32 @@ in
               "..."
             ];
           };
+          TypeScript = {
+            format_on_save = "on";
+            formatter = {
+              code_actions = {
+                "source.fixAll.eslint" = true;
+                "source.organizeImports" = true;
+              };
+            };
+          };
+          TSX = {
+            format_on_save = "on";
+            formatter = {
+              code_actions = {
+                "source.fixAll.eslint" = true;
+                "source.organizeImports" = true;
+              };
+            };
+          };
+          "Vue.js" = {
+            format_on_save = "on";
+            formatter = {
+              code_actions = {
+                "source.fixAll.eslint" = true;
+              };
+            };
+          };
         };
 
         lsp = {
