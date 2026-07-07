@@ -31,15 +31,27 @@ in
     home = {
       sessionVariables = {
         EDITOR = "nvim";
+        VISUAL = "nvr-editor";
+        GIT_EDITOR = "nvr-editor";
         MANPAGER = "nvim -c 'set ft=man bt=nowrite noswapfile nobk shada=\\\"NONE\\\" ro noma' +Man! -o -";
       };
 
-      packages = [
-        wktlvim
-        pkgs.wakatime-cli
-        pkgs.nvrh
-        pkgs.neovide
-      ];
+      packages =
+        let
+          nvrEditor = pkgs.writeShellScriptBin "nvr-editor" ''
+            if [ -n "$NVIM" ] || [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+              exec ${lib.getExe pkgs.neovim-remote} --remote-wait "$@"
+            fi
+
+            exec ${lib.getExe wktlvim} "$@"
+          '';
+        in
+        [
+          wktlvim
+          nvrEditor
+          pkgs.nvrh
+          pkgs.neovide
+        ];
 
       persistence = lib.mkIf persist {
         "/persist" = {
@@ -50,6 +62,10 @@ in
           ];
         };
       };
+    };
+
+    sops.secrets."DEVIN_API_KEY" = {
+      path = "${config.home.homeDirectory}/.local/cache/nvim/codeium/config.json";
     };
   };
 }
