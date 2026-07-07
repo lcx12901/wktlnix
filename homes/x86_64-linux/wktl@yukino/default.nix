@@ -34,7 +34,14 @@ in
         apps.vesktop = enabled;
       };
       terminal = {
-        editors.nvchad = enabled;
+        editors.neovim = {
+          enable = true;
+          extendConfig = {
+            opts = {
+              guifont = lib.mkForce "Maple Mono NF CN:h14";
+            };
+          };
+        };
         tools = {
           git = {
             userName = "linchengxu";
