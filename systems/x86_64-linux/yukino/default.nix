@@ -62,6 +62,8 @@ in
     security = {
       sudo-rs = enabled;
     };
+
+    virtualisation.podman = enabled;
   };
 
   networking = {
