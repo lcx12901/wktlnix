@@ -31,7 +31,6 @@ in
 
             ];
         };
-        apps.vesktop = enabled;
       };
       terminal = {
         editors.neovim = {
