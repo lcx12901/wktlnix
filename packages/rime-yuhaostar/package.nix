@@ -5,11 +5,11 @@
 }:
 stdenv.mkDerivation {
   pname = "rime-yuhaostar";
-  version = "v3.11.0";
+  version = "v3.12.0";
   src = fetchurl {
-    url = "https://github.com/forfudan/yuhao-ime-release/releases/download/v3.11.0/xingchen_v3.11.0.zip";
-    name = "xingchen_v3.11.0.zip";
-    sha256 = "sha256-o9Ht+Va0ccr0N2hjuN+3F6biXFUdsrfxh/RF8c70t6U=";
+    url = "https://github.com/forfudan/yuhao-ime-release/releases/download/v3.12.0/xingchen_v3.12.0.zip";
+    name = "xingchen_v3.12.0.zip";
+    sha256 = "sha256-cRaJqB9iUHrQGIfMCbuksG0FWlMZojTue3cjp5H9Z8k=";
   };
   nativeBuildInputs = [ unzip ];
 
