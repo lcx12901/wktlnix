@@ -110,7 +110,13 @@ in
           };
           cat = {
             type = "noctalia/bongocat:cat";
-            input_devices = [ "/dev/input/event4" ];
+            anchor = true;
+            input_devices = [
+              "/dev/input/by-id/usb-BY_Tech_Gaming_Keyboard-event-kbd"
+              "/dev/input/by-id/usb-Razer_Razer_Basilisk_V3-event-mouse"
+              "/dev/input/by-id/usb-HFD_ikbc-event-kbd"
+              "/dev/input/by-id/usb-1ea7_M2_MAX-2.4G-if01-event-mouse"
+            ];
             scale = 1.25;
           };
         };
