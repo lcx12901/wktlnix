@@ -12,6 +12,8 @@ let
 in
 {
   config = lib.mkIf osCfg.enable {
+    home.pointerCursor.enable = osStylix.cursor != null;
+
     stylix = {
       enable = true;
       autoEnable = false;
