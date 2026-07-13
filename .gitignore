@@ -6,4 +6,5 @@
 result
 .ccls-cache
 .pre-commit-config.yaml
-.omo/*
+.omo
+.codegraph
