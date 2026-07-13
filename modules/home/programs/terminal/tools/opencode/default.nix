@@ -95,7 +95,7 @@ in
               enabled = true;
               type = "local";
               command = [
-                "${pkgs.wktlnix.codegraph}/bin/codegraph"
+                "${lib.getExe pkgs.codegraph}"
                 "serve"
                 "--mcp"
               ];
