@@ -37,18 +37,8 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     # Applications & packages
-    # wktlvim.url = "git+file:///home/wktl/Coding/nixvim-part";
-    wktlvim.url = "github:lcx12901/nixvim-part";
-    nix4nvchad = {
-      url = "github:nix-community/nix4nvchad";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nvchad-starter.follows = "nvchad-config";
-    };
-    nvchad-config = {
-      url = "github:lcx12901/nvchad-config";
-      flake = false;
-    };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    wktlvim.url = "git+file:///home/wktl/Coding/nixvim-part";
+    # wktlvim.url = "github:lcx12901/nixvim-part";
     unocss-language-server.url = "github:xna00/unocss-language-server";
     niri = {
       url = "github:sodiboo/niri-flake";
@@ -63,10 +53,6 @@
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
       };
-    };
-    waybar = {
-      url = "github:Alexays/Waybar";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
       url = "github:danth/stylix";

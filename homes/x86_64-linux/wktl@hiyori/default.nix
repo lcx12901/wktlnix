@@ -28,7 +28,7 @@ in
         };
       };
       terminal = {
-        editors.nvchad = enabled;
+        editors.neovim = enabled;
         emulators.ghostty = {
           fontSize = 15;
         };
