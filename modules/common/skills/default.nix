@@ -26,6 +26,13 @@ let
     sha256 = "sha256-30PslbWFbtoip1B+WW5DjQhyTo0R+umqGSylsXzdTUs=";
   };
 
+  qingsheng = fetchRepo {
+    owner = "tomwong001";
+    repo = "qingsheng-skill";
+    rev = "ea23b10376b146abfcff20f71876889a0453a7e7";
+    sha256 = "sha256-Rd8D8Rkzc3q+bnpA3JT4U96LXgk7g0FJBbQoPPTdtbU=";
+  };
+
   # Local skills directory (this module's directory)
   localSkillsDir = ./.;
 
@@ -53,17 +60,32 @@ let
     lib.listToAttrs defs;
 
   # Pick specific skills from a repo (instead of auto-discovering all)
+  # Supports two formats:
+  #   - String: "skill-name" (uses original name)
+  #   - AttrSet: { name = "custom-name"; path = "original-path"; } (supports renaming)
   # Returns: { name = { repo; path; }; }
   pickSkills =
     repo: skillsDir: skillNames:
     let
-      defs = map (name: {
-        inherit name;
-        value = {
-          inherit repo;
-          path = "${skillsDir}/${name}";
-        };
-      }) skillNames;
+      processSkill =
+        skill:
+        if builtins.isString skill then
+          {
+            name = skill;
+            value = {
+              inherit repo;
+              path = "${skillsDir}/${skill}";
+            };
+          }
+        else
+          {
+            inherit (skill) name;
+            value = {
+              inherit repo;
+              path = "${skillsDir}/${skill.path}";
+            };
+          };
+      defs = map processSkill skillNames;
     in
     lib.listToAttrs defs;
 
@@ -79,6 +101,17 @@ let
     {
       repo = antfuSkillsRepo;
       skillsDir = "skills";
+    }
+    {
+      repo = qingsheng;
+      skillsDir = ".";
+      # qingsheng-skill is a single skill, rename to match repo name
+      skills = [
+        {
+          name = "qingsheng";
+          path = "skill";
+        }
+      ];
     }
   ];
 
