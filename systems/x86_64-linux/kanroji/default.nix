@@ -73,7 +73,7 @@ in
       acme = enabled;
     };
     virtualisation = {
-      kvm = enabled;
+      # kvm = enabled;
       podman = enabled;
     };
   };

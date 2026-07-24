@@ -1,6 +1,13 @@
-{ lib, pkgs, ... }:
+{
+  osConfig,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib.wktlnix) enabled;
+
+  persist = osConfig.wktlnix.system.persist.enable;
 in
 {
   wktlnix = {
@@ -25,16 +32,6 @@ in
                 (flag "variable-refresh-rate")
               ])
             ];
-        };
-        editors = {
-          zed = {
-            enable = true;
-            userSettings = {
-              buffer_font_size = lib.mkForce 18;
-              ui_font_size = lib.mkForce 18;
-              terminal.font_size = lib.mkForce 18;
-            };
-          };
         };
       };
       terminal = {
@@ -61,9 +58,17 @@ in
     };
   };
 
-  home.packages = with pkgs; [
-    tsukimi
-  ];
+  home = {
+    packages = with pkgs; [
+      tsukimi
+    ];
 
-  home.stateVersion = "26.05";
+    persistence = lib.mkIf persist {
+      "/persist" = {
+        directories = [ ".qingsheng" ];
+      };
+    };
+
+    stateVersion = "26.05";
+  };
 }
