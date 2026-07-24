@@ -3,7 +3,12 @@ final: _prev:
 let
   inherit (final.stdenv.hostPlatform) system;
 
-  neovim-nightly = inputs.neovim-nightly-overlay.packages."${system}".default;
+  inherit (inputs.self.packages.${final.stdenv.hostPlatform.system})
+    rime-all
+    rime-yuhaostar
+    neovide
+    ;
+
   unocss-language-server = inputs.unocss-language-server.packages."${system}".default;
 
   # master = import inputs.nixpkgs-master {
@@ -16,7 +21,12 @@ let
   # };
 in
 {
-  inherit neovim-nightly unocss-language-server;
+  inherit
+    neovide
+    rime-all
+    rime-yuhaostar
+    unocss-language-server
+    ;
   # From nixpkgs-master (fast updating / want latest always)
   # inherit (master) ;
 }
