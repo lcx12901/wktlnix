@@ -117,6 +117,7 @@ in
           "zen.welcome-screen.seen" = true;
           "zen.urlbar.behavior" = "float";
 
+          "browser.aboutConfig.showWarning" = false;
           "browser.newtabpage.pinned" = [ ];
 
           "privacy.resistFingerprinting" = lib.mkForce false;
