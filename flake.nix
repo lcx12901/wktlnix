@@ -41,7 +41,7 @@
     # wktlvim.url = "github:lcx12901/nixvim-part";
     unocss-language-server.url = "github:xna00/unocss-language-server";
     niri = {
-      url = "github:sodiboo/niri-flake";
+      url = "github:sodiboo/niri-flake/6bb99ff875919f03ea6054026619d999061e1170";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
