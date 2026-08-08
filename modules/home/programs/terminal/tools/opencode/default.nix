@@ -12,8 +12,6 @@ let
 
   cfg = config.wktlnix.programs.terminal.tools.opencode;
 
-  agents = import ./agents.nix { inherit lib; };
-
   # Shared skills - filtered for opencode
   sharedSkills = import (lib.file.get-file "modules/common/skills/default.nix") {
     inherit pkgs lib;
@@ -87,11 +85,7 @@ in
           };
         };
 
-        # Shared skills - filtered for opencode
-        # This uses the dedicated home-manager option, not settings.skills
-        # Convert derivation to string path for type compatibility
         skills = toString sharedSkills.opencode;
-        agents = agents.renderAgents;
         context = builtins.readFile ./rules/base.md;
       };
     };
