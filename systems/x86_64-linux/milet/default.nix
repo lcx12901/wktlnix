@@ -43,7 +43,6 @@ in
         role = "server";
       };
       nginx = enabled;
-      hindsight = enabled;
     };
 
     security = {
