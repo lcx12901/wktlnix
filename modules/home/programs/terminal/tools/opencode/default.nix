@@ -53,22 +53,6 @@ in
             "@tarquinen/opencode-dcp@latest"
             "opencode-pty"
             "oh-my-openagent"
-            [
-              "@vectorize-io/opencode-hindsight"
-              {
-                hindsightApiUrl = "https://hindsight.milet.lincx.top";
-                hindsightApiToken = "{file:${config.sops.secrets."hindsight-tenant-api-key".path}}";
-                bankId = "opencode";
-                autoRecall = true;
-                autoRetain = true;
-                recallBudget = "high";
-                recallMaxTokens = 4096; # 增加 token 预算
-                retainEveryNTurns = 5; # 更稀疏保留
-                retainOverlapTurns = 3; # 增加重叠窗口
-                bankMission = "Full-stack developer working on diverse projects including NixOS infrastructure, web applications, and system tooling. Remember architecture decisions, debugging patterns, and project context.";
-                retainMission = "Retain: project structure, design decisions, debugging solutions, architectural patterns, configuration preferences, learned workflows, and reusable knowledge. Prioritize insights that transfer across projects.";
-              }
-            ]
           ];
 
           provider = {
@@ -124,7 +108,6 @@ in
 
     sops.secrets = {
       "OPENCODE_API_KEY" = { };
-      "hindsight-tenant-api-key" = { };
     };
   };
 }
