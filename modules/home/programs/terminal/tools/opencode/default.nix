@@ -43,7 +43,7 @@ in
         };
 
         settings = {
-          model = "opencode-go/mimo-v2.5";
+          model = "opencode-go/deepseek-v4-flash";
           autoshare = false;
           autoupdate = false;
 
