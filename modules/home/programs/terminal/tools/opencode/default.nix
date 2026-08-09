@@ -66,12 +66,8 @@ in
               enabled = true;
               type = "local";
               command = [
-                "nix"
-                "run"
-                "github:utensils/mcp-nixos"
-                "--"
+                "${lib.getExe pkgs.mcp-nixos}"
               ];
-              timeout = 300000;
             };
             codegraph = {
               enabled = true;
