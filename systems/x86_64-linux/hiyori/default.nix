@@ -59,7 +59,7 @@ in
         defaultSSLListenPort = 12901;
       };
       redis = enabled;
-      nextcloud = enabled;
+      opencloud = enabled;
       jellyfin = enabled;
       aria2 = enabled;
       mihomo = enabled;
