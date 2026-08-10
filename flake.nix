@@ -54,6 +54,14 @@
         home-manager.follows = "home-manager";
       };
     };
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        uv2nix.inputs.pyproject-nix.follows = "hermes-agent/pyproject-nix";
+      };
+    };
     stylix = {
       url = "github:danth/stylix";
       inputs = {
