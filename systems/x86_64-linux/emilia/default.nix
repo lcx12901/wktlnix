@@ -1,9 +1,15 @@
-{ config, lib, ... }:
+{
+  lib,
+  ...
+}:
 let
   inherit (lib.wktlnix) enabled;
 in
 {
-  imports = [ ./hardware.nix ];
+  imports = [
+    ./hardware.nix
+    ./hermes.nix
+  ];
 
   wktlnix = {
     system = {
@@ -39,18 +45,12 @@ in
     services = {
       nginx = enabled;
       openssh = enabled;
-      hermes-agent = {
-        enable = true;
-        environmentFiles = [ config.sops.templates."emilia-hermes-env".path ];
-      };
     };
 
     security = {
       acme = enabled;
       sudo-rs = enabled;
     };
-
-    virtualisation.podman = enabled;
   };
 
   services.qemuGuest.enable = true;
@@ -75,34 +75,6 @@ in
       "1.1.1.1"
       "1.0.0.1"
     ];
-
-  };
-
-  sops = {
-    secrets = {
-      "OPENCODE_API_KEY" = { };
-      "emilia-hermes-env" = { };
-    };
-    templates = {
-      "emilia-hermes-env" = {
-        content = ''
-          ${config.sops.placeholder."emilia-hermes-env"}
-          OPENCODE_GO_API_KEY=${config.sops.placeholder."OPENCODE_API_KEY"}
-        '';
-        mode = "0400";
-        owner = config.services.hermes-agent.user;
-        group = config.services.hermes-agent.group;
-        restartUnits = [ "hermes-agent.service" ];
-      };
-    };
-  };
-
-  home-manager.users.${config.services.hermes-agent.user} = {
-    home = {
-      username = config.services.hermes-agent.user;
-      homeDirectory = config.services.hermes-agent.stateDir;
-      stateVersion = config.system.stateVersion;
-    };
   };
 
   # This value determines the NixOS release from which the default

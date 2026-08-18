@@ -43,6 +43,12 @@ in
       default = true;
       description = "Enable low-friction filesystem and sequential-thinking MCP servers.";
     };
+
+    extraPackages = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      default = [ ];
+      description = "Additional packages injected into the Hermes container.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -61,12 +67,31 @@ in
           provider = "opencode-go";
         };
 
+        providers = {
+          linux-do = {
+            name = "linux-do";
+            base_url = "https://hub.linux.do/v1";
+            key_env = "DO_API_KEY";
+            api_mode = "chat_completions";
+          };
+        };
+
+        fallback_providers = [
+          {
+            provider = "linux-do";
+            model = "mimo-v2.5";
+          }
+          {
+            provider = "deepseek";
+            model = "deepseek-v4-flash";
+          }
+        ];
+
         toolsets = [ "all" ];
 
         telegram = {
           require_mention = true;
           exclusive_bot_mentions = true;
-          allowed_users = [ 975201632 ];
         };
 
         group_sessions_per_user = true;
@@ -92,6 +117,14 @@ in
           target_ratio = 0.25;
           protect_last_n = 24;
           abort_on_summary_failure = true;
+        };
+
+        auxiliary = {
+          vision = {
+            model = "kimi-k2.6";
+            provider = "opencode-go";
+            timeout = 120;
+          };
         };
 
         delegation = {
@@ -123,6 +156,7 @@ in
         dashboard.show_token_analytics = false;
 
         memory = {
+          provider = "hindsight";
           memory_enabled = true;
           user_profile_enabled = true;
           memory_char_limit = 3000;
@@ -171,7 +205,8 @@ in
         pkgs.tailscale
         pkgs.tmux
         pkgs.uv
-      ];
+      ]
+      ++ cfg.extraPackages;
 
       container = {
         backend = lib.mkDefault "podman";
@@ -183,7 +218,12 @@ in
       hideMounts = true;
 
       directories = [
-        stateDir
+        {
+          directory = stateDir;
+          user = config.services.hermes-agent.user;
+          group = config.services.hermes-agent.stateDir;
+          mode = "0700";
+        }
       ];
     };
   };
