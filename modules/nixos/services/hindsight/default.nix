@@ -35,9 +35,9 @@ let
     HINDSIGHT_API_VECTOR_EXTENSION = "pgvector";
 
     # LLM Configuration (opencode-go)
-    HINDSIGHT_API_LLM_PROVIDER = "opencode-go";
+    HINDSIGHT_API_LLM_PROVIDER = "openai";
     HINDSIGHT_API_LLM_MODEL = "mimo-v2.5";
-    HINDSIGHT_API_LLM_BASE_URL = "https://opencode.ai/zen/go/v1";
+    HINDSIGHT_API_LLM_BASE_URL = "https://hub.linux.do/v1";
 
     # Embeddings Configuration (SiliconFlow)
     HINDSIGHT_API_EMBEDDINGS_PROVIDER = "openai";
@@ -103,6 +103,25 @@ in
         RemainAfterExit = true;
         User = "postgres";
         LoadCredential = "hindsight-db-password:${databasePasswordFile}";
+        # postgresql.service is Type=forking: the unit is "active" as soon as the
+        # postmaster forks, but NixOS's ensureUsers/ensureDatabases run in
+        # postStart, which may still be in flight. Without this, ALTER USER can
+        # race ahead of role creation (observed 8/13: "role hindsight does not
+        # exist"). Poll until the role exists, then proceed.
+        ExecStartPre = [
+          (pkgs.writeShellScript "hindsight-db-setup-wait-role" ''
+            set -euo pipefail
+            psql="${config.services.postgresql.package}/bin/psql"
+            for i in $(seq 1 60); do
+              if $psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='${dbUser}'" | grep -q 1; then
+                exit 0
+              fi
+              sleep 1
+            done
+            echo "timed out waiting for role '${dbUser}'" >&2
+            exit 1
+          '')
+        ];
       };
       script =
         let
@@ -167,7 +186,7 @@ in
     sops = {
       secrets = {
         "hindsight-db-password" = { };
-        "OPENCODE_API_KEY" = { };
+        "DO_API_KEY" = { };
         "siliconflow-api-key" = { };
         "hindsight-tenant-api-key" = { };
         "hindsight-cp-access-key" = { };
@@ -177,7 +196,7 @@ in
           HINDSIGHT_API_DATABASE_URL=postgresql://${dbUser}:${
             config.sops.placeholder."hindsight-db-password"
           }@localhost:${toString dbPort}/${dbName}
-          HINDSIGHT_API_LLM_API_KEY=${config.sops.placeholder."OPENCODE_API_KEY"}
+          HINDSIGHT_API_LLM_API_KEY=${config.sops.placeholder."DO_API_KEY"}
           HINDSIGHT_API_EMBEDDINGS_OPENAI_API_KEY=${config.sops.placeholder."siliconflow-api-key"}
           HINDSIGHT_API_RERANKER_COHERE_API_KEY=${config.sops.placeholder."siliconflow-api-key"}
           HINDSIGHT_API_TENANT_API_KEY=${config.sops.placeholder."hindsight-tenant-api-key"}
