@@ -5,6 +5,7 @@ let
   cfg = config.wktlnix.services.opencloud;
 
   domain = config.networking.fqdn;
+  port = config.services.nginx.defaultSSLListenPort;
 in
 {
   options.wktlnix.services.opencloud = {
@@ -14,7 +15,7 @@ in
   config = mkIf cfg.enable {
     services.opencloud = {
       enable = true;
-      url = "https://cloud.${domain}:12901";
+      url = "https://cloud.${domain}:${toString port}";
 
       environment = {
         OC_INSECURE = "true"; # allow http internally behind reverse-proxy
@@ -49,6 +50,7 @@ in
       hideMounts = true;
 
       directories = [
+        "/etc/opencloud"
         "/var/lib/opencloud"
       ];
     };
