@@ -79,7 +79,7 @@ in
         fallback_providers = [
           {
             provider = "linux-do";
-            model = "mimo-v2.5";
+            model = "gpt-5.4";
           }
           {
             provider = "deepseek";
