@@ -36,7 +36,7 @@ let
 
     # LLM Configuration (opencode-go)
     HINDSIGHT_API_LLM_PROVIDER = "openai";
-    HINDSIGHT_API_LLM_MODEL = "gpt-5.4";
+    HINDSIGHT_API_LLM_MODEL = "deepseek-v4-flash";
     HINDSIGHT_API_LLM_BASE_URL = "https://hub.linux.do/v1";
 
     # Embeddings Configuration (SiliconFlow)

@@ -62,11 +62,6 @@ in
       environmentFiles = map toString cfg.environmentFiles;
 
       settings = lib.recursiveUpdate {
-        model = {
-          default = "deepseek-v4-flash";
-          provider = "opencode-go";
-        };
-
         providers = {
           linux-do = {
             name = "linux-do";
@@ -76,14 +71,15 @@ in
           };
         };
 
+        model = {
+          default = "deepseek-v4-flash";
+          provider = "linux-do";
+        };
+
         fallback_providers = [
           {
+            model = "minimax-m3";
             provider = "linux-do";
-            model = "gpt-5.4";
-          }
-          {
-            provider = "deepseek";
-            model = "deepseek-v4-flash";
           }
         ];
 
@@ -121,9 +117,14 @@ in
 
         auxiliary = {
           vision = {
-            model = "kimi-k2.6";
-            provider = "opencode-go";
+            model = "deepseek-v4-flash";
+            provider = "linux-do";
             timeout = 120;
+          };
+          compression = {
+            model = "deepseek-v4-flash";
+            provider = "linux-do";
+            timeout = 180;
           };
         };
 
