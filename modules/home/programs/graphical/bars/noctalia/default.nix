@@ -14,6 +14,8 @@ let
   cfg = config.wktlnix.programs.graphical.bars.noctalia;
 in
 {
+  disabledModules = [ "programs/noctalia.nix" ];
+
   options.wktlnix.programs.graphical.bars.noctalia = {
     enable = mkEnableOption "noctalia";
   };
