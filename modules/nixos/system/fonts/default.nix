@@ -23,7 +23,7 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      font-manager
+      # font-manager
       fontpreview
       smile
     ];
