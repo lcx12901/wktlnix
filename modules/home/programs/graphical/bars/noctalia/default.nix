@@ -21,7 +21,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.evtest ];
+    home.packages = [
+      pkgs.evtest
+      pkgs.wktlnix.okx-trade-cli # OKX CLI for position monitoring
+    ];
 
     programs.noctalia = {
       enable = true;
@@ -83,6 +86,7 @@ in
             "cat"
           ];
           end = [
+            "pnl"
             "tray"
             "volume"
             "notifications"
@@ -120,6 +124,10 @@ in
               "/dev/input/by-id/usb-1ea7_M2_MAX-2.4G-if01-event-mouse"
             ];
             scale = 1.25;
+          };
+          okx_pnl = {
+            type = "wktl/okx-monitor:pnl";
+            mode = "demo";
           };
         };
 
@@ -167,12 +175,23 @@ in
           network_poll_seconds = 5;
         };
 
+        # OKX Position Monitor Service
+        services = {
+          position_service = {
+            type = "wktl/okx-monitor:position_service";
+            enabled = true;
+          };
+        };
+
         nightlight = {
           enabled = false;
         };
 
         plugins = {
-          enabled = [ "noctalia/bongocat" ];
+          enabled = [
+            "noctalia/bongocat"
+            "wktl/okx-monitor"
+          ];
           source = [
             {
               enabled = true;
@@ -180,6 +199,12 @@ in
               kind = "git";
               location = "https://github.com/noctalia-dev/official-plugins";
               auto_update = true;
+            }
+            {
+              enabled = true;
+              name = "wktl";
+              kind = "path";
+              location = toString ./plugins;
             }
           ];
         };
@@ -191,7 +216,17 @@ in
         directories = [
           ".local/state/noctalia"
           ".local/cache/noctalia"
+          ".local/share/noctalia/plugins/okx-monitor"
         ];
+      };
+    };
+
+    sops = {
+      secrets = {
+        "okx-config/noctalia" = {
+          path = "/home/${config.wktlnix.user.name}/.okx/config.toml";
+          mode = "0400";
+        };
       };
     };
   };

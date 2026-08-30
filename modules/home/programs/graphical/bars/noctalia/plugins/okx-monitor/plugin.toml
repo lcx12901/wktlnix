@@ -1,0 +1,31 @@
+id = "wktl/okx-monitor"
+name = "OKX Monitor"
+version = "1.0.0"
+plugin_api = 3
+author = "wktl"
+license = "MIT"
+dependencies = []
+tags = ["crypto", "trading", "finance"]
+icon = "chart"
+description = "OKX position monitor — track PnL and K-line charts in the bar."
+
+[[setting]]
+key = "mode"
+type = "string"
+label_key = "settings.mode.label"
+default = "demo"
+
+[[service]]
+id = "position_service"
+entry = "position_service.luau"
+
+[[widget]]
+id = "pnl"
+entry = "pnl.luau"
+
+[[panel]]
+id = "panel"
+entry = "panel.luau"
+width = 800
+height = 400
+placement = "attached"
