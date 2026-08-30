@@ -25,6 +25,7 @@ in
     extraPackages = [
       pkgs.wktlnix.okx-trade-cli
       pkgs.direnv
+      pkgs.logrotate
     ];
   };
 
