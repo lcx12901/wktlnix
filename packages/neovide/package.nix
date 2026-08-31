@@ -27,13 +27,13 @@
 
 rustPlatform.buildRustPackage.override { stdenv = clangStdenv; } (finalAttrs: {
   pname = "neovide";
-  version = "2026-07-20";
+  version = "2026-08-29";
 
   src = fetchFromGitHub {
     owner = "neovide";
     repo = "neovide";
-    rev = "7af518d72c33907b57d3a6c54c67969857a13871";
-    hash = "sha256-C1qNdHSYi2z33PZqmZaUYiCkGuhIVGvphSXT09O0eYU=";
+    rev = "b756bc557dd74a1c24bd710ba455add2fb550008";
+    hash = "sha256-T+N8kYsLFbPe5sP6I8y5iK4EaonYCWYit+qQXGn16no=";
   };
 
   cargoHash = "sha256-kl1TXq2CDahMCWRReWxAJqDpH4Gx0xwWkZKcDCHQWUM=";
