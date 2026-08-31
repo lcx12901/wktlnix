@@ -11,9 +11,13 @@ description = "OKX position monitor — track PnL and K-line charts in the bar."
 
 [[setting]]
 key = "mode"
-type = "string"
+type = "select"
 label_key = "settings.mode.label"
 default = "demo"
+options = [
+  { value = "demo", label_key = "settings.mode.options.demo" },
+  { value = "live", label_key = "settings.mode.options.live" },
+]
 
 [[service]]
 id = "position_service"
