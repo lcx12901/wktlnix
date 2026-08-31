@@ -37,9 +37,9 @@ in
         group = config.services.hermes-agent.group;
         restartUnits = [ "hermes-agent.service" ];
       };
-      "okx-config" = {
+      "okx-config/hermes" = {
         path = "${config.services.hermes-agent.stateDir}/.okx/config.toml";
-        mode = "0400";
+        mode = "0600";
         owner = config.services.hermes-agent.user;
         group = config.services.hermes-agent.group;
         restartUnits = [ "hermes-agent.service" ];
