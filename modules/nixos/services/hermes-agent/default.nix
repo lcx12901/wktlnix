@@ -72,8 +72,8 @@ in
         };
 
         model = {
-          default = "deepseek-v4-flash";
-          provider = "linux-do";
+          default = "mimo-v2.5";
+          provider = "opencode-go";
         };
 
         fallback_providers = [
