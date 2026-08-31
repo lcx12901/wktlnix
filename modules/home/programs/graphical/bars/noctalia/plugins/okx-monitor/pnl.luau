@@ -19,6 +19,11 @@ local function formatRatio(value)
   return " (" .. sign .. string.format("%.2f%%", v * 100) .. ")"
 end
 
+local function cleanInstId(instId)
+  if not instId then return "?" end
+  return instId:gsub("-USDT%-SWAP$", ""):gsub("-SWAP$", "")
+end
+
 -- Theme color roles: tertiary = positive, error = negative
 local function getPnlColor(value)
   local v = tonumber(value)
@@ -48,7 +53,7 @@ local function render()
     local upl = p.upl or "0"
     local uplRatio = p.uplRatio or "0"
     local color = getPnlColor(upl)
-    local text = instId .. " " .. formatPnl(upl) .. formatRatio(uplRatio)
+    local text = cleanInstId(instId) .. " " .. formatPnl(upl) .. formatRatio(uplRatio)
 
     table.insert(children, ui.label({ text = text, fontWeight = "bold", color = color }))
 

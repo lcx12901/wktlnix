@@ -19,6 +19,11 @@ local function formatPrice(price)
   end
 end
 
+local function cleanInstId(instId)
+  if not instId then return "?" end
+  return instId:gsub("-USDT%-SWAP$", ""):gsub("-SWAP$", "")
+end
+
 local function formatRatio(ratio)
   local r = tonumber(ratio)
   if not r then return "--" end
@@ -68,7 +73,7 @@ local function renderPositionCard(p, cardWidth)
 
   return ui.column({ gap = 8, padding = 12, fill = "surface_variant/0.35", radius = 6, border = "outline", borderWidth = 1, width = cardWidth }, {
     ui.row({ justify = "space_between" }, {
-      ui.label({ text = instId, fontSize = 14, fontWeight = "bold", color = "on_surface" }),
+      ui.label({ text = cleanInstId(instId), fontSize = 14, fontWeight = "bold", color = "on_surface" }),
       ui.label({ text = sign .. formatPrice(upl) .. " USDT", fontSize = 14, fontWeight = "bold", color = color }),
     }),
     renderChart(instId, cardWidth),
