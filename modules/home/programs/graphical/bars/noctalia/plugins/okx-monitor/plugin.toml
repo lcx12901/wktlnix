@@ -13,7 +13,7 @@ description = "OKX position monitor — track PnL and K-line charts in the bar."
 key = "mode"
 type = "select"
 label_key = "settings.mode.label"
-default = "demo"
+default = "live"
 options = [
   { value = "demo", label_key = "settings.mode.options.demo" },
   { value = "live", label_key = "settings.mode.options.live" },
@@ -30,6 +30,6 @@ entry = "pnl.luau"
 [[panel]]
 id = "panel"
 entry = "panel.luau"
-width = 800
+width = 900
 height = 400
 placement = "attached"

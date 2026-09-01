@@ -59,11 +59,11 @@ local function render()
 
     -- Add separator between positions
     if i < #positions then
-      table.insert(children, ui.label({ text = " │ ", color = "outline" }))
+      table.insert(children, ui.label({ text = "│", color = "outline" }))
     end
   end
 
-  barWidget.render(ui.row({ gap = 6, align = "center" }, children))
+  barWidget.render(ui.row({ gap = 2, align = "center" }, children))
 end
 
 function update()

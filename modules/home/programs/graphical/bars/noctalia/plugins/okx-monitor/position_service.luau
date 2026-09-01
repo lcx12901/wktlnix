@@ -17,8 +17,12 @@ local function updatePositions()
   if pos_fetching then return end
   pos_fetching = true
 
-  local mode_flag = current_mode == "live" and "--live" or "--demo"
-  local cmd = "okx account positions --instType SWAP " .. mode_flag .. " --json 2>/dev/null"
+  -- Global CLI flags must precede the module. Use --profile to select the
+  -- matching API key+environment: --live/--demo only switch the endpoint and
+  -- keep the default profile's key, causing HTTP 401 "APIKey does not match
+  -- current environment" when the default profile is demo but mode is live.
+  local profile_flag = current_mode == "live" and "--profile live" or "--profile demo"
+  local cmd = "okx " .. profile_flag .. " account positions --instType SWAP --json 2>/dev/null"
 
   noctalia.runAsync(cmd, function(result)
     pos_fetching = false
@@ -49,7 +53,7 @@ local function updatePositions()
       for _, p in ipairs(state.positions) do
         if p.instId then
           local instId = p.instId
-          local kline_cmd = "okx market candles " .. instId .. " --bar 1m --limit 100 " .. mode_flag .. " --json 2>/dev/null"
+          local kline_cmd = "okx " .. profile_flag .. " market candles " .. instId .. " --bar 1m --limit 100 --json 2>/dev/null"
           noctalia.runAsync(kline_cmd, function(kline_result)
             local kline_stdout = (kline_result and kline_result.stdout) or ""
             kline_stdout = kline_stdout:gsub("^%s+", ""):gsub("%s+$", "")

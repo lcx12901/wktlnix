@@ -38,7 +38,7 @@ local function pnlColor(value)
   return "on_surface_variant"
 end
 
-local function renderChart(instId, width)
+local function renderChart(instId)
   local prices = kline_prices[instId]
   if not prices or #prices == 0 then
     return ui.row({ padding = 8 }, {
@@ -46,20 +46,19 @@ local function renderChart(instId, width)
     })
   end
 
-  return ui.column({ gap = 4, padding = 8 }, {
+  return ui.column({ gap = 4, padding = 8, flexGrow = 1 }, {
     ui.label({ text = "K线 (1分钟)", fontSize = 12, fontWeight = "bold", color = "on_surface" }),
     ui.graph({
       values = prices,
       color = "tertiary",
       lineWidth = 2,
       fillOpacity = 0.2,
-      width = width - 32,
-      height = 120,
+      flexGrow = 1,
     }),
   })
 end
 
-local function renderPositionCard(p, cardWidth)
+local function renderPositionCard(p)
   local instId = p.instId or "?"
   local pos = p.pos or "0"
   local avgPx = p.avgPx or "0"
@@ -71,21 +70,23 @@ local function renderPositionCard(p, cardWidth)
   local color = pnlColor(upl)
   local sign = (tonumber(upl) or 0) > 0 and "+" or ""
 
-  return ui.column({ gap = 8, padding = 12, fill = "surface_variant/0.35", radius = 6, border = "outline", borderWidth = 1, width = cardWidth }, {
+  return ui.column({ gap = 8, padding = 12, fill = "surface_variant/0.35", radius = 6, border = "outline", borderWidth = 1, flexGrow = 1, justify = "space_between" }, {
     ui.row({ justify = "space_between" }, {
       ui.label({ text = cleanInstId(instId), fontSize = 14, fontWeight = "bold", color = "on_surface" }),
       ui.label({ text = sign .. formatPrice(upl) .. " USDT", fontSize = 14, fontWeight = "bold", color = color }),
     }),
-    renderChart(instId, cardWidth),
+    renderChart(instId),
     ui.row({ gap = 12 }, {
       ui.label({ text = "数量: " .. pos, fontSize = 11, color = "on_surface_variant" }),
       ui.label({ text = "均价: " .. formatPrice(avgPx), fontSize = 11, color = "on_surface_variant" }),
+    }),
+    ui.row({ gap = 12 }, {
       ui.label({ text = "盈亏: " .. formatRatio(uplRatio), fontSize = 11, color = color }),
+      liqPx ~= "--" and ui.label({ text = "强平: " .. formatPrice(liqPx), fontSize = 11, color = "error" }) or ui.label({}),
     }),
     ui.row({ gap = 12 }, {
       ui.label({ text = "杠杆: " .. lever .. "x", fontSize = 11, color = "on_surface_variant" }),
       ui.label({ text = "保证金: " .. formatRatio(mgnRatio), fontSize = 11, color = "on_surface_variant" }),
-      liqPx ~= "--" and ui.label({ text = "强平: " .. formatPrice(liqPx), fontSize = 11, color = "error" }) or ui.label({}),
     }),
   })
 end
@@ -106,16 +107,12 @@ local function render()
     }),
   }
 
-  local panelWidth = 760
-  local cardCount = #positions
-  local cardWidth = math.floor((panelWidth - 16 * (cardCount - 1)) / cardCount)
-
-  if cardCount == 1 then
-    table.insert(children, renderPositionCard(positions[1], panelWidth))
+  if #positions == 1 then
+    table.insert(children, renderPositionCard(positions[1]))
   else
     local cards = {}
     for _, p in ipairs(positions) do
-      table.insert(cards, renderPositionCard(p, cardWidth))
+      table.insert(cards, renderPositionCard(p))
     end
     table.insert(children, ui.row({ gap = 16, flexGrow = 1 }, cards))
   end
