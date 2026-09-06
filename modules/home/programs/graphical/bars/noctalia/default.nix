@@ -86,7 +86,7 @@ in
             "cat"
           ];
           end = [
-            "pnl"
+            "okx_pnl"
             "tray"
             "volume"
             "notifications"
