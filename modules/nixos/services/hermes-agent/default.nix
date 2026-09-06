@@ -62,24 +62,23 @@ in
       environmentFiles = map toString cfg.environmentFiles;
 
       settings = lib.recursiveUpdate {
-        providers = {
-          linux-do = {
-            name = "linux-do";
-            base_url = "https://hub.linux.do/v1";
-            key_env = "DO_API_KEY";
-            api_mode = "chat_completions";
-          };
-        };
-
         model = {
-          default = "mimo-v2.5";
+          default = "nemotron-3-ultra-free";
           provider = "opencode-go";
         };
 
         fallback_providers = [
           {
-            model = "minimax-m3";
-            provider = "linux-do";
+            model = "deepseek-v4-flash-free";
+            provider = "opencode-go";
+          }
+          {
+            model = "mimo-v2.5-free";
+            provider = "opencode-go";
+          }
+          {
+            model = "mimo-v2.5";
+            provider = "opencode-go";
           }
         ];
 
@@ -117,19 +116,19 @@ in
 
         auxiliary = {
           vision = {
-            model = "deepseek-v4-flash";
-            provider = "linux-do";
+            model = "minimax-m3";
+            provider = "opencode-go";
             timeout = 120;
           };
           compression = {
-            model = "deepseek-v4-flash";
-            provider = "linux-do";
+            model = "mimo-v2.5";
+            provider = "opencode-go";
             timeout = 180;
           };
         };
 
         delegation = {
-          model = "deepseek-v4-flash";
+          model = "mimo-v2.5";
           reasoning_effort = "medium";
           max_iterations = 50;
           child_timeout_seconds = 900;
