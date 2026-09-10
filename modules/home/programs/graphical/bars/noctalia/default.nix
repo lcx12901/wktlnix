@@ -75,18 +75,17 @@ in
           scale = 1.0;
 
           start = [
+            "workspaces"
             "clock"
             "cpu"
             "mem"
-            "active_window"
             "media"
           ];
           center = [
-            "workspaces"
+            "okx_pnl"
             "cat"
           ];
           end = [
-            "okx_pnl"
             "tray"
             "volume"
             "notifications"
@@ -116,7 +115,7 @@ in
           };
           cat = {
             type = "noctalia/bongocat:cat";
-            anchor = true;
+            anchor = false;
             input_devices = [
               "/dev/input/by-id/usb-BY_Tech_Gaming_Keyboard-event-kbd"
               "/dev/input/by-id/usb-Razer_Razer_Basilisk_V3-event-mouse"
