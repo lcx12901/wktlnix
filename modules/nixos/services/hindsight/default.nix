@@ -186,7 +186,7 @@ in
     sops = {
       secrets = {
         "hindsight-db-password" = { };
-        "DO_API_KEY" = { };
+        "OPENCODE_API_KEY" = { };
         "siliconflow-api-key" = { };
         "hindsight-tenant-api-key" = { };
         "hindsight-cp-access-key" = { };
@@ -196,7 +196,7 @@ in
           HINDSIGHT_API_DATABASE_URL=postgresql://${dbUser}:${
             config.sops.placeholder."hindsight-db-password"
           }@localhost:${toString dbPort}/${dbName}
-          HINDSIGHT_API_LLM_API_KEY=${config.sops.placeholder."DO_API_KEY"}
+          HINDSIGHT_API_LLM_API_KEY=${config.sops.placeholder."OPENCODE_API_KEY"}
           HINDSIGHT_API_EMBEDDINGS_OPENAI_API_KEY=${config.sops.placeholder."siliconflow-api-key"}
           HINDSIGHT_API_RERANKER_COHERE_API_KEY=${config.sops.placeholder."siliconflow-api-key"}
           HINDSIGHT_API_TENANT_API_KEY=${config.sops.placeholder."hindsight-tenant-api-key"}
