@@ -48,7 +48,10 @@ in
         dockerSocket.enable = true;
       };
 
-      containers = enabled;
+      containers = {
+        enable = true;
+        registries.search = [ "docker.io" ];
+      };
 
       oci-containers = {
         backend = "podman";
