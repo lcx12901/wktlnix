@@ -188,6 +188,7 @@ in
             "https://nixpkgs-unfree.cachix.org" # unfree-package cache
             "https://numtide.cachix.org" # another unfree package cache
             "https://noctalia.cachix.org"
+            "https://cache.numtide.com"
           ];
 
           trusted-public-keys = [
@@ -197,6 +198,7 @@ in
             "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
             "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
             "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+            "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
           ];
         };
       };
