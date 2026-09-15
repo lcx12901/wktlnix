@@ -27,6 +27,12 @@ in
 
   options.wktlnix.programs.terminal.tools.opencode = {
     enable = mkEnableOption "opencode";
+
+    settings = lib.mkOption {
+      type = lib.types.attrs;
+      default = { };
+      description = "Opencode config settings.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -36,14 +42,16 @@ in
       opencode = {
         enable = true;
 
+        package = pkgs.llm-agents.opencode;
+
         enableMcpIntegration = false;
 
         tui = {
           theme = "catppuccin-frappe";
         };
 
-        settings = {
-          model = "opencode-go/deepseek-v4-flash";
+        settings = lib.recursiveUpdate {
+          model = "opencode-go/mimo-v2.5";
           autoshare = false;
           autoupdate = false;
 
@@ -79,7 +87,7 @@ in
               ];
             };
           };
-        };
+        } cfg.settings;
 
         skills = toString sharedSkills.opencode;
         context = builtins.readFile ./rules/base.md;
