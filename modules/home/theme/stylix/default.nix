@@ -43,7 +43,7 @@ in
           enable = true;
           rainbow = enabled;
         };
-        fcitx5 = enabled;
+        # fcitx5 = enabled;
         fish = enabled;
         fzf = enabled;
         ghostty = enabled;
