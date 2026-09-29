@@ -30,8 +30,11 @@ in
       enable = true;
 
       settings = {
-        shell = {
+        accessibility = {
           ui_scale = 1.0;
+        };
+
+        shell = {
           font_family = "Maple Mono NF CN";
           telemetry_enabled = false;
           clipboard_enabled = true;
@@ -51,7 +54,7 @@ in
         wallpaper = {
           enabled = true;
           fill_mode = "crop";
-          transition = "pixelate";
+          transition = [ "pixelate" ];
           transition_duration = 1500;
           directory = "${inputs.wallpapers}";
         };
@@ -126,7 +129,7 @@ in
           };
           okx_pnl = {
             type = "wktl/okx-monitor:pnl";
-            mode = "demo";
+            mode = "live";
           };
         };
 
@@ -174,14 +177,6 @@ in
           network_poll_seconds = 5;
         };
 
-        # OKX Position Monitor Service
-        services = {
-          position_service = {
-            type = "wktl/okx-monitor:position_service";
-            enabled = true;
-          };
-        };
-
         nightlight = {
           enabled = false;
         };
@@ -191,19 +186,19 @@ in
             "noctalia/bongocat"
             "wktl/okx-monitor"
           ];
+          auto_update = "all";
           source = [
             {
               enabled = true;
               name = "official";
               kind = "git";
               location = "https://github.com/noctalia-dev/official-plugins";
-              auto_update = true;
             }
             {
               enabled = true;
               name = "wktl";
-              kind = "path";
-              location = toString ./plugins;
+              kind = "git";
+              location = "https://github.com/lcx12901/noctalia-plugins";
             }
           ];
         };
