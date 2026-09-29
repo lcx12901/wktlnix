@@ -105,16 +105,16 @@ in
           automatic = false;
         };
 
-        # This will additionally add your inputs to the system's legacy channels
-        # Making legacy nix commands consistent as well
-
-        nixPath = mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
-
         # pin the registry to avoid downloading and evaluating a new nixpkgs version every time
         # this will add each flake input as a registry to make nix3 commands consistent with your flake
         registry = mappedRegistry;
 
         settings = {
+          # This will additionally add your inputs to the system's legacy channels
+          # Making legacy nix commands consistent as well
+
+          nix-path = mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
+
           # allow sudo users to mark the following values as trusted
           allowed-users = users;
 
