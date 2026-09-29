@@ -50,7 +50,9 @@ in
 
       containers = {
         enable = true;
-        registries.search = [ "docker.io" ];
+        registries.settings = {
+          search = [ "docker.io" ];
+        };
       };
 
       oci-containers = {
