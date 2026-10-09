@@ -64,6 +64,10 @@ in
       };
     };
 
+    systemd.user.tmpfiles.rules = [
+      "e ${config.xdg.stateHome}/nvim/logs - - - 14d"
+    ];
+
     sops.secrets."DEVIN_API_KEY" = {
       path = "${config.home.homeDirectory}/.local/cache/nvim/codeium/config.json";
     };
