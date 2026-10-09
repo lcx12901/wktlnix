@@ -68,15 +68,27 @@ in
       randomizedDelaySec = "1h";
     };
 
-    # Apply systemd optimizations for low-priority background operation
-    systemd.services.fast-nix-gc.serviceConfig = {
-      ProcessType = "Background";
-      LowPriorityIO = true;
-    };
+    systemd = {
+      # Apply systemd optimizations for low-priority background operation
+      services = {
+        fast-nix-gc = {
+          serviceConfig = {
+            LowPriorityIO = true;
+            ProcessType = "Background";
+          };
+        };
 
-    systemd.services.fast-nix-optimise.serviceConfig = {
-      ProcessType = "Background";
-      LowPriorityIO = true;
+        fast-nix-optimise = {
+          serviceConfig = {
+            LowPriorityIO = true;
+            ProcessType = "Background";
+          };
+        };
+      };
+
+      tmpfiles = {
+        rules = [ "e /nix/var/log/nix/drvs - - - ~30d" ];
+      };
     };
 
     nix =
