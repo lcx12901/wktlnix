@@ -11,7 +11,7 @@ in
       allowAliases = false;
       allowUnfreePredicate = _: true;
       permittedInsecurePackages = [
-        "immersive-translate-1.30.2"
+        "immersive-translate-1.33.3"
         "pnpm-10.29.2"
         "pnpm-10.34.0"
       ];
