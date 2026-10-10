@@ -44,7 +44,7 @@ in
           identityFile = config.sops.secrets."github_rsa".path;
           identitiesOnly = true;
         };
-        "192.168.0.216" = {
+        "192.168.0.218" = {
           identityFile = config.sops.secrets."github_rsa".path;
           identitiesOnly = true;
           port = 8221;

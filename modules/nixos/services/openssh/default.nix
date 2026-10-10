@@ -64,7 +64,7 @@ in
           publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZgmbR1xNbPCmUfIMCTI0+QwYKP0d5YrkbFEPNaWErW";
         };
         z9yun-gitlab-ed25519 = {
-          hostNames = [ "[192.168.0.216]:8221" ];
+          hostNames = [ "[192.168.0.218]:8221" ];
           publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGLt+JQ8Er8iN5OepJHT/hBf1ioDP9PV5S4HuKmGYzKn";
         };
         hiyori = {
