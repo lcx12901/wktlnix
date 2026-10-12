@@ -22,15 +22,15 @@ let
   antfuSkillsRepo = fetchRepo {
     owner = "antfu";
     repo = "skills";
-    rev = "a74f281a27dadc02397bc1a174b0f2c97531b6ae";
-    sha256 = "sha256-30PslbWFbtoip1B+WW5DjQhyTo0R+umqGSylsXzdTUs=";
+    rev = "feb0f3aba6566426f12230e7fc7a10d97c1293bb";
+    sha256 = "sha256-o/OH4HGRhBH9p08UfUX8K31JuISSIDO9O4zZDrwzJL4=";
   };
 
   qingsheng = fetchRepo {
     owner = "tomwong001";
     repo = "qingsheng-skill";
-    rev = "ea23b10376b146abfcff20f71876889a0453a7e7";
-    sha256 = "sha256-Rd8D8Rkzc3q+bnpA3JT4U96LXgk7g0FJBbQoPPTdtbU=";
+    rev = "fd762df2e0ce4b8ec68b0087ba7178761045bd1a";
+    sha256 = "sha256-NpaIzsXV/+I38hjXfBRoRK3vwxiu3kxEbCus0+AdozI=";
   };
 
   # Local skills directory (this module's directory)
