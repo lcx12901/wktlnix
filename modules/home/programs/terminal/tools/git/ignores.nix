@@ -11,6 +11,7 @@
     "._*"
     ".Spotlight-V100"
     ".Trashes"
+    ".codegraph"
 
     # IDE
     "*.swp"
