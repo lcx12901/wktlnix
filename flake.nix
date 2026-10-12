@@ -8,7 +8,6 @@
   inputs = {
     # Core
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs";
     flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
     flake-parts = {
@@ -19,7 +18,7 @@
     # System management
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     fast-nix-gc = {
       url = "github:Mic92/fast-nix-gc";
@@ -32,7 +31,7 @@
     impermanence.url = "github:nix-community/impermanence";
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
