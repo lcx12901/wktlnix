@@ -20,93 +20,15 @@ in
   config = mkIf cfg.enable {
     programs.zen-browser = {
       enable = true;
+
       setAsDefaultBrowser = true;
       nativeMessagingHosts = [ pkgs.tridactyl-native ];
 
-      policies = {
-        AutofillAddressEnabled = true;
-        AutofillCreditCardEnabled = false;
-        DisableAppUpdate = true;
-        DisableFeedbackCommands = true;
-        DisableFirefoxStudies = true;
-        DisablePocket = true; # save webs for later reading
-        DisableTelemetry = true;
-        DontCheckDefaultBrowser = true;
-        OfferToSaveLogins = false;
-        EnableTrackingProtection = {
-          Value = true;
-          Locked = true;
-          Cryptomining = true;
-          Fingerprinting = true;
-        };
-        SanitizeOnShutdown = {
-          FormData = true;
-          Cache = true;
-        };
-        Preferences =
-          let
-            mkLockedAttrs = builtins.mapAttrs (
-              _: value: {
-                Value = value;
-                Status = "locked";
-              }
-            );
-          in
-          mkLockedAttrs {
-            "browser.aboutConfig.showWarning" = false;
-            "browser.tabs.warnOnClose" = false;
-            "media.videocontrols.picture-in-picture.video-toggle.enabled" = true;
-            # Disable swipe gestures (Browser:BackOrBackDuplicate, Browser:ForwardOrForwardDuplicate)
-            "browser.gesture.swipe.left" = "";
-            "browser.gesture.swipe.right" = "";
-            "browser.newtabpage.activity-stream.feeds.topsites" = false;
-            "browser.tabs.hoverPreview.enabled" = true;
-            "browser.topsites.contile.enabled" = false;
-            "browser.translations.automaticallyPopup" = false;
-            "browser.translations.enable" = false;
-            "browser.translations.select.enable" = false;
-          };
-      };
+      policies = import ./policies-config.nix;
+
       profiles.default = {
         name = "default";
-        extensions = {
-          force = true;
-          packages = with pkgs.firefox-addons; [
-            sponsorblock
-            bitwarden
-            ublock-origin
-            auto-tab-discard
-            immersive-translate
-            tampermonkey
-            gitako-github-file-tree
-            github-file-icons
-            github-issue-link-status
-            refined-github
-            return-youtube-dislikes
-            decentraleyes
-            tridactyl
-          ];
-          settings = {
-            "uBlock0@raymondhill.net" = {
-              settings = {
-                selectedFilterLists = [
-                  "easylist"
-                  "easylist-annoyances"
-                  "easylist-chat"
-                  "easylist-newsletters"
-                  "easylist-notifications"
-                  "fanboy-cookiemonster"
-                  "ublock-badware"
-                  "ublock-cookies-easylist"
-                  "ublock-filters"
-                  "ublock-privacy"
-                  "ublock-quick-fixes"
-                  "ublock-unbreak"
-                ];
-              };
-            };
-          };
-        };
+
         settings = {
           "zen.workspaces.continue-where-left-off" = true;
           "zen.workspaces.natural-scroll" = true;
@@ -116,16 +38,18 @@ in
           "zen.view.compact.animate-sidebar" = false;
           "zen.welcome-screen.seen" = true;
           "zen.urlbar.behavior" = "float";
+          "zen.theme.hide-unified-extensions-button" = true;
 
-          "browser.aboutConfig.showWarning" = false;
           "browser.newtabpage.pinned" = [ ];
 
-          "privacy.resistFingerprinting" = lib.mkForce false;
-          "privacy.fingerprintingProtection" = true;
-          "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
-          "privacy.donottrackheader.enabled" = true;
-          "privacy.spoof_english" = 1;
-          "privacy.firstparty.isolate" = true;
+          # "privacy.resistFingerprinting" = false;
+          # "privacy.resistFingerprinting.randomization.canvas.use_siphash" = true;
+          # "privacy.resistFingerprinting.block_mozAddonManager" = true;
+          # "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
+          # "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
+          # "privacy.donottrackheader.enabled" = true;
+          # "privacy.spoof_english" = 1;
+          # "privacy.firstparty.isolate" = true;
 
           # default enable extensions
           "extensions.autoDisableScopes" = 0;
@@ -156,20 +80,29 @@ in
           # enable the Browser Developer Tools
           "devtools.debugger.remote-enabled" = true;
           "devtools.chrome.enabled" = true;
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
           "network.cookie.cookieBehavior" = 5;
           "network.http.http3.enabled" = true;
           "network.socket.ip_addr_any.disabled" = true; # disallow bind to 0.0.0.0
+
+          "security.enterprise_roots.enabled" = true;
         };
 
-        mods = [
-          "cb15abdb-0514-4e09-8ce5-722cf1f4a20f" # Hide Extension Name
-          "7d577b21-4685-4db2-bb17-d39d08eec199" # Bleeding Corners Fix
-          "20e8cc78-3dac-4db0-81a4-814672fb50af" # Left Side Glance Buttons
-          "803c7895-b39b-458e-84f8-a521f4d7a064" # Hide Inactive Workspaces
-          "f7c71d9a-bce2-420f-ae44-a64bd92975ab" # Better Unloaded Tabs
-        ];
+        presets.betterfox.enable = true;
+
+        sine = {
+          enable = true;
+          mods = [
+            "4ab93b88-151c-451b-a1b7-a1e0e28fa7f8" # No Sidebar Scrollbar
+            "803c7895-b39b-458e-84f8-a521f4d7a064" # Hide Inactive Workspaces
+            "7d577b21-4685-4db2-bb17-d39d08eec199" # Bleeding Corners Fix
+            "c8d9e6e6-e702-4e15-8972-3596e57cf398" # Zen Back Forward
+            "cb15abdb-0514-4e09-8ce5-722cf1f4a20f" # Hide Extension Name
+            "f7c71d9a-bce2-420f-ae44-a64bd92975ab" # Better Unloaded Tabs
+            "e122b5d9-d385-4bf8-9971-e137809097d0" # No Top Sites
+            "fd24f832-a2e6-4ce9-8b19-7aa888eb7f8e" # Quietify
+          ];
+        };
 
         bookmarks = {
           force = true;
