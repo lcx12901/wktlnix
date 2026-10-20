@@ -29,22 +29,11 @@ let
     ]
     ++ (pkgs.lib.splitString " " cmd);
 
-  sh = getExe' config.programs.bash.package "sh";
   flameshot = getExe config.services.flameshot.package;
   telegram = getExe pkgs.telegram-desktop;
   wpctl = getExe' pkgs.wireplumber "wpctl";
   ghostty = getExe config.programs.ghostty.package;
   zen-browser = getExe' config.programs.zen-browser.package "zen-twilight";
-  wlCopy = lib.getExe' pkgs.wl-clipboard "wl-copy";
-  magick = lib.getExe' pkgs.imagemagick "magick";
-
-  colorPickerCommand = ''
-    color="$(niri msg pick-color | awk '/Hex:/ { print $2 }')" &&
-    [ -n "$color" ] &&
-    printf '%s' "$color" | ${wlCopy} &&
-    ${magick} convert -size 32x32 "xc:$color" /tmp/color.png &&
-    notify-send "Color Code:" "$color" -h "string:bgcolor:$color" --icon /tmp/color.png -u critical -t 4000
-  '';
 in
 {
   config = mkIf config.wktlnix.programs.graphical.wms.niri.enable {
@@ -69,9 +58,6 @@ in
             ])
             (plain "Mod+T" [
               (spawn [ telegram ])
-            ])
-            (plain "Mod+V" [
-              (spawn [ colorPickerCommand ])
             ])
             (plain "Mod+B" [
               (spawn [ zen-browser ])
