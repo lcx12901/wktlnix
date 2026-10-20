@@ -69,8 +69,8 @@ in
 
         fallback_providers = [
           {
-            model = "deepseek-v4-flash-free";
-            provider = "opencode-go";
+            model = "deepseek-v4-flash";
+            provider = "deepseek";
           }
           {
             model = "mimo-v2.5-free";

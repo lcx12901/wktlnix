@@ -105,5 +105,14 @@ in
     "L+ ${config.services.hermes-agent.stateDir}/.hermes/SOUL.md 0640 ${config.services.hermes-agent.user} ${config.services.hermes-agent.group} - ${builtins.toFile "hermes-soul.md" (builtins.readFile ./SOUL.md)}"
   ];
 
-  systemd.services.hermes-agent.after = [ "sops-install-secrets.service" ];
+  # The upstream module merges environmentFiles into $HERMES_HOME/.env via
+  # the activation script, which runs BEFORE sops-install-secrets.service
+  # updates /run/secrets/ during nixos-rebuild switch. So .env can go stale.
+  # Inject the secret via systemd EnvironmentFile instead: systemd reads it
+  # at service start (after sops-install-secrets.service), and
+  # load_hermes_dotenv() does not override already-set env vars.
+  systemd.services.hermes-agent = {
+    after = [ "sops-install-secrets.service" ];
+    serviceConfig.EnvironmentFile = [ config.sops.secrets."emilia-hermes-env".path ];
+  };
 }

@@ -103,9 +103,8 @@ in
 
       wireless = {
         enable = cfg.wireless;
-        secretsFile = config.sops.secrets."wireless".path;
         networks = {
-          "wktl_5G_Game".pskRaw = "ext:psk_wktl_5G_Game";
+          "4514-5G".psk = "bt3agiwt";
         };
       };
     };

@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, ... }:
 let
   inherit (lib.wktlnix) enabled;
 in
@@ -26,7 +26,10 @@ in
           ".config/dconf"
         ];
       };
-      networking = enabled;
+      networking = {
+        enable = true;
+        wireless = true;
+      };
     };
 
     hardware = {
@@ -43,7 +46,7 @@ in
         wms.niri = enabled;
         games = {
           steam = enabled;
-          gamemode = enabled;
+          # gamemode = enabled;
           gamescope = enabled;
           gaming-optimization = enabled;
         };
@@ -59,31 +62,16 @@ in
     services = {
       openssh = enabled;
       avahi = enabled;
-      inadyn = {
-        enable = true;
-        configFile = config.sops.secrets."cf-kanroji-inadyn".path;
-      };
       mihomo = enabled;
-      nginx = enabled;
-      aria2 = enabled;
     };
 
     security = {
       sudo-rs = enabled;
-      acme = enabled;
     };
-    virtualisation = {
-      # kvm = enabled;
-      podman = enabled;
-    };
+
+    virtualisation.podman = enabled;
   };
 
-  sops.secrets = {
-    "cf-kanroji-inadyn" = {
-      inherit (config.services.inadyn) group;
-      owner = config.services.inadyn.user;
-    };
-  };
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
