@@ -24,7 +24,7 @@ in
       setAsDefaultBrowser = true;
       nativeMessagingHosts = [ pkgs.tridactyl-native ];
 
-      policies = import ./policies-config.nix;
+      policies = import ./policies-config.nix { inherit pkgs; };
 
       profiles.default = {
         name = "default";

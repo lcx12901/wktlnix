@@ -1,3 +1,4 @@
+{ pkgs }:
 let
   mkLockedAttrs = builtins.mapAttrs (
     _: value: {
@@ -90,6 +91,10 @@ in
       "plowe-0"
     ];
     filters = [ "||doubleclick.net^" ];
+  };
+
+  SecurityDevices = {
+    "System Trust" = "${pkgs.p11-kit}/lib/pkcs11/p11-kit-trust.so";
   };
 
   Preferences = mkLockedAttrs {
