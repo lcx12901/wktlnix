@@ -51,7 +51,7 @@ in
         };
 
         settings = lib.recursiveUpdate {
-          model = "opencode-go/mimo-v2.5";
+          model = "opencode-go/mimo-v2.6-flash";
           autoshare = false;
           autoupdate = false;
 
@@ -70,13 +70,13 @@ in
           };
 
           mcp = {
-            nixos = {
-              enabled = true;
-              type = "local";
-              command = [
-                "${lib.getExe pkgs.mcp-nixos}"
-              ];
-            };
+            # nixos = {
+            #   enabled = true;
+            #   type = "local";
+            #   command = [
+            #     "${lib.getExe pkgs.mcp-nixos}"
+            #   ];
+            # };
             codegraph = {
               enabled = true;
               type = "local";
