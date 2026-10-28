@@ -99,6 +99,8 @@ in
 
   services.qemuGuest = enabled;
 
+  virtualisation.podman = enabled;
+
   sops.secrets = {
     "milet_sing" = { };
   };
