@@ -76,7 +76,6 @@
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
 

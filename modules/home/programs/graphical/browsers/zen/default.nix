@@ -42,15 +42,6 @@ in
 
           "browser.newtabpage.pinned" = [ ];
 
-          # "privacy.resistFingerprinting" = false;
-          # "privacy.resistFingerprinting.randomization.canvas.use_siphash" = true;
-          # "privacy.resistFingerprinting.block_mozAddonManager" = true;
-          # "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
-          # "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
-          # "privacy.donottrackheader.enabled" = true;
-          # "privacy.spoof_english" = 1;
-          # "privacy.firstparty.isolate" = true;
-
           # default enable extensions
           "extensions.autoDisableScopes" = 0;
           "extensions.enabledScopes" = lib.mkForce 15;
