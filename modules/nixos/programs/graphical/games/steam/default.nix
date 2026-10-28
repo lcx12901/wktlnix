@@ -40,6 +40,12 @@ in
       extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
+    environment = {
+      sessionVariables = {
+        PROTON_ENABLE_WAYLAND = "1";
+      };
+    };
+
     hardware = {
       steam-hardware = enabled;
       xone = enabled;
