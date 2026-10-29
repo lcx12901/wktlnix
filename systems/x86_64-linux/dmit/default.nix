@@ -46,16 +46,19 @@ in
 
     security = {
       sudo-rs = enabled;
+      acme = enabled;
     };
   };
 
   services.qemuGuest.enable = true;
 
   networking = {
+    domain = lib.mkForce "wktl.de";
+
     interfaces."eth0" = {
       ipv4.addresses = [
         {
-          address = "64.186.234.52";
+          address = "179.253.236.204";
           prefixLength = 32;
         }
       ];
@@ -85,7 +88,7 @@ in
     firewall = {
       allowedTCPPorts = [ 51430 ];
 
-      allowedUDPPorts = [ 51430 ];
+      allowedUDPPorts = [ 47508 ];
     };
   };
 
@@ -100,6 +103,9 @@ in
   sops.secrets = {
     "dmit_sing" = { };
   };
+
+  # reload sing-box after cert renewal
+  security.acme.certs."dmit.wktl.de".reloadServices = [ "sing-box" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

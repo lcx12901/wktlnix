@@ -28,6 +28,9 @@ in
       description = "sing-box Daemon";
       serviceConfig = {
         DynamicUser = true;
+        SupplementaryGroups = lib.mkIf (config.security.acme.certs != { }) (
+          lib.unique (lib.mapAttrsToList (_: v: v.group) config.security.acme.certs)
+        );
         ExecStart = [
           "${lib.getExe cfg.package} run -c $\{CREDENTIALS_DIRECTORY}/config.json -D $\{STATE_DIRECTORY}"
         ];
