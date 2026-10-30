@@ -76,7 +76,7 @@ in
     };
 
     defaultGateway6 = {
-      address = "fe80::cc65:edff:fe4d:f832";
+      address = "fe80::7020:59ff:fe4d:6416";
       interface = "eth0";
     };
 
@@ -88,13 +88,25 @@ in
     firewall = {
       allowedTCPPorts = [
         51430
-        47508
       ];
 
       allowedUDPPorts = [
         51430
         47508
       ];
+    };
+
+    nftables = {
+      enable = true;
+      tables.hysteria-port-hop = {
+        family = "inet";
+        content = ''
+          chain prerouting {
+            type nat hook prerouting priority dstnat; policy accept;
+            iifname "eth0" udp dport 30000-40000 counter redirect to :47508
+          }
+        '';
+      };
     };
   };
 
