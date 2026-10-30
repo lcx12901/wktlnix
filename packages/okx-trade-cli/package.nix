@@ -6,11 +6,11 @@
   runCommand,
 }:
 let
-  version = "1.4.8";
+  version = "1.5.0";
 
   tarball = fetchurl {
     url = "https://registry.npmjs.org/@okx_ai/okx-trade-cli/-/okx-trade-cli-${version}.tgz";
-    hash = "sha256-bxne+F+H+zvKhq3N7fuOdbqbO+3ujNzt4UCMgHj9CBs=";
+    hash = "sha256-2oxR9Raxy5SSIU4PJuxK/5uwMinY3NJCz04Tgb9fmF4=";
   };
 
   # 已发布 tarball 的 devDependencies 含 "file:../core"（@agent-tradekit/core），
@@ -28,7 +28,7 @@ buildNpmPackage {
   pname = "okx-trade-cli";
   inherit version src;
 
-  npmDepsHash = "sha256-tFr8X3cUfPETLHSMsG71rqVH+KRPmuilnMmNiihOlLM=";
+  npmDepsHash = "sha256-4VL1YNAA6pLa0hru4t6EE+gCPBjSeuxnPbGGQXIpH9w=";
 
   # 已发布 tarball 自带预构建 dist/，无需 npm run build
   dontNpmBuild = true;
