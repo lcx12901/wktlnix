@@ -8,8 +8,8 @@ let
   okxSkills = pkgs.fetchFromGitHub {
     owner = "okx";
     repo = "agent-skills";
-    rev = "d9d6710505ebb02f581e462f92a4a352f6119c6c";
-    hash = "sha256-VXz8Uh4hXEgqU9z88OUp9Fr22mLDCdaXwSLQflcCf84=";
+    rev = "f299d194d36c626a9a1d9a50245c8e1640b62230";
+    hash = "sha256-u4bx4L5WP9it+74lSVXvUMriZUWurfItS1CBmqmU5Vg=";
   };
 in
 {
