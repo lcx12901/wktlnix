@@ -57,11 +57,14 @@ in
     chaotic.nyx.cache.enable = true;
 
     # cachyOS kernel 调度规则
-    services.scx = {
+    services.scx-loader = {
       enable = true;
-      scheduler = "scx_lavd";
-      extraArgs = [ "--performance" ]; # 性能模式
       package = pkgs.scx.full;
+
+      config = {
+        scheduler = "scx_lavd";
+        extraArgs = [ "--performance" ]; # 性能模式
+      };
     };
   };
 }
