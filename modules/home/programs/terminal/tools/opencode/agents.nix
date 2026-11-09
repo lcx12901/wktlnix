@@ -16,7 +16,7 @@ let
         "Glob"
         "Bash"
       ];
-      model = "opencode-go/mimo-v2.5";
+      model = "opencode-go/mimo-v2.6-flash";
       permission = {
         edit = "ask";
         bash = "ask";
