@@ -33,11 +33,6 @@ in
     programs = {
       graphical = {
         wms.niri = enabled;
-        games = {
-          steam = enabled;
-          gamemode = enabled;
-          gamescope = enabled;
-        };
         file-managers.nautilus = enabled;
       };
       terminal.tools.nix-ld = enabled;
@@ -50,31 +45,23 @@ in
     services = {
       openssh = enabled;
       avahi = enabled;
-      inadyn = {
-        enable = true;
-        configFile = config.sops.secrets."cf-hiyori-inadyn".path;
-      };
-      nginx = {
-        enable = true;
-        defaultSSLListenPort = 12901;
-      };
-      redis = enabled;
-      opencloud = enabled;
-      jellyfin = enabled;
-      aria2 = enabled;
       mihomo = enabled;
+      sing-box = {
+        enable = true;
+        configFile = config.sops.secrets."yukino_sing".path;
+      };
+      frp = {
+        enable = true;
+        role = "client";
+      };
     };
 
     security = {
       sudo-rs = enabled;
-      acme = enabled;
     };
   };
 
-  sops.secrets."cf-hiyori-inadyn" = {
-    inherit (config.services.inadyn) group;
-    owner = config.services.inadyn.user;
-  };
+  sops.secrets."yukino_sing" = { };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -33,21 +33,18 @@ in
           fontSize = 15;
         };
         tools = {
-          distrobox = enabled;
           nh = enabled;
-          opencode = enabled;
+          omp = enabled;
         };
       };
     };
 
     scenes = {
       daily = enabled;
-      business = enabled;
       development = {
         enable = true;
         nodejsEnable = true;
       };
-      music = enabled;
     };
   };
 
