@@ -1,4 +1,8 @@
-{ inputs, lib, ... }:
+{
+  inputs,
+  lib,
+  ...
+}:
 let
   inherit (lib.wktlnix) enabled;
 in
@@ -48,6 +52,7 @@ in
           };
           nh = enabled;
           mnemos = enabled;
+          omp = enabled;
         };
       };
     };
