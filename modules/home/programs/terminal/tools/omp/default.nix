@@ -20,6 +20,13 @@ let
   yaml = pkgs.formats.yaml { };
   json = pkgs.formats.json { };
 
+  antfuSkills = pkgs.fetchFromGitHub {
+    owner = "antfu";
+    repo = "skills";
+    rev = "feb0f3aba6566426f12230e7fc7a10d97c1293bb";
+    sha256 = "sha256-o/OH4HGRhBH9p08UfUX8K31JuISSIDO9O4zZDrwzJL4=";
+  };
+
   modelsFile = yaml.generate "omp-models.yml" {
     providers.opencode-go.apiKey = "!cat ${config.sops.secrets."OPENCODE_API_KEY".path}";
   };
@@ -51,6 +58,10 @@ let
       autoContinue = true;
     };
     python.interpreter = "${getExe pkgs.python3}";
+
+    skills.customDirectories = [
+      "${antfuSkills}/skills"
+    ];
   };
 
   lspFile = yaml.generate "omp-lsp.yml" {
