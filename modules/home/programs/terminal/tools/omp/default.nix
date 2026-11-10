@@ -18,6 +18,7 @@ let
   cfg = config.wktlnix.programs.terminal.tools.omp;
 
   yaml = pkgs.formats.yaml { };
+  json = pkgs.formats.json { };
 
   modelsFile = yaml.generate "omp-models.yml" {
     providers.opencode-go.apiKey = "!cat ${config.sops.secrets."OPENCODE_API_KEY".path}";
@@ -145,6 +146,29 @@ let
       };
     };
   };
+
+  mcpFile = json.generate "omp-mcp.json" {
+    "$schema" =
+      "https://raw.githubusercontent.com/can1357/oh-my-pi/main/packages/coding-agent/src/config/mcp-schema.json";
+    mcpServers = {
+      nixos = {
+        command = getExe pkgs.mcp-nixos;
+      };
+      codegraph = {
+        command = getExe pkgs.codegraph;
+        args = [
+          "serve"
+          "--mcp"
+        ];
+      };
+    }
+    // lib.optionalAttrs config.wktlnix.programs.terminal.tools.mnemos.enable {
+      mnemos = {
+        command = getExe pkgs.wktlnix.mnemos-continuity;
+        args = [ "serve" ];
+      };
+    };
+  };
 in
 {
   options.wktlnix.programs.terminal.tools.omp = {
@@ -164,6 +188,7 @@ in
             run install -m 600 ${configFile} "$HOME/.omp/agent/config.yml"
             run install -m 600 ${modelsFile} "$HOME/.omp/agent/models.yml"
             run install -m 600 ${lspFile} "$HOME/.omp/agent/lsp.yml"
+            run install -m 600 ${mcpFile} "$HOME/.omp/agent/mcp.json"
             run install -m 600 ${./agent/RULES.md} "$HOME/.omp/RULES.md"
           '';
         };
