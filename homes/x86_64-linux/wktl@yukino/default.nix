@@ -48,7 +48,6 @@ in
           };
           nh = enabled;
           mnemos = enabled;
-          opencode = enabled;
         };
       };
     };

@@ -42,7 +42,6 @@ in
         tools = {
           distrobox = enabled;
           nh = enabled;
-          opencode = enabled;
         };
       };
     };

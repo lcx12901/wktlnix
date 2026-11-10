@@ -201,8 +201,7 @@ in
       };
     };
 
-    # Also declared by the opencode module; empty declarations merge.
+    # providers.opencode-go 的 apiKey，models.yml 用 !cat 读取
     sops.secrets."OPENCODE_API_KEY" = { };
-
   };
 }
