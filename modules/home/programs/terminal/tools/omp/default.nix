@@ -9,8 +9,6 @@ let
   inherit (lib)
     mkIf
     mkEnableOption
-    getExe
-    getExe'
     ;
 
   persist = osConfig.wktlnix.system.persist.enable;
@@ -18,166 +16,14 @@ let
   cfg = config.wktlnix.programs.terminal.tools.omp;
 
   yaml = pkgs.formats.yaml { };
-  json = pkgs.formats.json { };
-
-  antfuSkills = pkgs.fetchFromGitHub {
-    owner = "antfu";
-    repo = "skills";
-    rev = "feb0f3aba6566426f12230e7fc7a10d97c1293bb";
-    sha256 = "sha256-o/OH4HGRhBH9p08UfUX8K31JuISSIDO9O4zZDrwzJL4=";
-  };
 
   modelsFile = yaml.generate "omp-models.yml" {
     providers.opencode-go.apiKey = "!cat ${config.sops.secrets."OPENCODE_API_KEY".path}";
   };
 
-  configFile = yaml.generate "omp-config.yml" {
-    modelRoles = {
-      default = "opencode-go/mimo-v2.6-flash:xhigh";
-      plan = "opencode-go/mimo-v2.6-flash:xhigh";
-      slow = "opencode-go/mimo-v2.6-flash:xhigh";
-      designer = "opencode-go/mimo-v2.6-flash:xhigh";
-      smol = "opencode-go/mimo-v2.6-flash:xhigh";
-      vision = "opencode-go/qwen3.5-plus:high";
-    };
-    setupVersion = 2;
-    startup.quiet = true;
-    theme = {
-      dark = "dark-catppuccin";
-    };
-    symbolPreset = "nerd";
-    colorBlindMode = true;
-    statusLine = {
-      preset = "nerd";
-      separator = "ascii";
-    };
-    compaction = {
-      enabled = true;
-      reserveTokens = 32768;
-      keepRecentTokens = 20000;
-      autoContinue = true;
-    };
-    python.interpreter = "${getExe pkgs.python3}";
-
-    skills.customDirectories = [
-      "${antfuSkills}/skills"
-    ];
-  };
-
-  lspFile = yaml.generate "omp-lsp.yml" {
-    servers = {
-      nixd = {
-        command = getExe pkgs.nixd;
-        fileTypes = [ ".nix" ];
-        rootMarkers = [
-          "flake.nix"
-          "default.nix"
-          "shell.nix"
-        ];
-        initOptions = {
-          formatting = {
-            command = [ (lib.getExe pkgs.nixfmt) ];
-          };
-          options = {
-            nixos = {
-              expr = "(builtins.getFlake \"${config.home.homeDirectory}/Coding/wktlnix\").nixosConfigurations.kanroji.options";
-            };
-            home-manager = {
-              expr = "(builtins.getFlake \"${config.home.homeDirectory}/Coding/wktlnix\").homeConfigurations.\"wktl@kanroji\".options";
-            };
-          };
-        };
-      };
-      typescript-language-server = {
-        command = getExe pkgs.typescript-language-server;
-        args = [ "--stdio" ];
-        fileTypes = [
-          ".ts"
-          ".tsx"
-          ".js"
-          ".jsx"
-          ".mjs"
-          ".cjs"
-          ".mts"
-          ".cts"
-        ];
-      };
-      vue-language-server = {
-        command = getExe pkgs.vue-language-server;
-        args = [ "--stdio" ];
-        fileTypes = [ ".vue" ];
-      };
-      eslint = {
-        command = getExe' pkgs.vscode-langservers-extracted "vscode-eslint-language-server";
-        args = [ "--stdio" ];
-        fileTypes = [
-          ".js"
-          ".jsx"
-          ".ts"
-          ".tsx"
-          ".vue"
-        ];
-      };
-      yamlls = {
-        command = getExe pkgs.yaml-language-server;
-        args = [ "--stdio" ];
-        fileTypes = [
-          ".yaml"
-          ".yml"
-        ];
-      };
-      vscode-json-language-server = {
-        command = getExe' pkgs.vscode-langservers-extracted "vscode-json-language-server";
-        args = [ "--stdio" ];
-        fileTypes = [
-          ".json"
-          ".jsonc"
-        ];
-      };
-      bashls = {
-        command = getExe pkgs.bash-language-server;
-        args = [ "start" ];
-        fileTypes = [
-          ".sh"
-          ".bash"
-        ];
-      };
-      marksman = {
-        command = getExe pkgs.marksman;
-        fileTypes = [
-          ".md"
-          ".mdx"
-        ];
-      };
-      rust-analyzer = {
-        command = getExe pkgs.rust-analyzer;
-        fileTypes = [ ".rs" ];
-      };
-    };
-  };
-
-  mcpFile = json.generate "omp-mcp.json" {
-    "$schema" =
-      "https://raw.githubusercontent.com/can1357/oh-my-pi/main/packages/coding-agent/src/config/mcp-schema.json";
-    mcpServers = {
-      nixos = {
-        command = getExe pkgs.mcp-nixos;
-      };
-      codegraph = {
-        command = getExe pkgs.codegraph;
-        args = [
-          "serve"
-          "--mcp"
-        ];
-      };
-    }
-    // lib.optionalAttrs config.wktlnix.programs.terminal.tools.mnemos.enable {
-      mnemos = {
-        command = getExe pkgs.wktlnix.mnemos-continuity;
-        args = [ "serve" ];
-      };
-    };
-  };
+  configFile = import ./config.nix { inherit lib pkgs; };
+  lspFile = import ./lsp.nix { inherit config lib pkgs; };
+  mcpFile = import ./mcp.nix { inherit config lib pkgs; };
 in
 {
   options.wktlnix.programs.terminal.tools.omp = {
