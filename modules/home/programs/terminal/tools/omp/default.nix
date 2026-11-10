@@ -53,7 +53,7 @@ let
     python.interpreter = "${getExe pkgs.python3}";
   };
 
-  lspFile = yaml.generate "omp-models.yml" {
+  lspFile = yaml.generate "omp-lsp.yml" {
     servers = {
       nixd = {
         command = getExe pkgs.nixd;
@@ -77,7 +77,7 @@ let
           };
         };
       };
-      typescript = {
+      typescript-language-server = {
         command = getExe pkgs.typescript-language-server;
         args = [ "--stdio" ];
         fileTypes = [
@@ -91,12 +91,10 @@ let
           ".cts"
         ];
       };
-      vue = {
+      vue-language-server = {
         command = getExe pkgs.vue-language-server;
         args = [ "--stdio" ];
-        fileTypes = [
-          ".vue"
-        ];
+        fileTypes = [ ".vue" ];
       };
       eslint = {
         command = getExe' pkgs.vscode-langservers-extracted "vscode-eslint-language-server";
@@ -109,7 +107,7 @@ let
           ".vue"
         ];
       };
-      yaml-ls = {
+      yamlls = {
         command = getExe pkgs.yaml-language-server;
         args = [ "--stdio" ];
         fileTypes = [
@@ -117,7 +115,7 @@ let
           ".yml"
         ];
       };
-      jsonls = {
+      vscode-json-language-server = {
         command = getExe' pkgs.vscode-langservers-extracted "vscode-json-language-server";
         args = [ "--stdio" ];
         fileTypes = [
