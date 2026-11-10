@@ -33,6 +33,7 @@ in
           fontSize = 15;
         };
         tools = {
+          mnemos = enabled;
           nh = enabled;
           omp = enabled;
         };
